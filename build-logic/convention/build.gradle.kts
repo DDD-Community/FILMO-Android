@@ -80,6 +80,7 @@ gradlePlugin {
             id = "filmo.android.application.firebase"
             implementationClass = "AndroidApplicationFirebaseConventionPlugin"
         }
+        // Domain plugins jvm만 들어있음
         register("jvmLibrary") {
             id = "filmo.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"

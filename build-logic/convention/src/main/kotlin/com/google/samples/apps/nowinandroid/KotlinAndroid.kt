@@ -56,8 +56,10 @@ internal fun Project.configureKotlinAndroid(
     }
 }
 
+
 /**
- * Configure base Kotlin options for JVM (non-Android)
+ * JVM용을 위해 Kotlin을 구성합니다.
+ *
  */
 internal fun Project.configureKotlinJvm() {
     extensions.configure<JavaPluginExtension> {
@@ -66,7 +68,6 @@ internal fun Project.configureKotlinJvm() {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     configureKotlin()
 }
 

@@ -15,7 +15,6 @@
  */
 
 import com.android.build.gradle.LibraryExtension
-import com.google.samples.apps.nowinandroid.configureGradleManagedDevices
 import com.google.samples.apps.nowinandroid.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -29,35 +28,38 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("filmo.android.library")
                 apply("filmo.android.hilt")
+                apply("filmo.android.library.compose")
             }
             extensions.configure<LibraryExtension> {
                 defaultConfig {
-                    testInstrumentationRunner =
-                        "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+                    testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
                 }
-                configureGradleManagedDevices(this)
+//                configureGradleManagedDevices(this)
             }
 
             dependencies {
 //                add("implementation", project(":core:model"))
 //                add("implementation", project(":core:ui"))
-//                add("implementation", project(":core:designsystem"))
+                add("implementation", project(":core:designsystem"))
 //                add("implementation", project(":core:data"))
 //                add("implementation", project(":core:common"))
 //                add("implementation", project(":core:domain"))
 //                add("implementation", project(":core:analytics"))
+                add("testImplementation", project(":core:testing"))
+//                add("androidTestImplementation", project(":core:testing"))
 
                 add("testImplementation", kotlin("test"))
-//                add("testImplementation", project(":core:testing"))
                 add("androidTestImplementation", kotlin("test"))
-//                add("androidTestImplementation", project(":core:testing"))
 
                 add("implementation", libs.findLibrary("coil.kt").get())
                 add("implementation", libs.findLibrary("coil.kt.compose").get())
 
                 add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtime-compose").get())
-                add("implementation", libs.findLibrary("androidx.lifecycle.viewmodel-compose").get())
+                add(
+                    "implementation",
+                    libs.findLibrary("androidx.lifecycle.viewmodel-compose").get(),
+                )
 
                 add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
             }

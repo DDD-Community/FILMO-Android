@@ -16,8 +16,6 @@
 
 package com.ddd.filmo.presentation.login.ui
 
-import com.ddd.filmo.core.ui.MyApplicationTheme
-import com.ddd.filmo.feature.login.ui.LoginUiState.Success
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,35 +34,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ddd.filmo.core.ui.MyApplicationTheme
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
-    val items by viewModel.uiState.collectAsStateWithLifecycle()
-    if (items is Success) {
-        LoginScreen(
-            items = (items as Success).data,
-            onSave = { name -> viewModel.addLogin(name) },
-            modifier = modifier
-        )
-    }
+//    val items by viewModel.uiState.collectAsStateWithLifecycle()
+//    if (items is Success) {
+    LoginScreen(
+        items = listOf(),
+        onSave = { name -> },
+        modifier = modifier,
+    )
+//    }
 }
 
 @Composable
 internal fun LoginScreen(
     items: List<String>,
     onSave: (name: String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
         var nameLogin by remember { mutableStateOf("Compose") }
         Row(
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             TextField(
                 value = nameLogin,
-                onValueChange = { nameLogin = it }
+                onValueChange = { nameLogin = it },
             )
 
             Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameLogin) }) {

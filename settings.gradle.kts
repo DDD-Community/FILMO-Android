@@ -34,5 +34,12 @@ rootProject.name = "Multimodule template"
 include(":app")
 include(":core-testing")
 include(":core-ui")
-include(":feature-login:presentation")
 include(":test-app")
+include(":core-designsystem")
+
+// feature-login
+include(":feature-login:presentation")
+include(":feature-login:data")
+include(":feature-login:domain")
+
+

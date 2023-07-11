@@ -14,42 +14,25 @@
  * limitations under the License.
  */
 
-@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     id("filmo.android.feature")
 }
 
 android {
     namespace = "com.ddd.filmo.feature.login"
-    compileSdk = 33
-
     defaultConfig {
-        minSdk = 21
-
         testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildFeatures {
-        compose = true
-        aidl = false
-        buildConfig = false
-        renderScript = false
-        shaders = false
-    }
+//    buildFeatures {
+//        compose = true
+//        aidl = false
+//        buildConfig = false
+//        renderScript = false
+//        shaders = false
+//    }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 }
 
 dependencies {

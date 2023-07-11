@@ -23,15 +23,11 @@ plugins {
 
 android {
     namespace = "com.ddd.filmo"
-    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.ddd.filmo"
-        minSdk = 21
-        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -52,15 +48,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     buildFeatures {
         compose = true
         aidl = false
@@ -73,11 +60,11 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
 
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+//    packagingOptions {
+//        resources {
+//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+//        }
+//    }
 }
 
 dependencies {

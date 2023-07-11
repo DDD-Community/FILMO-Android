@@ -25,8 +25,8 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import com.ddd.filmo.core.data.LoginRepository
-import com.ddd.filmo.feature.login.ui.LoginUiState
-import com.ddd.filmo.feature.login.ui.LoginViewModel
+import com.ddd.filmo.presentation.login.ui.LoginUiState
+import com.ddd.filmo.presentation.login.ui.LoginViewModel
 
 /**
  * Example local unit test, which will execute on the development machine (host).
