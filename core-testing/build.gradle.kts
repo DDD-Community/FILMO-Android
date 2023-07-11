@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":feature-login:domain"))
     implementation(libs.androidx.test.runner)
     implementation(libs.hilt.android.testing)
 }

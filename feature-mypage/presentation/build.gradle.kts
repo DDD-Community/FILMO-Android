@@ -1,16 +1,16 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("filmo.android.library")
-    id("filmo.android.hilt")
+    id("filmo.android.feature")
 }
 
 android {
-    namespace = "com.ddd.filmo.login.data"
+    namespace = "com.ddd.filmo.presentation.mypage"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -19,6 +19,13 @@ android {
                 "proguard-rules.pro",
             )
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 

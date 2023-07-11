@@ -43,3 +43,6 @@ include(":feature-login:data")
 include(":feature-login:domain")
 
 
+include(":feature-mypage:presentation")
+include(":feature-mypage:domain")
+include(":feature-mypage:data")
