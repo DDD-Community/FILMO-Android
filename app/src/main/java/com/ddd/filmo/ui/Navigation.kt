@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ddd.filmo.presentation.login.ui.LoginScreen
+import com.ddd.filmo.presentation.login.ui.login.LoginScreen
 
 @Composable
 fun MainNavigation() {
