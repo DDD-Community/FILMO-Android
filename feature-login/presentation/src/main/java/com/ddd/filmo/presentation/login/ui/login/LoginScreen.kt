@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-package com.ddd.filmo.presentation.login.ui
+package com.ddd.filmo.presentation.login.ui.login
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,30 +52,27 @@ internal fun LoginScreen(
 ) {
     Column(modifier) {
         var nameLogin by remember { mutableStateOf("Compose") }
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            TextField(
-                value = nameLogin,
-                onValueChange = { nameLogin = it },
-            )
 
-            Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameLogin) }) {
-                Text("Save")
-            }
+        Text(
+            text = "나만의 명장면을 모아\n" +
+                "필름을 만들어 보세요.\n" +
+                "\n" +
+                "어쩌구 저쩌고 , 필모",
+        )
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "카카오로 시작하기")
         }
-        items.forEach {
-            Text("Saved item: $it")
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "구글로 시작하기")
         }
+
     }
 }
 
-// Previews
-
 @Preview(showBackground = true)
 @Composable
-private fun DefaultPreview() {
+private fun DefaultLoginPreview() {
     MyApplicationTheme {
         LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
     }
@@ -87,7 +80,7 @@ private fun DefaultPreview() {
 
 @Preview(showBackground = true, widthDp = 480)
 @Composable
-private fun PortraitPreview() {
+private fun PortraitLoginPreview() {
     MyApplicationTheme {
         LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
     }

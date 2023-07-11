@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ddd.filmo.presentation.login.ui
+package com.ddd.filmo.presentation.login.ui.login
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
