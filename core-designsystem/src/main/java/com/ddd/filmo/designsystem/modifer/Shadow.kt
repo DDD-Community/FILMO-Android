@@ -1,4 +1,4 @@
-package com.ddd.pollpoll.core.modifer
+package com.ddd.filmo.designsystem.modifer
 
 import android.graphics.BlurMaskFilter
 import androidx.compose.ui.Modifier
