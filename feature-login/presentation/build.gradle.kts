@@ -19,7 +19,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ddd.filmo.feature.login"
+    namespace = "com.ddd.filmo.feature.mypage"
     defaultConfig {
         testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
