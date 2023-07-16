@@ -32,7 +32,6 @@ android {
 //        renderScript = false
 //        shaders = false
 //    }
-
 }
 
 dependencies {
