@@ -37,13 +37,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ddd.filmo.core.ui.MyApplicationTheme
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    viewModel: LoginViewModel = hiltViewModel(),
+    navigate: (String) -> Unit,
+) {
 //    val items by viewModel.uiState.collectAsStateWithLifecycle()
 //    if (items is Success) {
     LoginScreen(
         items = listOf(),
         onSave = { name -> },
         modifier = modifier,
+        navigate = navigate,
     )
 //    }
 }
@@ -53,11 +58,14 @@ internal fun LoginScreen(
     items: List<String>,
     onSave: (name: String) -> Unit,
     modifier: Modifier = Modifier,
+    navigate: (String) -> Unit = {},
 ) {
     Column(modifier) {
         var nameLogin by remember { mutableStateOf("Compose") }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             TextField(
@@ -65,8 +73,12 @@ internal fun LoginScreen(
                 onValueChange = { nameLogin = it },
             )
 
-            Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameLogin) }) {
-                Text("Save")
+            Button(modifier = Modifier.width(96.dp), onClick = {
+                    onSave(nameLogin)
+                    navigate("mypage")
+                }
+            ) {
+                Text("to mypage")
             }
         }
         items.forEach {

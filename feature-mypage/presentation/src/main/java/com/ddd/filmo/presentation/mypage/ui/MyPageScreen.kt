@@ -15,7 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyPageScreen() {
+fun MyPageScreen(
+    count: Int = 0
+) {
+    Text(text = count.toString())
     CenterAlignedTopAppBar(
         title = {
             Text(
