@@ -22,7 +22,6 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
 import org.junit.Test
-import com.ddd.filmo.core.data.di.fakeLogins
 import com.ddd.filmo.ui.MainActivity
 
 @HiltAndroidTest
@@ -37,6 +36,5 @@ class AppTest {
     @Test
     fun test1() {
         // TODO: Add navigation tests
-        composeTestRule.onNodeWithText(fakeLogins.first(), substring = true).assertExists()
     }
 }

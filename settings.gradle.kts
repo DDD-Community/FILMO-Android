@@ -43,6 +43,18 @@ include(":feature-login:data")
 include(":feature-login:domain")
 
 
+//feature-mypage
 include(":feature-mypage:presentation")
 include(":feature-mypage:domain")
 include(":feature-mypage:data")
+
+//feature-scene
+include(":feature-scene:presentation")
+include(":feature-scene:domain")
+include(":feature-scene:data")
+
+//feature-setting
+include(":feature-setting:presentation")
+include(":feature-setting:domain")
+include(":feature-setting:data")
+
