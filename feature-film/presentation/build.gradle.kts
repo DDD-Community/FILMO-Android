@@ -45,10 +45,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-ui"))
+    implementation(project(":feature-film:domain"))
+    implementation(project(":feature-scene:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material)
     androidTestImplementation(project(":core-testing"))
 
     // Core Android dependencies

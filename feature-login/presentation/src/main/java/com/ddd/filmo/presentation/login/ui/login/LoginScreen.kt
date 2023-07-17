@@ -16,8 +16,12 @@
 
 package com.ddd.filmo.presentation.login.ui.login
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -27,10 +31,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ddd.filmo.core.ui.MyApplicationTheme
+import com.ddd.filmo.designsystem.theme.LogoColor
+import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.designsystem.icon.FilmoIcon
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
@@ -50,9 +57,13 @@ internal fun LoginScreen(
     onSave: (name: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier) {
+    Column(
+        Modifier.fillMaxSize().background(LogoColor),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+    ) {
         var nameLogin by remember { mutableStateOf("Compose") }
-
+        Image(painter = painterResource(id = FilmoIcon.FilmoLogo), contentDescription = "")
         Text(
             text = "나만의 명장면을 모아\n" +
                 "필름을 만들어 보세요.\n" +
@@ -66,14 +77,13 @@ internal fun LoginScreen(
         Button(onClick = { /*TODO*/ }) {
             Text(text = "구글로 시작하기")
         }
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun DefaultLoginPreview() {
-    MyApplicationTheme {
+    FilmoTheme {
         LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
     }
 }
@@ -81,7 +91,7 @@ private fun DefaultLoginPreview() {
 @Preview(showBackground = true, widthDp = 480)
 @Composable
 private fun PortraitLoginPreview() {
-    MyApplicationTheme {
+    FilmoTheme {
         LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
     }
 }

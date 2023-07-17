@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ddd.filmo.core.ui
+package com.ddd.filmo.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

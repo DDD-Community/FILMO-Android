@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-ui"))
+    implementation(project(":feature-scene:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     androidTestImplementation(project(":core-testing"))

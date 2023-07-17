@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ddd.filmo.core.ui.MyApplicationTheme
+import com.ddd.filmo.designsystem.theme.FilmoTheme
 
 @Composable
 internal fun InsertNickNameScreen(
@@ -58,7 +58,7 @@ internal fun SuccessSignUpScreen(
 @Preview(showBackground = true)
 @Composable
 private fun DefaultInsertNickNamePreview() {
-    MyApplicationTheme {
+    FilmoTheme {
         InsertNickNameScreen()
     }
 }
@@ -66,7 +66,7 @@ private fun DefaultInsertNickNamePreview() {
 @Preview(showBackground = true, widthDp = 480)
 @Composable
 private fun PortraitInsertNickNamePreview() {
-    MyApplicationTheme {
+    FilmoTheme {
         InsertNickNameScreen()
     }
 }
