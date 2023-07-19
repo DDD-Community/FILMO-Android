@@ -1,4 +1,4 @@
 plugins {
-    id("filmo.jvm.library")
+    id("filmo.domain.library")
 }
 

@@ -1,4 +1,4 @@
-package com.ddd.filmo.presentation.ui.read
+package com.ddd.filmo.presentation.scene.ui.read
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +21,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.ddd.filmo.login.domain.model.Scene
+import com.ddd.filmo.model.Scene
+
+@Composable
+internal fun SceneReadScreenRoute(
+//    viewModel: MainViewModel = hiltViewModel(),
+//    navigateToReadVote: (Int) -> Unit,
+//    navigateToSearch: () -> Unit,
+    scene: Scene,
+) {
+    SceneReadScreen(scene = scene)
+}
 
 @Composable
 fun SceneReadScreen(scene: Scene) {

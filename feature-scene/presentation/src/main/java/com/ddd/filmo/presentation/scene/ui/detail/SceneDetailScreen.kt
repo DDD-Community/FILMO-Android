@@ -1,4 +1,4 @@
-package com.ddd.filmo.presentation.ui.detail
+package com.ddd.filmo.presentation.scene.ui.detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,12 +21,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ddd.filmo.core.designsystem.R
-import com.ddd.filmo.login.domain.model.Scene
-import com.ddd.filmo.presentation.ui.read.SceneReadScreen
+import com.ddd.filmo.model.Scene
+import com.ddd.filmo.presentation.scene.ui.read.SceneReadScreen
+
+@Composable
+internal fun SceneDetailScreenRoute(
+//    viewModel: MainViewModel = hiltViewModel(),
+//    navigateToReadVote: (Int) -> Unit,
+//    navigateToSearch: () -> Unit,
+) {
+    SceneDetailScreen()
+}
 
 @Composable
 fun SceneDetailScreen(
-    scene: Scene?,
+    scene: Scene? = null,
     onBackClick: () -> Unit = {},
 ) {
     var isDropDownMenuExpanded by remember { mutableStateOf(false) }

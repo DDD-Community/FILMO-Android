@@ -36,7 +36,7 @@ include(":core-testing")
 include(":core-ui")
 include(":test-app")
 include(":core-designsystem")
-
+include(":core-model")
 // feature-login
 include(":feature-login:presentation")
 include(":feature-login:data")

@@ -17,7 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ddd.filmo.designsystem.component.appbar.FilmoTopAppBarState
-import com.ddd.filmo.presentation.login.ui.login.LoginScreen
+import com.ddd.filmo.presentation.login.ui.LoginScreen
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreen
 
 @OptIn(ExperimentalMaterial3Api::class)

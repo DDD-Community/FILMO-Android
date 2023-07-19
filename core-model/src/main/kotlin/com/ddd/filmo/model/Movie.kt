@@ -1,4 +1,4 @@
-package com.ddd.filmo.login.domain.model
+package com.ddd.filmo.model
 
 data class Movie(
     val title: String,

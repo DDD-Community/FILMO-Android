@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ddd.filmo.presentation.login.ui.login
+package com.ddd.filmo.presentation.login.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,9 +35,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ddd.filmo.designsystem.theme.LogoColor
-import com.ddd.filmo.designsystem.theme.FilmoTheme
 import com.ddd.filmo.designsystem.icon.FilmoIcon
+import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.designsystem.theme.LogoColor
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {

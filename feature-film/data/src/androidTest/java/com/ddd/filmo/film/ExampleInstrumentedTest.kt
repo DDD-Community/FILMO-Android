@@ -1,4 +1,4 @@
-package com.ddd.filmo.login.data
+package com.ddd.filmo.film
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
