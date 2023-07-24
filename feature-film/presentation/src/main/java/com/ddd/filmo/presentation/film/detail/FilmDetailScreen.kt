@@ -1,4 +1,4 @@
-package com.example.filmo.film
+package com.ddd.filmo.presentation.film.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,7 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
-import com.ddd.filmo.login.domain.model.Scene
+import com.ddd.filmo.model.Scene
 import java.util.Date
 
 @Composable

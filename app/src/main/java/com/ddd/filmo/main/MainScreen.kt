@@ -1,6 +1,7 @@
 package com.ddd.filmo.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,7 +41,9 @@ import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    navigateToFilmDetail: () -> Unit = {},
+) {
     val filmList = listOf(
         Film(Color(0xFF9868FF), "Basic", 2000, true),
         Film(Color(0xFFCF68FF), "Disney", 1000, true),
@@ -101,7 +104,7 @@ fun MainScreen() {
                     FilmCaseAdd(filmList.size)
                 }
                 items(filmList) { film ->
-                    FilmCase(film)
+                    FilmCase(film, navigateToFilmDetail)
                 }
             }
         }
@@ -118,6 +121,7 @@ data class Film(
 @Composable
 fun FilmCase(
     film: Film = Film(),
+    navigateToFilmDetail: () -> Unit = {},
 ) {
     Box(
         Modifier.fillMaxWidth(),
@@ -136,6 +140,9 @@ fun FilmCase(
             modifier = Modifier
                 .padding(top = 12.dp)
                 .clip(RoundedCornerShape(20.dp))
+                .clickable {
+                    navigateToFilmDetail()
+                }
                 .height(210.dp)
                 .fillMaxWidth()
                 .background(film.caseColor)

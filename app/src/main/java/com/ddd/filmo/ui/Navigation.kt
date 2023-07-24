@@ -20,6 +20,7 @@ import com.ddd.filmo.designsystem.component.appbar.FilmoTopAppBarState
 import com.ddd.filmo.main.MainScreen
 import com.ddd.filmo.presentation.login.ui.LoginScreen
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreen
+import com.ddd.filmo.presentation.film.detail.FilmDetailScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,7 +34,14 @@ fun MainNavigation() {
             modifier = Modifier.padding(padding),
         ) {
             composable("main") {
-                MainScreen()
+                MainScreen(
+                    navigateToFilmDetail = {
+                        navController.navigate("filmDetail")
+                    },
+                )
+            }
+            composable("filmDetail") {
+                FilmDetailScreen()
             }
             composable("mypage") {
                 var count by remember {
