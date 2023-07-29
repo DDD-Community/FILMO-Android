@@ -1,5 +1,6 @@
 package com.ddd.filmo.model
 
+import java.text.SimpleDateFormat
 import java.util.Date
 
 data class Scene(
@@ -10,7 +11,10 @@ data class Scene(
     val movie: Movie?,
     val createdAt: Date,
 ) {
+    val createdAtString = sceneSdf.format(createdAt)
     companion object {
+        val sceneSdf = SimpleDateFormat("yyyy.MM.dd")
+
         val mock = Scene(
             sceneId = "1",
             sceneText = "A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom. However, social differences soon get in the way.",

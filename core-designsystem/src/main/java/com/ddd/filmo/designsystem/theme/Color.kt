@@ -30,7 +30,7 @@ val LogoColor = Color(0xFF5B40FF)
 
 object FilmoColor {
     val Primary = Color(0xFF553EFF)
-    val PrimaryVarient = Color(0xFF7774FF)
+    val PrimaryVariant = Color(0xFF7774FF)
     val Background = Color(0xFF202020)
     val Background2 = Color(0xFF2A2A2A)
     val BackgroundEvaluated = Color(0xFF2A2A2A)
