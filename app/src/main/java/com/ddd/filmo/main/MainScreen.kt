@@ -96,11 +96,13 @@ fun MainScreen(
                     disabledContainerColor = Color.Gray,
                     disabledContentColor = Color.White
                 ),
+                modifier = Modifier.size(160.dp, 40.dp),
                 onClick = { /*TODO*/ }
             ) {
                 Text(
                     text = "씬 만들기",
                     fontFamily = FilmoFamily,
+                    fontSize = 16.sp,
                     color = Color.White
                 )
             }
