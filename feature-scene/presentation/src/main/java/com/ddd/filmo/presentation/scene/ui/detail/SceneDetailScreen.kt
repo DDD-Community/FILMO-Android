@@ -35,7 +35,7 @@ internal fun SceneDetailScreenRoute(
 
 @Composable
 fun SceneDetailScreen(
-    scene: Scene? = null,
+    scene: Scene? = Scene.mock,
     onBackClick: () -> Unit = {},
 ) {
     var isDropDownMenuExpanded by remember { mutableStateOf(false) }
