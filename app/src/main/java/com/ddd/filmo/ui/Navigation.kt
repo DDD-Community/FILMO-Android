@@ -34,6 +34,9 @@ fun MainNavigation() {
                     navigateToFilmDetail = {
                         navController.navigate("filmDetail")
                     },
+                    navigateToMyPage = {
+                        navController.navigate("mypage")
+                    },
                 )
             }
             composable("login") {

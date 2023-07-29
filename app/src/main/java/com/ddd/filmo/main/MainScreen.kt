@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -33,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
@@ -42,6 +42,7 @@ import com.ddd.filmo.ui.FilmCaseAdd
 @Composable
 fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
+    navigateToMyPage: () -> Unit = {},
 ) {
     val filmList = listOf(
         Film(0xFF9868FF, "Basic", 2000, true),
@@ -64,20 +65,11 @@ fun MainScreen(
                 .fillMaxWidth()
                 .height(500.dp),
         )
-        TopBar()
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Box(
-                modifier = Modifier
-                    .height(60.dp)
-                    .padding(horizontal = 8.dp)
-                    .fillMaxWidth(),
-            ) {
+        FilmoAppBar(
+            actions = {
                 IconButton(
-                    modifier = Modifier.size(48.dp).align(Alignment.CenterEnd),
-                    onClick = { /*TODO*/ },
+                    modifier = Modifier.size(48.dp),
+                    onClick = navigateToMyPage,
                 ) {
                     Icon(
                         modifier = Modifier.size(24.dp),
@@ -85,7 +77,16 @@ fun MainScreen(
                         contentDescription = "MyPage",
                     )
                 }
-            }
+            },
+            navigationIcon = {
+            },
+
+        )
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(modifier = Modifier.height(64.dp))
             Text(
                 text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
                 style = TextStyle(
