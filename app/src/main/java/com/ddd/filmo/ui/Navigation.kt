@@ -21,6 +21,7 @@ import com.ddd.filmo.main.MainScreen
 import com.ddd.filmo.presentation.login.ui.LoginScreen
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreen
 import com.ddd.filmo.presentation.film.detail.FilmDetailScreen
+import com.ddd.filmo.presentation.scene.ui.detail.SceneDetailScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +42,14 @@ fun MainNavigation() {
                 )
             }
             composable("filmDetail") {
-                FilmDetailScreen()
+                FilmDetailScreen(
+                    navigateToSceneDetail = {
+                        navController.navigate("sceneDetail")
+                    }
+                )
+            }
+            composable("sceneDetail") {
+                SceneDetailScreen()
             }
             composable("mypage") {
                 var count by remember {

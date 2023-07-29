@@ -46,6 +46,7 @@ import java.util.Date
 fun FilmDetailScreen(
     toAddScene: (Scene?) -> Unit = {},
     onBackClick: () -> Unit = {},
+    navigateToSceneDetail: () -> Unit = {},
 ) {
     val sdf = java.text.SimpleDateFormat("yy.MM.dd")
     val date = sdf.format(Date())
@@ -97,7 +98,7 @@ fun FilmDetailScreen(
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
                                     .clip(RoundedCornerShape(8.dp))
                                     .clickable {
-                                        toAddScene(Scene.mock)
+                                        navigateToSceneDetail()
                                     },
                             ) {
                                 AsyncImage(
@@ -134,7 +135,7 @@ fun FilmDetailScreen(
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
                                     .clip(RoundedCornerShape(8.dp))
                                     .clickable {
-                                        toAddScene(Scene.mock1)
+                                        navigateToSceneDetail()
                                     },
                             ) {
                                 AsyncImage(

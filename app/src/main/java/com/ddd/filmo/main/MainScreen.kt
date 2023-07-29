@@ -25,6 +25,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -76,7 +77,21 @@ fun MainScreen(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.size(60.dp))
+            Box(modifier = Modifier
+                .height(60.dp)
+                .padding(horizontal = 8.dp)
+                .fillMaxWidth()) {
+                IconButton(
+                    modifier = Modifier.size(48.dp).align(Alignment.CenterEnd),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Icon(
+                        modifier = Modifier.size(24.dp),
+                        painter = painterResource(id = FilmoIcon.MyPage),
+                        contentDescription = "MyPage"
+                    )
+                }
+            }
             Text(
                 text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
                 style = TextStyle(
@@ -96,11 +111,13 @@ fun MainScreen(
                     disabledContainerColor = Color.Gray,
                     disabledContentColor = Color.White
                 ),
+                modifier = Modifier.size(160.dp, 40.dp),
                 onClick = { /*TODO*/ }
             ) {
                 Text(
                     text = "씬 만들기",
                     fontFamily = FilmoFamily,
+                    fontSize = 16.sp,
                     color = Color.White
                 )
             }

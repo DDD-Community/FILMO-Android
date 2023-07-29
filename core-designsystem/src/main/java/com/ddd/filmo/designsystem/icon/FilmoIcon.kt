@@ -9,4 +9,5 @@ object FilmoIcon {
     val FIlmoTextLogo = R.drawable.ic_text_logo
     val Google = R.drawable.ic_google
     val Kakao = R.drawable.ic_kakao
+    val MyPage = R.drawable.ic_mypage
 }

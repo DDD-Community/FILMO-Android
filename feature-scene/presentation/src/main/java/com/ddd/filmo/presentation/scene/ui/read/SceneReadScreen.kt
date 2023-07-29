@@ -1,5 +1,6 @@
 package com.ddd.filmo.presentation.scene.ui.read
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 
 @Composable
@@ -36,27 +38,55 @@ internal fun SceneReadScreenRoute(
 @Composable
 fun SceneReadScreen(scene: Scene) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        AsyncImage(
-            model = scene.movie?.posterImageUrl,
+        Row(
             modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
-                .size(81.dp, 106.dp),
-            contentDescription = "",
-            contentScale = ContentScale.Crop,
-        )
-        Spacer(modifier = Modifier.size(20.dp))
-        Text(text = scene.movie?.title ?: "", color = Color(0xff7A7289))
-        Spacer(modifier = Modifier.size(2.dp))
-        Text(text = scene.movie?.releaseYear.toString(), color = Color(0xff7A7289))
-
-        Row() {
-            for (i in 0 until scene.sceneRate!!) {
-                Text(text = "★", color = Color(0xffFFE144))
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color(0xFF2A2A2A))
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            AsyncImage(
+                model = scene.movie?.posterImageUrl,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .size(48.dp, 69.dp),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+            )
+            Spacer(modifier = Modifier.size(16.dp))
+            Column(Modifier.padding(vertical = 16.dp)) {
+                Text(
+                    text = scene.movie?.title ?: "",
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        lineHeight = 22.sp,
+                        fontFamily = FilmoFamily,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFFF4F4F4),
+                        letterSpacing = 0.14.sp,
+                    ),
+                )
+                Text(
+                    text = scene.movie?.releaseYear.toString(),
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        lineHeight = 22.sp,
+                        fontFamily = FilmoFamily,
+                        fontWeight = FontWeight(400),
+                        color = Color(0xFFB6B6B6),
+                        letterSpacing = 0.12.sp,
+                    ),
+                )
+                Spacer(modifier = Modifier.size(9.dp))
+                Row() {
+                    for (i in 0 until scene.sceneRate!!) {
+                        Text(text = "★", color = Color(0xffFFE144))
+                    }
+                }
             }
         }
 
