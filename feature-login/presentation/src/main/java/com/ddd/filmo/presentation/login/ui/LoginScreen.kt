@@ -38,7 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.ddd.filmo.designsystem.component.button.FilmoLoginButton
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
@@ -46,23 +45,12 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
-//    val items by viewModel.uiState.collectAsStateWithLifecycle()
-//    if (items is Success) {
-    LoginScreen(
-        items = listOf(),
-        onSave = { name -> },
-        modifier = modifier,
-    )
-//    }
+fun LoginScreenRoute(navigateToMain: () -> Unit) {
+    LoginScreen(navigateToMain)
 }
 
 @Composable
-internal fun LoginScreen(
-    items: List<String>,
-    onSave: (name: String) -> Unit,
-    modifier: Modifier = Modifier,
-) {
+internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
     Column(
         Modifier.fillMaxSize().background(FilmoColor.Background),
         verticalArrangement = Arrangement.Center,
@@ -84,7 +72,7 @@ internal fun LoginScreen(
         )
         Spacer(modifier = Modifier.height(36.dp))
         FilmoLoginButton(
-            onClick = { /*TODO*/ },
+            onClick = loginButtonClicked,
             text = "카카오로 시작하기",
             drawble = FilmoIcon.Kakao,
             containsColor = Color(0xFFFEE500),
@@ -92,7 +80,7 @@ internal fun LoginScreen(
         Spacer(modifier = Modifier.height(10.dp))
         FilmoLoginButton(
 
-            onClick = { /*TODO*/ },
+            onClick = loginButtonClicked,
             text = "구글로 시작하기",
             drawble = FilmoIcon.Google,
             containsColor = Color.White,
@@ -104,7 +92,7 @@ internal fun LoginScreen(
 @Composable
 private fun DefaultLoginPreview() {
     FilmoTheme {
-        LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
+        LoginScreen()
     }
 }
 
@@ -112,6 +100,6 @@ private fun DefaultLoginPreview() {
 @Composable
 private fun PortraitLoginPreview() {
     FilmoTheme {
-        LoginScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
+        LoginScreen()
     }
 }

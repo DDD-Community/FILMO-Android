@@ -43,6 +43,11 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.ui.FilmCase
 
 @Composable
+fun MyPageScreenRoute() {
+    MyPageScreen()
+}
+
+@Composable
 internal fun MyPageScreen() {
     Column {
         FilmoAppBar(actions = {
