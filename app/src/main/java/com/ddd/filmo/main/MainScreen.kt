@@ -41,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.icon.FilmoIcon
+import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.ui.FilmCase
 import com.ddd.filmo.ui.FilmCaseAdd
@@ -81,6 +82,7 @@ fun MainScreen(
                 style = TextStyle(
                     fontSize = 22.sp,
                     lineHeight = 30.sp,
+                    fontFamily = FilmoFamily,
                     fontWeight = FontWeight(500),
                     color = Color(0xFFDDDDDD),
                     textAlign = TextAlign.Center,
@@ -96,7 +98,11 @@ fun MainScreen(
                 ),
                 onClick = { /*TODO*/ }
             ) {
-                Text(text = "씬 만들기", color = Color.White)
+                Text(
+                    text = "씬 만들기",
+                    fontFamily = FilmoFamily,
+                    color = Color.White
+                )
             }
             Spacer(modifier = Modifier.size(40.dp))
             LazyVerticalGrid(

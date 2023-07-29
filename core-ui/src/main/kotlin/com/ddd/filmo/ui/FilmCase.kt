@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.icon.FilmoIcon
+import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 
 @Composable
@@ -90,6 +91,7 @@ fun FilmCase(
                     }
                     Text(
                         text = sceneCountString,
+                        fontFamily = FilmoFamily,
                         color = Color.White,
                         fontSize = 13.sp,
                     )
@@ -104,6 +106,7 @@ fun FilmCase(
                 style = TextStyle(
                     fontSize = 24.sp,
                     lineHeight = 33.6.sp,
+                    fontFamily = FilmoFamily,
                     fontWeight = FontWeight(600),
                     color = Color(0xFF3C3B3E),
                     letterSpacing = 0.24.sp,
@@ -155,6 +158,7 @@ fun FilmCaseAdd(filmCount: Int) {
                     style = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 22.4.sp,
+                        fontFamily = FilmoFamily,
                         fontWeight = FontWeight(400),
                         color = Color(0xFFFFFFFF),
                         textAlign = TextAlign.Center,
@@ -167,6 +171,7 @@ fun FilmCaseAdd(filmCount: Int) {
                     style = TextStyle(
                         fontSize = 12.sp,
                         lineHeight = 16.8.sp,
+                        fontFamily = FilmoFamily,
                         fontWeight = FontWeight(400),
                         color = Color(0xFF7D7A7A),
                         textAlign = TextAlign.Center,
