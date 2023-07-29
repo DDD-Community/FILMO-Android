@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -95,33 +96,47 @@ internal fun MyPageScreen() {
             shape = RoundedCornerShape(size = 20.dp),
             colors = CardDefaults.cardColors(containerColor = FilmoColor.Background2),
         ) {
-            Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                Text(
-                    text = "13",
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        lineHeight = 33.6.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(500),
-                        color = FilmoColor.txt_01,
-                        textAlign = TextAlign.Center,
-                        letterSpacing = 0.24.sp,
-                    ),
+            Row (Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly){
+                MyPageDetailColumn()
+                Spacer(
+                    modifier = Modifier.width(1.dp).fillMaxHeight().padding(vertical = 24.dp).background(FilmoColor.txt_03),
                 )
-                Text(
-                    text = "내 필름",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 19.6.sp,
-                        fontFamily = FilmoFamily,
-                    ),
-                    fontWeight = FontWeight(400),
-                    color = FilmoColor.txt_02,
-                    textAlign = TextAlign.Center,
-                )
-                Spacer(modifier = Modifier.width(1.dp))
+                MyPageDetailColumn()
             }
         }
+    }
+}
+
+@Composable
+private fun MyPageDetailColumn() {
+    Column(
+        modifier = Modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Text(
+            text = "13",
+            style = TextStyle(
+                fontSize = 24.sp,
+                lineHeight = 33.6.sp,
+                fontFamily = FilmoFamily,
+                fontWeight = FontWeight(500),
+                color = FilmoColor.txt_01,
+                textAlign = TextAlign.Center,
+                letterSpacing = 0.24.sp,
+            ),
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "내 필름",
+            style = TextStyle(
+                fontSize = 14.sp,
+                lineHeight = 19.6.sp,
+                fontFamily = FilmoFamily,
+            ),
+            fontWeight = FontWeight(400),
+            color = FilmoColor.txt_02,
+            textAlign = TextAlign.Center,
+        )
     }
 }
 
