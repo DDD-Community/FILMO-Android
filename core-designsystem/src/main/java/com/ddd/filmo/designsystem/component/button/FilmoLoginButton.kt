@@ -57,7 +57,7 @@ fun a() {
     FilmoLoginButton(
         "카카오로 로그인하기",
         FilmoIcon.Google,
-        containsColor = Color(0xFFFEE500),
+        containsColor = FilmoColor.kakao_color,
         onClick = {},
     )
 }
