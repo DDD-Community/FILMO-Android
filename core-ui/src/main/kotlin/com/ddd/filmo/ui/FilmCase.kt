@@ -33,11 +33,12 @@ import com.ddd.filmo.model.Film
 
 @Composable
 fun FilmCase(
+    modifier: Modifier = Modifier.fillMaxWidth(),
     film: Film = Film(),
     navigateToFilmDetail: () -> Unit = {},
 ) {
     Box(
-        Modifier.fillMaxWidth(),
+        modifier,
         contentAlignment = Alignment.TopCenter,
     ) {
         Box(
@@ -192,7 +193,5 @@ fun FilmCasePreview() {
 @Preview
 @Composable
 fun FilmCaseAddPreview() {
-
     FilmCaseAdd(4)
 }
-

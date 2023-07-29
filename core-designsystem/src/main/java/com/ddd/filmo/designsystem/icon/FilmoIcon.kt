@@ -10,4 +10,8 @@ object FilmoIcon {
     val Google = R.drawable.ic_google
     val Kakao = R.drawable.ic_kakao
     val MyPage = R.drawable.ic_mypage
+
+    val Group = R.drawable.ic_group
+    val Setting = R.drawable.ic_setting
+    val Back = R.drawable.ic_back
 }
