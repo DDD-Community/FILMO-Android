@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.icon.FilmoIcon
@@ -45,8 +46,8 @@ fun FilmCase(
                 .height(85.dp)
                 .background(
                     color = Color(0xFF5D658B),
-                    shape = RoundedCornerShape(size = 15.dp)
-                )
+                    shape = RoundedCornerShape(size = 15.dp),
+                ),
         )
         Box(
             modifier = Modifier
@@ -57,7 +58,7 @@ fun FilmCase(
                 }
                 .height(210.dp)
                 .fillMaxWidth()
-                .background(Color(film.caseColor))
+                .background(Color(film.caseColor)),
         ) {
             Row(modifier = Modifier.padding(16.dp)) {
                 if (film.isPrivate) {
@@ -66,13 +67,13 @@ fun FilmCase(
                             .width(32.dp)
                             .height(32.dp)
                             .background(color = Color(0x1A000000), shape = CircleShape),
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         Icon(
                             painter = painterResource(id = FilmoIcon.Lock),
                             tint = Color(0xDDFFFFFF),
                             contentDescription = "",
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(24.dp),
                         )
                     }
                     Spacer(modifier = Modifier.width(4.dp))
@@ -82,7 +83,7 @@ fun FilmCase(
                         .width(32.dp)
                         .height(32.dp)
                         .background(color = Color(0x1A000000), shape = CircleShape),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     val sceneCountString = if (film.sceneCount >= 1000) {
                         (film.sceneCount / 1000).toString() + "k"
@@ -117,7 +118,6 @@ fun FilmCase(
     }
 }
 
-
 @Composable
 fun FilmCaseAdd(filmCount: Int) {
     Box(
@@ -130,8 +130,8 @@ fun FilmCaseAdd(filmCount: Int) {
                 .height(85.dp)
                 .background(
                     color = Color(0xFF5D658B),
-                    shape = RoundedCornerShape(size = 15.dp)
-                )
+                    shape = RoundedCornerShape(size = 15.dp),
+                ),
         )
         Box(
             modifier = Modifier
@@ -140,17 +140,17 @@ fun FilmCaseAdd(filmCount: Int) {
                 .height(210.dp)
                 .fillMaxWidth()
                 .background(Color(0xFF303030)),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(
                     painter = painterResource(id = FilmoIcon.Add),
                     tint = Color(0xff7D7A7A),
                     contentDescription = "",
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 Text(
@@ -163,11 +163,11 @@ fun FilmCaseAdd(filmCount: Int) {
                         color = Color(0xFFFFFFFF),
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.16.sp,
-                    )
+                    ),
                 )
                 Spacer(modifier = Modifier.size(4.dp))
                 Text(
-                    text = "(${filmCount}/24)",
+                    text = "($filmCount/24)",
                     style = TextStyle(
                         fontSize = 12.sp,
                         lineHeight = 16.8.sp,
@@ -176,9 +176,23 @@ fun FilmCaseAdd(filmCount: Int) {
                         color = Color(0xFF7D7A7A),
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.12.sp,
-                    )
+                    ),
                 )
             }
         }
     }
 }
+
+@Preview
+@Composable
+fun FilmCasePreview() {
+    FilmCase()
+}
+
+@Preview
+@Composable
+fun FilmCaseAddPreview() {
+
+    FilmCaseAdd(4)
+}
+
