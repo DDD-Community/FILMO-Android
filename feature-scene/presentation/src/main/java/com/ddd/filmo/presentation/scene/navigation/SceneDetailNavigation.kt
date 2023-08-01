@@ -27,7 +27,7 @@ fun NavGraphBuilder.SceneReadScreen(
             scene = Scene(
                 sceneId = null,
                 sceneText = null,
-                sceneImageUrl = null,
+                sceneType = null,
                 sceneRate = null,
                 movie = null,
                 createdAt = Date(),

@@ -1,6 +1,5 @@
 package com.ddd.filmo.presentation.film.detail
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -35,11 +34,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.model.Scene
+import com.ddd.filmo.ui.SceneImage
 import java.util.Date
 
 @Composable
@@ -54,7 +55,7 @@ fun FilmDetailScreen(
     Column(
         Modifier
             .fillMaxSize()
-            .background(Color(0xff202020))
+            .background(Color(0xff202020)),
     ) {
         Row(Modifier.padding(10.dp)) {
             IconButton(onClick = {
@@ -85,7 +86,7 @@ fun FilmDetailScreen(
                     .padding(horizontal = 16.dp)
                     .background(
                         color = Color(0xCCCF68FF),
-                        shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+                        shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
                     ),
                 content = {
                     item {
@@ -93,41 +94,7 @@ fun FilmDetailScreen(
                     }
                     for (i in 0..4) {
                         item {
-                            Box(
-                                Modifier
-                                    .padding(horizontal = 16.dp, vertical = 8.dp)
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .clickable {
-                                        navigateToSceneDetail()
-                                    },
-                            ) {
-                                AsyncImage(
-                                    model = Scene.mock.sceneImageUrl,
-                                    contentDescription = "",
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .aspectRatio(218 / 133f)
-                                        .background(color = Color(0xff625B71)),
-                                    contentScale = ContentScale.Crop,
-                                )
-                                Text(
-                                    text = "${Scene.mock.sceneText}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    modifier = Modifier.padding(14.dp),
-                                    color = Color.White,
-                                    fontWeight = FontWeight.W500,
-                                    maxLines = 2,
-                                )
-                                Text(
-                                    text = "${Scene.mock.movie?.title}\n${Scene.mock.movie?.releaseYear}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    modifier = Modifier
-                                        .padding(14.dp)
-                                        .align(BottomStart),
-                                    color = Color.White,
-                                    fontWeight = FontWeight.W500,
-                                )
-                            }
+                            SceneImage(scene = Scene.mock, navigateToSceneDetail)
                         }
                         item {
                             Box(
@@ -139,7 +106,7 @@ fun FilmDetailScreen(
                                     },
                             ) {
                                 AsyncImage(
-                                    model = Scene.mock1.sceneImageUrl,
+                                    model = Scene.mock1.sceneType,
                                     contentDescription = "",
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -176,7 +143,7 @@ fun FilmDetailScreen(
                     .width(46.dp)
                     .height(48.dp)
                     .background(color = Color(0xFF5D658B), shape = RoundedCornerShape(size = 15.dp))
-                    .align(TopEnd)
+                    .align(TopEnd),
             )
 
             Row(
@@ -184,7 +151,10 @@ fun FilmDetailScreen(
                     .fillMaxWidth()
                     .height(80.dp)
                     .padding(horizontal = 16.dp)
-                    .background(color = Color(0xFFCF68FF), shape = RoundedCornerShape(size = 20.dp)),
+                    .background(
+                        color = Color(0xFFCF68FF),
+                        shape = RoundedCornerShape(size = 20.dp),
+                    ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Spacer(modifier = Modifier.size(24.dp))
@@ -196,7 +166,7 @@ fun FilmDetailScreen(
                         fontWeight = FontWeight(700),
                         color = Color(0xFF282629),
                         letterSpacing = 0.18.sp,
-                    )
+                    ),
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
@@ -207,7 +177,7 @@ fun FilmDetailScreen(
                         fontWeight = FontWeight(500),
                         color = Color(0xFF505050),
                         letterSpacing = 0.18.sp,
-                    )
+                    ),
                 )
                 Spacer(modifier = Modifier.size(24.dp))
             }
@@ -226,4 +196,10 @@ fun FilmDetailScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun FilmDetailScreenPreview() {
+    FilmDetailScreen()
 }

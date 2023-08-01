@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -52,7 +53,7 @@ fun SceneReadScreen(scene: Scene) {
                 .background(Color(0xFF2A2A2A))
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             AsyncImage(
                 model = scene.movie?.posterImageUrl,
@@ -96,10 +97,10 @@ fun SceneReadScreen(scene: Scene) {
         }
 
         Spacer(modifier = Modifier.size(32.dp))
-        
+
         Column(Modifier.padding(horizontal = 16.dp)) {
             AsyncImage(
-                model = scene.sceneImageUrl,
+                model = scene.sceneType,
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(13.dp))
@@ -133,8 +134,14 @@ fun SceneReadScreen(scene: Scene) {
                     fontWeight = FontWeight(400),
                     color = Color(0xFFB6B6B6),
                     letterSpacing = 0.14.sp,
-                )
+                ),
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun SceneReadScreenPreview() {
+    SceneReadScreen(scene = Scene.mock)
 }
