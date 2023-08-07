@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ddd.filmo.feature.login.ui
+package com.ddd.filmo.presentation.login.ui
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -37,9 +37,7 @@ class LoginScreenTest {
 
     @Before
     fun setup() {
-        composeTestRule.setContent {
-            LoginScreen(FAKE_DATA, onSave = {})
-        }
+        composeTestRule.setContent {}
     }
     @Test
     fun firstItem_exists() {

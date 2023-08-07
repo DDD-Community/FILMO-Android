@@ -10,11 +10,11 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilmoAppBar(
-    actions: @Composable (RowScope.() -> Unit),
+    actions: @Composable (RowScope.() -> Unit)?,
     navigationIcon: @Composable () -> Unit,
 ) {
     TopAppBar(
-        actions = actions,
+        actions = actions ?: {},
         navigationIcon = navigationIcon,
         title = {},
         colors = TopAppBarDefaults.topAppBarColors(
