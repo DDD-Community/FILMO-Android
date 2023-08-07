@@ -53,11 +53,11 @@ sealed interface SceneType {
     value class ImageDrawable(val imageDrawable: Int) : SceneType
 
     @JvmInline
-    value class Color(val color: Int) : SceneType
+    value class Color(val color: Long) : SceneType
 
     companion object {
         fun fromUrl(imageUrl: String): SceneType = ImageUrl(imageUrl)
         fun fromDrawable(imageDrawable: Int): SceneType = ImageDrawable(imageDrawable)
-        fun fromColor(imageColor: Int): SceneType = Color(imageColor)
+        fun fromColor(imageColor: Long): SceneType = Color(imageColor)
     }
 }

@@ -64,6 +64,7 @@ fun SceneImage(scene: Scene, navigateToSceneDetail: () -> Unit) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .aspectRatio(218 / 133f)
                         .background(color = Color((scene.sceneType as SceneType.Color).color)),
                 )
             }
@@ -93,13 +94,25 @@ fun SceneImage(scene: Scene, navigateToSceneDetail: () -> Unit) {
 }
 
 object SceneImageTest {
-    val FirstSceneType = listOf<Scene>(
+    val firstSceneType = listOf<Scene>(
         Scene(
             sceneId = "1",
             sceneText = "",
             sceneType = SceneType.fromDrawable(R.drawable.image_16),
             movie = Movie(
                 title = "About Time",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "“시작은 막차였다”",
+            sceneType = SceneType.fromColor(0xFFFCD4D2),
+            movie = Movie(
+                title = "꽃다발 같은 사랑을 했다",
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
@@ -118,11 +131,131 @@ object SceneImageTest {
             sceneRate = 5,
             createdAt = Date(),
         ),
+        Scene(
+            sceneId = "1",
+            sceneText = "힐링이 필요할 때,\n" +
+                "지루한 듯 하지만 지루하지 않은 영화",
+            sceneType = SceneType.fromColor(0xFFFCD4D2),
+            movie = Movie(
+                title = "리틀 포레스트: 여름과 가을",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "",
+            sceneType = SceneType.fromDrawable(R.drawable.image_18),
+            movie = Movie(
+                title = "빅 피쉬",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "멀지 않은 미래, 새로운 형태의 사랑",
+            sceneType = SceneType.fromColor(0xFFFF97CA),
+            movie = Movie(
+                title = "Her",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+    )
+    val secondSceneType = listOf<Scene>(
+        Scene(
+            sceneId = "1",
+            sceneText = "겨울마다 보는 내 인생 뮤지컬 영화",
+            sceneType = SceneType.fromColor(0xFFFFCE4F),
+            movie = Movie(
+                title = "라라랜드",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "",
+            sceneType = SceneType.fromDrawable(R.drawable.image_19),
+            movie = Movie(
+                title = "엘리멘탈",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "“ Please, let me keep this memory,\n" +
+                "just this moment.”",
+            sceneType = SceneType.fromColor(0xFFCF68FF),
+            movie = Movie(
+                title = "이터널 선샤인",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "",
+            sceneType = SceneType.fromDrawable(R.drawable.image_21),
+            movie = Movie(
+                title = "클래식",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "꽉 닫힌 해피엔딩\n" +
+                "장면과 너무나도 잘 어울리는 음악\n" +
+                "언제 봐도 마음이 편안해진다.",
+            sceneType = SceneType.fromColor(0xFF9CCEFF),
+            movie = Movie(
+                title = "노팅 힐",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
+        Scene(
+            sceneId = "1",
+            sceneText = "",
+            sceneType = SceneType.fromDrawable(R.drawable.image_23),
+            movie = Movie(
+                title = "화양연화",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5,
+            createdAt = Date(),
+        ),
     )
 }
 
 @Preview
 @Composable
 fun SceneImagePreview() {
-    SceneImage(scene = SceneImageTest.FirstSceneType.first(), {})
+    SceneImage(scene = SceneImageTest.firstSceneType.first(), {})
+}
+
+@Preview
+@Composable
+fun SceneImageColorPreview() {
+    SceneImage(scene = SceneImageTest.firstSceneType[2], {})
 }

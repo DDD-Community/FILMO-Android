@@ -25,12 +25,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +46,10 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.ui.SceneImage
+import com.ddd.filmo.ui.SceneImageTest.firstSceneType
+import com.ddd.filmo.ui.SceneImageTest.secondSceneType
+import kotlinx.coroutines.delay
 
 @Composable
 fun LoginScreenRoute(navigateToMain: () -> Unit) {
@@ -52,11 +59,40 @@ fun LoginScreenRoute(navigateToMain: () -> Unit) {
 @Composable
 internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
     Column(
-        Modifier.fillMaxSize().background(FilmoColor.Background),
+        Modifier
+            .fillMaxSize()
+            .background(FilmoColor.Background),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        var nameLogin by remember { mutableStateOf("Compose") }
+        var xCondition by remember { mutableStateOf(0) }
+
+        LaunchedEffect(true) {
+            while (true) {
+                xCondition += 1
+                delay(10)
+            }
+        }
+        AutoSlideColumn(
+            content = {
+                firstSceneType.map {
+                    SceneImage(scene = it, navigateToSceneDetail = {})
+                }
+            },
+            scroll = xCondition,
+            direction = true,
+        )
+
+        AutoSlideColumn(
+            content = {
+                secondSceneType.map {
+                    SceneImage(scene = it, navigateToSceneDetail = {})
+                }
+            },
+            scroll = xCondition,
+            direction = false,
+        )
+        Spacer(modifier = Modifier.height(36.dp))
         Image(painter = painterResource(id = FilmoIcon.FIlmoTextLogo), contentDescription = "")
         Spacer(modifier = Modifier.height(6.dp))
         Text(
@@ -79,12 +115,45 @@ internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
         )
         Spacer(modifier = Modifier.height(10.dp))
         FilmoLoginButton(
-
             onClick = loginButtonClicked,
             text = "구글로 시작하기",
             drawble = FilmoIcon.Google,
             containsColor = Color.White,
         )
+    }
+}
+
+@Composable
+fun AutoSlideColumn(
+    content: @Composable () -> Unit,
+    direction: Boolean = false,
+    scroll: Int = 0,
+) {
+    Layout(content = content, modifier = Modifier) { measurables, constraints ->
+        val halfConstraints = constraints.copy(maxWidth = constraints.maxWidth / 4 * 3 )
+        val placeables = measurables.map { measurable ->
+            measurable.measure(halfConstraints)
+        }
+
+        layout(constraints.maxWidth, placeables.first().height) {
+            val totalWidth = placeables.sumOf { it.width }
+
+            val scrollLTR = if (direction) scroll else -scroll
+            var xPosition =
+                if (direction) (constraints.maxWidth - totalWidth) + scrollLTR else (-constraints.maxWidth + totalWidth) + scrollLTR
+            var yPosition = 0
+
+            placeables.forEach { placeable ->
+//                if (xPosition > constraints.maxWidth) {
+//                    xPosition = leftxPosition - placeable.width
+//                }
+
+                placeable.placeRelative(xPosition, yPosition)
+//                if (leftxPosition < xPosition) leftxPosition = xPosition
+
+                if (direction) xPosition += placeable.width else xPosition -= placeable.width
+            }
+        }
     }
 }
 
