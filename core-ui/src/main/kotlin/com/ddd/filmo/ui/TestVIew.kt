@@ -27,6 +27,7 @@ import androidx.graphics.shapes.RoundedPolygon
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
+import de.apuri.physicslayout.lib.PhysicsLayout
 import kotlin.math.min
 
 @Preview
@@ -63,12 +64,14 @@ fun TestPreview() {
 @Composable
 fun Test2Preview() {
     Surface(shape = CircleShape) {
-        Icon(
-            modifier = Modifier.padding(18.dp),
-            painter = painterResource(id = FilmoIcon.Heart),
-            tint = Color.Blue,
-            contentDescription = "",
-        )
+        PhysicsLayout() {
+            Icon(
+                modifier = Modifier.padding(18.dp),
+                painter = painterResource(id = FilmoIcon.Heart),
+                tint = Color.Blue,
+                contentDescription = "",
+            )
+        }
     }
 }
 
@@ -77,7 +80,7 @@ fun Test2Preview() {
 fun Test3Preview() {
     Card() {
         Text(
-            modifier = Modifier.padding(horizontal = 16.dp , vertical = 8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
             text = "“ Please, let me keep this memory \n just this moment.”",
             style = TextStyle(
                 fontSize = 14.sp,
