@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -39,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
+import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -74,7 +76,7 @@ internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
                 SettingDetail(
                     text = settingUi.name,
                     onClick = { settingUi.event },
-                    isLast = index == SettingUiList.size - 1,
+                    isLast = index == SettingUiList.lastIndex,
                 )
             }
         }
@@ -112,6 +114,50 @@ fun SettingDetail(
                     .background(FilmoColor.txt_03),
             )
         }
+    }
+}
+
+/**
+ * 탈퇴 프리뷰
+ *
+ */
+@Preview
+@Composable
+fun LogOutDialogPreview() {
+    FilmoTheme {
+        FilmoDialog(
+            content = "정말 로그아웃하시겠어요?",
+            onAcceptClicked = { /*TODO*/ },
+            onCancelClicked = {},
+            cancelText = "취소하기",
+            acceptText = "로그아웃하기",
+            cancelColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.txt_03,
+            ),
+            acceptColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.Primary,
+            ),
+        )
+    }
+}
+
+@Preview
+@Composable
+fun WithdrawDialogPreview() {
+    FilmoTheme {
+        FilmoDialog(
+            content = "정말 탈퇴하시겠어요?",
+            onAcceptClicked = { /*TODO*/ },
+            onCancelClicked = {},
+            cancelText = "더 사용해보기",
+            acceptText = "탈퇴하기",
+            cancelColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.txt_03,
+            ),
+            acceptColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.film_color_05,
+            ),
+        )
     }
 }
 
