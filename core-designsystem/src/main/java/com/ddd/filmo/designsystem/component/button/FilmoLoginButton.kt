@@ -53,7 +53,7 @@ fun FilmoLoginButton(
 
 @Preview
 @Composable
-fun a() {
+fun FilmoLoginButtonPreview() {
     FilmoLoginButton(
         "카카오로 로그인하기",
         FilmoIcon.Google,

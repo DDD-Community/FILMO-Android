@@ -38,9 +38,9 @@ class LoginScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            LoginScreen(FAKE_DATA, onSave = {})
         }
     }
+
     @Test
     fun firstItem_exists() {
         composeTestRule.onNodeWithText(FAKE_DATA.first()).assertExists().performClick()

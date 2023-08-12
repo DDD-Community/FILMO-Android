@@ -16,36 +16,37 @@
 
 package com.ddd.filmo.presentation.setting
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
-import com.ddd.filmo.designsystem.component.button.FilmoLoginButton
+import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.presentation.setting.model.SettingEvent
+import com.ddd.filmo.presentation.setting.model.SettingUiList
 
 @Composable
 fun SettingScreenRoute(navigateToMain: () -> Unit) {
@@ -55,8 +56,10 @@ fun SettingScreenRoute(navigateToMain: () -> Unit) {
 @Composable
 internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
     Column(
-        Modifier.fillMaxSize().background(FilmoColor.Background),
-        verticalArrangement = Arrangement.Center,
+        Modifier
+            .fillMaxSize()
+            .background(FilmoColor.Background),
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
     ) {
         FilmoAppBar(
@@ -68,49 +71,108 @@ internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
             },
             title = "설정",
         )
-        var nameLogin by remember { mutableStateOf("Compose") }
-        Image(painter = painterResource(id = FilmoIcon.FIlmoTextLogo), contentDescription = "")
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(
-            text = "나만의 필름 모아",
-            style = TextStyle(
-                fontSize = 20.sp,
-                lineHeight = 30.sp,
-                fontFamily = FilmoFamily,
-                fontWeight = FontWeight(500),
-                color = FilmoColor.txt_05,
-                textAlign = TextAlign.Center,
-            ),
-        )
-        Spacer(modifier = Modifier.height(36.dp))
-        FilmoLoginButton(
-            onClick = loginButtonClicked,
-            text = "카카오로 시작하기",
-            drawble = FilmoIcon.Kakao,
-            containsColor = Color(0xFFFEE500),
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        FilmoLoginButton(
-
-            onClick = loginButtonClicked,
-            text = "구글로 시작하기",
-            drawble = FilmoIcon.Google,
-            containsColor = Color.White,
-        )
+        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+            SettingUiList.forEachIndexed { index, settingUi ->
+                SettingDetail(
+                    text = settingUi.name,
+                    onClick = { settingUi.event },
+                    isLast = index == SettingUiList.lastIndex,
+                )
+            }
+        }
     }
 }
 
 @Composable
-fun a() {
-//
+fun SettingDetail(
+    text: String,
+    onClick: () -> SettingEvent = { SettingEvent.WithdrawClicked },
+    isLast: Boolean,
+) {
+    Column(
+        modifier = Modifier.clickable {
+            onClick()
+        },
+    ) {
+        Text(
+            modifier = Modifier.padding(top = 15.dp, bottom = 19.dp),
+            text = text,
+            style = TextStyle(
+                fontSize = 16.sp,
+                lineHeight = 22.sp,
+                fontFamily = FilmoFamily,
+                fontWeight = FontWeight(600),
+                color = FilmoColor.txt_01,
+                letterSpacing = 0.16.sp,
+            ),
+        )
+        if (!isLast) {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(FilmoColor.txt_03),
+            )
+        }
+    }
+}
+
+/**
+ * 탈퇴 프리뷰
+ *
+ */
+@Preview
+@Composable
+fun LogOutDialogPreview() {
+    FilmoTheme {
+        FilmoDialog(
+            content = "정말 로그아웃하시겠어요?",
+            onAcceptClicked = { /*TODO*/ },
+            onCancelClicked = {},
+            cancelText = "취소하기",
+            acceptText = "로그아웃하기",
+            cancelColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.txt_03,
+            ),
+            acceptColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.Primary,
+            ),
+        )
+    }
+}
+
+@Preview
+@Composable
+fun WithdrawDialogPreview() {
+    FilmoTheme {
+        FilmoDialog(
+            content = "정말 탈퇴하시겠어요?",
+            onAcceptClicked = { /*TODO*/ },
+            onCancelClicked = {},
+            cancelText = "더 사용해보기",
+            acceptText = "탈퇴하기",
+            cancelColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.txt_03,
+            ),
+            acceptColors = ButtonDefaults.buttonColors(
+                containerColor = FilmoColor.film_color_05,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun DefaultLoginPreview() {
+private fun SettingScreenPreview() {
     FilmoTheme {
         SettingScreen()
     }
+}
+
+@Preview
+@Composable
+fun SettingDetailPreview() {
+    SettingDetail("FAQ", isLast = false)
 }
 
 @Preview(showBackground = true, widthDp = 480)
