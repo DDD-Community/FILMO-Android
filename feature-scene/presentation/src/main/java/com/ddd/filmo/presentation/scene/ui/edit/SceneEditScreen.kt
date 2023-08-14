@@ -1,9 +1,12 @@
 package com.ddd.filmo.presentation.scene.ui.edit
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,19 +37,14 @@ import coil.compose.AsyncImage
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
-import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.SheetValue
 import androidx.compose.material3.TextField
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.CornerRadius
@@ -57,17 +55,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.ddd.filmo.designsystem.icon.FilmoIcon
-import com.ddd.filmo.designsystem.theme.FilmoSceneTheme
-import com.ddd.filmo.designsystem.theme.FilmoTheme
 import com.ddd.filmo.model.Film
-import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneEditScreen(scene: Scene) {
     val selectedFilm = remember { mutableStateOf(Film.fakeFilm0) }
+    val selectedUri = remember { mutableStateOf<Uri?>(null) }
     val sceneText = remember { mutableStateOf("A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom. However, social differences soon get in the way. \n\n A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom. However, social differences soon get in the way.")}
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { uri -> selectedUri.value = uri }
+    )
 
     Column(
         Modifier.fillMaxSize()
@@ -98,7 +98,7 @@ fun SceneEditScreen(scene: Scene) {
                     )
                 )
                 Spacer(Modifier.weight(1f))
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { }) {
                     Icon(
                         painter = painterResource(id = FilmoIcon.X),
                         contentDescription = "X",
@@ -142,7 +142,11 @@ fun SceneEditScreen(scene: Scene) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(size = 8.dp))
-                    .clickable { /*TODO*/ }
+                    .clickable {
+                        photoPickerLauncher.launch(
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                        )
+                    }
                     .dashedBorder(
                         strokeWidth = 1.dp,
                         color = FilmoColor.ic_02,
@@ -150,35 +154,47 @@ fun SceneEditScreen(scene: Scene) {
                     ),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
+                if (selectedUri.value == null) {
+                    Spacer(modifier = Modifier.height(24.dp))
 
-                Icon(
-                    painter = painterResource(id = FilmoIcon.PlusWithCircle),
-                    contentDescription = "Add",
-                    tint = FilmoColor.PrimaryVariant
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "이미지를 등록해 주세요. (선택)",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 19.6.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color(0xFFF4F4F4),
+                    Icon(
+                        painter = painterResource(id = FilmoIcon.PlusWithCircle),
+                        contentDescription = "Add",
+                        tint = FilmoColor.PrimaryVariant
                     )
-                )
-                Text(
-                    text = "10mb 이하",
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        lineHeight = 16.8.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFFB6B6B6),
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "이미지를 등록해 주세요. (선택)",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 19.6.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color(0xFFF4F4F4),
+                        )
                     )
-                )
-                Spacer(modifier = Modifier.height(24.dp))
+                    Text(
+                        text = "10mb 이하",
+                        style = TextStyle(
+                            fontSize = 12.sp,
+                            lineHeight = 16.8.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFFB6B6B6),
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                } else {
+                    AsyncImage(
+                        model = selectedUri.value,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(13.dp))
+                            .aspectRatio(328f / 204f),
+                        contentDescription = "",
+                        contentScale = ContentScale.Crop,
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
