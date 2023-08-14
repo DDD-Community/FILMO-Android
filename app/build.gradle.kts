@@ -70,6 +70,9 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     implementation(project(":feature-login:presentation"))
+    implementation(project(":feature-mypage:presentation"))
+    implementation(project(":feature-film:presentation"))
+    implementation(project(":feature-scene:presentation"))
 
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
@@ -78,6 +81,8 @@ dependencies {
 
     // Hilt Dependency Injection
     implementation(libs.hilt.android)
+    implementation(project(mapOf("path" to ":core-designsystem")))
+    implementation(project(mapOf("path" to ":core-model")))
     kapt(libs.hilt.compiler)
 
     // Arch Components

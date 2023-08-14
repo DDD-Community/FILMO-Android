@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":core-designsystem")))
+    implementation(project(mapOf("path" to ":core-model")))
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -64,6 +66,9 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.grahphic)
+
+    implementation(libs.coil.kt.compose)
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
 }

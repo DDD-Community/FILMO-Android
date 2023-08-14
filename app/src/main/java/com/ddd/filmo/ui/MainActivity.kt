@@ -23,8 +23,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.ddd.filmo.designsystem.theme.FilmoTheme
 import dagger.hilt.android.AndroidEntryPoint
-import com.ddd.filmo.core.ui.MyApplicationTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -32,10 +32,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            FilmoTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     MainNavigation()
                 }

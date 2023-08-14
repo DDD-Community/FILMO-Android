@@ -29,17 +29,35 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Multimodule template"
+rootProject.name = "Filmo Android"
 
 include(":app")
 include(":core-testing")
 include(":core-ui")
 include(":test-app")
 include(":core-designsystem")
-
+include(":core-model")
 // feature-login
 include(":feature-login:presentation")
 include(":feature-login:data")
 include(":feature-login:domain")
 
+// feature-mypage
+include(":feature-mypage:presentation")
+include(":feature-mypage:domain")
+include(":feature-mypage:data")
 
+// feature-scene
+include(":feature-scene:presentation")
+include(":feature-scene:domain")
+include(":feature-scene:data")
+
+// feature-setting
+include(":feature-setting:presentation")
+include(":feature-setting:domain")
+include(":feature-setting:data")
+
+// feature-film
+include(":feature-film:presentation")
+include(":feature-film:domain")
+include(":feature-film:data")

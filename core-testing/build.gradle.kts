@@ -17,8 +17,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     id("filmo.android.library")
-//    alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -36,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":feature-login:domain"))
     implementation(libs.androidx.test.runner)
     implementation(libs.hilt.android.testing)
 }

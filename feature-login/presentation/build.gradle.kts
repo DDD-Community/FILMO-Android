@@ -19,7 +19,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ddd.filmo.feature.login"
+    namespace = "com.ddd.filmo.feature.mypage"
     defaultConfig {
         testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -32,7 +32,6 @@ android {
 //        renderScript = false
 //        shaders = false
 //    }
-
 }
 
 dependencies {
@@ -75,4 +74,5 @@ dependencies {
     // Instrumented tests: jUnit rules and runners
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
+    implementation(libs.physics.layout)
 }
