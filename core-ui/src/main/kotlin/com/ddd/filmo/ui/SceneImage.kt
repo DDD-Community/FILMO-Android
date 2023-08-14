@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,10 +29,15 @@ import com.ddd.filmo.model.SceneType
 import java.util.Date
 
 @Composable
-fun SceneImage(scene: Scene, navigateToSceneDetail: () -> Unit) {
+fun SceneImage(
+    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+    scene: Scene,
+    navigateToSceneDetail: () -> Unit,
+) {
     Box(
-        Modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+        modifier
+            .padding(paddingValues)
             .clip(RoundedCornerShape(8.dp))
             .clickable {
                 navigateToSceneDetail()
@@ -251,11 +257,11 @@ object SceneImageTest {
 @Preview
 @Composable
 fun SceneImagePreview() {
-    SceneImage(scene = SceneImageTest.firstSceneType.first(), {})
+    SceneImage(scene = SceneImageTest.firstSceneType.first(), navigateToSceneDetail = {})
 }
 
 @Preview
 @Composable
 fun SceneImageColorPreview() {
-    SceneImage(scene = SceneImageTest.firstSceneType[2], {})
+    SceneImage(scene = SceneImageTest.firstSceneType[2], navigateToSceneDetail = {})
 }

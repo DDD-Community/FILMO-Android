@@ -21,6 +21,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -73,7 +74,11 @@ internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
         AutoSlideColumn(
             content = {
                 firstSceneType.map {
-                    SceneImage(scene = it, navigateToSceneDetail = {})
+                    SceneImage(
+                        scene = it,
+                        navigateToSceneDetail = {},
+                        paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    )
                 }
             },
             direction = true,
@@ -82,7 +87,7 @@ internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
         AutoSlideColumn(
             content = {
                 secondSceneType.map {
-                    SceneImage(scene = it, navigateToSceneDetail = {})
+                    SceneImage(scene = it, navigateToSceneDetail = {}, paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp))
                 }
             },
             direction = false,
