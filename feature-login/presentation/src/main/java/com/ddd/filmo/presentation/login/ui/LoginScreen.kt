@@ -58,12 +58,12 @@ import com.ddd.filmo.ui.SceneImageTest.secondSceneType
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoginScreenRoute(navigateToMain: () -> Unit) {
-    LoginScreen(navigateToMain)
+fun LoginScreenRoute(navigateToMain: () -> Unit, navigateToSign: () -> Unit) {
+    LoginScreen(onLoginSuccess = navigateToMain, onTestNeeded = navigateToSign)
 }
 
 @Composable
-internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
+internal fun LoginScreen(onLoginSuccess: () -> Unit = {}, onTestNeeded: () -> Unit = {}) {
     Column(
         Modifier
             .fillMaxSize()
@@ -87,7 +87,11 @@ internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
         AutoSlideColumn(
             content = {
                 secondSceneType.map {
-                    SceneImage(scene = it, navigateToSceneDetail = {}, paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp))
+                    SceneImage(
+                        scene = it,
+                        navigateToSceneDetail = {},
+                        paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    )
                 }
             },
             direction = false,
@@ -108,14 +112,14 @@ internal fun LoginScreen(loginButtonClicked: () -> Unit = {}) {
         )
         Spacer(modifier = Modifier.height(36.dp))
         FilmoLoginButton(
-            onClick = loginButtonClicked,
+            onClick = onLoginSuccess,
             text = "카카오로 시작하기",
             drawble = FilmoIcon.Kakao,
             containsColor = Color(0xFFFEE500),
         )
         Spacer(modifier = Modifier.height(10.dp))
         FilmoLoginButton(
-            onClick = loginButtonClicked,
+            onClick = onTestNeeded,
             text = "구글로 시작하기",
             drawble = FilmoIcon.Google,
             containsColor = Color.White,

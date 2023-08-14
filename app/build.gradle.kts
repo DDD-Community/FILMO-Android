@@ -73,6 +73,7 @@ dependencies {
     implementation(project(":feature-mypage:presentation"))
     implementation(project(":feature-film:presentation"))
     implementation(project(":feature-scene:presentation"))
+    implementation(project(":feature-setting:presentation"))
 
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)

@@ -94,7 +94,7 @@ fun FilmDetailScreen(
                     }
                     for (i in 0..4) {
                         item {
-                            SceneImage(scene = Scene.mock, navigateToSceneDetail)
+                            SceneImage(scene = Scene.mock, navigateToSceneDetail = navigateToSceneDetail)
                         }
                         item {
                             Box(

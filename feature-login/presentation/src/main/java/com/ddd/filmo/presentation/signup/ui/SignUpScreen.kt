@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -24,6 +23,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
+import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -45,16 +49,28 @@ import de.apuri.physicslayout.lib.PhysicsLayout
 import de.apuri.physicslayout.lib.physicsBody
 
 @Composable
-internal fun InsertNickNameScreen(
+fun SignupScreenRoute(
     modifier: Modifier = Modifier,
-    test: String = "test",
 ) {
-    InsertNickNameScreen(modifier = modifier)
+    // todo Test이니 Navigation으로 하든 바꿀것
+    var test by remember { mutableStateOf(0) }
+
+    when (test) {
+        0 -> InsertNickNameScreen(
+            modifier = modifier,
+            onSignUpButtonClicked = { test++ },
+        )
+
+        else -> {
+            SignupSuccessScreen()
+        }
+    }
 }
 
 @Composable
-private fun InsertNickNameScreen(
+internal fun InsertNickNameScreen(
     modifier: Modifier = Modifier,
+    onSignUpButtonClicked: () -> Unit = {},
 ) {
     Column(
         modifier
@@ -111,7 +127,6 @@ private fun InsertNickNameScreen(
                     ),
                 )
             },
-
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = FilmoColor.Background3,
                 unfocusedIndicatorColor = FilmoColor.Background3,
@@ -127,14 +142,12 @@ private fun InsertNickNameScreen(
             ),
         )
         Spacer(modifier = Modifier.weight(1f))
-
-        Button(
-            modifier = Modifier
+        FilmoButton(
+            modifier
                 .fillMaxWidth()
                 .padding(vertical = 12.dp),
-            onClick = { /*TODO*/ },
-            shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(
+            onClick = { onSignUpButtonClicked() },
+            buttonColors = ButtonDefaults.buttonColors(
                 disabledContainerColor = FilmoColor.PrimaryDisabled,
                 containerColor = FilmoColor.Primary,
                 contentColor = FilmoColor.txt_01,
@@ -159,7 +172,7 @@ private fun InsertNickNameScreen(
 }
 
 @Composable
-fun SignSuccessScreen(modifier: Modifier) {
+fun SignupSuccessScreen(modifier: Modifier = Modifier) {
     Box(modifier = Modifier.fillMaxSize()) {
         Surface(
             Modifier
@@ -169,7 +182,7 @@ fun SignSuccessScreen(modifier: Modifier) {
                 },
             color = FilmoColor.Background,
         ) {
-            PhysicsLayoutTest()
+            PhysicsLayoutScreen()
         }
         Column(
             modifier
@@ -205,13 +218,12 @@ fun SignSuccessScreen(modifier: Modifier) {
                 ),
             )
             Spacer(modifier = Modifier.height(48.dp))
-            Button(
+            FilmoButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = 52.dp),
                 onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(
+                buttonColors = ButtonDefaults.buttonColors(
                     disabledContainerColor = FilmoColor.PrimaryDisabled,
                     containerColor = FilmoColor.Primary,
                     contentColor = FilmoColor.txt_01,
@@ -220,7 +232,7 @@ fun SignSuccessScreen(modifier: Modifier) {
             ) {
                 Text(text = "회원가입 완료", Modifier.padding(vertical = 15.dp))
             }
-            Spacer(modifier = Modifier.height(64.dp))
+//            Spacer(modifier = Modifier.height(64.dp))
         }
     }
 }
@@ -228,7 +240,7 @@ fun SignSuccessScreen(modifier: Modifier) {
 @Preview
 @Composable
 fun SignSuccessScreenPreview() {
-    SignSuccessScreen(modifier = Modifier)
+    SignupSuccessScreen(modifier = Modifier)
 }
 
 @Preview(showBackground = true)
@@ -269,12 +281,12 @@ fun PhysicsLayoutScreenPreview() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
-        PhysicsLayoutTest()
+        PhysicsLayoutScreen()
     }
 }
 
 @Composable
-private fun PhysicsLayoutTest() {
+private fun PhysicsLayoutScreen() {
     PhysicsLayout {
         Layout(
             content = {

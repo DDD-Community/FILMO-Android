@@ -16,6 +16,7 @@
 
 package com.ddd.filmo.presentation.setting
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -47,6 +48,8 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
 import com.ddd.filmo.presentation.setting.model.SettingEvent
 import com.ddd.filmo.presentation.setting.model.SettingUiList
+import com.google.accompanist.web.WebView
+import com.google.accompanist.web.rememberWebViewState
 
 @Composable
 fun SettingScreenRoute(navigateToMain: () -> Unit) {
@@ -81,6 +84,43 @@ internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
             }
         }
     }
+}
+
+@SuppressLint("SetJavaScriptEnabled")
+@Composable
+fun SettingWebViewScreen(webviewUrl: String) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(FilmoColor.Background),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+    ) {
+        FilmoAppBar(
+            actions = {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
+                }
+            },
+            navigationIcon = {
+            },
+            title = "설정",
+        )
+        val state =
+            rememberWebViewState("https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4")
+
+        WebView(
+            modifier = Modifier.fillMaxSize(),
+            onCreated = { it.settings.javaScriptEnabled = true },
+            state = state,
+        )
+    }
+}
+
+@Preview
+@Composable
+fun SettingWebViewScreenPreview() {
+    SettingWebViewScreen(webviewUrl = "webviewUrl")
 }
 
 @Composable
@@ -136,26 +176,6 @@ fun LogOutDialogPreview() {
             ),
             acceptColors = ButtonDefaults.buttonColors(
                 containerColor = FilmoColor.Primary,
-            ),
-        )
-    }
-}
-
-@Preview
-@Composable
-fun WithdrawDialogPreview() {
-    FilmoTheme {
-        FilmoDialog(
-            content = "정말 탈퇴하시겠어요?",
-            onAcceptClicked = { /*TODO*/ },
-            onCancelClicked = {},
-            cancelText = "더 사용해보기",
-            acceptText = "탈퇴하기",
-            cancelColors = ButtonDefaults.buttonColors(
-                containerColor = FilmoColor.txt_03,
-            ),
-            acceptColors = ButtonDefaults.buttonColors(
-                containerColor = FilmoColor.film_color_05,
             ),
         )
     }

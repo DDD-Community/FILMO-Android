@@ -43,18 +43,20 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.ui.FilmCase
 
 @Composable
-fun MyPageScreenRoute() {
-    MyPageScreen()
+fun MyPageScreenRoute(
+    navigateToSetting: () -> Unit = {},
+) {
+    MyPageScreen(onSettingButtonClicked = navigateToSetting)
 }
 
 @Composable
-internal fun MyPageScreen() {
+internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
     Column {
         FilmoAppBar(actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(painter = painterResource(id = FilmoIcon.Group), contentDescription = "")
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = onSettingButtonClicked) {
                 Icon(painter = painterResource(id = FilmoIcon.Setting), contentDescription = "")
             }
         }, navigationIcon = {
@@ -70,7 +72,11 @@ internal fun MyPageScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             var nameLogin by remember { mutableStateOf("Compose") }
-            FilmCase(modifier = Modifier.fillMaxWidth().padding(102.dp))
+            FilmCase(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(102.dp),
+            )
             Text(
                 text = "밍밍쟈",
                 style = TextStyle(
@@ -113,14 +119,18 @@ internal fun MyPageScreen() {
             Card(
                 Modifier
                     .fillMaxWidth()
-                    .height(120.dp).padding(horizontal = 16.dp),
+                    .height(120.dp)
+                    .padding(horizontal = 16.dp),
                 shape = RoundedCornerShape(size = 20.dp),
                 colors = CardDefaults.cardColors(containerColor = FilmoColor.Background2),
             ) {
                 Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
                     MyPageDetailColumn()
                     Spacer(
-                        modifier = Modifier.width(1.dp).fillMaxHeight().padding(vertical = 24.dp)
+                        modifier = Modifier
+                            .width(1.dp)
+                            .fillMaxHeight()
+                            .padding(vertical = 24.dp)
                             .background(FilmoColor.txt_03),
                     )
                     MyPageDetailColumn()

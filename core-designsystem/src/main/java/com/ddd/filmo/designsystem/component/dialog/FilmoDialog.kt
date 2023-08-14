@@ -46,7 +46,7 @@ fun FilmoDialog(
     acceptColors: ButtonColors = ButtonDefaults.buttonColors(),
     cancelColors: ButtonColors = ButtonDefaults.buttonColors(),
 ) {
-    Dialog(onDismissRequest = { /*TODO*/ }) {
+    Dialog(onDismissRequest = onCancelClicked) {
         Column(
             modifier = Modifier.fillMaxWidth().background(FilmoColor.Background)
                 .padding(top = 32.dp, bottom = 16.dp, start = 16.dp, end = 16.dp),
@@ -96,11 +96,11 @@ fun FilmoDialog(
                         text = acceptText,
                         style = TextStyle(
                             fontSize = 16.sp,
-                            lineHeight = 20.sp,
+                            lineHeight = 22.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
                             textAlign = TextAlign.Center,
-                            letterSpacing = 0.1.sp,
+                            letterSpacing = 0.16.sp,
                         ),
                     )
                 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 fun FilmoButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    enabled: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     content: @Composable RowScope.() -> Unit,
 ) {
@@ -23,6 +24,7 @@ fun FilmoButton(
         shape = RoundedCornerShape(12.dp),
         colors = buttonColors,
         onClick = onClick,
+        enabled = enabled,
     ) {
         content()
     }
