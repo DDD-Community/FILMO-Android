@@ -14,17 +14,35 @@ data class Film(
             true
         )
         val fakeFilm1 = Film(
-            caseColor = 0xFFFF0000,
-            name = "아무 필름",
+            caseColor = 0xFFCF68FF,
+            name = "일이삼사오육칠팔구십일이삼사오육칠팔구십",
             sceneCount = 10,
             isPrivate = false,
         )
         val fakeFilm2 = Film(
-            caseColor = 0xFF00FF00,
-            name = "아무무 필름",
+            caseColor = 0xFFFCD4D2,
+            name = "인생필름",
             sceneCount = 10,
             isPrivate = false,
         )
-        val fakeFilmList = listOf(fakeFilm0, fakeFilm1, fakeFilm2)
+        val fakeFilm3 = Film(
+            caseColor = 0xFFFF5C5D,
+            name = "최애 로코영화",
+            sceneCount = 10,
+            isPrivate = false,
+        )
+        val fakeFilm4 = Film(
+            caseColor = 0xFFBBEF4C,
+            name = "Best1",
+            sceneCount = 10,
+            isPrivate = false,
+        )
+        val fakeFilm5 = Film(
+            caseColor = 0xFF1FCF6A,
+            name = "Best2",
+            sceneCount = 10,
+            isPrivate = false,
+        )
+        val fakeFilmList = listOf(fakeFilm0, fakeFilm1, fakeFilm2, fakeFilm3, fakeFilm4, fakeFilm5)
     }
 }
