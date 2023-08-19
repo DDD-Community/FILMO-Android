@@ -37,6 +37,19 @@ private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80,
+    background = FilmoColor.Background,
+    surface = FilmoColor.Background2
+)
+
+private val SceneColorScheme = darkColorScheme(
+    primary = Purple80,
+    secondary = PurpleGrey80,
+    tertiary = Pink80,
+    background = FilmoColor.Background2,
+    surface = FilmoColor.Background2,
+    surfaceTint = FilmoColor.Background2,
+
+
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -62,15 +75,6 @@ fun FilmoTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -82,7 +86,31 @@ fun FilmoTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = DarkColorScheme,
+        typography = Typography,
+        content = content,
+    )
+}
+
+@Composable
+fun FilmoSceneTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit,
+) {
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            /* for use themes.xml
+            val window = (view.context as Activity).window
+            window.statusBarColor = Color(0xff202020).toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme*/
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = SceneColorScheme,
         typography = Typography,
         content = content,
     )

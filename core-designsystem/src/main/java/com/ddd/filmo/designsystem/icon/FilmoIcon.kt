@@ -16,4 +16,9 @@ object FilmoIcon {
     val Back = R.drawable.ic_back
 
     val Heart = R.drawable.ic_heart
+
+    val X = R.drawable.ic_x
+    val PlusWithCircle = R.drawable.ic_plus_with_circle
+    val Folder = R.drawable.ic_folder
+    val Star = R.drawable.ic_star
 }

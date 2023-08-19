@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.model.Scene
+import com.ddd.filmo.presentation.scene.ui.edit.SceneEditScreen
 import com.ddd.filmo.presentation.scene.ui.read.SceneReadScreen
 
 @Composable
@@ -85,7 +86,7 @@ fun SceneDetailScreen(
         }
 
         scene?.let {
-            SceneReadScreen(scene)
+            if (screenIndex == 0) SceneReadScreen(scene) else SceneEditScreen(scene)
         }
     }
 }
