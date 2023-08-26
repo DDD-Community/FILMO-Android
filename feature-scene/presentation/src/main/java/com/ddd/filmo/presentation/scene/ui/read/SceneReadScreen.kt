@@ -30,7 +30,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -38,6 +37,7 @@ import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
+import com.ddd.filmo.model.SceneType
 
 @Composable
 fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
@@ -47,16 +47,14 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
         var isDropDownMenuExpanded by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxSize()) {
             Row(
                 Modifier
                     .padding(10.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
             ) {
                 IconButton(onClick = {
-
                 }, modifier = Modifier.size(40.dp)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -176,15 +174,17 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
         Spacer(modifier = Modifier.size(32.dp))
 
         Column(Modifier.padding(horizontal = 16.dp)) {
-            AsyncImage(
-                model = scene.sceneType,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(13.dp))
-                    .aspectRatio(328f / 204f),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-            )
+            if (scene.sceneType is SceneType.ImageUrl) {
+                AsyncImage(
+                    model = (scene.sceneType as SceneType.ImageUrl).imageUrl,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(13.dp))
+                        .aspectRatio(328f / 204f),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                )
+            }
 
             Spacer(modifier = Modifier.size(24.dp))
 

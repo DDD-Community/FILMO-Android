@@ -52,6 +52,7 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.model.SceneType
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest.firstSceneType
 import com.ddd.filmo.ui.SceneImageTest.secondSceneType
@@ -74,6 +75,14 @@ internal fun LoginScreen(onLoginSuccess: () -> Unit = {}, onTestNeeded: () -> Un
         AutoSlideColumn(
             content = {
                 firstSceneType.map {
+                    if (it.sceneType is SceneType.Color) {
+                        SceneImage(
+                            scene = it,
+                            navigateToSceneDetail = {},
+                            paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                            textColor = Color.Black,
+                        )
+                    }
                     SceneImage(
                         scene = it,
                         navigateToSceneDetail = {},
@@ -87,6 +96,14 @@ internal fun LoginScreen(onLoginSuccess: () -> Unit = {}, onTestNeeded: () -> Un
         AutoSlideColumn(
             content = {
                 secondSceneType.map {
+                    if (it.sceneType is SceneType.Color) {
+                        SceneImage(
+                            scene = it,
+                            navigateToSceneDetail = {},
+                            paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                            textColor = Color.Black,
+                        )
+                    }
                     SceneImage(
                         scene = it,
                         navigateToSceneDetail = {},

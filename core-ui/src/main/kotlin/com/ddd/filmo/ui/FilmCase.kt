@@ -114,8 +114,8 @@ fun FilmCase(
 }
 
 @Composable
-fun FilmCaseAdd(filmCount: Int) {
-    FilmBody(color = Color(0xFF303030)) {
+fun FilmCaseAdd(filmCount: Int, onClickFilm: () -> Unit = {}) {
+    FilmBody(modifier = Modifier.clickable { onClickFilm() }, color = Color(0xFF303030)) {
         Column(
             modifier = Modifier.fillMaxSize().align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,

@@ -21,6 +21,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,6 +40,7 @@ import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.presentation.scene.ui.detail.AddFilmDialog
 import com.ddd.filmo.ui.FilmCase
 import com.ddd.filmo.ui.FilmCaseAdd
 
@@ -54,6 +59,13 @@ fun MainScreen(
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
     )
+
+    var filmAddDialogState by remember { mutableStateOf(false) }
+
+    if (filmAddDialogState) {
+        AddFilmDialog(onDismissRequest = { filmAddDialogState = false })
+    }
+
     Box(
         modifier = Modifier
             .background(Color(0xff202020))
@@ -132,7 +144,9 @@ fun MainScreen(
                     .background(Color(0xff2A2A2A)),
             ) {
                 item {
-                    FilmCaseAdd(filmList.size)
+                    FilmCaseAdd(filmList.size, onClickFilm = {
+                        filmAddDialogState = !filmAddDialogState
+                    })
                 }
                 items(filmList) { film ->
                     FilmCase(film = film, onClickFilm = navigateToFilmDetail)

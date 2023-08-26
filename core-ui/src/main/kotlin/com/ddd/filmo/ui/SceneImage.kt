@@ -33,6 +33,7 @@ fun SceneImage(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     scene: Scene,
+    textColor: Color = Color.White,
     navigateToSceneDetail: () -> Unit,
 ) {
     Box(
@@ -83,7 +84,7 @@ fun SceneImage(
             text = "${scene.sceneText}",
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.padding(14.dp),
-            color = Color.White,
+            color = textColor,
             fontWeight = FontWeight.W500,
             maxLines = 2,
         )
@@ -93,7 +94,7 @@ fun SceneImage(
             modifier = Modifier
                 .padding(14.dp)
                 .align(Alignment.BottomStart),
-            color = Color.White,
+            color = textColor,
             fontWeight = FontWeight.W500,
         )
     }
