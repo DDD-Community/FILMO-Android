@@ -135,7 +135,7 @@ fun MainScreen(
                     FilmCaseAdd(filmList.size)
                 }
                 items(filmList) { film ->
-                    FilmCase(film = film, navigateToFilmDetail = navigateToFilmDetail)
+                    FilmCase(film = film, onClickFilm = navigateToFilmDetail)
                 }
             }
         }

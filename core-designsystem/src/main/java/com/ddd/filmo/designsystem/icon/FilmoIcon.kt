@@ -21,4 +21,5 @@ object FilmoIcon {
     val PlusWithCircle = R.drawable.ic_plus_with_circle
     val Folder = R.drawable.ic_folder
     val Star = R.drawable.ic_star
+    val Check = R.drawable.ic_check
 }

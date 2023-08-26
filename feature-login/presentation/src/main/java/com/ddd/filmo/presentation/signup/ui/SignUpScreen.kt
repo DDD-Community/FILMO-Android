@@ -18,10 +18,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.button.FilmoButton
+import com.ddd.filmo.designsystem.component.textfield.FilmoOutlinedTextField
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -108,39 +107,12 @@ internal fun InsertNickNameScreen(
             ),
         )
         Spacer(modifier = Modifier.height(48.dp))
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 56.dp),
+        FilmoOutlinedTextField(
             value = "",
-            onValueChange = {},
-            shape = RoundedCornerShape(8.dp),
-            placeholder = {
-                Text(
-                    text = "닉네임을 입력해주세요.",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        lineHeight = 22.4.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = FilmoColor.txt_02,
-                    ),
-                )
-            },
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = FilmoColor.Background3,
-                unfocusedIndicatorColor = FilmoColor.Background3,
-                focusedContainerColor = FilmoColor.Background3,
-                unfocusedContainerColor = FilmoColor.Background3,
-            ),
-            textStyle = TextStyle(
-                fontSize = 16.sp,
-                lineHeight = 22.4.sp,
-                fontFamily = FilmoFamily,
-                fontWeight = FontWeight(400),
-                color = FilmoColor.txt_02,
-            ),
+            onValueChanged = {},
+            placeholderText = "닉네임을 입력해주세요.",
         )
+
         Spacer(modifier = Modifier.weight(1f))
         FilmoButton(
             modifier
