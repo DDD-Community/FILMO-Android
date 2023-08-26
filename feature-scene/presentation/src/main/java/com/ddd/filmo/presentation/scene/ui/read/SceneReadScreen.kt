@@ -12,42 +12,119 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 
 @Composable
-internal fun SceneReadScreenRoute(
-//    viewModel: MainViewModel = hiltViewModel(),
-//    navigateToReadVote: (Int) -> Unit,
-//    navigateToSearch: () -> Unit,
-    scene: Scene,
-) {
-    SceneReadScreen(scene = scene)
-}
-
-@Composable
-fun SceneReadScreen(scene: Scene) {
+fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Row(
+
+        var isDropDownMenuExpanded by remember { mutableStateOf(false) }
+        Column(Modifier.fillMaxSize()) {
+            Row(
+                Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+            ) {
+                IconButton(onClick = {
+
+                }, modifier = Modifier.size(40.dp)) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_back),
+                        contentDescription = "",
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(
+                    onClick = {
+                        isDropDownMenuExpanded = true
+                    },
+                    modifier = Modifier.size(40.dp),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
+                        contentDescription = "",
+                        modifier = Modifier.size(24.dp),
+                    )
+                    DropdownMenu(
+                        expanded = isDropDownMenuExpanded,
+                        onDismissRequest = {
+                            isDropDownMenuExpanded = false
+                        },
+                    ) {
+                        // adding items
+                        listOf("씬 수정하기", "씬 삭제하기").forEachIndexed { itemIndex, itemValue ->
+                            DropdownMenuItem(
+                                onClick = {
+                                    isDropDownMenuExpanded = false
+                                    toEditScreen()
+                                },
+                                text = { Text(text = itemValue) },
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color(0xFF2A2A2A))
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp, vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = scene.movie?.title ?: "",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(500),
+                    color = Color(0xFFF4F4F4),
+                    letterSpacing = 0.14.sp,
+                ),
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Row() {
+                for (i in 0 until scene.sceneRate!!) {
+                    Text(text = "★", color = FilmoColor.PrimaryVariant)
+                }
+            }
+        }
+
+        /*Row(
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFF2A2A2A))
@@ -94,7 +171,7 @@ fun SceneReadScreen(scene: Scene) {
                     }
                 }
             }
-        }
+        }*/
 
         Spacer(modifier = Modifier.size(32.dp))
 
@@ -138,10 +215,4 @@ fun SceneReadScreen(scene: Scene) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun SceneReadScreenPreview() {
-    SceneReadScreen(scene = Scene.mock)
 }

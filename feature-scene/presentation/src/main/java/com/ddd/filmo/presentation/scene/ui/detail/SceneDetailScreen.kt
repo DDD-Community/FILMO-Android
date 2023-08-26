@@ -12,20 +12,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.component.textfield.FilmoOutlinedTextField
 import com.ddd.filmo.designsystem.icon.FilmoIcon
@@ -66,63 +59,27 @@ internal fun SceneDetailScreenRoute(
     SceneDetailScreen()
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneDetailScreen(
     scene: Scene? = Scene.mock,
     onBackClick: () -> Unit = {},
 ) {
-    var isDropDownMenuExpanded by remember { mutableStateOf(false) }
     var screenIndex by remember { mutableStateOf(0) }
 
-    Column(Modifier.fillMaxSize()) {
-        Row(
-            Modifier
-                .padding(10.dp)
-                .fillMaxWidth(),
-        ) {
-            IconButton(onClick = {
-                onBackClick()
-            }, modifier = Modifier.size(40.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_arrow_back),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(
-                onClick = {
-                    isDropDownMenuExpanded = true
-                },
-                modifier = Modifier.size(40.dp),
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.dp),
-                )
-                DropdownMenu(
-                    expanded = isDropDownMenuExpanded,
-                    onDismissRequest = {
-                        isDropDownMenuExpanded = false
-                    },
-                ) {
-                    // adding items
-                    listOf("씬 수정하기", "씬 삭제하기").forEachIndexed { itemIndex, itemValue ->
-                        DropdownMenuItem(
-                            onClick = {
-                                isDropDownMenuExpanded = false
-                                screenIndex = 1
-                            },
-                            text = { Text(text = itemValue) },
-                        )
-                    }
-                }
-            }
-        }
+    val toEditScreen = fun() {
+        screenIndex = 1
+    }
 
-        scene?.let {
-            if (screenIndex == 0) SceneReadScreen(scene) else SceneEditScreen(scene)
+    val toReadScreen = fun() {
+        screenIndex = 0
+    }
+
+    scene?.let {
+        if (screenIndex == 0) {
+            SceneReadScreen(scene, toEditScreen)
+        } else {
+            SceneEditScreen(scene, toReadScreen)
         }
     }
 }
