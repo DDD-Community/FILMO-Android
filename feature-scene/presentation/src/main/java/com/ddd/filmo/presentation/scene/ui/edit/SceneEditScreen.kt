@@ -5,6 +5,7 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -77,7 +78,7 @@ fun SceneEditScreen(
 ) {
     val selectedFilm = remember { mutableStateOf(Film.fakeFilm0) }
     val selectedUri = remember { mutableStateOf<Uri?>(null) }
-    val sceneText = remember { mutableStateOf("A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom. However, social differences soon get in the way. \n\n A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom. However, social differences soon get in the way.")}
+    val sceneText = remember { mutableStateOf("다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 ")}
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> selectedUri.value = uri }
@@ -218,10 +219,9 @@ fun SceneEditScreen(
                 if (selectedUri.value == null) {
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    Icon(
+                    Image(
                         painter = painterResource(id = FilmoIcon.PlusWithCircle),
                         contentDescription = "Add",
-                        tint = FilmoColor.PrimaryVariant
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
