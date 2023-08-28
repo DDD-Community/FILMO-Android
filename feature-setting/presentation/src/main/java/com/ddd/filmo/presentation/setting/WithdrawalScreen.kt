@@ -40,9 +40,13 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
 
-@Preview
 @Composable
-fun SignOutScreen() {
+fun WithdrawalScreenRoute() {
+    WithdrawalScreen()
+}
+
+@Composable
+fun WithdrawalScreen() {
     val checkBoxUiModelListState = remember {
         mutableStateListOf(
             WithdrawalCheckBoxUiModel(
@@ -173,7 +177,7 @@ fun CheckBoxListPreview() {
 @Preview
 @Composable
 fun SignOutScreenPreview() {
-    SignOutScreen()
+    WithdrawalScreen()
 }
 
 @Preview
@@ -185,7 +189,7 @@ fun WithdrawDialogPreview() {
 }
 
 @Composable
-private fun WithdrawDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
+internal fun WithdrawDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
     FilmoDialog(
         content = "정말 탈퇴하시겠어요?",
         onAcceptClicked = onAcceptClicked,

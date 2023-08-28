@@ -16,7 +16,6 @@
 
 package com.ddd.filmo.presentation.login.ui
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -82,12 +81,13 @@ internal fun LoginScreen(onLoginSuccess: () -> Unit = {}, onTestNeeded: () -> Un
                             paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                             textColor = Color.Black,
                         )
+                    } else {
+                        SceneImage(
+                            scene = it,
+                            navigateToSceneDetail = {},
+                            paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                        )
                     }
-                    SceneImage(
-                        scene = it,
-                        navigateToSceneDetail = {},
-                        paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                    )
                 }
             },
             direction = true,
@@ -103,12 +103,13 @@ internal fun LoginScreen(onLoginSuccess: () -> Unit = {}, onTestNeeded: () -> Un
                             paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                             textColor = Color.Black,
                         )
+                    } else {
+                        SceneImage(
+                            scene = it,
+                            navigateToSceneDetail = {},
+                            paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                        )
                     }
-                    SceneImage(
-                        scene = it,
-                        navigateToSceneDetail = {},
-                        paddingValues = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                    )
                 }
             },
             direction = false,
@@ -171,7 +172,6 @@ fun AutoSlideColumn(
             while (true) {
                 xPositionState = xPositionState.map { if (direction) it + 1 else it - 1 }
                 delay(10)
-                Log.d("AutoSlideColumn", "scroll: $xPositionState")
             }
         }
     }

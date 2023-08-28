@@ -6,9 +6,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,7 +54,7 @@ fun FilmCase(
     onClickFilm: () -> Unit = {},
 ) {
     FilmBody(
-        modifier = Modifier.clickable {
+        modifier = modifier.clickable {
             onClickFilm()
         },
         color = Color(film.caseColor),
@@ -166,25 +168,29 @@ fun FilmBody(
     content: @Composable BoxScope.() -> Unit,
 
 ) {
-    Box(
+    BoxWithConstraints(
         modifier,
         contentAlignment = Alignment.TopCenter,
     ) {
+        val width = this.maxWidth
+        val capSize = width / 5
+        val capHeight = capSize
+
         Box(
             modifier = Modifier
-                .width(filmSize.capSize)
-                .height(20.dp)
+                .width(width / 2)
+                .height(capHeight)
                 .background(
                     color = Color(0xFF5D658B),
-                    shape = RoundedCornerShape(size = 15.dp),
+                    shape = RoundedCornerShape(size = capSize),
                 ),
         )
         Box(
             modifier = Modifier
-                .padding(top = 10.dp)
+                .padding(top = capHeight / 2)
                 .clip(RoundedCornerShape(filmSize.roundSize))
-                .height(filmSize.height)
-                .width(filmSize.width)
+                .fillMaxWidth()
+                .aspectRatio(1 / 1.3f)
                 .background(color)
                 .then(
                     if (isClicked) {

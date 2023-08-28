@@ -1,7 +1,6 @@
 package com.ddd.filmo.presentation.scene.ui.detail
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,7 +18,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
@@ -32,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -41,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.component.textfield.FilmoOutlinedTextField
 import com.ddd.filmo.designsystem.icon.FilmoIcon
@@ -95,35 +93,67 @@ fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
         filmDialogUiList.toMutableStateList()
     }
 
-    AlertDialog(
-        modifier = Modifier
-            .background(FilmoColor.Background2)
-            .clip(RoundedCornerShape(12.dp)),
+    Dialog(
         onDismissRequest = onDismissRequest,
     ) {
-        Column(Modifier.padding(horizontal = 16.dp)) {
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 32.dp, bottom = 24.dp),
-                text = "필름 추가하기",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    lineHeight = 22.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(700),
-                    color = FilmoColor.txt_01,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 0.2.sp,
-                ),
-            )
+        Surface(
+            color = FilmoColor.Background2,
+            shape = RoundedCornerShape(12.dp),
 
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Column(
+                modifier = Modifier.padding(horizontal = 16.dp),
             ) {
                 Text(
-                    text = "이름 설정",
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 32.dp, bottom = 24.dp),
+                    text = "필름 추가하기",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        lineHeight = 22.sp,
+                        fontFamily = FilmoFamily,
+                        fontWeight = FontWeight(700),
+                        color = FilmoColor.txt_01,
+                        textAlign = TextAlign.Center,
+                        letterSpacing = 0.2.sp,
+                    ),
+                )
+
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        text = "이름 설정",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 19.6.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(400),
+                            color = FilmoColor.txt_02,
+                        ),
+                    )
+                    Text(
+                        text = "5/20",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 19.6.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFFF4F4F4),
+                        ),
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                FilmoOutlinedTextField(
+                    value = "",
+                    onValueChanged = {},
+                    placeholderText = "닉네임을 입력해주세요.",
+                )
+                Text(
+                    modifier = Modifier.padding(top = 16.dp),
+                    text = "필름 컬러 설정",
                     style = TextStyle(
                         fontSize = 14.sp,
                         lineHeight = 19.6.sp,
@@ -131,127 +161,100 @@ fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
                         fontWeight = FontWeight(400),
                         color = FilmoColor.txt_02,
                     ),
-                )
-                Text(
-                    text = "5/20",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 19.6.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFFF4F4F4),
-                    ),
-                )
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            FilmoOutlinedTextField(
-                value = "",
-                onValueChanged = {},
-                placeholderText = "닉네임을 입력해주세요.",
-            )
-            Text(
-                modifier = Modifier.padding(top = 16.dp),
-                text = "필름 컬러 설정",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    lineHeight = 19.6.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(400),
-                    color = FilmoColor.txt_02,
-                ),
 
-            )
-            LazyVerticalGrid(
-                modifier = Modifier,
-                columns = GridCells.Fixed(5),
-                contentPadding = PaddingValues(top = 12.dp, bottom = 24.dp),
-                verticalArrangement = Arrangement.SpaceAround,
-            ) {
-                itemsIndexed(items = filmState.toList()) { idx, it ->
-                    Surface(
-                        color = Color.Black,
-                        onClick = {
-                            filmState.replaceAll { it.copy(isClicked = false) }
-                            filmState[idx] =
-                                filmState[idx].copy(isClicked = !filmState[idx].isClicked)
-                        },
-                        modifier = Modifier.padding(horizontal = 5.dp, vertical = 8.dp),
-                    ) {
-                        FilmBody(
-                            color = it.color,
-                            filmSize = FilmSize.Small,
-                            isClicked = it.isClicked,
+                )
+                LazyVerticalGrid(
+                    modifier = Modifier,
+                    columns = GridCells.Fixed(5),
+                    contentPadding = PaddingValues(top = 12.dp, bottom = 24.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
+                ) {
+                    itemsIndexed(items = filmState.toList()) { idx, it ->
+                        Surface(
+                            color = FilmoColor.Background2,
+                            onClick = {
+                                filmState.replaceAll { it.copy(isClicked = false) }
+                                filmState[idx] =
+                                    filmState[idx].copy(isClicked = !filmState[idx].isClicked)
+                            },
+                            modifier = Modifier.padding(horizontal = 5.dp, vertical = 8.dp),
                         ) {
-                            if (it.isClicked) {
-                                Surface(
-                                    color = Color(0x1A000000),
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(8.dp)
-                                        .aspectRatio(1f)
-                                        .align(Alignment.Center),
-                                    shape = CircleShape,
-                                ) {
-                                    Image(
+                            FilmBody(
+                                color = it.color,
+                                filmSize = FilmSize.Small,
+                                isClicked = it.isClicked,
+                            ) {
+                                if (it.isClicked) {
+                                    Surface(
+                                        color = Color(0x1A000000),
                                         modifier = Modifier
-                                            .fillMaxSize()
-                                            .padding(vertical = 10.dp),
-                                        painter = painterResource(FilmoIcon.Check),
-                                        contentDescription = "",
-                                    )
+                                            .fillMaxWidth()
+                                            .padding(8.dp)
+                                            .aspectRatio(1f)
+                                            .align(Alignment.Center),
+                                        shape = CircleShape,
+                                    ) {
+                                        Image(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                                .padding(vertical = 5.dp),
+                                            painter = painterResource(FilmoIcon.Check),
+                                            contentDescription = "",
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            Row() {
-                FilmoButton(
-                    modifier = Modifier
-                        .weight(1f)
-                        .heightIn(48.dp),
-                    buttonColors = ButtonDefaults.buttonColors(
-                        containerColor = FilmoColor.txt_03,
-                    ),
-                    onClick = {
-                    },
-                ) {
-                    Text(
-                        text = "취소하기",
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 20.sp,
-                            fontFamily = FilmoFamily,
-                            fontWeight = FontWeight(500),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 0.1.sp,
+                Row() {
+                    FilmoButton(
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(48.dp),
+                        buttonColors = ButtonDefaults.buttonColors(
+                            containerColor = FilmoColor.txt_03,
                         ),
-                    )
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                FilmoButton(
-                    modifier = Modifier
-                        .weight(1f)
-                        .heightIn(48.dp),
-                    buttonColors = ButtonDefaults.buttonColors(
-                        containerColor = FilmoColor.Primary,
-                    ),
-                    onClick = {},
-                ) {
-                    Text(
-                        text = "필름 추가하기",
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 20.sp,
-                            fontFamily = FilmoFamily,
-                            fontWeight = FontWeight(500),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 0.1.sp,
+                        onClick = {
+                        },
+                    ) {
+                        Text(
+                            text = "취소하기",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                lineHeight = 20.sp,
+                                fontFamily = FilmoFamily,
+                                fontWeight = FontWeight(500),
+                                textAlign = TextAlign.Center,
+                                letterSpacing = 0.1.sp,
+                            ),
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    FilmoButton(
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(48.dp),
+                        buttonColors = ButtonDefaults.buttonColors(
+                            containerColor = FilmoColor.Primary,
                         ),
-                    )
+                        onClick = {},
+                    ) {
+                        Text(
+                            text = "필름 추가하기",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                lineHeight = 20.sp,
+                                fontFamily = FilmoFamily,
+                                fontWeight = FontWeight(500),
+                                textAlign = TextAlign.Center,
+                                letterSpacing = 0.1.sp,
+                            ),
+                        )
+                    }
                 }
+                Spacer(modifier = Modifier.height(16.dp))
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

@@ -5,19 +5,19 @@ data class SettingUi(
     val event: SettingEvent,
 )
 
-sealed interface SettingEvent {
-    object FAQClicked : SettingEvent
+sealed class SettingEvent(val title: String) {
+    object FAQClicked : SettingEvent(title = "FAQ")
 
     // 서비스 이용약관
-    object ServiceClicked : SettingEvent
+    object ServiceClicked : SettingEvent(title = "서비스 이용약관")
 
     // 개인정보 처리방침
-    object PersonalInformationClicked : SettingEvent
+    object PersonalInformationClicked : SettingEvent("개인정보 처리방침")
 
     // 라이센스
-    object LicenceClicked : SettingEvent
-    object LogoutClicked : SettingEvent
-    object WithdrawClicked : SettingEvent
+    object LicenceClicked : SettingEvent("라이센스")
+    object LogoutClicked : SettingEvent("로그아웃")
+    object WithdrawClicked : SettingEvent("탈퇴하기")
 }
 
 val SettingUiList = listOf<SettingUi>(

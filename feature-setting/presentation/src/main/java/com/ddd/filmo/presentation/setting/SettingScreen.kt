@@ -16,7 +16,6 @@
 
 package com.ddd.filmo.presentation.setting
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +31,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -48,16 +49,71 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
 import com.ddd.filmo.presentation.setting.model.SettingEvent
 import com.ddd.filmo.presentation.setting.model.SettingUiList
-import com.google.accompanist.web.WebView
-import com.google.accompanist.web.rememberWebViewState
 
 @Composable
-fun SettingScreenRoute(navigateToMain: () -> Unit) {
-    SettingScreen(navigateToMain)
+fun SettingScreenRoute(
+    navigateToWebView: (String, String) -> Unit,
+    navigateToLicence: () -> Unit,
+    navigateToWithdrawal: () -> Unit,
+) {
+    SettingScreen(navigateToWebView, navigateToLicence, navigateToWithdrawal)
 }
 
+// / TODO: 파라미터 조금더 이쁘게 개선
 @Composable
-internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
+internal fun SettingScreen(
+    onClickedWebView: (String, String) -> Unit = { it1, it2 -> },
+    onClickedLicence: () -> Unit = {},
+    onWithdrawalClicked: () -> Unit = {},
+) {
+    var withdrawState by remember { mutableStateOf(false) }
+    var logoutState by remember { mutableStateOf(false) }
+
+    if (withdrawState) {
+        WithdrawDialog(onCancelClicked = { withdrawState = false })
+    }
+    if (logoutState) {
+        LogoutDialog(onCancelClicked = { logoutState = false })
+    }
+
+    val onClick: (SettingEvent) -> Unit = { event ->
+        when (event) {
+            SettingEvent.FAQClicked -> {
+                onClickedWebView(
+                    "https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4",
+                    event.title,
+                )
+            }
+
+            SettingEvent.LicenceClicked -> {
+                onClickedLicence()
+            }
+
+            SettingEvent.LogoutClicked -> {
+                logoutState = !logoutState
+            }
+
+            SettingEvent.PersonalInformationClicked -> {
+                onClickedWebView(
+                    "https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4",
+                    event.title,
+                )
+            }
+
+            SettingEvent.ServiceClicked -> {
+                onClickedWebView(
+                    "https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4",
+                    event.title,
+                )
+            }
+
+            SettingEvent.WithdrawClicked -> {
+//                withdrawState = !withdrawState
+                onWithdrawalClicked()
+            }
+        }
+    }
+
     Column(
         Modifier
             .fillMaxSize()
@@ -78,7 +134,7 @@ internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
             SettingUiList.forEachIndexed { index, settingUi ->
                 SettingDetail(
                     text = settingUi.name,
-                    onClick = { settingUi.event },
+                    onClick = { onClick(settingUi.event) },
                     isLast = index == SettingUiList.lastIndex,
                 )
             }
@@ -86,51 +142,14 @@ internal fun SettingScreen(loginButtonClicked: () -> Unit = {}) {
     }
 }
 
-@SuppressLint("SetJavaScriptEnabled")
-@Composable
-fun SettingWebViewScreen(webviewUrl: String) {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(FilmoColor.Background),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
-    ) {
-        FilmoAppBar(
-            actions = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
-                }
-            },
-            navigationIcon = {
-            },
-            title = "설정",
-        )
-        val state =
-            rememberWebViewState("https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4")
-
-        WebView(
-            modifier = Modifier.fillMaxSize(),
-            onCreated = { it.settings.javaScriptEnabled = true },
-            state = state,
-        )
-    }
-}
-
-@Preview
-@Composable
-fun SettingWebViewScreenPreview() {
-    SettingWebViewScreen(webviewUrl = "webviewUrl")
-}
-
 @Composable
 fun SettingDetail(
     text: String,
-    onClick: () -> SettingEvent = { SettingEvent.WithdrawClicked },
+    onClick: () -> Unit = { },
     isLast: Boolean,
 ) {
     Column(
-        modifier = Modifier.clickable {
+        modifier = Modifier.fillMaxWidth().clickable {
             onClick()
         },
     ) {
@@ -165,20 +184,25 @@ fun SettingDetail(
 @Composable
 fun LogOutDialogPreview() {
     FilmoTheme {
-        FilmoDialog(
-            content = "정말 로그아웃하시겠어요?",
-            onAcceptClicked = { /*TODO*/ },
-            onCancelClicked = {},
-            cancelText = "취소하기",
-            acceptText = "로그아웃하기",
-            cancelColors = ButtonDefaults.buttonColors(
-                containerColor = FilmoColor.txt_03,
-            ),
-            acceptColors = ButtonDefaults.buttonColors(
-                containerColor = FilmoColor.Primary,
-            ),
-        )
+        LogoutDialog()
     }
+}
+
+@Composable
+internal fun LogoutDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
+    FilmoDialog(
+        content = "정말 로그아웃하시겠어요?",
+        onAcceptClicked = onAcceptClicked,
+        onCancelClicked = onCancelClicked,
+        cancelText = "취소하기",
+        acceptText = "로그아웃하기",
+        cancelColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.txt_03,
+        ),
+        acceptColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.Primary,
+        ),
+    )
 }
 
 @Preview(showBackground = true)

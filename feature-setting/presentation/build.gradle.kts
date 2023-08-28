@@ -16,6 +16,7 @@
 
 plugins {
     id("filmo.android.feature")
+    id("com.mikepenz.aboutlibraries.plugin")
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
@@ -80,4 +81,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.runner)
 
     implementation(libs.accompanist.webview)
+    implementation(libs.aboutLibrary)
 }
