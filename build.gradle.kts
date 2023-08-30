@@ -27,5 +27,6 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.aboutLibrary) apply false
+    alias(libs.plugins.googleServices) apply false
 //    alias(libs.plugins.secrets) apply false
 }

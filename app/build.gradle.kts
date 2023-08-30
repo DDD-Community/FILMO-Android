@@ -101,4 +101,5 @@ dependencies {
 
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(platform(libs.fireBaseBom))
 }

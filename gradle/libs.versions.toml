@@ -30,6 +30,12 @@ accompanist = "0.31.6-rc"
 
 aboutLibrary = "10.8.3"
 
+
+firebaseBom = "32.2.3"
+googleAuth = "20.6.0"
+googleServices = "4.3.15"
+firebaseAuthKtx = "22.1.1"
+
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
@@ -83,7 +89,9 @@ javaxInject = { group = "javax.inject", name = "javax.inject", version.ref = "ja
 accompanist-webview = { group = "com.google.accompanist", name = "accompanist-webview", version.ref = "accompanist" }
 aboutLibrary = { group = "com.mikepenz", name = "aboutlibraries-compose", version.ref = "aboutLibrary" }
 
-
+fireBaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+googleAuth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googleAuth" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -95,3 +103,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 aboutLibrary = {id = "com.mikepenz.aboutlibraries.plugin" , version.ref = "aboutLibrary"}
+googleServices = {id = "com.google.gms.google-services", version.ref = "googleServices"}

@@ -75,4 +75,6 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
     implementation(libs.physics.layout)
+    implementation(libs.googleAuth)
+    implementation(libs.firebase.auth.ktx)
 }

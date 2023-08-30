@@ -15,5 +15,6 @@
   -->
 
 <resources>
-    <string name="app_name">Filmo</string>
+    <string name="google_cloud_server_client_id">
+271750717711-s523a55esh0srdhe1nrcq75h5m8ovbb4.apps.googleusercontent.com</string>
 </resources>
