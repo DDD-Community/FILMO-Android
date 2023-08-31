@@ -35,6 +35,7 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
+    implementation(libs.firebase.crashlytics.gradle)
     compileOnly(libs.android.gradlePlugin)
 //    compileOnly(libs.firebase.crashlytics.gradlePlugin)
 //    compileOnly(libs.firebase.performance.gradlePlugin)
@@ -89,6 +90,10 @@ gradlePlugin {
         register("domainLibrary") {
             id = "filmo.domain.library"
             implementationClass = "DomainConventionPlugin"
+        }
+        register("dataLibrary") {
+            id = "filmo.data.library"
+            implementationClass = "DataConventionPlugin"
         }
     }
 }

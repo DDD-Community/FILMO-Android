@@ -35,6 +35,8 @@ firebaseBom = "32.2.3"
 googleAuth = "20.6.0"
 googleServices = "4.3.15"
 firebaseAuthKtx = "22.1.1"
+firebaseCrashlyticsGradle = "2.9.9"
+firebaseFirestoreKtx = "24.7.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
@@ -92,6 +94,10 @@ aboutLibrary = { group = "com.mikepenz", name = "aboutlibraries-compose", versio
 fireBaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 googleAuth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googleAuth" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
+
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
