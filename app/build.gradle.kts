@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(project(mapOf("path" to ":core-designsystem")))
     implementation(project(mapOf("path" to ":core-model")))
+    implementation(project(":core-module"))
     kapt(libs.hilt.compiler)
 
     // Arch Components

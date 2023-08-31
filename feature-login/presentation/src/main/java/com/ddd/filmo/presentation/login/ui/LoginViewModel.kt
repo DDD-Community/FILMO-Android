@@ -17,44 +17,75 @@
 package com.ddd.filmo.presentation.login.ui
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.ddd.filmo.login.domain.repository.UserRepository
+import com.ddd.filmo.model.GoogleUser
+import com.ddd.filmo.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-//    private val loginRepository: LoginRepository
+    private val userRepository: UserRepository,
     @ApplicationContext context: Context,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
+
     init {
-        checkSignedInUser(context)
+        checkLastSignedInUser(context)
     }
 
-
-
-    private fun checkSignedInUser(context: Context) {
+    private fun checkLastSignedInUser(context: Context) {
         val gsa = GoogleSignIn.getLastSignedInAccount(context)
 
         if (gsa != null) {
-            _uiState.update { it.copy(isLogin = true) }
+            Log.d("LoginViewModel", "checkLastSignedInUser: ${gsa.id}")
+
+            val user = User(
+                userId = gsa.id!!,
+                name = gsa.displayName!!,
+                email = gsa.email!!,
+            )
+
+            isUserRegistered(user)
+        }
+    }
+
+    fun isUserRegistered(user: User) = viewModelScope.launch {
+        userRepository.isExitUser(user.userId).catch {
+            _uiState.update { it.copy(isFirstLogin = true) }
+        }.collect {
+            if (it) {
+                Log.d("LoginViewModel", "isUserRegistered: $it")
+                _uiState.update { it.copy(isLogin = true) }
+            } else {
+                GoogleUser.user = user
+                _uiState.update { it.copy(isFirstLogin = true) }
+            }
         }
     }
 
     fun setErrorMessage(error: String) {
+        Log.d("LoginViewModel", "isUserRegistered: $error")
         _uiState.update { it.copy(error = error) }
     }
 }
 
 data class LoginUiState(
     val isLogin: Boolean = false,
+    val isFirstLogin: Boolean = false,
     val loading: Boolean = false,
     val error: String = "",
 )

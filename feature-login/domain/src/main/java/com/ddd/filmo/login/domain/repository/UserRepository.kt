@@ -1,12 +1,15 @@
 package com.ddd.filmo.login.domain.repository
 
+import com.ddd.filmo.model.User
+import kotlinx.coroutines.flow.Flow
+
 interface UserRepository {
 
-    fun fetchUser(): String
+    fun fetchUser(): User
 
-    fun isExitUser(): Boolean
+    suspend fun isExitUser(userId: String): Flow<Boolean>
 
-    fun saveUser(user: String): Boolean
+    fun saveUser(user: User): Flow<Boolean>
 
     fun deleteUser(): Boolean
 }

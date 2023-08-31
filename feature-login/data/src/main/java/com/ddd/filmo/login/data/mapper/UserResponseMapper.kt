@@ -10,6 +10,8 @@ object UserResponseMapper : DomainMapper<UserResponse, User> {
             email = data.email,
             name = data.name,
             nickName = data.nickName,
+            userId = data.userId ?: "",
+
         )
     }
 }

@@ -1,32 +1,79 @@
 package com.ddd.filmo.login.data.remote
 
 import com.ddd.filmo.login.data.model.UserResponse
+import com.ddd.filmo.model.User
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 interface UserRemoteDataSource {
-    fun getUser(): UserResponse
-    fun isExitUser(): Boolean
-    fun saveUser(user: UserResponse): Boolean
-    fun deleteUser(): Boolean
+    suspend fun getUser(): UserResponse
+    suspend fun isExitUser(userId: String): Boolean
+    suspend fun saveUser(user: User): Boolean
+
+    suspend fun updateNickName(userId: String, nickName: String): Boolean
+    suspend fun deleteUser(): Boolean
 }
 
 class UserRemoteDataSourceImpl @Inject constructor(
     private val firebaseDB: FirebaseFirestore,
 ) : UserRemoteDataSource {
-    override fun getUser(): UserResponse {
+    override suspend fun getUser(): UserResponse {
         TODO("Not yet implemented")
     }
 
-    override fun isExitUser(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override suspend fun isExitUser(userId: String): Boolean =
+        suspendCancellableCoroutine<Boolean> { continaution ->
+            val collection = firebaseDB.collection("User")
+            collection.document(userId).get().addOnSuccessListener {
+                if (it.exists()) {
+                    continaution.resume(true)
+                } else {
+                    continaution.resume(false)
+                }
+            }.addOnFailureListener { e ->
+                continaution.resumeWithException(e)
+            }
+        }
 
-    override fun saveUser(user: UserResponse): Boolean {
-        TODO("Not yet implemented")
-    }
+    override suspend fun saveUser(user: User): Boolean =
+        suspendCancellableCoroutine<Boolean> { continuation ->
+            firebaseDB.collection("User")
+                .document(user.userId ?: return@suspendCancellableCoroutine).set(user)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }.addOnFailureListener {
+                    continuation.resumeWithException(it)
+                }
+        }
 
-    override fun deleteUser(): Boolean {
+    override suspend fun updateNickName(userId: String, nickName: String): Boolean =
+        suspendCancellableCoroutine<Boolean> { continaution ->
+            val userRef =
+                firebaseDB.collection("User").document(userId ?: return@suspendCancellableCoroutine)
+
+            firebaseDB.runTransaction { transaction ->
+                val snapshot = transaction.get(userRef)
+                val serverNickName = snapshot.getString("nickName")
+
+                if (serverNickName != nickName || nickName.isNotBlank()) {
+                    transaction.update(
+                        userRef,
+                        "nickName",
+                        nickName,
+                    )
+                }
+            }.addOnSuccessListener {
+                continaution.resume(true)
+            }.addOnFailureListener {
+                continaution.resumeWithException(it)
+            }.addOnCanceledListener {
+            }
+        }
+
+    override suspend fun deleteUser(): Boolean {
         TODO("Not yet implemented")
     }
 }

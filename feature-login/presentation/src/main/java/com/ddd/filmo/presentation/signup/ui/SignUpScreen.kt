@@ -1,6 +1,7 @@
 package com.ddd.filmo.presentation.signup.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -22,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,6 +39,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -46,6 +49,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.component.textfield.FilmoOutlinedTextField
@@ -53,24 +58,49 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.model.GoogleUser
 import de.apuri.physicslayout.lib.PhysicsLayout
 import de.apuri.physicslayout.lib.physicsBody
 
 @Composable
 fun SignupScreenRoute(
+    viewModel: SignUpViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
+    navigateToMain: () -> Unit = {},
 ) {
-    // todo Test이니 Navigation으로 하든 바꿀것
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
     var test by remember { mutableStateOf(0) }
+
+    LaunchedEffect(uiState.isRegistered) {
+        if (uiState.isRegistered) {
+            test = 1
+        }
+    }
+
+    LaunchedEffect(uiState.error) {
+        if (uiState.error.isNotEmpty()) {
+            Toast.makeText(context, uiState.error, Toast.LENGTH_SHORT).show()
+            viewModel.clearErrorMessage()
+        }
+    }
 
     when (test) {
         0 -> InsertNickNameScreen(
             modifier = modifier,
-            onSignUpButtonClicked = { test++ },
+            onSignUpButtonClicked = {
+                viewModel.registerUser(
+                    GoogleUser.user.copy(
+                        nickName = it,
+                    ),
+                )
+            },
         )
 
         else -> {
-            SignupSuccessScreen()
+            SignupSuccessScreen(
+                onSignUpCompleteButtonClicked = navigateToMain,
+            )
         }
     }
 }
@@ -78,8 +108,10 @@ fun SignupScreenRoute(
 @Composable
 internal fun InsertNickNameScreen(
     modifier: Modifier = Modifier,
-    onSignUpButtonClicked: () -> Unit = {},
+    onSignUpButtonClicked: (String) -> Unit = {},
 ) {
+    var nickName by remember { mutableStateOf("") }
+
     Column(
         modifier
             .fillMaxSize()
@@ -117,8 +149,8 @@ internal fun InsertNickNameScreen(
         )
         Spacer(modifier = Modifier.height(48.dp))
         FilmoOutlinedTextField(
-            value = "",
-            onValueChanged = {},
+            value = nickName,
+            onValueChanged = { it -> nickName = it },
             placeholderText = "닉네임을 입력해주세요.",
         )
 
@@ -127,7 +159,7 @@ internal fun InsertNickNameScreen(
             modifier
                 .fillMaxWidth()
                 .padding(vertical = 12.dp),
-            onClick = { onSignUpButtonClicked() },
+            onClick = { onSignUpButtonClicked(nickName) },
             buttonColors = ButtonDefaults.buttonColors(
                 disabledContainerColor = FilmoColor.PrimaryDisabled,
                 containerColor = FilmoColor.Primary,
@@ -153,7 +185,10 @@ internal fun InsertNickNameScreen(
 }
 
 @Composable
-fun SignupSuccessScreen(modifier: Modifier = Modifier) {
+fun SignupSuccessScreen(
+    modifier: Modifier = Modifier,
+    onSignUpCompleteButtonClicked: () -> Unit = {},
+) {
     var size by remember { mutableStateOf(IntSize.Zero) }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -208,7 +243,7 @@ fun SignupSuccessScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = 52.dp),
-                onClick = { /*TODO*/ },
+                onClick = onSignUpCompleteButtonClicked,
                 buttonColors = ButtonDefaults.buttonColors(
                     disabledContainerColor = FilmoColor.PrimaryDisabled,
                     containerColor = FilmoColor.Primary,

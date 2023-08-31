@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation(project(":core-ui"))
+    implementation(project(":feature-login:domain"))
     androidTestImplementation(project(":core-testing"))
 
     // Core Android dependencies

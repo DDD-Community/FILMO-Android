@@ -16,7 +16,6 @@
 
 package com.ddd.filmo.presentation.login.ui
 
-import android.content.Context
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.Image
@@ -56,33 +55,45 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
-import com.ddd.filmo.feature.mypage.R
 import com.ddd.filmo.model.SceneType
+import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest.firstSceneType
 import com.ddd.filmo.ui.SceneImageTest.secondSceneType
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.delay
 
 @Composable
 fun LoginScreenRoute(
     viewModel: LoginViewModel = hiltViewModel(),
-    navigateToMain: () -> Unit,
-    navigateToSign: () -> Unit,
+    navigateToMain: () -> Unit = {},
+    navigateToSign: () -> Unit = {},
 ) {
-    val loginUiState = viewModel.uiState.collectAsStateWithLifecycle().value
+    val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(loginUiState.isFirstLogin, loginUiState.isLogin) {
+        if (loginUiState.isFirstLogin) {
+            navigateToSign()
+        }
+        if (loginUiState.isLogin) {
+            navigateToMain()
+        }
+    }
+
 
     val signInRequestCode = 1
-
     val authResultLauncher =
         rememberLauncherForActivityResult(contract = GoogleApiContract()) { task ->
             try {
                 val gsa = task?.getResult(ApiException::class.java)
                 if (gsa != null) {
-//                    viewModel.fetchSignInUser(gsa.email, gsa.displayName)
+                    val user = User(
+                        userId = gsa.id!!,
+                        name = gsa.displayName!!,
+                        email = gsa.email!!,
+                    )
+
+                    viewModel.isUserRegistered(user = user)
                 } else {
                     viewModel.setErrorMessage("에러를 확인 해주세요")
                 }
@@ -91,20 +102,28 @@ fun LoginScreenRoute(
             }
         }
 
-    LoginScreen(onLoginSuccess = {
-        when (it) {
-            LoginType.GOOGLE -> {
-                authResultLauncher.launch(signInRequestCode)
-            }
+    LoginScreen(
+        loginUiState = loginUiState,
+        onLoginSuccess = {
+            when (it) {
+                LoginType.GOOGLE -> {
+                    authResultLauncher.launch(signInRequestCode)
+                }
 
-            LoginType.KAKAO -> {
+                LoginType.KAKAO -> {
+                }
             }
-        }
-    }, onTestNeeded = navigateToSign)
+        },
+        onTestNeeded = navigateToSign,
+    )
 }
 
 @Composable
-internal fun LoginScreen(onLoginSuccess: (LoginType) -> Unit = {}, onTestNeeded: () -> Unit = {}) {
+internal fun LoginScreen(
+    onLoginSuccess: (LoginType) -> Unit = {},
+    onTestNeeded: () -> Unit = {},
+    loginUiState: LoginUiState = LoginUiState(),
+) {
     Column(
         Modifier
             .fillMaxSize()
@@ -265,9 +284,6 @@ fun AutoSlideColumn(
     }
 }
 
-// 이전에 로그인 한 계정이 있는지 확인
-private fun getLastSignedInAccount(context: Context) = GoogleSignIn.getLastSignedInAccount(context)
-
 @Preview(showBackground = true)
 @Composable
 private fun DefaultLoginPreview() {
@@ -282,16 +298,6 @@ private fun PortraitLoginPreview() {
     FilmoTheme {
         LoginScreen()
     }
-}
-
-private fun getGoogleLoginAuth(context: Context): GoogleSignInClient {
-    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestEmail()
-        .requestIdToken(context.getString(R.string.google_cloud_server_client_id))
-        .requestId()
-        .requestProfile()
-        .build()
-    return GoogleSignIn.getClient(context, gso)
 }
 
 enum class LoginType {

@@ -37,6 +37,9 @@ include(":core-ui")
 include(":test-app")
 include(":core-designsystem")
 include(":core-model")
+include(":core-network")
+include(":core-module")
+
 // feature-login
 include(":feature-login:presentation")
 include(":feature-login:data")
@@ -61,4 +64,4 @@ include(":feature-setting:data")
 include(":feature-film:presentation")
 include(":feature-film:domain")
 include(":feature-film:data")
-include(":core-network")
+

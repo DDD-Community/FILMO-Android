@@ -20,6 +20,7 @@ fun FilmoOutlinedTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChanged: (String) -> Unit = {},
+    isError: Boolean = false,
     placeholderText: String,
 ) {
     OutlinedTextField(
@@ -41,6 +42,7 @@ fun FilmoOutlinedTextField(
                 ),
             )
         },
+        isError = isError,
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = FilmoColor.Background3,
             unfocusedIndicatorColor = FilmoColor.Background3,
