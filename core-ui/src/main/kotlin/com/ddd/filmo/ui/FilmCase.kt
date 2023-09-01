@@ -50,7 +50,6 @@ import com.ddd.filmo.model.Film
 fun FilmCase(
     modifier: Modifier = Modifier.fillMaxWidth(),
     film: Film = Film(),
-    filmSize: FilmSize = FilmSize.Large,
     onClickFilm: () -> Unit = {},
 ) {
     FilmBody(

@@ -55,6 +55,7 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.model.LoginType
 import com.ddd.filmo.model.SceneType
 import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.SceneImage
@@ -79,7 +80,6 @@ fun LoginScreenRoute(
             navigateToMain()
         }
     }
-
 
     val signInRequestCode = 1
     val authResultLauncher =
@@ -298,9 +298,4 @@ private fun PortraitLoginPreview() {
     FilmoTheme {
         LoginScreen()
     }
-}
-
-enum class LoginType {
-    GOOGLE,
-    KAKAO,
 }
