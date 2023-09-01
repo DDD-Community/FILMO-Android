@@ -1,11 +1,13 @@
 package com.ddd.filmo.model
 
+import com.ddd.filmo.mapper.typemarker.DomainModel
+
 data class Film(
     val caseColor: Long = 0xFF9868FF,
     val name: String = "",
     val sceneCount: Int = 0,
     val isPrivate: Boolean = false,
-) {
+):DomainModel {
     companion object {
         val fakeFilm0 = Film(
             0xFF9868FF,
