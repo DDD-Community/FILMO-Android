@@ -1,5 +1,6 @@
 package com.ddd.filmo.model
 
+import com.ddd.filmo.mapper.typemarker.DomainModel
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -10,7 +11,7 @@ data class Scene(
     val sceneRate: Int?,
     val movie: Movie? = null,
     val createdAt: Date,
-) {
+):DomainModel {
     val createdAtString = sceneSdf.format(createdAt)
 
     companion object {

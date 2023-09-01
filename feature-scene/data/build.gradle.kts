@@ -26,6 +26,9 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(project(mapOf("path" to ":core-model")))
+    implementation(project(mapOf("path" to ":feature-scene:domain")))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
