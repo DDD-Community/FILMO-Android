@@ -86,6 +86,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core-designsystem")))
     implementation(project(mapOf("path" to ":core-model")))
     implementation(project(":core-module"))
+    implementation(project(mapOf("path" to ":feature-login:domain")))
     kapt(libs.hilt.compiler)
 
     // Arch Components

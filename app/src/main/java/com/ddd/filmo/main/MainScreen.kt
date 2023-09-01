@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -48,7 +50,10 @@ import com.ddd.filmo.ui.FilmCaseAdd
 fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
+    viewModel: MainScreenViewModel = hiltViewModel()
 ) {
+    val userInfo = viewModel.user.collectAsState()
+
     val filmList = listOf(
         Film(0xFF9868FF, "Basic", 2000, true),
         Film(0xFFCF68FF, "Disney", 1000, true),
@@ -99,6 +104,17 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(64.dp))
+            Text(
+                text = "${userInfo.value?.name}, ${userInfo.value?.userId}",
+                style = TextStyle(
+                    fontSize = 22.sp,
+                    lineHeight = 30.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(500),
+                    color = Color(0xFFDDDDDD),
+                    textAlign = TextAlign.Center,
+                ),
+            )
             Text(
                 text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
                 style = TextStyle(
