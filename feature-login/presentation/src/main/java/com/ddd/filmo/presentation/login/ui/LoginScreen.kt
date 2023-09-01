@@ -17,6 +17,7 @@
 package com.ddd.filmo.presentation.login.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -38,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -70,7 +72,15 @@ fun LoginScreenRoute(
     navigateToMain: () -> Unit = {},
     navigateToSign: () -> Unit = {},
 ) {
+    val context = LocalContext.current
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(loginUiState.error) {
+        if (loginUiState.error.isNotEmpty()) {
+            Toast.makeText(context, loginUiState.error, Toast.LENGTH_SHORT).show()
+            viewModel.clearErrorMessage()
+        }
+    }
 
     LaunchedEffect(loginUiState.isFirstLogin, loginUiState.isLogin) {
         if (loginUiState.isFirstLogin) {

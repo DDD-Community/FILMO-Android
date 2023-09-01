@@ -81,6 +81,10 @@ class LoginViewModel @Inject constructor(
         Log.d("LoginViewModel", "isUserRegistered: $error")
         _uiState.update { it.copy(error = error) }
     }
+
+    fun clearErrorMessage() {
+        _uiState.update { it.copy(error = "") }
+    }
 }
 
 data class LoginUiState(
