@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.ddd.filmo.designsystem.component.button.FilmoButton
+import com.ddd.filmo.designsystem.component.text.FilmoAutoResizeText
+import com.ddd.filmo.designsystem.component.text.FontSizeRange
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 
@@ -74,8 +76,10 @@ fun FilmoDialog(
                     buttonColors = cancelColors,
                     onClick = onCancelClicked,
                 ) {
-                    Text(
+                    FilmoAutoResizeText(
                         text = cancelText,
+                        fontSizeRange = FontSizeRange(12.sp, 16.sp),
+                        color = FilmoColor.txt_01,
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 20.sp,
@@ -92,8 +96,10 @@ fun FilmoDialog(
                     buttonColors = acceptColors,
                     onClick = onAcceptClicked,
                 ) {
-                    Text(
+                    FilmoAutoResizeText(
                         text = acceptText,
+                        fontSizeRange = FontSizeRange(12.sp, 16.sp),
+                        color = FilmoColor.txt_01,
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 22.sp,

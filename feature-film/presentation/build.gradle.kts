@@ -16,8 +16,6 @@
 
 plugins {
     id("filmo.android.feature")
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -27,14 +25,13 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-//    buildFeatures {
-//        compose = true
-//        aidl = false
-//        buildConfig = false
-//        renderScript = false
-//        shaders = false
-//    }
-
+    buildFeatures {
+        compose = true
+        aidl = false
+        buildConfig = false
+        renderScript = false
+        shaders = false
+    }
 }
 
 dependencies {

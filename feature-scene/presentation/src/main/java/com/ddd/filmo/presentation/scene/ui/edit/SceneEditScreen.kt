@@ -26,62 +26,57 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.ddd.filmo.designsystem.theme.FilmoColor
-import com.ddd.filmo.designsystem.theme.FilmoFamily
-import com.ddd.filmo.model.Scene
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.TextField
-import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.icon.FilmoIcon
+import com.ddd.filmo.designsystem.theme.FilmoColor
+import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.Scene
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneEditScreen(
     scene: Scene,
-    toReadScreen: () -> Unit
+    toReadScreen: () -> Unit,
 ) {
     val selectedFilm = remember { mutableStateOf(Film.fakeFilm0) }
     val selectedUri = remember { mutableStateOf<Uri?>(null) }
-    val sceneText = remember { mutableStateOf("다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 ")}
+    val sceneText = remember { mutableStateOf("다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 ") }
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> selectedUri.value = uri }
+        onResult = { uri -> selectedUri.value = uri },
     )
 
     var isSheetOpen by rememberSaveable {
@@ -97,18 +92,21 @@ fun SceneEditScreen(
     }
 
     BackHandler {
-        if (isSheetOpen) isSheetOpen = false
-        else toReadScreen()
+        if (isSheetOpen) {
+            isSheetOpen = false
+        } else {
+            toReadScreen()
+        }
     }
 
     Column(
-        Modifier.fillMaxSize()
+        Modifier.fillMaxSize(),
     ) {
         Row(
             Modifier
                 .padding(10.dp)
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(onClick = {
                 toReadScreen()
@@ -119,7 +117,7 @@ fun SceneEditScreen(
                     modifier = Modifier.size(24.dp),
                 )
             }
-            
+
             Spacer(modifier = Modifier.width(10.dp))
 
             Text(
@@ -130,7 +128,7 @@ fun SceneEditScreen(
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(500),
                     color = Color(0xFFF4F4F4),
-                )
+                ),
             )
         }
 
@@ -157,14 +155,14 @@ fun SceneEditScreen(
                         fontFamily = FilmoFamily,
                         fontWeight = FontWeight(600),
                         color = Color(0xFFF4F4F4),
-                    )
+                    ),
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick = { }) {
                     Icon(
                         painter = painterResource(id = FilmoIcon.X),
                         contentDescription = "X",
-                        modifier = Modifier.size(12.dp)
+                        modifier = Modifier.size(12.dp),
                     )
                 }
             }
@@ -180,7 +178,7 @@ fun SceneEditScreen(
                         fontFamily = FilmoFamily,
                         fontWeight = FontWeight(400),
                         color = Color(0xFFF4F4F4),
-                    )
+                    ),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Row() {
@@ -191,7 +189,7 @@ fun SceneEditScreen(
                             painter = painterResource(id = FilmoIcon.Star),
                             contentDescription = "Star",
                             tint = FilmoColor.PrimaryVariant,
-                            modifier = Modifier.size(37.dp)
+                            modifier = Modifier.size(37.dp),
                         )
                     }
                     Spacer(modifier = Modifier.width(8.dp))
@@ -206,13 +204,13 @@ fun SceneEditScreen(
                     .clip(RoundedCornerShape(size = 8.dp))
                     .clickable {
                         photoPickerLauncher.launch(
-                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
                         )
                     }
                     .dashedBorder(
                         strokeWidth = 1.dp,
                         color = FilmoColor.ic_02,
-                        cornerRadiusDp = 8.dp
+                        cornerRadiusDp = 8.dp,
                     ),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -232,7 +230,7 @@ fun SceneEditScreen(
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
                             color = Color(0xFFF4F4F4),
-                        )
+                        ),
                     )
                     Text(
                         text = "10mb 이하",
@@ -242,7 +240,7 @@ fun SceneEditScreen(
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(400),
                             color = Color(0xFFB6B6B6),
-                        )
+                        ),
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                 } else {
@@ -274,7 +272,7 @@ fun SceneEditScreen(
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(400),
                     color = Color(0xFFF4F4F4),
-                )
+                ),
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -288,7 +286,7 @@ fun SceneEditScreen(
                     .border(
                         width = 1.dp,
                         color = Color(0xFF7D7A7A),
-                        shape = RoundedCornerShape(size = 8.dp)
+                        shape = RoundedCornerShape(size = 8.dp),
                     )
                     .fillMaxWidth()
                     .height(58.dp),
@@ -310,7 +308,7 @@ fun SceneEditScreen(
                         fontWeight = FontWeight(500),
                         color = Color(0xFFF4F4F4),
                     ),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
                 Spacer(modifier = Modifier.width(16.dp))
             }
@@ -338,11 +336,10 @@ fun SceneEditScreen(
                         color = Color(0xFFF4F4F4),
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.16.sp,
-                    )
+                    ),
                 )
             }
         }
-
     }
 
     if (isSheetOpen) {
@@ -351,16 +348,18 @@ fun SceneEditScreen(
                 .fillMaxSize()
                 .background(Color(0x40000000)),
         ) {
-            Spacer(modifier = Modifier
-                .fillMaxSize()
-                .noRippleClickable { isSheetOpen = false })
+            Spacer(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .noRippleClickable { isSheetOpen = false },
+            )
             Column(
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .clip(shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
 //                    .fillMaxSize()
                     .background(Color(0xFF393939))
-                    .align(Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter),
             ) {
                 Spacer(modifier = Modifier.size(22.dp))
                 Row(
@@ -376,7 +375,7 @@ fun SceneEditScreen(
                             fontWeight = FontWeight(500),
                             color = Color(0xFFF4F4F4),
                         ),
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
                     IconButton(
                         onClick = {
@@ -415,34 +414,38 @@ fun Modifier.dashedBorder(strokeWidth: Dp, color: Color, cornerRadiusDp: Dp) = c
                 onDrawBehind {
                     val stroke = Stroke(
                         width = strokeWidthPx,
-                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f),
                     )
 
                     drawRoundRect(
                         color = color,
                         style = stroke,
-                        cornerRadius = CornerRadius(cornerRadiusPx)
+                        cornerRadius = CornerRadius(cornerRadiusPx),
                     )
                 }
-            }
+            },
         )
-    }
+    },
 )
 
-fun Modifier.noRippleClickable(onClick: ()->Unit): Modifier = composed {
-    clickable(indication = null,
-        interactionSource = remember { MutableInteractionSource() }) {
+fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
+    clickable(
+        indication = null,
+        interactionSource = remember { MutableInteractionSource() },
+    ) {
         onClick()
     }
 }
-
 
 @Composable
 fun FilmListItem(film: Film, selectedFilm: Film?, selectFilm: (Film) -> Unit = {}, closeSheet: () -> Unit) {
     val selected = (film == selectedFilm)
     val borderOrNot =
-        if (selected) Modifier.border(width = 2.dp, color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
-        else Modifier
+        if (selected) {
+            Modifier.border(width = 2.dp, color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
+        } else {
+            Modifier
+        }
 
     Row(
         modifier = Modifier
@@ -456,10 +459,12 @@ fun FilmListItem(film: Film, selectedFilm: Film?, selectFilm: (Film) -> Unit = {
             .fillMaxWidth(),
         verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
     ) {
-        Spacer(modifier = Modifier
-            .clip(RoundedCornerShape(4.dp))
-            .size(32.dp)
-            .background(Color(film.caseColor)))
+        Spacer(
+            modifier = Modifier
+                .clip(RoundedCornerShape(4.dp))
+                .size(32.dp)
+                .background(Color(film.caseColor)),
+        )
         Spacer(modifier = Modifier.width(12.dp))
         Text(
             text = "${film.name}",
@@ -471,9 +476,9 @@ fun FilmListItem(film: Film, selectedFilm: Film?, selectFilm: (Film) -> Unit = {
                 color = Color(0xFFF4F4F4),
                 letterSpacing = 0.14.sp,
             ),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
-        if(selected) {
+        if (selected) {
             Icon(
                 painter = painterResource(FilmoIcon.Check),
                 contentDescription = "",
@@ -481,4 +486,10 @@ fun FilmListItem(film: Film, selectedFilm: Film?, selectFilm: (Film) -> Unit = {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun SceneEditScreenPreview() {
+    SceneEditScreen(Scene.mock1, {})
 }

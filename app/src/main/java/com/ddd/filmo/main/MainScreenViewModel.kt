@@ -7,10 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
-
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
     private val userRepository: UserRepository,
-): ViewModel() {
+) : ViewModel() {
     val user: MutableStateFlow<User?> = MutableStateFlow(userRepository.currentUser.value)
 }
