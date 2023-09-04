@@ -23,7 +23,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,15 +48,22 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.presentation.scene.ui.detail.FilmUi
+import com.ddd.filmo.presentation.scene.ui.detail.FilmUi.Companion.filmColorLongList
 import com.ddd.filmo.ui.FilmBody
 import com.ddd.filmo.ui.FilmSize
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
+fun AddFilmDialog(
+    onDismissRequest: () -> Unit = {},
+    createFilm: (String, Long) -> Unit = {_, _ -> },
+) {
     val filmState = remember {
         FilmUi.filmDialogUiList.toMutableStateList()
     }
+
+    var filmName by remember { mutableStateOf("") }
+    var filmColor by remember { mutableLongStateOf(0xFF9868FF) }
 
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -108,8 +119,8 @@ fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 FilmoOutlinedTextField(
-                    value = "",
-                    onValueChanged = {},
+                    value = filmName,
+                    onValueChanged = { filmName = it },
                     placeholderText = "닉네임을 입력해주세요.",
                 )
                 Text(
@@ -137,11 +148,12 @@ fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
                                 filmState.replaceAll { it.copy(isClicked = false) }
                                 filmState[idx] =
                                     filmState[idx].copy(isClicked = !filmState[idx].isClicked)
+                                filmColor = filmColorLongList[idx]
                             },
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 8.dp),
                         ) {
                             FilmBody(
-                                color = it.color,
+                                color = Color(filmColorLongList[idx]),
                                 filmSize = FilmSize.Small,
                                 isClicked = it.isClicked,
                             ) {
@@ -201,7 +213,9 @@ fun AddFilmDialog(onDismissRequest: () -> Unit = {}) {
                         buttonColors = ButtonDefaults.buttonColors(
                             containerColor = FilmoColor.Primary,
                         ),
-                        onClick = {},
+                        onClick = {
+                            createFilm(filmName, filmColor)
+                        },
                     ) {
                         FilmoAutoResizeText(
                             text = "필름 추가하기",

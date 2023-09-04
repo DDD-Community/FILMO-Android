@@ -10,4 +10,5 @@ data class FilmResponse(
     val name: String = "",
     val sceneCount: Int = 0,
     val isPrivate: Boolean = false,
+    val createdAt: Date = Date(),
 ) : DataModel

@@ -1,5 +1,7 @@
 package com.ddd.filmo.core.module
 
+import com.ddd.filmo.film.data.FilmRepositoryImp
+import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.login.data.UserRepositoryImp
 import com.ddd.filmo.login.domain.repository.UserRepository
 import dagger.Binds
@@ -16,4 +18,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindUserRepository(userRepositoryImp: UserRepositoryImp): UserRepository
+
+    @Binds
+    @Singleton
+    fun bindFilmRepository(filmRepositoryImp: FilmRepositoryImp): FilmRepository
 }
