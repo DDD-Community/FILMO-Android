@@ -7,6 +7,7 @@ import com.ddd.filmo.model.Film
 object FilmResponseMapper : DomainMapper<FilmResponse, Film> {
     override fun toDomain(data: FilmResponse): Film {
         return Film(
+            documentId = data.documentId,
             caseColor = data.caseColor,
             name = data.name,
             sceneCount = data.sceneCount,
