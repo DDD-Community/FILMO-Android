@@ -10,6 +10,7 @@ data class Film(
     val sceneCount: Int = 0,
     val isPrivate: Boolean = false,
     val createdAt: Date = Date(),
+    val scenes: List<Scene> = emptyList()
 ):DomainModel {
     companion object {
         val fakeFilm0 = Film(

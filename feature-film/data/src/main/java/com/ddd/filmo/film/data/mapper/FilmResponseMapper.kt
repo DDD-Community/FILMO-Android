@@ -13,6 +13,7 @@ object FilmResponseMapper : DomainMapper<FilmResponse, Film> {
             sceneCount = data.sceneCount,
             isPrivate = data.isPrivate,
             createdAt = data.createdAt,
+            scenes = data.scenes
         )
     }
 }
