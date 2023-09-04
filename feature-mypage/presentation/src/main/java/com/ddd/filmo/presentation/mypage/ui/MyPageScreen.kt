@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -40,6 +41,8 @@ import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
+import com.ddd.filmo.model.GoogleUser
+import com.ddd.filmo.model.LoginType
 import com.ddd.filmo.ui.FilmCase
 
 @Composable
@@ -64,19 +67,22 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                 Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
             }
         })
+
         Column(
             Modifier
                 .fillMaxSize()
                 .background(FilmoColor.Background),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Spacer(modifier = Modifier.weight(2f))
             var nameLogin by remember { mutableStateOf("Compose") }
             FilmCase(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(102.dp),
+                    .padding(horizontal = 102.dp),
             )
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = "밍밍쟈",
                 style = TextStyle(
@@ -88,22 +94,12 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                     textAlign = TextAlign.Center,
                 ),
             )
+            Spacer(modifier = Modifier.weight(1f))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Surface(
-                    modifier = Modifier.size(28.dp),
-                    color = FilmoColor.kakao_color,
-                    shape = CircleShape,
-                ) {
-                    Image(
-                        modifier = Modifier.size(14.dp),
-                        painter = painterResource(id = FilmoIcon.Kakao),
-                        contentDescription = "",
-                        contentScale = ContentScale.None,
-                    )
-                }
+                LoginTypeButton(modifier = Modifier, loginType = GoogleUser.user.loginType)
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "mingming@kakao.com",
+                    text = GoogleUser.user.email,
                     textAlign = TextAlign.Center,
                     style = TextStyle(
                         fontSize = 14.sp,
@@ -115,7 +111,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                     ),
                 )
             }
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.weight(1f))
             Card(
                 Modifier
                     .fillMaxWidth()
@@ -136,6 +132,45 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                     MyPageDetailColumn()
                 }
             }
+        Spacer(modifier = Modifier.weight(5f))
+        }
+    }
+}
+
+@Composable
+private fun LoginTypeButton(
+    modifier: Modifier = Modifier,
+    loginType: LoginType,
+) {
+    when (loginType) {
+        LoginType.GOOGLE -> {
+            Surface(
+                modifier = modifier.size(28.dp),
+                color = Color.White,
+                shape = CircleShape,
+            ) {
+                Image(
+                    modifier = Modifier.size(14.dp),
+                    painter = painterResource(id = FilmoIcon.Google),
+                    contentDescription = "",
+                    contentScale = ContentScale.None,
+                )
+            }
+        }
+
+        LoginType.KAKAO -> {
+            Surface(
+                modifier = modifier.size(28.dp),
+                color = FilmoColor.kakao_color,
+                shape = CircleShape,
+            ) {
+                Image(
+                    modifier = Modifier.size(14.dp),
+                    painter = painterResource(id = FilmoIcon.Kakao),
+                    contentDescription = "",
+                    contentScale = ContentScale.None,
+                )
+            }
         }
     }
 }
@@ -144,6 +179,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
 private fun MyPageDetailColumn() {
     Column(
         modifier = Modifier.fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
         Text(

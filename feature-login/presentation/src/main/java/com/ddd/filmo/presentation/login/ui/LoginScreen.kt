@@ -17,6 +17,7 @@
 package com.ddd.filmo.presentation.login.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -38,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -55,6 +57,7 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
+import com.ddd.filmo.model.LoginType
 import com.ddd.filmo.model.SceneType
 import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.SceneImage
@@ -69,7 +72,15 @@ fun LoginScreenRoute(
     navigateToMain: () -> Unit = {},
     navigateToSign: () -> Unit = {},
 ) {
+    val context = LocalContext.current
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(loginUiState.error) {
+        if (loginUiState.error.isNotEmpty()) {
+            Toast.makeText(context, loginUiState.error, Toast.LENGTH_SHORT).show()
+            viewModel.clearErrorMessage()
+        }
+    }
 
     LaunchedEffect(loginUiState.isFirstLogin, loginUiState.isLogin) {
         if (loginUiState.isFirstLogin) {
@@ -79,7 +90,6 @@ fun LoginScreenRoute(
             navigateToMain()
         }
     }
-
 
     val signInRequestCode = 1
     val authResultLauncher =
@@ -298,9 +308,4 @@ private fun PortraitLoginPreview() {
     FilmoTheme {
         LoginScreen()
     }
-}
-
-enum class LoginType {
-    GOOGLE,
-    KAKAO,
 }
