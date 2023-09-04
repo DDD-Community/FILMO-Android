@@ -16,6 +16,13 @@ class FilmRepositoryImp @Inject constructor(
     val _films: MutableStateFlow<List<Film>> = MutableStateFlow(emptyList())
     override val films: StateFlow<List<Film>> = _films
 
+    val _selectedFilm: MutableStateFlow<Film> = MutableStateFlow(Film())
+    override val selectedFilm: StateFlow<Film> = _selectedFilm
+
+    override fun setSelectedFilm(film: Film) {
+        _selectedFilm.value = film
+    }
+
     override suspend fun createFilm(name: String, color: Long) {
         filmRemoteDataSource.createFilm(name, color)
     }
