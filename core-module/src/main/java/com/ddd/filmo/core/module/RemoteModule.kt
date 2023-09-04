@@ -1,5 +1,7 @@
 package com.ddd.filmo.core.module
 
+import com.ddd.filmo.film.data.remote.FilmRemoteDataSource
+import com.ddd.filmo.film.data.remote.FilmRemoteDataSourceImpl
 import com.ddd.filmo.login.data.remote.UserRemoteDataSource
 import com.ddd.filmo.login.data.remote.UserRemoteDataSourceImpl
 import dagger.Binds
@@ -16,4 +18,8 @@ interface RemoteModule {
     @Binds
     @Singleton
     fun bindUserRemoteSource(userRemoteDataSource: UserRemoteDataSourceImpl): UserRemoteDataSource
+
+    @Binds
+    @Singleton
+    fun bindFilmRemoteSource(filmRemoteDataSource: FilmRemoteDataSourceImpl): FilmRemoteDataSource
 }
