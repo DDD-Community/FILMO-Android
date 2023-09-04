@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -42,18 +42,30 @@ import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
-import com.ddd.filmo.presentation.scene.ui.detail.AddFilmDialog
+import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.FilmCase
 import com.ddd.filmo.ui.FilmCaseAdd
+
+@Composable
+fun MainScreenRoute(
+    navigateToFilmDetail: () -> Unit = {},
+    navigateToMyPage: () -> Unit = {},
+    viewModel: MainScreenViewModel = hiltViewModel(),
+) {
+    val userInfo by viewModel.user.collectAsState()
+    MainScreen(
+        navigateToFilmDetail = navigateToFilmDetail,
+        navigateToMyPage = navigateToMyPage,
+        userInfo,
+    )
+}
 
 @Composable
 fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
-    viewModel: MainScreenViewModel = hiltViewModel()
+    userInfo: User?,
 ) {
-    val userInfo = viewModel.user.collectAsState()
-
     val filmList = listOf(
         Film(0xFF9868FF, "Basic", 2000, true),
         Film(0xFFCF68FF, "Disney", 1000, true),
@@ -105,7 +117,7 @@ fun MainScreen(
         ) {
             Spacer(modifier = Modifier.height(64.dp))
             Text(
-                text = "${userInfo.value?.name}, ${userInfo.value?.userId}",
+                text = "${userInfo?.name}, ${userInfo?.userId}",
                 style = TextStyle(
                     fontSize = 22.sp,
                     lineHeight = 30.sp,
@@ -172,12 +184,8 @@ fun MainScreen(
     }
 }
 
+@Preview
 @Composable
-fun TopBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(44.dp),
-    ) {
-    }
+fun MainScreenPreview() {
+    MainScreen(userInfo = User())
 }

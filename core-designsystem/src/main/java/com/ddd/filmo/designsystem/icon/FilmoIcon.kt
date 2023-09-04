@@ -22,4 +22,5 @@ object FilmoIcon {
     val Folder = R.drawable.ic_folder
     val Star = R.drawable.ic_star
     val Check = R.drawable.ic_check
+    val Location = R.drawable.ic_location_pin
 }

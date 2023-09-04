@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ddd.filmo.main.MainScreen
+import com.ddd.filmo.main.MainScreenRoute
 import com.ddd.filmo.presentation.film.detail.FilmDetailScreen
 import com.ddd.filmo.presentation.login.ui.LoginScreenRoute
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreenRoute
@@ -34,7 +35,7 @@ fun MainNavigation() {
             modifier = Modifier.padding(padding),
         ) {
             composable("main") {
-                MainScreen(
+                MainScreenRoute(
                     navigateToFilmDetail = {
                         navController.navigate("filmDetail")
                     },
