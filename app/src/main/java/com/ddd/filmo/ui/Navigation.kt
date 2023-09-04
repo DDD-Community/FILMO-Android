@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.ddd.filmo.main.MainScreen
 import com.ddd.filmo.main.MainScreenRoute
 import com.ddd.filmo.presentation.film.detail.FilmDetailScreen
 import com.ddd.filmo.presentation.login.ui.LoginScreenRoute
@@ -47,7 +46,11 @@ fun MainNavigation() {
             composable("login") {
                 LoginScreenRoute(
                     navigateToMain = {
-                        navController.navigate("main")
+                        navController.navigate("main") {
+                            popUpTo("login") {
+                                inclusive = true
+                            }
+                        }
                     },
                     navigateToSign = {
                         navController.navigate("signup")
