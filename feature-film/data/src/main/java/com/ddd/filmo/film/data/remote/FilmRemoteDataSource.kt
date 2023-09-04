@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 interface FilmRemoteDataSource {
     suspend fun observeFilms(filmsFlow: MutableStateFlow<List<Film>>, userId: String = "117111581200385730511")
+    suspend fun createFilm(name: String, color: Long)
 
 
 }
@@ -34,5 +35,9 @@ class FilmRemoteDataSourceImpl @Inject constructor(
                 }
                 filmsFlow.value = films.toList()
             }
+    }
+
+    override suspend fun createFilm(name: String, color: Long) {
+
     }
 }

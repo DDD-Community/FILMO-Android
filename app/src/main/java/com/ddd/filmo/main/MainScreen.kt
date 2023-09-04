@@ -22,9 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,12 +51,16 @@ fun MainScreenRoute(
 ) {
     val userInfo by viewModel.user.collectAsState()
     val filmList by viewModel.films.collectAsState()
+    val isFilmAddDialogShown by viewModel.isFilmAddDialogShown.collectAsState()
+
     MainScreen(
         navigateToFilmDetail = navigateToFilmDetail,
         navigateToMyPage = navigateToMyPage,
         userInfo,
         filmList,
-        viewModel::createFilm
+        isFilmAddDialogShown,
+        viewModel::setIsFilmAddDialogShown,
+        viewModel::createFilm,
     )
 }
 
@@ -69,16 +70,16 @@ fun MainScreen(
     navigateToMyPage: () -> Unit = {},
     userInfo: User?,
     filmList: List<Film> = emptyList(),
+    isFilmAddDialogShown: Boolean = false,
+    setIsFilmAddDialogShown: (Boolean) -> Unit = { _ -> },
     createFilm: (String, Long) -> Unit = {_, _ -> },
 ) {
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
     )
 
-    var filmAddDialogState by remember { mutableStateOf(false) }
-
-    if (filmAddDialogState) {
-        AddFilmDialog(onDismissRequest = { filmAddDialogState = false }, createFilm)
+    if (isFilmAddDialogShown) {
+        AddFilmDialog(onDismissRequest = { setIsFilmAddDialogShown(false) }, createFilm)
     }
 
     Box(
@@ -171,7 +172,7 @@ fun MainScreen(
             ) {
                 item {
                     FilmCaseAdd(filmList.size, onClickFilm = {
-                        filmAddDialogState = !filmAddDialogState
+                        setIsFilmAddDialogShown(true)
                     })
                 }
                 items(filmList) { film ->

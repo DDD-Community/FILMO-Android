@@ -16,6 +16,10 @@ class FilmRepositoryImp @Inject constructor(
     val _films: MutableStateFlow<List<Film>> = MutableStateFlow(emptyList())
     override val films: StateFlow<List<Film>> = _films
 
+    override suspend fun createFilm(name: String, color: Long) {
+        filmRemoteDataSource.createFilm(name, color)
+    }
+
     init {
         CoroutineScope(Dispatchers.IO).launch {
             filmRemoteDataSource.observeFilms(_films)

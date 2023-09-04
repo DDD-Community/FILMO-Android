@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface FilmRepository {
     val films: StateFlow<List<Film>>
+    suspend fun createFilm(name: String, color: Long)
 }
