@@ -112,6 +112,11 @@ internal fun InsertNickNameScreen(
 ) {
     var nickName by remember { mutableStateOf("") }
 
+    when(nickName){
+        this
+    }
+
+
     Column(
         modifier
             .fillMaxSize()

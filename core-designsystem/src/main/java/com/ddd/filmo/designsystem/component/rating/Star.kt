@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.asComposePath
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.star
 import kotlin.math.min
@@ -23,10 +24,18 @@ fun Star() {
 
         val path = Path()
         val star = RoundedPolygon
-            .star(5, radius = 100f, 50f, center = PointF(width / 2, height / 2)).apply {
+            .star(
+                5,
+                radius = width / 4,
+                innerRadius = width / 9,
+                rounding = CornerRounding(radius = width / 64),
+                center = PointF(width / 2, height / 2),
+                innerRounding = CornerRounding(radius = width / 32),
+
+            ).apply {
                 transform(
                     Matrix().apply {
-                        postRotate(1f)
+                        postRotate(55f, width / 2, height / 2)
                     },
                 )
             }.toPath()
