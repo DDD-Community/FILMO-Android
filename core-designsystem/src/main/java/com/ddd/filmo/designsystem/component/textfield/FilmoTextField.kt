@@ -32,7 +32,7 @@ fun FilmoOutlinedTextField(
         shape = RoundedCornerShape(8.dp),
         placeholder = {
             Text(
-                text = "닉네임을 입력해주세요.",
+                text = placeholderText,
                 style = TextStyle(
                     fontSize = 16.sp,
                     lineHeight = 22.4.sp,
@@ -48,6 +48,7 @@ fun FilmoOutlinedTextField(
             unfocusedIndicatorColor = FilmoColor.Background3,
             focusedContainerColor = FilmoColor.Background3,
             unfocusedContainerColor = FilmoColor.Background3,
+            errorIndicatorColor = FilmoColor.Error,
         ),
         textStyle = TextStyle(
             fontSize = 16.sp,

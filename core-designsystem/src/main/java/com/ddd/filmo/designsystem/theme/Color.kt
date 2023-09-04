@@ -58,4 +58,5 @@ object FilmoColor {
     val film_color_10 = Color(0xFF9CCEFF)
 
     val kakao_color = Color(0xFFFEE500)
+    val Error = Color(0xFFFF6E6E)
 }

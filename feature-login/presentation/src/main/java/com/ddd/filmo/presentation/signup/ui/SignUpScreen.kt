@@ -110,81 +110,100 @@ internal fun InsertNickNameScreen(
     modifier: Modifier = Modifier,
     onSignUpButtonClicked: (String) -> Unit = {},
 ) {
+    // https://developer.android.com/jetpack/compose/text/user-input 여기있는것이 올바르다.
     var nickName by remember { mutableStateOf("") }
 
-    when(nickName){
-        this
+    val errorText = when {
+        nickName.length > 10 -> "닉네임은 열 글자 이하로 입력해 주세요."
+        !Regex("^[a-zA-Z0-9가-힣]*$").matches(nickName) -> "닉네임은 한글, 영문, 숫자만 사용할 수 있어요."
+        nickName.isNotEmpty() && nickName.length < 2 -> "닉네임은 두 글자 이상 입력해 주세요."
+        else -> ""
     }
 
+    val isSignUpButtonEnabled = errorText.isEmpty() && nickName.isNotEmpty()
 
     Column(
         modifier
             .fillMaxSize()
-            .background(color = FilmoColor.Background)
-            .padding(horizontal = 16.dp),
+            .background(color = FilmoColor.Background),
     ) {
         FilmoAppBar(actions = null, navigationIcon = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
             }
         })
-
-        Text(
-            text = "필모에서 사용할 \n닉네임을 입력해 주세요.",
-            style = TextStyle(
-                fontSize = 24.sp,
-                lineHeight = 32.sp,
-                fontFamily = FilmoFamily,
-            ),
-            fontWeight = FontWeight(600),
-            color = FilmoColor.txt_01,
-            letterSpacing = 0.24.sp,
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            text = "닉네임은 2자 이상 10자 이하의\n한글, 영문, 숫자만 사용할 수 있어요.",
-            style = TextStyle(
-                fontSize = 12.sp,
-                lineHeight = 20.sp,
-                fontFamily = FilmoFamily,
-                fontWeight = FontWeight(400),
-                color = FilmoColor.txt_02,
-                letterSpacing = 0.12.sp,
-            ),
-        )
-        Spacer(modifier = Modifier.height(48.dp))
-        FilmoOutlinedTextField(
-            value = nickName,
-            onValueChanged = { it -> nickName = it },
-            placeholderText = "닉네임을 입력해주세요.",
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-        FilmoButton(
-            modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp),
-            onClick = { onSignUpButtonClicked(nickName) },
-            buttonColors = ButtonDefaults.buttonColors(
-                disabledContainerColor = FilmoColor.PrimaryDisabled,
-                containerColor = FilmoColor.Primary,
-                contentColor = FilmoColor.txt_01,
-                disabledContentColor = FilmoColor.txt_02,
-            ),
-        ) {
+        Column(Modifier.padding(horizontal = 16.dp)) {
             Text(
-                modifier = Modifier.padding(vertical = 15.dp),
-                text = "필모 이용하러 가기",
+                text = "필모에서 사용할 \n닉네임을 입력해 주세요.",
                 style = TextStyle(
-                    fontSize = 16.sp,
-                    lineHeight = 22.sp,
+                    fontSize = 24.sp,
+                    lineHeight = 32.sp,
                     fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFFF4F4F4),
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 0.16.sp,
+                ),
+                fontWeight = FontWeight(600),
+                color = FilmoColor.txt_01,
+                letterSpacing = 0.24.sp,
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "닉네임은 2자 이상 10자 이하의\n한글, 영문, 숫자만 사용할 수 있어요.",
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    lineHeight = 20.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(400),
+                    color = FilmoColor.txt_02,
+                    letterSpacing = 0.12.sp,
                 ),
             )
+            Spacer(modifier = Modifier.height(48.dp))
+            FilmoOutlinedTextField(
+                value = nickName,
+                onValueChanged = { it ->
+                    nickName = it
+                },
+                placeholderText = "닉네임을 입력해주세요.",
+                isError = errorText.isNotEmpty(),
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = errorText,
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFFFF6E6E),
+                    letterSpacing = 0.12.sp,
+                ),
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            FilmoButton(
+                modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 12.dp),
+                onClick = { onSignUpButtonClicked(nickName) },
+                buttonColors = ButtonDefaults.buttonColors(
+                    disabledContainerColor = FilmoColor.PrimaryDisabled,
+                    containerColor = FilmoColor.Primary,
+                    contentColor = FilmoColor.txt_01,
+                    disabledContentColor = FilmoColor.txt_02,
+                ),
+                enabled = isSignUpButtonEnabled,
+            ) {
+                Text(
+                    modifier = Modifier.padding(vertical = 15.dp),
+                    text = "필모 이용하러 가기",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 22.sp,
+                        fontFamily = FilmoFamily,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFFF4F4F4),
+                        textAlign = TextAlign.Center,
+                        letterSpacing = 0.16.sp,
+                    ),
+                )
+            }
         }
     }
 }
