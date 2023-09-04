@@ -53,10 +53,12 @@ fun MainScreenRoute(
     viewModel: MainScreenViewModel = hiltViewModel(),
 ) {
     val userInfo by viewModel.user.collectAsState()
+    val filmList by viewModel.films.collectAsState()
     MainScreen(
         navigateToFilmDetail = navigateToFilmDetail,
         navigateToMyPage = navigateToMyPage,
         userInfo,
+        filmList,
     )
 }
 
@@ -65,14 +67,8 @@ fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
     userInfo: User?,
+    filmList: List<Film> = emptyList()
 ) {
-    val filmList = listOf(
-        Film(0xFF9868FF, "Basic", 2000, true),
-        Film(0xFFCF68FF, "Disney", 1000, true),
-        Film(0xFFFF97CA, "하하하하하하하하하하하하하하하하하하하하", 17, false),
-        Film(0xFF1FCF6A, "My Best", 999, false),
-        Film(0xFFF5DF1A, "나의 인생 영화 목록", 999, true),
-    )
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
     )
