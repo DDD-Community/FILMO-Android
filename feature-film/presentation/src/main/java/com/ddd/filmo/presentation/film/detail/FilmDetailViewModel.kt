@@ -12,4 +12,5 @@ class FilmDetailViewModel @Inject constructor(
     private val filmRepository: FilmRepository,
 ) : ViewModel() {
     val selectedFilm = filmRepository.selectedFilm
+    val selectedFilmScenes = filmRepository.selectedFilmScenes
 }

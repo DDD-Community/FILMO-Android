@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -57,6 +58,7 @@ fun FilmDetailScreen(
     viewModel: FilmDetailViewModel = hiltViewModel()
 ) {
     val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
+    val selectedFilmScenes = viewModel.selectedFilmScenes.collectAsStateWithLifecycle().value
     val sdf = java.text.SimpleDateFormat("yy.MM.dd")
     val date = sdf.format(Date())
 
@@ -109,14 +111,22 @@ fun FilmDetailScreen(
                     item {
                         Spacer(modifier = Modifier.size(104.dp))
                     }
-                    for (i in 0..4) {
+                    selectedFilmScenes.forEach {
+                        item {
+                            SceneImage(
+                                scene = it,
+                                navigateToSceneDetail = navigateToSceneDetail
+                            )
+                        }
+                    }
+                    /*for (i in 0..4) {
                         item {
                             SceneImage(
                                 scene = Scene.mock,
                                 navigateToSceneDetail = navigateToSceneDetail
                             )
                         }
-                    }
+                    }*/
                 },
             )
 
@@ -165,17 +175,17 @@ fun FilmDetailScreen(
                 Spacer(modifier = Modifier.size(24.dp))
             }
 
-            ExtendedFloatingActionButton(
+            FloatingActionButton(
                 onClick = {
                     toAddScene(null)
                 },
+                containerColor = Color.White,
+                contentColor = Color.Black,
                 modifier = Modifier
                     .align(BottomEnd)
                     .padding(end = 22.dp, bottom = 24.dp),
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "add")
-                Spacer(modifier = Modifier.width(width = 12.dp))
-                Text(text = "씬 가져오기")
             }
         }
     }
