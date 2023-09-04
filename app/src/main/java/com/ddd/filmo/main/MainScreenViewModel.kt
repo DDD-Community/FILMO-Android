@@ -31,4 +31,8 @@ class MainScreenViewModel @Inject constructor(
     fun setIsFilmAddDialogShown(value: Boolean) {
         isFilmAddDialogShown.value = value
     }
+
+    fun selectFilm(film: Film) {
+        filmRepository.setSelectedFilm(film)
+    }
 }
