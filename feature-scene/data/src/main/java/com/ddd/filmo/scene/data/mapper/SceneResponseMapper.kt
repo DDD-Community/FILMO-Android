@@ -7,7 +7,7 @@ import com.ddd.filmo.model.Scene
 object SceneResponseMapper : DomainMapper<SceneResponse, Scene> {
     override fun toDomain(data: SceneResponse): Scene {
         return Scene(
-            sceneId = data.sceneId,
+            documentId = data.documentId,
             sceneText = data.sceneText,
             sceneType = data.sceneType,
             sceneRate = data.sceneRate,
