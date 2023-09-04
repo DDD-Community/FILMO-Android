@@ -102,22 +102,34 @@ fun a() {
 }
 
 data class FilmUi(
-    val color: Color,
     val isClicked: Boolean = false,
 ) {
     companion object {
         val filmDialogUiList = listOf(
-            FilmUi(color = FilmoColor.film_color_01),
-            FilmUi(color = FilmoColor.film_color_02),
-            FilmUi(color = FilmoColor.film_color_03),
-            FilmUi(color = FilmoColor.film_color_04),
-            FilmUi(color = FilmoColor.film_color_05),
-            FilmUi(color = FilmoColor.film_color_06),
-            FilmUi(color = FilmoColor.film_color_07),
-            FilmUi(color = FilmoColor.film_color_08),
-            FilmUi(color = FilmoColor.film_color_09),
-            FilmUi(color = FilmoColor.film_color_10),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
+            FilmUi(),
 
+        )
+
+        val filmColorLongList = listOf(
+            0xFF9868FF,
+            0xFFCF68FF,
+            0xFFFF97CA,
+            0xFFFF5C5D,
+            0xFFFF5C5D,
+            0xFFF5DF1A,
+            0xFFFFCE4F,
+            0xFF1FCF6A,
+            0xFFBBEF4C,
+            0xFF9CCEFF,
         )
     }
 }

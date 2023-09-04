@@ -48,6 +48,7 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.presentation.scene.ui.detail.FilmUi
+import com.ddd.filmo.presentation.scene.ui.detail.FilmUi.Companion.filmColorLongList
 import com.ddd.filmo.ui.FilmBody
 import com.ddd.filmo.ui.FilmSize
 
@@ -147,12 +148,12 @@ fun AddFilmDialog(
                                 filmState.replaceAll { it.copy(isClicked = false) }
                                 filmState[idx] =
                                     filmState[idx].copy(isClicked = !filmState[idx].isClicked)
-                                filmColor = it.color.value.toLong()
+                                filmColor = filmColorLongList[idx]
                             },
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 8.dp),
                         ) {
                             FilmBody(
-                                color = it.color,
+                                color = Color(filmColorLongList[idx]),
                                 filmSize = FilmSize.Small,
                                 isClicked = it.isClicked,
                             ) {
