@@ -1,5 +1,6 @@
 package com.ddd.filmo.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.login.domain.repository.UserRepository
@@ -17,4 +18,8 @@ class MainScreenViewModel @Inject constructor(
 ) : ViewModel() {
     val user: MutableStateFlow<User?> = MutableStateFlow(userRepository.currentUser.value)
     val films: StateFlow<List<Film>> = filmRepository.films
+
+    fun createFilm(name: String, color: Long) {
+
+    }
 }

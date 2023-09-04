@@ -59,6 +59,7 @@ fun MainScreenRoute(
         navigateToMyPage = navigateToMyPage,
         userInfo,
         filmList,
+        viewModel::createFilm
     )
 }
 
@@ -67,7 +68,8 @@ fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
     userInfo: User?,
-    filmList: List<Film> = emptyList()
+    filmList: List<Film> = emptyList(),
+    createFilm: (String, Long) -> Unit = {_, _ -> },
 ) {
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
@@ -76,7 +78,7 @@ fun MainScreen(
     var filmAddDialogState by remember { mutableStateOf(false) }
 
     if (filmAddDialogState) {
-        AddFilmDialog(onDismissRequest = { filmAddDialogState = false })
+        AddFilmDialog(onDismissRequest = { filmAddDialogState = false }, createFilm)
     }
 
     Box(
