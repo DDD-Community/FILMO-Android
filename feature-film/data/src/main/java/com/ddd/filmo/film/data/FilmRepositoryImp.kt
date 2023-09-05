@@ -3,6 +3,7 @@ package com.ddd.filmo.film.data
 import com.ddd.filmo.film.data.remote.FilmRemoteDataSource
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.Scene
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,17 @@ class FilmRepositoryImp @Inject constructor(
 ) : FilmRepository {
     val _films: MutableStateFlow<List<Film>> = MutableStateFlow(emptyList())
     override val films: StateFlow<List<Film>> = _films
+
+    val _selectedFilm: MutableStateFlow<Film> = MutableStateFlow(Film())
+    override val selectedFilm: StateFlow<Film> = _selectedFilm
+
+    val _selectedFilmScenes: MutableStateFlow<List<Scene>> = MutableStateFlow(emptyList())
+    override val selectedFilmScenes: StateFlow<List<Scene>> = _selectedFilmScenes
+
+    override fun setSelectedFilm(film: Film) {
+        _selectedFilm.value = film
+        _selectedFilmScenes.value = film.scenes
+    }
 
     override suspend fun createFilm(name: String, color: Long) {
         filmRemoteDataSource.createFilm(name, color)

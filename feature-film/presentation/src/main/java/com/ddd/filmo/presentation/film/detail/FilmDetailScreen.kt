@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,18 +19,22 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.BottomStart
 import androidx.compose.ui.Alignment.Companion.TopEnd
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.colorspace.ColorSpaces
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -37,6 +42,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.model.Scene
@@ -48,7 +55,10 @@ fun FilmDetailScreen(
     toAddScene: (Scene?) -> Unit = {},
     onBackClick: () -> Unit = {},
     navigateToSceneDetail: () -> Unit = {},
+    viewModel: FilmDetailViewModel = hiltViewModel()
 ) {
+    val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
+    val selectedFilmScenes = viewModel.selectedFilmScenes.collectAsStateWithLifecycle().value
     val sdf = java.text.SimpleDateFormat("yy.MM.dd")
     val date = sdf.format(Date())
 
@@ -80,60 +90,43 @@ fun FilmDetailScreen(
         }
 
         Box() {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+            val caseColor = Color(selectedFilm.caseColor)
+            val modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+
+            Box(
+                modifier = modifier
+                    .fillMaxHeight()
+                    .alpha(0.8f)
                     .background(
-                        color = Color(0xCCCF68FF),
+                        color = caseColor,
                         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
-                    ),
+                    )
+            )
+
+            LazyColumn(
+                modifier = modifier,
                 content = {
                     item {
                         Spacer(modifier = Modifier.size(104.dp))
                     }
-                    for (i in 0..4) {
+                    selectedFilmScenes.forEach {
                         item {
-                            SceneImage(scene = Scene.mock, navigateToSceneDetail = navigateToSceneDetail)
-                        }
-                        item {
-                            Box(
-                                Modifier
-                                    .padding(horizontal = 16.dp, vertical = 8.dp)
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .clickable {
-                                        navigateToSceneDetail()
-                                    },
-                            ) {
-                                AsyncImage(
-                                    model = Scene.mock1.sceneType,
-                                    contentDescription = "",
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .aspectRatio(218 / 133f)
-                                        .background(color = Color(0xff625B71)),
-                                    contentScale = ContentScale.Crop,
-                                )
-                                Text(
-                                    text = "${Scene.mock1.sceneText}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    modifier = Modifier.padding(14.dp),
-                                    color = Color.White,
-                                    fontWeight = FontWeight.W500,
-                                    maxLines = 2,
-                                )
-                                Text(
-                                    text = "${Scene.mock1.movie?.title}\n${Scene.mock1.movie?.releaseYear}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    modifier = Modifier
-                                        .padding(14.dp)
-                                        .align(BottomStart),
-                                    color = Color.White,
-                                    fontWeight = FontWeight.W500,
-                                )
-                            }
+                            SceneImage(
+                                scene = it,
+                                navigateToSceneDetail = navigateToSceneDetail
+                            )
                         }
                     }
+                    /*for (i in 0..4) {
+                        item {
+                            SceneImage(
+                                scene = Scene.mock,
+                                navigateToSceneDetail = navigateToSceneDetail
+                            )
+                        }
+                    }*/
                 },
             )
 
@@ -152,14 +145,14 @@ fun FilmDetailScreen(
                     .height(80.dp)
                     .padding(horizontal = 16.dp)
                     .background(
-                        color = Color(0xFFCF68FF),
+                        color = caseColor,
                         shape = RoundedCornerShape(size = 20.dp),
                     ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Spacer(modifier = Modifier.size(24.dp))
                 Text(
-                    text = "Disney",
+                    text = selectedFilm.name,
                     style = TextStyle(
                         fontSize = 18.sp,
                         lineHeight = 25.2.sp,
@@ -170,7 +163,7 @@ fun FilmDetailScreen(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "9999",
+                    text = selectedFilm.sceneCount.toString(),
                     style = TextStyle(
                         fontSize = 18.sp,
                         lineHeight = 25.2.sp,
@@ -182,17 +175,17 @@ fun FilmDetailScreen(
                 Spacer(modifier = Modifier.size(24.dp))
             }
 
-            ExtendedFloatingActionButton(
+            FloatingActionButton(
                 onClick = {
                     toAddScene(null)
                 },
+                containerColor = Color.White,
+                contentColor = Color.Black,
                 modifier = Modifier
                     .align(BottomEnd)
                     .padding(end = 22.dp, bottom = 24.dp),
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "add")
-                Spacer(modifier = Modifier.width(width = 12.dp))
-                Text(text = "씬 가져오기")
             }
         }
     }

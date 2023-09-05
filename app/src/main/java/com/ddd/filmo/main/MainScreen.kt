@@ -61,6 +61,7 @@ fun MainScreenRoute(
         isFilmAddDialogShown,
         viewModel::setIsFilmAddDialogShown,
         viewModel::createFilm,
+        viewModel::selectFilm,
     )
 }
 
@@ -72,7 +73,8 @@ fun MainScreen(
     filmList: List<Film> = emptyList(),
     isFilmAddDialogShown: Boolean = false,
     setIsFilmAddDialogShown: (Boolean) -> Unit = { _ -> },
-    createFilm: (String, Long) -> Unit = {_, _ -> },
+    createFilm: (String, Long) -> Unit = { _, _ -> },
+    selectFilm: (Film) -> Unit = { _ -> }
 ) {
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
@@ -109,23 +111,12 @@ fun MainScreen(
             navigationIcon = {
             },
 
-        )
+            )
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(64.dp))
-            Text(
-                text = "${userInfo?.name}, ${userInfo?.userId}",
-                style = TextStyle(
-                    fontSize = 22.sp,
-                    lineHeight = 30.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFFDDDDDD),
-                    textAlign = TextAlign.Center,
-                ),
-            )
             Text(
                 text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
                 style = TextStyle(
@@ -176,7 +167,12 @@ fun MainScreen(
                     })
                 }
                 items(filmList) { film ->
-                    FilmCase(film = film, onClickFilm = navigateToFilmDetail)
+                    FilmCase(
+                        film = film, onClickFilm = {
+                            selectFilm(film)
+                            navigateToFilmDetail()
+                        }
+                    )
                 }
             }
         }
