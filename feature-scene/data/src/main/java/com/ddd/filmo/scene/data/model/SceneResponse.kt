@@ -10,8 +10,8 @@ import java.util.Date
 data class SceneResponse(
     @DocumentId val documentId: String = "",
     val sceneText: String? = "",
-    @Exclude val sceneType: SceneType? = SceneType.fromColor(0xff000000),
-    val sceneRate: Int? = 0,
+    //val sceneType: SceneType? = SceneType.fromColor(0xff000000),
+    val sceneRate: Float? = 0f,
     val movie: Movie? = null,
     val createdAt: Date = Date(),
     val imageUrl: String? = null,

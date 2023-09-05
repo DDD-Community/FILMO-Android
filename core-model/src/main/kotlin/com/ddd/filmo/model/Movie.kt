@@ -1,9 +1,9 @@
 package com.ddd.filmo.model
 
 data class Movie(
-    val title: String,
-    val releaseYear: Int,
-    val posterImageUrl: String,
+    val title: String = "",
+    val releaseYear: Int = 0,
+    val posterImageUrl: String = "",
 ) {
     companion object {
         val mock = Movie(

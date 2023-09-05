@@ -111,7 +111,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -123,7 +123,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -135,7 +135,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -148,7 +148,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -160,7 +160,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -172,7 +172,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
     )
@@ -186,7 +186,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -198,7 +198,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -211,7 +211,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -223,7 +223,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -237,7 +237,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
         Scene(
@@ -249,7 +249,7 @@ object SceneImageTest {
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),
-            sceneRate = 5,
+            sceneRate = 5f,
             createdAt = Date(),
         ),
     )
