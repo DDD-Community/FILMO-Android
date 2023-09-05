@@ -131,7 +131,6 @@ fun MainScreen(
                         Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(modifier = Modifier.height(64.dp))
                         Text(
                             text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
                             style = TextStyle(

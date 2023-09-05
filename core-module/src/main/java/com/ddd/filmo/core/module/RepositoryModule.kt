@@ -4,6 +4,8 @@ import com.ddd.filmo.film.data.FilmRepositoryImp
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.login.data.UserRepositoryImp
 import com.ddd.filmo.login.domain.repository.UserRepository
+import com.ddd.filmo.scene.data.SceneRepositoryImp
+import com.ddd.filmo.scene.domain.repository.SceneRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,4 +24,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindFilmRepository(filmRepositoryImp: FilmRepositoryImp): FilmRepository
+
+    @Binds
+    @Singleton
+    fun bindSceneRepository(sceneRepositoryImp: SceneRepositoryImp): SceneRepository
 }

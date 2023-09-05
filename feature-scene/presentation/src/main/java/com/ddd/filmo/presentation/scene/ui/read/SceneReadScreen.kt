@@ -39,6 +39,7 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
+import kotlin.math.roundToInt
 
 @Composable
 fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
@@ -117,7 +118,7 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
             )
             Spacer(modifier = Modifier.size(8.dp))
             Row() {
-                for (i in 0 until scene.sceneRate!!) {
+                for (i in 0 until scene.sceneRate!!.roundToInt()) {
                     Text(text = "★", color = FilmoColor.PrimaryVariant)
                 }
             }

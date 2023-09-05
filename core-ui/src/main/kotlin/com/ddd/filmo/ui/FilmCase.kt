@@ -83,10 +83,11 @@ fun FilmCase(
                     .background(color = Color(0x1A000000), shape = CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                val sceneCountString = if (film.sceneCount >= 1000) {
-                    (film.sceneCount / 1000).toString() + "k"
+                val sceneCount = film.scenes.size
+                val sceneCountString = if (sceneCount >= 1000) {
+                    (sceneCount / 1000).toString() + "k"
                 } else {
-                    film.sceneCount.toString()
+                    sceneCount.toString()
                 }
                 Text(
                     text = sceneCountString,

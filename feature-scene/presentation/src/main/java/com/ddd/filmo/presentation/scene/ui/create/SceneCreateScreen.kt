@@ -312,7 +312,7 @@ fun SceneCreateScreen(
 
         Box(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { viewModel.createScene() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),
