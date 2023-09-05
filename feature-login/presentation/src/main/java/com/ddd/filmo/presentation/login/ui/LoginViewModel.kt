@@ -85,6 +85,14 @@ class LoginViewModel @Inject constructor(
     fun clearErrorMessage() {
         _uiState.update { it.copy(error = "") }
     }
+
+    fun clearLoginState() {
+        _uiState.update { it.copy(isLogin = false) }
+    }
+
+    fun clearFirstLoginState() {
+        _uiState.update { it.copy(isFirstLogin = false) }
+    }
 }
 
 data class LoginUiState(

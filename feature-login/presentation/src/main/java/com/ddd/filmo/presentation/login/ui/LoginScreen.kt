@@ -34,6 +34,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -74,6 +75,8 @@ fun LoginScreenRoute(
 ) {
     val context = LocalContext.current
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val currentNavigateToNextScreen by rememberUpdatedState(navigateToMain)
+    val currentNavigateToSignScreen by rememberUpdatedState(navigateToSign)
 
     LaunchedEffect(loginUiState.error) {
         if (loginUiState.error.isNotEmpty()) {
@@ -82,12 +85,16 @@ fun LoginScreenRoute(
         }
     }
 
-    LaunchedEffect(loginUiState.isFirstLogin, loginUiState.isLogin) {
+    LaunchedEffect(loginUiState.isFirstLogin) {
         if (loginUiState.isFirstLogin) {
             navigateToSign()
+            viewModel.clearFirstLoginState()
         }
+    }
+    LaunchedEffect(loginUiState.isLogin) {
         if (loginUiState.isLogin) {
             navigateToMain()
+            viewModel.clearLoginState()
         }
     }
 
@@ -113,7 +120,6 @@ fun LoginScreenRoute(
         }
 
     LoginScreen(
-        loginUiState = loginUiState,
         onLoginSuccess = {
             when (it) {
                 LoginType.GOOGLE -> {
@@ -132,7 +138,6 @@ fun LoginScreenRoute(
 internal fun LoginScreen(
     onLoginSuccess: (LoginType) -> Unit = {},
     onTestNeeded: () -> Unit = {},
-    loginUiState: LoginUiState = LoginUiState(),
 ) {
     Column(
         Modifier
