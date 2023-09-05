@@ -39,6 +39,8 @@ dependencies {
     implementation(project(":feature-scene:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
+    implementation(project(mapOf("path" to ":feature-film:domain")))
+    implementation(project(mapOf("path" to ":feature-login:domain")))
     androidTestImplementation(project(":core-testing"))
 
     // Core Android dependencies
