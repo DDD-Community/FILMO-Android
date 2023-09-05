@@ -51,6 +51,7 @@ import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
 fun MainScreenRoute(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
+    navigateToSceneCreate: () -> Unit = {},
     viewModel: MainScreenViewModel = hiltViewModel(),
 ) {
     val userInfo by viewModel.user.collectAsState()
@@ -60,6 +61,7 @@ fun MainScreenRoute(
     MainScreen(
         navigateToFilmDetail = navigateToFilmDetail,
         navigateToMyPage = navigateToMyPage,
+        navigateToSceneCreate = navigateToSceneCreate,
         userInfo,
         filmList,
         isFilmAddDialogShown,
@@ -73,6 +75,7 @@ fun MainScreenRoute(
 fun MainScreen(
     navigateToFilmDetail: () -> Unit = {},
     navigateToMyPage: () -> Unit = {},
+    navigateToSceneCreate: () -> Unit = {},
     userInfo: User?,
     filmList: List<Film> = emptyList(),
     isFilmAddDialogShown: Boolean = false,
@@ -149,7 +152,7 @@ fun MainScreen(
                                 disabledContentColor = Color.White,
                             ),
                             modifier = Modifier.size(160.dp, 40.dp),
-                            onClick = { /*TODO*/ },
+                            onClick = { navigateToSceneCreate() },
                         ) {
                             Text(
                                 text = "씬 만들기",
