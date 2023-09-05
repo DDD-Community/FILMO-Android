@@ -106,4 +106,5 @@ dependencies {
     implementation(libs.coil.kt.compose)
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.toolbar.compose)
 }

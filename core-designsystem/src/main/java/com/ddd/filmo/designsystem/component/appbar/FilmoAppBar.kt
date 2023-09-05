@@ -19,11 +19,13 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilmoAppBar(
+    modifier: Modifier = Modifier,
     actions: @Composable (RowScope.() -> Unit)?,
     navigationIcon: @Composable () -> Unit,
     title: String = "",
 ) {
     TopAppBar(
+        modifier = modifier,
         actions = actions ?: {},
         navigationIcon = navigationIcon,
         title = {

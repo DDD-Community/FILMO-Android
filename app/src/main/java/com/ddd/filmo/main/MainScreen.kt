@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
@@ -42,6 +43,9 @@ import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.FilmCase
 import com.ddd.filmo.ui.FilmCaseAdd
+import me.onebone.toolbar.CollapsingToolbarScaffold
+import me.onebone.toolbar.ScrollStrategy
+import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
 
 @Composable
 fun MainScreenRoute(
@@ -74,15 +78,16 @@ fun MainScreen(
     isFilmAddDialogShown: Boolean = false,
     setIsFilmAddDialogShown: (Boolean) -> Unit = { _ -> },
     createFilm: (String, Long) -> Unit = { _, _ -> },
-    selectFilm: (Film) -> Unit = { _ -> }
+    selectFilm: (Film) -> Unit = { _ -> },
 ) {
     val gradient = Brush.verticalGradient(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
     )
-
     if (isFilmAddDialogShown) {
         AddFilmDialog(onDismissRequest = { setIsFilmAddDialogShown(false) }, createFilm)
     }
+
+    val state = rememberCollapsingToolbarScaffoldState()
 
     Box(
         modifier = Modifier
@@ -95,86 +100,103 @@ fun MainScreen(
                 .fillMaxWidth()
                 .height(500.dp),
         )
-        FilmoAppBar(
-            actions = {
-                IconButton(
-                    modifier = Modifier.size(48.dp),
-                    onClick = navigateToMyPage,
-                ) {
-                    Icon(
-                        modifier = Modifier.size(24.dp),
-                        painter = painterResource(id = FilmoIcon.MyPage),
-                        contentDescription = "MyPage",
-                    )
-                }
-            },
-            navigationIcon = {
-            },
+        Column {
+            FilmoAppBar(
+                modifier = Modifier.zIndex(1f),
+                actions = {
+                    IconButton(
+                        modifier = Modifier.size(48.dp),
+                        onClick = navigateToMyPage,
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(24.dp),
+                            painter = painterResource(id = FilmoIcon.MyPage),
+                            contentDescription = "MyPage",
+                        )
+                    }
+                },
+                navigationIcon = {
+                },
 
             )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(modifier = Modifier.height(64.dp))
-            Text(
-                text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
-                style = TextStyle(
-                    fontSize = 22.sp,
-                    lineHeight = 30.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFFDDDDDD),
-                    textAlign = TextAlign.Center,
-                ),
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xff553EFF),
-                    contentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                    disabledContentColor = Color.White,
-                ),
-                modifier = Modifier.size(160.dp, 40.dp),
-                onClick = { /*TODO*/ },
-            ) {
-                Text(
-                    text = "씬 만들기",
-                    fontFamily = FilmoFamily,
-                    fontSize = 16.sp,
-                    color = Color.White,
-                )
-            }
-            Spacer(modifier = Modifier.size(40.dp))
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(140.dp),
-                contentPadding = PaddingValues(
-                    top = 32.dp,
-                    bottom = 32.dp,
-                    start = 17.dp,
-                    end = 17.dp,
-                ),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(30.dp),
-                modifier = Modifier
-                    .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                    .background(Color(0xff2A2A2A)),
-            ) {
-                item {
-                    FilmCaseAdd(filmList.size, onClickFilm = {
-                        setIsFilmAddDialogShown(true)
-                    })
-                }
-                items(filmList) { film ->
-                    FilmCase(
-                        film = film, onClickFilm = {
-                            selectFilm(film)
-                            navigateToFilmDetail()
+            CollapsingToolbarScaffold(
+                modifier = Modifier,
+                state = state,
+                scrollStrategy = ScrollStrategy.EnterAlways,
+                toolbar = {
+                    Column(
+                        Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Spacer(modifier = Modifier.height(64.dp))
+                        Text(
+                            text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                lineHeight = 30.sp,
+                                fontFamily = FilmoFamily,
+                                fontWeight = FontWeight(500),
+                                color = Color(0xFFDDDDDD),
+                                textAlign = TextAlign.Center,
+                            ),
+                        )
+                        Spacer(modifier = Modifier.size(16.dp))
+                        Button(
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xff553EFF),
+                                contentColor = Color.White,
+                                disabledContainerColor = Color.Gray,
+                                disabledContentColor = Color.White,
+                            ),
+                            modifier = Modifier.size(160.dp, 40.dp),
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Text(
+                                text = "씬 만들기",
+                                fontFamily = FilmoFamily,
+                                fontSize = 16.sp,
+                                color = Color.White,
+                            )
                         }
-                    )
+                        Spacer(modifier = Modifier.size(40.dp))
+                    }
+                },
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    LazyVerticalGrid(
+                        columns = GridCells.Adaptive(140.dp),
+                        contentPadding = PaddingValues(
+                            top = 32.dp,
+                            bottom = 32.dp,
+                            start = 17.dp,
+                            end = 17.dp,
+                        ),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(30.dp),
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                            .background(Color(0xff2A2A2A)),
+                    ) {
+                        item {
+                            FilmCaseAdd(filmList.size, onClickFilm = {
+                                setIsFilmAddDialogShown(true)
+                            })
+                        }
+                        items(filmList) { film ->
+                            FilmCase(
+                                film = film,
+                                onClickFilm = {
+                                    selectFilm(film)
+                                    navigateToFilmDetail()
+                                },
+                            )
+                        }
+                    }
                 }
-            }
+            } // ...
         }
     }
 }

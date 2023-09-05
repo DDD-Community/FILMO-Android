@@ -1,6 +1,7 @@
 package com.ddd.filmo.presentation.scene.ui.edit
 
 import android.net.Uri
+import android.widget.RatingBar
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -59,6 +60,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
+import com.ddd.filmo.designsystem.component.rating.RatingBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -73,7 +75,8 @@ fun SceneEditScreen(
 ) {
     val selectedFilm = remember { mutableStateOf(Film.fakeFilm0) }
     val selectedUri = remember { mutableStateOf<Uri?>(null) }
-    val sceneText = remember { mutableStateOf("다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 ") }
+    val sceneText =
+        remember { mutableStateOf("다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 다람쥐 헌 쳇바퀴에 타고파 ") }
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> selectedUri.value = uri },
@@ -83,13 +86,15 @@ fun SceneEditScreen(
         mutableStateOf(false)
     }
 
-    val selectFilm = fun (film: Film) {
+    val selectFilm = fun(film: Film) {
         selectedFilm.value = film
     }
 
-    val closeSheet = fun () {
+    val closeSheet = fun() {
         isSheetOpen = false
     }
+
+    var rating by remember { mutableStateOf(3.3f) }
 
     BackHandler {
         if (isSheetOpen) {
@@ -181,18 +186,14 @@ fun SceneEditScreen(
                     ),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Row() {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    for (i in 0..4) {
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Icon(
-                            painter = painterResource(id = FilmoIcon.Star),
-                            contentDescription = "Star",
-                            tint = FilmoColor.PrimaryVariant,
-                            modifier = Modifier.size(37.dp),
-                        )
+                Row(Modifier.padding(horizontal = 71.5.dp)) {
+                    RatingBar(
+                        value = rating,
+                        onValueChange = {
+                            rating = it
+                        },
+                    ) {
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
                 }
             }
 
@@ -206,8 +207,7 @@ fun SceneEditScreen(
                         photoPickerLauncher.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
                         )
-                    }
-                    .dashedBorder(
+                    }.dashedBorder(
                         strokeWidth = 1.dp,
                         color = FilmoColor.ic_02,
                         cornerRadiusDp = 8.dp,
@@ -264,7 +264,10 @@ fun SceneEditScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .defaultMinSize(minHeight = 294.dp)
-                    .background(color = Color(0xFF393939), shape = RoundedCornerShape(size = 8.dp))
+                    .background(
+                        color = Color(0xFF393939),
+                        shape = RoundedCornerShape(size = 8.dp),
+                    )
                     .padding(16.dp),
                 textStyle = TextStyle(
                     fontSize = 16.sp,
@@ -438,11 +441,20 @@ fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
 }
 
 @Composable
-fun FilmListItem(film: Film, selectedFilm: Film?, selectFilm: (Film) -> Unit = {}, closeSheet: () -> Unit) {
+fun FilmListItem(
+    film: Film,
+    selectedFilm: Film?,
+    selectFilm: (Film) -> Unit = {},
+    closeSheet: () -> Unit,
+) {
     val selected = (film == selectedFilm)
     val borderOrNot =
         if (selected) {
-            Modifier.border(width = 2.dp, color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
+            Modifier.border(
+                width = 2.dp,
+                color = Color(0xFFFFFFFF),
+                shape = RoundedCornerShape(size = 8.dp),
+            )
         } else {
             Modifier
         }
