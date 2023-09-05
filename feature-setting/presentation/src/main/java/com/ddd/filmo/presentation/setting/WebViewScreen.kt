@@ -43,11 +43,14 @@ fun SettingWebViewScreen(webviewUrl: String, title: String) {
             title = title,
         )
         val state =
-            rememberWebViewState("https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4")
+            rememberWebViewState(webviewUrl)
 
         WebView(
             modifier = Modifier.fillMaxSize(),
-            onCreated = { it.settings.javaScriptEnabled = true },
+            onCreated = {
+                it.settings.javaScriptEnabled = true
+                it.settings.domStorageEnabled = true
+            },
             state = state,
         )
     }

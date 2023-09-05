@@ -95,20 +95,19 @@ internal fun SettingScreen(
 
             SettingEvent.PersonalInformationClicked -> {
                 onClickedWebView(
-                    "https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4",
+                    "https://agreeable-vault-67f.notion.site/050e9ceb3e964497a9954e1003f1bf2f?pvs=4",
                     event.title,
                 )
             }
 
             SettingEvent.ServiceClicked -> {
                 onClickedWebView(
-                    "https://agreeable-vault-67f.notion.site/FAQ-9fce12857e564ad7b1551c47f76a5f8c?pvs=4",
+                    "https://agreeable-vault-67f.notion.site/d358476d28bf41daa78e071efd9eb33d?pvs=4",
                     event.title,
                 )
             }
 
             SettingEvent.WithdrawClicked -> {
-//                withdrawState = !withdrawState
                 onWithdrawalClicked()
             }
         }
