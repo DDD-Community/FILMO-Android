@@ -19,6 +19,7 @@ class SceneCreateViewModel  @Inject constructor(
     val films = filmRepository.films.value
     val sceneText = MutableStateFlow("")
     val movieTitle = MutableStateFlow("")
+    val rating = MutableStateFlow(2.5f)
     val selectedFilm = MutableStateFlow(filmRepository.films.value.first())
     val selectedUri: MutableStateFlow<Uri?> = MutableStateFlow(null)
 
@@ -28,6 +29,10 @@ class SceneCreateViewModel  @Inject constructor(
 
     fun setMovieTitle(value: String) {
         movieTitle.value = value
+    }
+    
+    fun setRating(value: Float) {
+        rating.value = value
     }
 
     fun setSelectedUri(value: Uri?) {

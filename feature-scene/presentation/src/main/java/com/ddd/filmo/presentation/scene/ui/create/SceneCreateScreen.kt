@@ -78,6 +78,7 @@ fun SceneCreateScreen(
     val selectedUri = viewModel.selectedUri.collectAsStateWithLifecycle().value
     val sceneText = viewModel.sceneText.collectAsStateWithLifecycle().value
     val movieTitle = viewModel.movieTitle.collectAsStateWithLifecycle().value
+    val rating = viewModel.rating.collectAsStateWithLifecycle().value
 
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
@@ -91,8 +92,6 @@ fun SceneCreateScreen(
     val closeSheet = fun() {
         isSheetOpen = false
     }
-
-    var rating by remember { mutableStateOf(3.3f) }
 
     Column(
         Modifier.fillMaxSize(),
@@ -183,7 +182,7 @@ fun SceneCreateScreen(
                     RatingBar(
                         value = rating,
                         onValueChange = {
-                            rating = it
+                            viewModel.setRating(it)
                         },
                     ) {
                     }
