@@ -75,7 +75,7 @@ fun FilmDetailScreenRoute(
                 when (it) {
                     0 -> toAddScene(null)
                     1 -> toAddScene(selectedFilmScenes[0])
-                    2 -> toAddScene(selectedFilmScenes[0])
+                    2 -> isSceneDialogState = false
                 }
             },
         )

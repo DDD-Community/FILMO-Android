@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -38,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
+import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
@@ -52,11 +54,27 @@ fun MyPageScreenRoute(
     MyPageScreen(onSettingButtonClicked = navigateToSetting)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
+    var isNickNameDialogState by remember { mutableStateOf(false) }
+
+    if (isNickNameDialogState) {
+        FilmoChoiceBottomSheetDialog(
+            onDismissRequest = { isNickNameDialogState = false },
+            choiceList = listOf("닉네임 변경하기", "대표 필름 설정하기", "취소하기"),
+            onItemClicked = {
+                when (it) {
+                    0 -> {}
+                    1 -> {}
+                    2 -> isNickNameDialogState = false
+                }
+            },
+        )
+    }
     Column {
         FilmoAppBar(actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { isNickNameDialogState = true }) {
                 Icon(painter = painterResource(id = FilmoIcon.Group), contentDescription = "")
             }
             IconButton(onClick = onSettingButtonClicked) {
@@ -132,7 +150,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                     MyPageDetailColumn()
                 }
             }
-        Spacer(modifier = Modifier.weight(5f))
+            Spacer(modifier = Modifier.weight(5f))
         }
     }
 }

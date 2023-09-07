@@ -63,7 +63,7 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
                     when (it) {
                         0 -> toEditScreen()
                         1 -> {}
-                        2 -> {}
+                        2 -> isSceneDialogState = false
                     }
                     isSceneDialogState = false
                 },
