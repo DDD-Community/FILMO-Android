@@ -38,6 +38,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.icon.FilmoIcon
@@ -45,18 +47,21 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.GoogleUser
 import com.ddd.filmo.model.LoginType
+import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.FilmCase
 
 @Composable
 fun MyPageScreenRoute(
     navigateToSetting: () -> Unit = {},
+    viewModel: MyPageScreenViewModel = hiltViewModel(),
 ) {
-    MyPageScreen(onSettingButtonClicked = navigateToSetting)
+    val user by viewModel.user.collectAsStateWithLifecycle()
+    MyPageScreen(onSettingButtonClicked = navigateToSetting, user)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
+internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}, user: User?) {
     var isNickNameDialogState by remember { mutableStateOf(false) }
 
     if (isNickNameDialogState) {
@@ -102,7 +107,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "밍밍쟈",
+                text = user?.nickName ?: "",
                 style = TextStyle(
                     fontSize = 22.sp,
                     lineHeight = 30.sp,
@@ -117,7 +122,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}) {
                 LoginTypeButton(modifier = Modifier, loginType = GoogleUser.user.loginType)
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = GoogleUser.user.email,
+                    text = user?.email ?: "",
                     textAlign = TextAlign.Center,
                     style = TextStyle(
                         fontSize = 14.sp,
@@ -230,5 +235,5 @@ private fun MyPageDetailColumn() {
 @Preview
 @Composable
 fun MyPageScreenPrev() {
-    MyPageScreen()
+    MyPageScreen(user = User())
 }

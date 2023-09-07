@@ -25,6 +25,8 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     androidTestImplementation(project(":core-testing"))
+    implementation(project(mapOf("path" to ":feature-login:domain")))
+
 
     // Core Android dependencies
     implementation(libs.androidx.activity.compose)

@@ -87,7 +87,11 @@ fun MainScreen(
         listOf(Color(0x007918F2), Color(0x203401FF), Color(0x207918F2)),
     )
     if (isFilmAddDialogShown) {
-        AddFilmDialog(onDismissRequest = { setIsFilmAddDialogShown(false) }, createFilm)
+        AddFilmDialog(
+            onDismissRequest = { setIsFilmAddDialogShown(false) },
+            createFilm,
+            onCancelButtonClicked = { setIsFilmAddDialogShown(false) },
+        )
     }
 
     val state = rememberCollapsingToolbarScaffoldState()

@@ -23,6 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -56,13 +57,17 @@ import com.ddd.filmo.ui.FilmSize
 @Composable
 fun AddFilmDialog(
     onDismissRequest: () -> Unit = {},
-    createFilm: (String, Long) -> Unit = {_, _ -> },
+    createFilm: (String, Long) -> Unit = { _, _ -> },
+    onCancelButtonClicked: () -> Unit = {},
 ) {
     val filmState = remember {
         FilmUi.filmDialogUiList.toMutableStateList()
     }
 
     var filmName by remember { mutableStateOf("") }
+
+    val isFilmNameLength by remember { derivedStateOf { filmName.length > 20 } }
+
     var filmColor by remember { mutableLongStateOf(0xFF9868FF) }
 
     Dialog(
@@ -107,7 +112,7 @@ fun AddFilmDialog(
                         ),
                     )
                     Text(
-                        text = "5/20",
+                        text = "${filmName.length}/20",
                         style = TextStyle(
                             fontSize = 14.sp,
                             lineHeight = 19.6.sp,
@@ -122,6 +127,7 @@ fun AddFilmDialog(
                     value = filmName,
                     onValueChanged = { filmName = it },
                     placeholderText = "닉네임을 입력해주세요.",
+                    isError = isFilmNameLength,
                 )
                 Text(
                     modifier = Modifier.padding(top = 16.dp),
@@ -188,8 +194,7 @@ fun AddFilmDialog(
                         buttonColors = ButtonDefaults.buttonColors(
                             containerColor = FilmoColor.txt_03,
                         ),
-                        onClick = {
-                        },
+                        onClick = onCancelButtonClicked,
                     ) {
                         FilmoAutoResizeText(
                             text = "취소하기",
