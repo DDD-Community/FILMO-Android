@@ -2,6 +2,7 @@ package com.ddd.filmo.designsystem.component.appbar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -28,6 +29,7 @@ fun FilmoAppBar(
         modifier = modifier,
         actions = actions ?: {},
         navigationIcon = navigationIcon,
+        windowInsets = WindowInsets(0.dp),
         title = {
             Text(
                 text = title,
