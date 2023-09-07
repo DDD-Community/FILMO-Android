@@ -23,12 +23,12 @@ plugins {
 
 android {
     namespace = "com.ddd.filmo.test.navigation"
-    compileSdk = 33
+    compileSdk = 34
     targetProjectPath = ":app"
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
 
         testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
     }

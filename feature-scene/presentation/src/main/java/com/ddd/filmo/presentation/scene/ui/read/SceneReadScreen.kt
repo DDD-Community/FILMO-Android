@@ -12,8 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -35,12 +34,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
+import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
     Column(
@@ -49,7 +50,28 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        var isDropDownMenuExpanded by remember { mutableStateOf(false) }
+        var isSceneDialogState by remember { mutableStateOf(false) }
+
+        if (isSceneDialogState) {
+            FilmoChoiceBottomSheetDialog(
+                choiceList = listOf(
+                    "씬 수정하기",
+                    "씬 삭제하기",
+                    "취소하기",
+                ),
+                onItemClicked = {
+                    when (it) {
+                        0 -> toEditScreen()
+                        1 -> {}
+                        2 -> {}
+                    }
+                    isSceneDialogState = false
+                },
+                onDismissRequest = {
+                    isSceneDialogState = false
+                },
+            )
+        }
         Column(Modifier.fillMaxSize()) {
             Row(
                 Modifier
@@ -67,7 +89,7 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
                     onClick = {
-                        isDropDownMenuExpanded = true
+                        isSceneDialogState = true
                     },
                     modifier = Modifier.size(40.dp),
                 ) {
@@ -76,23 +98,6 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
                         contentDescription = "",
                         modifier = Modifier.size(24.dp),
                     )
-                    DropdownMenu(
-                        expanded = isDropDownMenuExpanded,
-                        onDismissRequest = {
-                            isDropDownMenuExpanded = false
-                        },
-                    ) {
-                        // adding items
-                        listOf("씬 수정하기", "씬 삭제하기").forEachIndexed { itemIndex, itemValue ->
-                            DropdownMenuItem(
-                                onClick = {
-                                    isDropDownMenuExpanded = false
-                                    toEditScreen()
-                                },
-                                text = { Text(text = itemValue) },
-                            )
-                        }
-                    }
                 }
             }
         }
