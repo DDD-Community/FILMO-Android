@@ -1,8 +1,5 @@
 package com.ddd.filmo.presentation.scene.ui.create
 
-import android.net.Uri
-import android.widget.RatingBar
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,6 +24,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -67,18 +65,19 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
-import com.ddd.filmo.model.Scene
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneCreateScreen(
-    viewModel: SceneCreateViewModel = hiltViewModel()
+    viewModel: SceneCreateViewModel = hiltViewModel(),
+    navigateToSth: () -> Unit = {}
 ) {
     val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
     val selectedUri = viewModel.selectedUri.collectAsStateWithLifecycle().value
     val sceneText = viewModel.sceneText.collectAsStateWithLifecycle().value
     val movieTitle = viewModel.movieTitle.collectAsStateWithLifecycle().value
     val rating = viewModel.rating.collectAsStateWithLifecycle().value
+    val isUploading = viewModel.isUploading.collectAsStateWithLifecycle().value
 
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
@@ -312,7 +311,7 @@ fun SceneCreateScreen(
 
         Box(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
             Button(
-                onClick = { viewModel.createScene() },
+                onClick = { viewModel.createScene(navigateToSth) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),
@@ -396,6 +395,19 @@ fun SceneCreateScreen(
                 Spacer(modifier = Modifier.height(24.dp))
             }
         }
+    }
+
+    if (isUploading) {
+        AlertDialog(
+            onDismissRequest = {},
+            content = {
+                Text(
+                    text = "씬을 업로드하는 중입니다.\n잠시만 기다려주세요.",
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+        )
     }
 }
 

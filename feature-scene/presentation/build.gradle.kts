@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(project(mapOf("path" to ":feature-film:domain")))
     implementation(project(mapOf("path" to ":feature-login:domain")))
+    implementation(libs.firebase.storage.ktx)
     androidTestImplementation(project(":core-testing"))
 
     // Core Android dependencies

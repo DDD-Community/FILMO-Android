@@ -79,6 +79,19 @@ fun SceneImage(
             null -> {
             }
         }
+        if (scene.imageUrl?.isNotEmpty() == true) {
+            AsyncImage(
+                model = "https://firebasestorage.googleapis.com/v0/b/filmo-698ba.appspot.com/o/" +
+                        scene.imageUrl.replace("/", "%2F") +
+                        "?alt=media",
+                contentDescription = "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(218 / 133f)
+                    .background(color = Color(0xff625B71)),
+                contentScale = ContentScale.Crop,
+            )
+        }
 
         Text(
             text = "${scene.sceneText}",

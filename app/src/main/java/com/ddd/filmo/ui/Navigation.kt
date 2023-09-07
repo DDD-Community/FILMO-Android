@@ -73,7 +73,7 @@ fun MainNavigation() {
                 SceneDetailScreen()
             }
             composable("sceneCreate") {
-                SceneCreateScreen()
+                SceneCreateScreen(navigateToSth = { navController.navigateUp() })
             }
             composable("mypage") {
                 MyPageScreenRoute(

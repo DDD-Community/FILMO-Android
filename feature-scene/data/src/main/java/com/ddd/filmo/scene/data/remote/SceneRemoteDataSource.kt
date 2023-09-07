@@ -38,7 +38,8 @@ class SceneRemoteDataSourceImpl @Inject constructor(
             sceneText = sceneText,
             sceneRate = sceneRate,
             movie = Movie(movieTitle, 0, ""),
-            createdAt = Date()
+            createdAt = Date(),
+            imageUrl = imageUrl
         )
         firebaseDB.collection("User")
             .document(userId)

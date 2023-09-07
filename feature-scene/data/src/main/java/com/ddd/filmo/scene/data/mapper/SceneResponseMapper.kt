@@ -13,6 +13,7 @@ object SceneResponseMapper : DomainMapper<SceneResponse, Scene> {
             sceneRate = data.sceneRate,
             movie = data.movie,
             createdAt = data.createdAt,
+            imageUrl = data.imageUrl ?: ""
         )
     }
 }

@@ -11,6 +11,7 @@ data class Scene(
     val sceneRate: Float? = null,
     val movie: Movie? = null,
     val createdAt: Date = Date(),
+    val imageUrl: String = "",
 ):DomainModel {
     val createdAtString = sceneSdf.format(createdAt)
 
