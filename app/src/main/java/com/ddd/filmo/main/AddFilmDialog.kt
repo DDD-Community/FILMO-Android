@@ -79,7 +79,7 @@ fun AddFilmDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            color = FilmoColor.Background2,
+            color = FilmoColor.Background3,
             shape = RoundedCornerShape(12.dp),
 
         ) {
@@ -133,6 +133,7 @@ fun AddFilmDialog(
                     onValueChanged = { filmName = it },
                     placeholderText = "닉네임을 입력해주세요.",
                     isError = !isFilmNameLength,
+                    containerColor = FilmoColor.Background2,
                 )
                 Text(
                     modifier = Modifier.padding(top = 16.dp),

@@ -44,9 +44,10 @@ fun FilmoModalBottomSheetDialog(
     val bottomPadding = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()
     ModalBottomSheet(
         onDismissRequest = onDismissRequest,
+
         sheetState = sheetState,
         dragHandle = null,
-        containerColor = FilmoColor.Background,
+        containerColor = FilmoColor.Background3,
         windowInsets = WindowInsets.displayCutout,
     ) {
         Column(modifier = Modifier.padding(bottom = bottomPadding)) {

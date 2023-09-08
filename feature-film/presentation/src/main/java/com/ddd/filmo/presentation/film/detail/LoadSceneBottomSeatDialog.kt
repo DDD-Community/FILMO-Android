@@ -1,21 +1,22 @@
 package com.ddd.filmo.presentation.film.detail
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,12 +28,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
@@ -51,16 +52,19 @@ import com.ddd.filmo.designsystem.component.bottom.FilmoModalBottomSheetDialog
 import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.component.checkbox.FilmoCheckBox
 import com.ddd.filmo.designsystem.component.textfield.FilmoOutlinedTextField
+import com.ddd.filmo.designsystem.component.textfield.FilmoTextFieldLeadingType
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
+import com.ddd.filmo.ui.SceneImageTest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoadSceneBottomSeatDialog(
     sheetState: SheetState = rememberModalBottomSheetState(),
+    sceneList: List<Scene>,
     onDismissRequest: () -> Unit = {},
     currentScene: Int,
     totalScene: Int,
@@ -73,19 +77,30 @@ fun LoadSceneBottomSeatDialog(
         sheetState = sheetState,
 
     ) {
-        LoadSceneLayout(currentScene, totalScene)
+        LoadSceneLayout(currentScene, totalScene, sceneList, onBackButtonClicked = onDismissRequest)
     }
 }
 
 @Composable
-fun LoadSceneDetail(scene: Scene) {
-    Box {
+fun LoadSceneDetail(
+    modifier: Modifier = Modifier,
+    scene: Scene,
+    isClicked: Boolean = false,
+    onSceneClicked: () -> Unit = {},
+) {
+    Box(
+        modifier.clickable {
+            onSceneClicked()
+        }.background(
+            if (isClicked) Color(0x33553EFF) else FilmoColor.Background3,
+        ),
+    ) {
         Column {
             // todo IntrinsicSize를 넣으니 해결되었다.. 왜?
             Row(Modifier.height(IntrinsicSize.Max)) {
                 Column(Modifier.weight(0.6f)) {
                     Text(
-                        text = "이 영화는 내가 봤던 영화 중 정말 기억에 남는 영화였다. 결...",
+                        text = scene.sceneText!!,
                         style = TextStyle(
                             fontSize = 14.sp,
                             lineHeight = 19.6.sp,
@@ -96,7 +111,7 @@ fun LoadSceneDetail(scene: Scene) {
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "어바웃타임",
+                        text = scene.movie!!.title,
                         style = TextStyle(
                             fontSize = 13.sp,
                             lineHeight = 18.2.sp,
@@ -108,7 +123,7 @@ fun LoadSceneDetail(scene: Scene) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Row {
                         Text(
-                            text = "23.06.08",
+                            text = scene.createdAtString,
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 lineHeight = 16.8.sp,
@@ -159,6 +174,26 @@ fun LoadSceneDetail(scene: Scene) {
                         }
                     }
 
+                    is SceneType.ImageDrawable -> {
+                        Box(
+                            Modifier
+                                .weight(0.4f)
+                                .fillMaxHeight(),
+                        ) {
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data((scene.sceneType as SceneType.ImageDrawable).imageDrawable)
+//                                .placeholder(com.ddd.filmo.core.ui.R.drawable.image_16)
+                                    .build(),
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(12.dp)),
+                                contentDescription = "",
+                                contentScale = ContentScale.Crop,
+                            )
+                        }
+                    }
+
                     else -> {
                     }
                 }
@@ -167,14 +202,19 @@ fun LoadSceneDetail(scene: Scene) {
         }
         FilmoCheckBox(
             modifier = Modifier.align(Alignment.TopEnd),
-            checked = false,
-            onCheckedChange = {},
+            checked = isClicked,
+            onCheckedChange = { onSceneClicked() },
         )
     }
 }
 
 @Composable
-fun LoadSceneLayout(currentScene: Int, totalScene: Int) {
+fun LoadSceneLayout(
+    currentScene: Int,
+    totalScene: Int,
+    sceneList: List<Scene>,
+    onBackButtonClicked: () -> Unit = {},
+) {
     val loadSceneHeaderTextLayoutId = "LoadSceneHeaderTextLayoutId"
     val loadSceneSearchTextFieldLayoutId = "LoadSceneSearchTextFieldLayoutId"
     val loadSceneSearchDetailListLayoutId = "LoadSceneSearchDetailListLayoutId"
@@ -207,7 +247,7 @@ fun LoadSceneLayout(currentScene: Int, totalScene: Int) {
                     textAlign = TextAlign.Center,
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onBackButtonClicked) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = com.ddd.filmo.core.designsystem.R.drawable.ic_x),
                         contentDescription = "",
@@ -219,11 +259,13 @@ fun LoadSceneLayout(currentScene: Int, totalScene: Int) {
                     .padding(vertical = 8.dp),
                 value = "",
                 placeholderText = "",
+                containerColor = FilmoColor.Background2,
+                leadingType = FilmoTextFieldLeadingType.SEARCH,
             )
             Spacer(modifier = Modifier.height(24.dp))
             LazyColumn(Modifier.layoutId(loadSceneSearchDetailListLayoutId)) {
-                items(10) {
-                    LoadSceneDetail(Scene.mock1)
+                itemsIndexed(sceneList) { index, item ->
+                    LoadSceneDetail(scene = item, onSceneClicked = {})
                 }
             }
             Box(
@@ -304,26 +346,35 @@ fun LoadSceneLayout(currentScene: Int, totalScene: Int) {
 @Composable
 fun LoadSceneBottomSeatDialogPreview() {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-    LoadSceneBottomSeatDialog(sheetState = sheetState, currentScene = 0, totalScene = 30)
+    LoadSceneBottomSeatDialog(
+        sheetState = sheetState,
+        currentScene = 0,
+        sceneList = SceneImageTest.firstSceneType,
+        totalScene = 30,
+    )
 }
 
 @Preview
 @Composable
 fun LoadSceneLayoutPreview() {
-    LoadSceneLayout(1, 30)
+    LoadSceneLayout(
+        1,
+        30,
+        sceneList = SceneImageTest.firstSceneType,
+    )
 }
 
 @Preview
 @Composable
 fun LoadSceneDetailPreview() {
-    LoadSceneDetail(Scene.mock1)
+    LoadSceneDetail(scene = Scene.mock1)
 }
 
 @Preview
 @Composable
 fun LoadSceneNullDetailPreview() {
     LoadSceneDetail(
-        Scene("0", "", SceneType.fromColor(1L)),
+        scene = Scene.mock1,
     )
 }
 

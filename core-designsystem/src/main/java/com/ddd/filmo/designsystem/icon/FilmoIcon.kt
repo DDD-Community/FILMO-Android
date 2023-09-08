@@ -23,4 +23,6 @@ object FilmoIcon {
     val Star = R.drawable.ic_star
     val Check = R.drawable.ic_check
     val Location = R.drawable.ic_location_pin
+    val Search = R.drawable.ic_search
+
 }

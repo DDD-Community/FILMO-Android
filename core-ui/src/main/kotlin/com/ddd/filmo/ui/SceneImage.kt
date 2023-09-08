@@ -82,8 +82,8 @@ fun SceneImage(
         if (scene.imageUrl?.isNotEmpty() == true) {
             AsyncImage(
                 model = "https://firebasestorage.googleapis.com/v0/b/filmo-698ba.appspot.com/o/" +
-                        scene.imageUrl.replace("/", "%2F") +
-                        "?alt=media",
+                    scene.imageUrl.replace("/", "%2F") +
+                    "?alt=media",
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -259,6 +259,82 @@ object SceneImageTest {
             sceneType = SceneType.fromDrawable(R.drawable.image_23),
             movie = Movie(
                 title = "화양연화",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+    )
+
+    val testSceneType = listOf<Scene>(
+        Scene(
+            documentId = "1",
+            sceneText = "가장 가슴뛰는 설렘의 영화였던것 같아요",
+            sceneType = SceneType.fromDrawable(R.drawable.image_16),
+            movie = Movie(
+                title = "About Time",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+        Scene(
+            documentId = "1",
+            sceneText = "“시작은 막차였다”",
+            sceneType = SceneType.fromColor(0xFFFCD4D2),
+            movie = Movie(
+                title = "꽃다발 같은 사랑을 했다",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+        Scene(
+            documentId = "1",
+            sceneText = "다시 돌아오지않을 전설의 영화.. 토니오퐈..",
+            sceneType = SceneType.fromDrawable(R.drawable.image_17),
+            movie = Movie(
+                title = "어벤져스: 엔드게임",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+        Scene(
+            documentId = "1",
+            sceneText = "힐링이 필요할 때,\n" +
+                "지루한 듯 하지만 지루하지 않은 영화",
+            sceneType = SceneType.fromColor(0xFFFCD4D2),
+            movie = Movie(
+                title = "리틀 포레스트: 여름과 가을",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+        Scene(
+            documentId = "1",
+            sceneText = "사랑이 무엇인지 알려주는 영화",
+            sceneType = SceneType.fromDrawable(R.drawable.image_18),
+            movie = Movie(
+                title = "빅 피쉬",
+                releaseYear = 2013,
+                posterImageUrl = "",
+            ),
+            sceneRate = 5f,
+            createdAt = Date(),
+        ),
+        Scene(
+            documentId = "1",
+            sceneText = "멀지 않은 미래, 새로운 형태의 사랑",
+            sceneType = SceneType.fromColor(0xFFFF97CA),
+            movie = Movie(
+                title = "Her",
                 releaseYear = 2013,
                 posterImageUrl = "",
             ),

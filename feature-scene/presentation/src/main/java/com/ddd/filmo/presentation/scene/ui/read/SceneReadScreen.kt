@@ -39,11 +39,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
+import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
-import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
 import kotlin.math.roundToInt
 
@@ -52,7 +52,7 @@ import kotlin.math.roundToInt
 fun SceneReadScreen(
     toEditScreen: () -> Unit = {},
     onBackButtonClicked: () -> Unit = {},
-    viewModel: SceneReadViewModel = hiltViewModel()
+    viewModel: SceneReadViewModel = hiltViewModel(),
 ) {
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isSceneDeleteDialogState by remember { mutableStateOf(false) }
@@ -94,34 +94,25 @@ fun SceneReadScreen(
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Column(Modifier.fillMaxSize()) {
-            Row(
-                Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth(),
+        FilmoAppBar(actions = {
+            IconButton(
+                onClick = {
+                    isSceneDialogState = true
+                },
             ) {
-                IconButton(onClick = onBackButtonClicked, modifier = Modifier.size(40.dp)) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_back),
-                        contentDescription = "",
-                        modifier = Modifier.size(24.dp),
-                    )
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                IconButton(
-                    onClick = {
-                        isSceneDialogState = true
-                    },
-                    modifier = Modifier.size(40.dp),
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
-                        contentDescription = "",
-                        modifier = Modifier.size(24.dp),
-                    )
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
+                    contentDescription = "",
+                )
             }
-        }
+        }, navigationIcon = {
+            IconButton(onClick = onBackButtonClicked) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = "",
+                )
+            }
+        })
 
         Column(
             modifier = Modifier
@@ -217,8 +208,8 @@ fun SceneReadScreen(
             if (scene.imageUrl.isNotEmpty()) {
                 AsyncImage(
                     model = "https://firebasestorage.googleapis.com/v0/b/filmo-698ba.appspot.com/o/" +
-                            scene.imageUrl.replace("/", "%2F") +
-                            "?alt=media",
+                        scene.imageUrl.replace("/", "%2F") +
+                        "?alt=media",
                     contentDescription = "",
                     modifier = Modifier
                         .clip(RoundedCornerShape(13.dp))

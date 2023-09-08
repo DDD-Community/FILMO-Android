@@ -55,6 +55,7 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.ui.SceneImage
+import com.ddd.filmo.ui.SceneImageTest
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,6 +90,7 @@ fun FilmDetailScreenRoute(
             onDismissRequest = { isLoadSceneDialogState = false },
             currentScene = 10,
             totalScene = 20,
+            sceneList = SceneImageTest.testSceneType,
         )
     }
 

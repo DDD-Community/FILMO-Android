@@ -59,7 +59,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.ddd.filmo.core.designsystem.R
+import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.rating.RatingBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
@@ -70,7 +70,8 @@ import com.ddd.filmo.model.Film
 @Composable
 fun SceneCreateScreen(
     viewModel: SceneCreateViewModel = hiltViewModel(),
-    navigateToSth: () -> Unit = {}
+    navigateToSth: () -> Unit = {},
+    navigateToBack: () -> Unit = {},
 ) {
     val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
     val selectedUri = viewModel.selectedUri.collectAsStateWithLifecycle().value
@@ -95,35 +96,15 @@ fun SceneCreateScreen(
     Column(
         Modifier.fillMaxSize(),
     ) {
-        Row(
-            Modifier
-                .padding(10.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            IconButton(onClick = {
-
-            }, modifier = Modifier.size(48.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_arrow_back),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-
-            Spacer(modifier = Modifier.width(10.dp))
-
-            Text(
-                text = "씬 만들기",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    lineHeight = 28.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFFF4F4F4),
-                ),
-            )
-        }
+        FilmoAppBar(
+            actions = {},
+            navigationIcon = {
+                IconButton(onClick = navigateToBack) {
+                    Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
+                }
+            },
+            title = "씬 만들기",
+        )
 
         Column(
             modifier = Modifier
@@ -141,7 +122,7 @@ fun SceneCreateScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 BasicTextField(
-                    value = "${movieTitle}",
+                    value = "$movieTitle",
                     onValueChange = { viewModel.setMovieTitle(it) },
                     modifier = Modifier.weight(1f),
                     textStyle = TextStyle(
@@ -251,7 +232,7 @@ fun SceneCreateScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             BasicTextField(
-                value = "${sceneText}",
+                value = "$sceneText",
                 onValueChange = { viewModel.setSceneText(it) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -404,9 +385,9 @@ fun SceneCreateScreen(
                 Text(
                     text = "씬을 업로드하는 중입니다.\n잠시만 기다려주세요.",
                     color = Color.White,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
     }
 }
