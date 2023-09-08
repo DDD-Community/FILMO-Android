@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -361,11 +362,22 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
     ) {
         Layout(
             content = {
-                PhysicsHeart(color = Color(0xFFCF68FF))
-
-                PhysicsHeart(color = Color(0xFFCF68FF))
+                PhysicsCard(
+                    modifier = Modifier.layoutId("FilmoLayoutId"),
+                    textStyle = TextStyle(
+                        fontSize = 20.sp,
+                        lineHeight = 28.sp,
+                        fontFamily = FilmoFamily,
+                        fontWeight = FontWeight(400),
+                        color = Color(0xFFF4F4F4),
+                        textAlign = TextAlign.Center,
+                    ),
+                    text = "필모",
+                    color = FilmoColor.Background3,
+                )
 
                 PhysicsCard(
+                    modifier = Modifier.layoutId("MyBestLayoutId"),
                     textStyle = TextStyle(
                         fontSize = 20.sp,
                         lineHeight = 28.sp,
@@ -379,6 +391,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
+                    modifier = Modifier.layoutId("RealLayoutId"),
                     textStyle = TextStyle(
                         fontSize = 14.sp,
                         lineHeight = 19.6.sp,
@@ -388,18 +401,6 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                         textAlign = TextAlign.Center,
                     ),
                     text = "인생 영화",
-                    color = FilmoColor.Background3,
-                )
-                PhysicsCard(
-                    textStyle = TextStyle(
-                        fontSize = 20.sp,
-                        lineHeight = 28.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFFF4F4F4),
-                        textAlign = TextAlign.Center,
-                    ),
-                    text = "필모",
                     color = FilmoColor.Background3,
                 )
 
@@ -426,10 +427,10 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                         textAlign = TextAlign.Center,
                     ),
                     text = "겨울마다 보는 내 인생 뮤지컬 영화",
-                    Color(0xFFFFCE4F),
+                    color = Color(0xFFFFCE4F),
                 )
 
-                PhysicsHeart(color = FilmoColor.ic_02)
+
                 PhysicsCard(
                     textStyle = TextStyle(
                         fontSize = 16.sp,
@@ -440,9 +441,10 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                         textAlign = TextAlign.Center,
                     ),
                     text = "힐링이 필요할 때",
-                    Color(0xFFBBEF4C),
+                    color = Color(0xFFBBEF4C),
                 )
 
+                PhysicsHeart(color = Color(0xFFCF68FF))
                 PhysicsHeart(color = Color.Blue)
                 PhysicsHeart(color = Color(0xFFEE0072))
             },
@@ -455,7 +457,20 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
             val placeables = measurables.map { measurable ->
                 measurable.measure(constraints = looseConstraints)
             }
+
+            val width = 0
+            val height = 0
+
             layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
+                val chunkedLists = placeables.chunked(6)
+
+                chunkedLists[0].forEach {
+                    it.place(
+                        x = width,
+                        y = height,
+                    )
+                }
+
                 placeables.forEach { placeable ->
                     placeable.place(0, 0)
                 }
@@ -465,9 +480,14 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
 }
 
 @Composable
-private fun BoxScope.PhysicsCard(textStyle: TextStyle, text: String, color: Color) {
+private fun BoxScope.PhysicsCard(
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle,
+    text: String,
+    color: Color,
+) {
     Card(
-        Modifier
+        modifier
             .physicsBody(
                 shape = RoundedCornerShape(25),
             )
