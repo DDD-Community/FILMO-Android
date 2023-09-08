@@ -42,6 +42,8 @@ material = "1.9.0"
 toolbarCompose = "2.3.5"
 junitKtx = "1.1.5"
 
+revealVersion = "2.0.0"
+
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
@@ -108,6 +110,11 @@ material = { group = "com.google.android.material", name = "material", version.r
 toolbar-compose = { group = "me.onebone", name = "toolbar-compose", version.ref = "toolbarCompose" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version = "20.2.1" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+reveal-core = { group = "com.svenjacobs.reveal", name = "reveal-core", version.ref = "revealVersion" }
+reveal-shape = { group = "com.svenjacobs.reveal", name = "reveal-shapes", version.ref = "revealVersion" }
+reveal-compat-android = { group = "com.svenjacobs.reveal", name = "reveal-compat-android", version.ref = "revealVersion" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }

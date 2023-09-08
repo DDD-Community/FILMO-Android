@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -20,8 +21,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,14 +41,26 @@ import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.icon.FilmoIcon
+import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.FilmCase
 import com.ddd.filmo.ui.FilmCaseAdd
+import com.svenjacobs.reveal.Reveal
+import com.svenjacobs.reveal.RevealCanvas
+import com.svenjacobs.reveal.RevealOverlayArrangement
+import com.svenjacobs.reveal.RevealShape
+import com.svenjacobs.reveal.rememberRevealCanvasState
+import com.svenjacobs.reveal.rememberRevealState
+import com.svenjacobs.reveal.shapes.balloon.Arrow
+import com.svenjacobs.reveal.shapes.balloon.Balloon
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import me.onebone.toolbar.CollapsingToolbarScaffold
 import me.onebone.toolbar.ScrollStrategy
 import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun MainScreenRoute(
@@ -95,115 +110,181 @@ fun MainScreen(
     }
 
     val state = rememberCollapsingToolbarScaffoldState()
-
-    Box(
-        modifier = Modifier
-            .background(Color(0xff202020))
-            .fillMaxSize(),
+    val revealCanvasState = rememberRevealCanvasState()
+    val scope = rememberCoroutineScope()
+    RevealCanvas(
+        modifier = Modifier.fillMaxSize(),
+        revealCanvasState = revealCanvasState,
     ) {
-        Box(
-            modifier = Modifier
-                .background(gradient)
-                .fillMaxWidth()
-                .height(500.dp),
-        )
-        Column {
-            FilmoAppBar(
-                modifier = Modifier.zIndex(1f),
-                actions = {
-                    IconButton(
-                        modifier = Modifier.size(48.dp),
-                        onClick = navigateToMyPage,
-                    ) {
-                        Icon(
-                            modifier = Modifier.size(24.dp),
-                            painter = painterResource(id = FilmoIcon.MyPage),
-                            contentDescription = "MyPage",
-                        )
-                    }
-                },
-                navigationIcon = {
-                },
+        val revealState = rememberRevealState()
+        LaunchedEffect(Unit) {
+            if (revealState.isVisible) return@LaunchedEffect
+            delay(2.seconds)
+            revealState.reveal(Keys.HelloWorld)
+        }
 
-            )
-            CollapsingToolbarScaffold(
-                modifier = Modifier,
-                state = state,
-                scrollStrategy = ScrollStrategy.EnterAlways,
-                toolbar = {
-                    Column(
-                        Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text(
-                            text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
-                            style = TextStyle(
-                                fontSize = 22.sp,
-                                lineHeight = 30.sp,
-                                fontFamily = FilmoFamily,
-                                fontWeight = FontWeight(500),
-                                color = Color(0xFFDDDDDD),
-                                textAlign = TextAlign.Center,
+        Reveal(
+            revealCanvasState = revealCanvasState,
+            revealState = revealState,
+            onRevealableClick = {},
+            onOverlayClick = { scope.launch { revealState.hide() } },
+            overlayContent = { key ->
+                when (key) {
+                    Keys.HelloWorld -> {
+                        OverlayText(
+                            modifier = Modifier.align(
+                                verticalArrangement = RevealOverlayArrangement.Bottom,
                             ),
+                            text = "씬을 먼저 만들어 필름을 채워보세요!",
+                            arrow = Arrow.top(),
                         )
-                        Spacer(modifier = Modifier.size(16.dp))
-                        Button(
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xff553EFF),
-                                contentColor = Color.White,
-                                disabledContainerColor = Color.Gray,
-                                disabledContentColor = Color.White,
-                            ),
-                            modifier = Modifier.size(160.dp, 40.dp),
-                            onClick = { navigateToSceneCreate() },
-                        ) {
-                            Text(
-                                text = "씬 만들기",
-                                fontFamily = FilmoFamily,
-                                fontSize = 16.sp,
-                                color = Color.White,
-                            )
-                        }
-                        Spacer(modifier = Modifier.size(40.dp))
-                    }
-                },
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    LazyVerticalGrid(
-                        columns = GridCells.Adaptive(140.dp),
-                        contentPadding = PaddingValues(
-                            top = 32.dp,
-                            bottom = 32.dp,
-                            start = 17.dp,
-                            end = 17.dp,
-                        ),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(30.dp),
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                            .background(Color(0xff2A2A2A)),
-                    ) {
-                        item {
-                            FilmCaseAdd(filmList.size, onClickFilm = {
-                                setIsFilmAddDialogShown(true)
-                            })
-                        }
-                        items(filmList) { film ->
-                            FilmCase(
-                                film = film,
-                                onClickFilm = {
-                                    selectFilm(film)
-                                    navigateToFilmDetail()
-                                },
-                            )
-                        }
                     }
                 }
-            } // ...
+            },
+        ) {
+            Box(
+                modifier = Modifier
+                    .background(Color(0xff202020))
+                    .fillMaxSize(),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .background(gradient)
+                        .fillMaxWidth()
+                        .height(500.dp),
+                )
+                Column {
+                    FilmoAppBar(
+                        modifier = Modifier.zIndex(1f),
+                        actions = {
+                            IconButton(
+                                modifier = Modifier.size(48.dp),
+                                onClick = navigateToMyPage,
+                            ) {
+                                Icon(
+                                    modifier = Modifier.size(24.dp),
+                                    painter = painterResource(id = FilmoIcon.MyPage),
+                                    contentDescription = "MyPage",
+                                )
+                            }
+                        },
+                        navigationIcon = {
+                        },
+
+                    )
+                    CollapsingToolbarScaffold(
+                        modifier = Modifier,
+                        state = state,
+                        scrollStrategy = ScrollStrategy.EnterAlways,
+                        toolbar = {
+                            Column(
+                                Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) {
+                                Text(
+                                    text = "기록하고 싶은 장면을 \n나만의 씬으로 만들어 보세요",
+                                    style = TextStyle(
+                                        fontSize = 22.sp,
+                                        lineHeight = 30.sp,
+                                        fontFamily = FilmoFamily,
+                                        fontWeight = FontWeight(500),
+                                        color = Color(0xFFDDDDDD),
+                                        textAlign = TextAlign.Center,
+                                    ),
+                                )
+                                Spacer(modifier = Modifier.size(16.dp))
+                                Button(
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = Color(0xff553EFF),
+                                        contentColor = Color.White,
+                                        disabledContainerColor = Color.Gray,
+                                        disabledContentColor = Color.White,
+                                    ),
+                                    shape = RoundedCornerShape(100.dp),
+                                    modifier = Modifier
+                                        .size(160.dp, 40.dp)
+                                        .revealable(
+                                            key = Keys.HelloWorld,
+                                            shape = RevealShape.RoundRect(100.dp),
+                                            padding = PaddingValues(0.dp),
+                                        ),
+                                    onClick = {
+                                        navigateToSceneCreate()
+                                    },
+                                ) {
+                                    Text(
+                                        text = "씬 만들기",
+                                        fontFamily = FilmoFamily,
+                                        fontSize = 16.sp,
+                                        color = Color.White,
+                                    )
+                                }
+                                Spacer(modifier = Modifier.size(40.dp))
+                            }
+                        },
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            LazyVerticalGrid(
+                                columns = GridCells.Adaptive(140.dp),
+                                contentPadding = PaddingValues(
+                                    top = 32.dp,
+                                    bottom = 32.dp,
+                                    start = 17.dp,
+                                    end = 17.dp,
+                                ),
+                                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                                verticalArrangement = Arrangement.spacedBy(30.dp),
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                                    .background(Color(0xff2A2A2A)),
+                            ) {
+                                item {
+                                    FilmCaseAdd(filmList.size, onClickFilm = {
+                                        setIsFilmAddDialogShown(true)
+                                    })
+                                }
+                                items(filmList) { film ->
+                                    FilmCase(
+                                        film = film,
+                                        onClickFilm = {
+                                            selectFilm(film)
+                                            navigateToFilmDetail()
+                                        },
+                                    )
+                                }
+                            }
+                        }
+                    } // ...
+                }
+            }
         }
+    }
+}
+
+@Composable
+private fun OverlayText(text: String, arrow: Arrow, modifier: Modifier = Modifier) {
+    Balloon(
+        modifier = modifier.padding(8.dp),
+        arrow = arrow,
+        backgroundColor = Color(0xFFBBEF4C),
+        elevation = 2.dp,
+    ) {
+        Text(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+            text = text,
+            style = TextStyle(
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
+                fontFamily = FilmoFamily,
+                fontWeight = FontWeight(500),
+                color = FilmoColor.txt_04,
+                textAlign = TextAlign.Center,
+                letterSpacing = 0.14.sp,
+            ),
+        )
     }
 }
 
@@ -212,3 +293,5 @@ fun MainScreen(
 fun MainScreenPreview() {
     MainScreen(userInfo = User())
 }
+
+enum class Keys { HelloWorld }

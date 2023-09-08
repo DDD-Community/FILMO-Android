@@ -66,10 +66,15 @@ fun AddFilmDialog(
 
     var filmName by remember { mutableStateOf("") }
 
-    val isFilmNameLength by remember { derivedStateOf { filmName.length > 20 } }
+    val isFilmNameLength by remember { derivedStateOf { filmName.length < 20 } }
 
     var filmColor by remember { mutableLongStateOf(0xFF9868FF) }
 
+    val createFilmButtonEnabled by remember {
+        derivedStateOf {
+            isFilmNameLength && filmState.any { it.isClicked } && filmName.isNotBlank()
+        }
+    }
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
@@ -127,7 +132,7 @@ fun AddFilmDialog(
                     value = filmName,
                     onValueChanged = { filmName = it },
                     placeholderText = "닉네임을 입력해주세요.",
-                    isError = isFilmNameLength,
+                    isError = !isFilmNameLength,
                 )
                 Text(
                     modifier = Modifier.padding(top = 16.dp),
@@ -217,7 +222,11 @@ fun AddFilmDialog(
                             .heightIn(48.dp),
                         buttonColors = ButtonDefaults.buttonColors(
                             containerColor = FilmoColor.Primary,
+                            contentColor = FilmoColor.txt_01,
+                            disabledContentColor = FilmoColor.txt_02,
+                            disabledContainerColor = FilmoColor.PrimaryDisabled,
                         ),
+                        enabled = createFilmButtonEnabled,
                         onClick = {
                             createFilm(filmName, filmColor)
                         },

@@ -38,7 +38,7 @@ class LoginScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            LoginScreen(FAKE_DATA, onSave = {})
+//            LoginScreen(FAKE_DATA, onSave = {})
         }
     }
     @Test

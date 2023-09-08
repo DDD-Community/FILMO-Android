@@ -29,7 +29,6 @@ fun FilmoAppBar(
         modifier = modifier,
         actions = actions ?: {},
         navigationIcon = navigationIcon,
-        windowInsets = WindowInsets(0.dp),
         title = {
             Text(
                 text = title,

@@ -9,11 +9,11 @@ object SceneResponseMapper : DomainMapper<SceneResponse, Scene> {
         return Scene(
             documentId = data.documentId,
             sceneText = data.sceneText,
-            //sceneType = data.sceneType,
+            // sceneType = data.sceneType,
             sceneRate = data.sceneRate,
             movie = data.movie,
             createdAt = data.createdAt,
-            imageUrl = data.imageUrl ?: ""
+            imageUrl = data.imageUrl ?: "",
         )
     }
 }

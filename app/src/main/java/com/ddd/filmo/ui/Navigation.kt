@@ -1,10 +1,12 @@
 package com.ddd.filmo.ui
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -28,7 +30,9 @@ import java.nio.charset.StandardCharsets
 fun MainNavigation() {
     val navController = rememberNavController()
 
-    Scaffold() { padding ->
+    Scaffold(
+        contentWindowInsets = WindowInsets(0.dp),
+    ) { padding ->
         NavHost(
             navController = navController,
             startDestination = "login",

@@ -107,4 +107,9 @@ dependencies {
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.toolbar.compose)
+    implementation(libs.reveal.core)
+    implementation(libs.reveal.shape)
+    implementation(libs.reveal.shape)
+    implementation(libs.reveal.compat.android)
+
 }
