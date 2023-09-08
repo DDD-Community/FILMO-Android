@@ -1,6 +1,6 @@
-package com.ddd.filmo.login.data.mapper
+package com.ddd.filmo.data.login.mapper
 
-import com.ddd.filmo.login.data.model.UserResponse
+import com.ddd.filmo.data.login.model.UserResponse
 import com.ddd.filmo.mapper.DomainMapper
 import com.ddd.filmo.model.User
 

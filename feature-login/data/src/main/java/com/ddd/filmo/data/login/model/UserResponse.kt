@@ -1,4 +1,4 @@
-package com.ddd.filmo.login.data.model
+package com.ddd.filmo.data.login.model
 
 import com.ddd.filmo.mapper.typemarker.DataModel
 

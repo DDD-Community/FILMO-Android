@@ -1,6 +1,6 @@
-package com.ddd.filmo.film.data
+package com.ddd.filmo.data.film
 
-import com.ddd.filmo.film.data.remote.FilmRemoteDataSource
+import com.ddd.filmo.data.film.remote.FilmRemoteDataSource
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.Scene

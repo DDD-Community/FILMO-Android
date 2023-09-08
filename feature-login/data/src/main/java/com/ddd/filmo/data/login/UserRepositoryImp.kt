@@ -1,6 +1,6 @@
-package com.ddd.filmo.login.data
+package com.ddd.filmo.data.login
 
-import com.ddd.filmo.login.data.remote.UserRemoteDataSource
+import com.ddd.filmo.data.login.remote.UserRemoteDataSource
 import com.ddd.filmo.login.domain.repository.UserRepository
 import com.ddd.filmo.model.User
 import kotlinx.coroutines.CoroutineScope

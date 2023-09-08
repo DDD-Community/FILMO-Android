@@ -1,6 +1,6 @@
-package com.ddd.filmo.film.data.mapper
+package com.ddd.filmo.data.film.mapper
 
-import com.ddd.filmo.film.data.model.FilmResponse
+import com.ddd.filmo.data.film.model.FilmResponse
 import com.ddd.filmo.mapper.DomainMapper
 import com.ddd.filmo.model.Film
 

@@ -1,10 +1,8 @@
-package com.ddd.filmo.scene.data.model
+package com.ddd.filmo.data.scene.model
 
 import com.ddd.filmo.mapper.typemarker.DataModel
 import com.ddd.filmo.model.Movie
-import com.ddd.filmo.model.SceneType
 import com.google.firebase.firestore.DocumentId
-import com.google.firebase.firestore.Exclude
 import java.util.Date
 
 data class SceneResponse(

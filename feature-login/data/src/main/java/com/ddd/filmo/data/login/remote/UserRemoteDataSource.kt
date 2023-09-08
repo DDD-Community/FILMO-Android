@@ -1,6 +1,6 @@
-package com.ddd.filmo.login.data.remote
+package com.ddd.filmo.data.login.remote
 
-import com.ddd.filmo.login.data.model.UserResponse
+import com.ddd.filmo.data.login.model.UserResponse
 import com.ddd.filmo.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject

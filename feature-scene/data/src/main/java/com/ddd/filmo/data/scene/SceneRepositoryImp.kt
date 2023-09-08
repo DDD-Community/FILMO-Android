@@ -1,6 +1,6 @@
-package com.ddd.filmo.scene.data
+package com.ddd.filmo.data.scene
 
-import com.ddd.filmo.scene.data.remote.SceneRemoteDataSource
+import com.ddd.filmo.data.scene.remote.SceneRemoteDataSource
 import com.ddd.filmo.scene.domain.repository.SceneRepository
 import javax.inject.Inject
 

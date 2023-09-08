@@ -1,11 +1,11 @@
 package com.ddd.filmo.core.module
 
-import com.ddd.filmo.film.data.remote.FilmRemoteDataSource
-import com.ddd.filmo.film.data.remote.FilmRemoteDataSourceImpl
-import com.ddd.filmo.login.data.remote.UserRemoteDataSource
-import com.ddd.filmo.login.data.remote.UserRemoteDataSourceImpl
-import com.ddd.filmo.scene.data.remote.SceneRemoteDataSource
-import com.ddd.filmo.scene.data.remote.SceneRemoteDataSourceImpl
+import com.ddd.filmo.data.film.remote.FilmRemoteDataSource
+import com.ddd.filmo.data.film.remote.FilmRemoteDataSourceImpl
+import com.ddd.filmo.data.login.remote.UserRemoteDataSource
+import com.ddd.filmo.data.login.remote.UserRemoteDataSourceImpl
+import com.ddd.filmo.data.scene.remote.SceneRemoteDataSource
+import com.ddd.filmo.data.scene.remote.SceneRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

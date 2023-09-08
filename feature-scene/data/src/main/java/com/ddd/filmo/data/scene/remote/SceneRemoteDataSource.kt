@@ -1,10 +1,9 @@
-package com.ddd.filmo.scene.data.remote
+package com.ddd.filmo.data.scene.remote
 
 import com.ddd.filmo.model.Movie
-import com.ddd.filmo.scene.data.model.SceneResponse
+import com.ddd.filmo.data.scene.model.SceneResponse
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 import java.util.Date
 import javax.inject.Inject

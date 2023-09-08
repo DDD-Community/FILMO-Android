@@ -1,8 +1,8 @@
-package com.ddd.filmo.film.data.remote
+package com.ddd.filmo.data.film.remote
 
 import android.util.Log
-import com.ddd.filmo.film.data.mapper.FilmResponseMapper
-import com.ddd.filmo.film.data.model.FilmResponse
+import com.ddd.filmo.data.film.mapper.FilmResponseMapper
+import com.ddd.filmo.data.film.model.FilmResponse
 import com.ddd.filmo.model.Film
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
