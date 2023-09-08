@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
@@ -48,12 +50,13 @@ import kotlin.math.roundToInt
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneReadScreen(
-    scene: Scene,
     toEditScreen: () -> Unit = {},
     onBackButtonClicked: () -> Unit = {},
+    viewModel: SceneReadViewModel = hiltViewModel()
 ) {
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isSceneDeleteDialogState by remember { mutableStateOf(false) }
+    val scene = viewModel.scene.collectAsState().value
 
     if (isSceneDialogState) {
         FilmoChoiceBottomSheetDialog(
@@ -211,6 +214,21 @@ fun SceneReadScreen(
                 )
             }
 
+            if (scene.imageUrl.isNotEmpty()) {
+                AsyncImage(
+                    model = "https://firebasestorage.googleapis.com/v0/b/filmo-698ba.appspot.com/o/" +
+                            scene.imageUrl.replace("/", "%2F") +
+                            "?alt=media",
+                    contentDescription = "",
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(13.dp))
+                        .fillMaxWidth()
+                        .aspectRatio(218 / 133f)
+                        .background(color = Color(0xff625B71)),
+                    contentScale = ContentScale.Crop,
+                )
+            }
+
             Spacer(modifier = Modifier.size(24.dp))
 
             Text(
@@ -290,8 +308,7 @@ internal fun SceneDeleteDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked
 @Preview
 @Composable
 fun SceneReadScreenPreview() {
-    SceneReadScreen(scene = Scene.mock1) {
-    }
+    SceneReadScreen()
 }
 
 @Preview

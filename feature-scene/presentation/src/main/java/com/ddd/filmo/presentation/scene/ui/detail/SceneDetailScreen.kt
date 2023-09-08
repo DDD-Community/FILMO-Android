@@ -44,7 +44,7 @@ fun SceneDetailScreen(
 
     scene?.let {
         if (screenIndex == 0) {
-            SceneReadScreen(scene, toEditScreen , onBackButtonClicked = onBackButtonClicked)
+            SceneReadScreen(toEditScreen , onBackButtonClicked = onBackButtonClicked)
         } else {
             SceneEditScreen(scene, onBackButtonClicked = toReadScreen)
         }

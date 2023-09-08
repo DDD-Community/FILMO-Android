@@ -107,6 +107,7 @@ fun FilmDetailScreenRoute(
             isLoadSceneDialogState = true
         },
         navigateToSceneDetail,
+        selectScene = viewModel::selectScene,
         selectedFilm,
         selectedFilmScenes,
 
@@ -120,6 +121,7 @@ fun FilmDetailScreen(
     onPlusButtonClicked: () -> Unit = {},
     onLoadSceneButtonClicked: () -> Unit = {},
     navigateToSceneDetail: () -> Unit = {},
+    selectScene: (Scene) -> Unit = {},
     selectedFilm: Film,
     selectedFilmScenes: List<Scene>,
 ) {
@@ -221,7 +223,10 @@ fun FilmDetailScreen(
                             item {
                                 SceneImage(
                                     scene = it,
-                                    navigateToSceneDetail = navigateToSceneDetail,
+                                    navigateToSceneDetail = {
+                                        selectScene(it)
+                                        navigateToSceneDetail()
+                                    } ,
                                 )
                             }
                         }
@@ -261,7 +266,7 @@ fun FilmDetailScreen(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = selectedFilm.sceneCount.toString(),
+                    text = selectedFilm.scenes.size.toString(),
                     style = TextStyle(
                         fontSize = 18.sp,
                         lineHeight = 25.2.sp,
