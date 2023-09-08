@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
@@ -217,7 +218,7 @@ fun SignupSuccessScreen(
 ) {
     var size by remember { mutableStateOf(IntSize.Zero) }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
         Surface(
             Modifier
                 .fillMaxSize()
@@ -430,7 +431,6 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                     color = Color(0xFFFFCE4F),
                 )
 
-
                 PhysicsCard(
                     textStyle = TextStyle(
                         fontSize = 16.sp,
@@ -464,12 +464,12 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
             layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
                 val chunkedLists = placeables.chunked(6)
 
-                chunkedLists[0].forEach {
-                    it.place(
-                        x = width,
-                        y = height,
-                    )
-                }
+//                chunkedLists[0].forEach {
+//                    it.place(
+//                        x = width,
+//                        y = height,
+//                    )
+//                }
 
                 placeables.forEach { placeable ->
                     placeable.place(0, 0)

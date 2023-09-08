@@ -53,16 +53,24 @@ import com.ddd.filmo.ui.FilmCase
 @Composable
 fun MyPageScreenRoute(
     navigateToSetting: () -> Unit = {},
-    navigateToBack : () -> Unit = {},
+    navigateToBack: () -> Unit = {},
     viewModel: MyPageScreenViewModel = hiltViewModel(),
 ) {
     val user by viewModel.user.collectAsStateWithLifecycle()
-    MyPageScreen(onSettingButtonClicked = navigateToSetting, user = user, onBackButtonClicked = navigateToBack)
+    MyPageScreen(
+        onSettingButtonClicked = navigateToSetting,
+        user = user,
+        onBackButtonClicked = navigateToBack,
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun MyPageScreen( user: User? , onSettingButtonClicked: () -> Unit = {}, onBackButtonClicked: () -> Unit = {}) {
+internal fun MyPageScreen(
+    user: User?,
+    onSettingButtonClicked: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {},
+) {
     var isNickNameDialogState by remember { mutableStateOf(false) }
 
     if (isNickNameDialogState) {
@@ -145,7 +153,7 @@ internal fun MyPageScreen( user: User? , onSettingButtonClicked: () -> Unit = {}
                 colors = CardDefaults.cardColors(containerColor = FilmoColor.Background2),
             ) {
                 Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    MyPageDetailColumn()
+                    MyPageDetailColumn("13" , "내필름")
                     Spacer(
                         modifier = Modifier
                             .width(1.dp)
@@ -153,7 +161,7 @@ internal fun MyPageScreen( user: User? , onSettingButtonClicked: () -> Unit = {}
                             .padding(vertical = 24.dp)
                             .background(FilmoColor.txt_03),
                     )
-                    MyPageDetailColumn()
+                    MyPageDetailColumn("246" , "내씬")
                 }
             }
             Spacer(modifier = Modifier.weight(5f))
@@ -200,14 +208,14 @@ private fun LoginTypeButton(
 }
 
 @Composable
-private fun MyPageDetailColumn() {
+private fun MyPageDetailColumn(count : String, title: String) {
     Column(
         modifier = Modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = "13",
+            text = count,
             style = TextStyle(
                 fontSize = 24.sp,
                 lineHeight = 33.6.sp,
@@ -220,7 +228,7 @@ private fun MyPageDetailColumn() {
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "내 필름",
+            text = title,
             style = TextStyle(
                 fontSize = 14.sp,
                 lineHeight = 19.6.sp,

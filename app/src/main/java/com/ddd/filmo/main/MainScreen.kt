@@ -55,12 +55,10 @@ import com.svenjacobs.reveal.rememberRevealCanvasState
 import com.svenjacobs.reveal.rememberRevealState
 import com.svenjacobs.reveal.shapes.balloon.Arrow
 import com.svenjacobs.reveal.shapes.balloon.Balloon
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.onebone.toolbar.CollapsingToolbarScaffold
 import me.onebone.toolbar.ScrollStrategy
 import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
-import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun MainScreenRoute(
@@ -119,15 +117,21 @@ fun MainScreen(
         val revealState = rememberRevealState()
         LaunchedEffect(Unit) {
             if (revealState.isVisible) return@LaunchedEffect
-            delay(2.seconds)
-            revealState.reveal(Keys.HelloWorld)
+            if (Guide.isFirst) {
+                revealState.reveal(Keys.HelloWorld)
+            }
         }
 
         Reveal(
             revealCanvasState = revealCanvasState,
             revealState = revealState,
             onRevealableClick = {},
-            onOverlayClick = { scope.launch { revealState.hide() } },
+            onOverlayClick = {
+                scope.launch {
+                    Guide.isFirst = false
+                    revealState.hide()
+                }
+            },
             overlayContent = { key ->
                 when (key) {
                     Keys.HelloWorld -> {
@@ -295,3 +299,8 @@ fun MainScreenPreview() {
 }
 
 enum class Keys { HelloWorld }
+
+object Guide {
+    // todo:  후에 sharedPreference로 변경
+    var isFirst = true
+}

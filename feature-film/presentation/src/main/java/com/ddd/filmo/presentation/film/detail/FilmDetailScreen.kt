@@ -45,9 +45,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ddd.filmo.core.designsystem.R
+import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.component.button.FilmoButton
 import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
+import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
@@ -133,27 +135,23 @@ fun FilmDetailScreen(
             .fillMaxSize()
             .background(Color(0xff202020)),
     ) {
-        Row(Modifier.padding(10.dp)) {
-            IconButton(onClick = {
-                onBackClick()
-            }, modifier = Modifier.size(40.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_arrow_back),
-                    contentDescription = "",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = onPlusButtonClicked, modifier = Modifier.size(40.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
-                    contentDescription = "",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-        }
+        FilmoAppBar(
+            actions = {
+                IconButton(onClick = onPlusButtonClicked, modifier = Modifier.size(40.dp)) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
+                        contentDescription = "",
+                        tint = Color.White,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            },
+            navigationIcon = {
+                IconButton(onClick = onBackClick) {
+                    Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
+                }
+            },
+        )
 
         Box() {
             val caseColor = Color(selectedFilm.caseColor)
@@ -226,7 +224,7 @@ fun FilmDetailScreen(
                                     navigateToSceneDetail = {
                                         selectScene(it)
                                         navigateToSceneDetail()
-                                    } ,
+                                    },
                                 )
                             }
                         }

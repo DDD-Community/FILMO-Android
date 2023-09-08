@@ -1,12 +1,12 @@
 package com.ddd.filmo.ui
 
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -31,7 +31,8 @@ fun MainNavigation() {
     val navController = rememberNavController()
 
     Scaffold(
-        contentWindowInsets = WindowInsets(0.dp),
+
+        contentWindowInsets = WindowInsets.navigationBars,
     ) { padding ->
         NavHost(
             navController = navController,
@@ -145,7 +146,11 @@ fun MainNavigation() {
             }
 
             composable("signup") {
-                SignupScreenRoute()
+                SignupScreenRoute(
+                    navigateToMain = {
+                        navController.navigate("main")
+                    },
+                )
             }
             composable("withdrawal") {
                 WithdrawalScreenRoute(
