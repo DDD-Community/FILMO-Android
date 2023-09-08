@@ -1,7 +1,6 @@
 package com.ddd.filmo.presentation.scene.ui.edit
 
 import android.net.Uri
-import android.widget.RatingBar
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -71,7 +70,7 @@ import com.ddd.filmo.model.Scene
 @Composable
 fun SceneEditScreen(
     scene: Scene,
-    toReadScreen: () -> Unit,
+    onBackButtonClicked: () -> Unit,
 ) {
     val selectedFilm = remember { mutableStateOf(Film.fakeFilm0) }
     val selectedUri = remember { mutableStateOf<Uri?>(null) }
@@ -100,7 +99,7 @@ fun SceneEditScreen(
         if (isSheetOpen) {
             isSheetOpen = false
         } else {
-            toReadScreen()
+            onBackButtonClicked()
         }
     }
 
@@ -114,7 +113,7 @@ fun SceneEditScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(onClick = {
-                toReadScreen()
+                onBackButtonClicked()
             }, modifier = Modifier.size(48.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_back),

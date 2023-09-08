@@ -19,12 +19,15 @@ import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 
 @Composable
-fun LicenseScreenRoute() {
-    LicenseScreen()
+fun LicenseScreenRoute(navigateToBack : () -> Unit = {}){
+    LicenseScreen(
+        onBackButtonClicked = navigateToBack
+
+    )
 }
 
 @Composable
-fun LicenseScreen() {
+fun LicenseScreen(onBackButtonClicked : () -> Unit = {}) {
     Column(
         Modifier
             .fillMaxSize()
@@ -36,7 +39,7 @@ fun LicenseScreen() {
             actions = {
             },
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onBackButtonClicked) {
                     Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
                 }
             },

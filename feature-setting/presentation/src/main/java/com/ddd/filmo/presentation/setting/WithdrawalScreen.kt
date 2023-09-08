@@ -41,12 +41,15 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.designsystem.theme.FilmoTheme
 
 @Composable
-fun WithdrawalScreenRoute() {
-    WithdrawalScreen()
+fun WithdrawalScreenRoute(navigateToBack: () -> Unit) {
+    WithdrawalScreen(
+        onBackButtonClicked = navigateToBack,
+
+    )
 }
 
 @Composable
-fun WithdrawalScreen() {
+fun WithdrawalScreen(onBackButtonClicked: () -> Unit = {}) {
     val checkBoxUiModelListState = remember {
         mutableStateListOf(
             WithdrawalCheckBoxUiModel(
@@ -82,7 +85,7 @@ fun WithdrawalScreen() {
         FilmoAppBar(
             actions = {},
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onBackButtonClicked) {
                     Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
                 }
             },
@@ -191,7 +194,6 @@ fun WithdrawDialogPreview() {
 @Composable
 internal fun WithdrawDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
     FilmoDialog(
-        content = "정말 탈퇴하시겠어요?",
         onAcceptClicked = onAcceptClicked,
         onCancelClicked = onCancelClicked,
         cancelText = "더 사용해보기",
@@ -202,7 +204,20 @@ internal fun WithdrawDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: (
         acceptColors = ButtonDefaults.buttonColors(
             containerColor = FilmoColor.film_color_05,
         ),
-    )
+    ) {
+        Text(
+            text = "정말 탈퇴하시겠어요?",
+            style = TextStyle(
+                fontSize = 20.sp,
+                lineHeight = 22.sp,
+                fontFamily = FilmoFamily,
+                fontWeight = FontWeight(700),
+                color = FilmoColor.txt_01,
+                textAlign = TextAlign.Center,
+                letterSpacing = 0.2.sp,
+            ),
+        )
+    }
 }
 
 @Stable

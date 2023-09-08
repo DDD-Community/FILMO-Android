@@ -18,10 +18,10 @@ import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
-class SceneCreateViewModel  @Inject constructor(
+class SceneCreateViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val filmRepository: FilmRepository,
-    private val sceneRepository: SceneRepository
+    private val sceneRepository: SceneRepository,
 ) : ViewModel() {
     val films = filmRepository.films.value
     val sceneText = MutableStateFlow("")
@@ -44,7 +44,7 @@ class SceneCreateViewModel  @Inject constructor(
                 sceneText = sceneText.value,
                 sceneRate = rating.value,
                 movieTitle = movieTitle.value,
-                imageUrl = imageUrl
+                imageUrl = imageUrl,
             )
             navigateToSth()
         }
@@ -53,7 +53,7 @@ class SceneCreateViewModel  @Inject constructor(
     suspend fun uploadImageAndGetUrl(uri: Uri): String {
         val sdf = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss")
         val fileName = sdf.format(Date())
-        val path = "${userRepository.currentUser.value?.userId}/${fileName}"
+        val path = "${userRepository.currentUser.value?.userId}/$fileName"
         val fileRef: StorageReference =
             FirebaseStorage.getInstance().reference.child(path)
         fileRef.putFile(uri).await()
@@ -76,9 +76,7 @@ class SceneCreateViewModel  @Inject constructor(
         selectedUri.value = value
     }
 
-    fun selectFilm (film: Film) {
+    fun selectFilm(film: Film) {
         selectedFilm.value = film
     }
-
-
 }

@@ -13,16 +13,13 @@ import kotlinx.coroutines.tasks.await
 import java.util.Date
 import javax.inject.Inject
 
-
 interface FilmRemoteDataSource {
     suspend fun observeFilms(
         filmsFlow: MutableStateFlow<List<Film>>,
-        userId: String = "117111581200385730511"
+        userId: String = "117111581200385730511",
     )
 
     suspend fun createFilm(name: String, color: Long, userId: String = "117111581200385730511")
-
-
 }
 
 class FilmRemoteDataSourceImpl @Inject constructor(
@@ -53,10 +50,9 @@ class FilmRemoteDataSourceImpl @Inject constructor(
                     caseColor = color,
                     name = name,
                     sceneCount = 0,
-                    createdAt = Date()
+                    createdAt = Date(),
                 ),
-                SetOptions.merge()
+                SetOptions.merge(),
             ).await()
-
     }
 }

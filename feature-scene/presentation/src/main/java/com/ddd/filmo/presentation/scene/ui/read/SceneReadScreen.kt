@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,12 +31,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
+import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
@@ -43,43 +47,57 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
+fun SceneReadScreen(
+    scene: Scene,
+    toEditScreen: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {},
+) {
+    var isSceneDialogState by remember { mutableStateOf(false) }
+    var isSceneDeleteDialogState by remember { mutableStateOf(false) }
+
+    if (isSceneDialogState) {
+        FilmoChoiceBottomSheetDialog(
+            choiceList = listOf(
+                "씬 수정하기",
+                "씬 삭제하기",
+                "취소하기",
+            ),
+            onItemClicked = {
+                when (it) {
+                    0 -> toEditScreen()
+                    1 -> isSceneDeleteDialogState = true
+                    2 -> isSceneDialogState = false
+                }
+                isSceneDialogState = false
+            },
+            onDismissRequest = {
+                isSceneDialogState = false
+            },
+        )
+    }
+
+    if (isSceneDeleteDialogState) {
+        SceneDeleteDialog(
+            onAcceptClicked = {},
+            onCancelClicked = {
+                isSceneDeleteDialogState = false
+            },
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        var isSceneDialogState by remember { mutableStateOf(false) }
-
-        if (isSceneDialogState) {
-            FilmoChoiceBottomSheetDialog(
-                choiceList = listOf(
-                    "씬 수정하기",
-                    "씬 삭제하기",
-                    "취소하기",
-                ),
-                onItemClicked = {
-                    when (it) {
-                        0 -> toEditScreen()
-                        1 -> {}
-                        2 -> isSceneDialogState = false
-                    }
-                    isSceneDialogState = false
-                },
-                onDismissRequest = {
-                    isSceneDialogState = false
-                },
-            )
-        }
         Column(Modifier.fillMaxSize()) {
             Row(
                 Modifier
                     .padding(10.dp)
                     .fillMaxWidth(),
             ) {
-                IconButton(onClick = {
-                }, modifier = Modifier.size(40.dp)) {
+                IconButton(onClick = onBackButtonClicked, modifier = Modifier.size(40.dp)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_back),
                         contentDescription = "",
@@ -224,9 +242,63 @@ fun SceneReadScreen(scene: Scene, toEditScreen: () -> Unit) {
     }
 }
 
+@Composable
+internal fun SceneDeleteDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
+    FilmoDialog(
+        onAcceptClicked = onAcceptClicked,
+        onCancelClicked = onCancelClicked,
+        cancelText = "취소하기",
+        acceptText = "삭제하기",
+        cancelColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.txt_03,
+        ),
+        acceptColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.film_color_05,
+        ),
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "씬 삭제하기",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(700),
+                    color = FilmoColor.txt_01,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 0.2.sp,
+                ),
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "씬 삭제 시 기록을 복구 할 수 없습니다.\n" +
+                    "정말 삭제하시겠어요?",
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(400),
+                    color = FilmoColor.txt_01,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 0.16.sp,
+                ),
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
 fun SceneReadScreenPreview() {
     SceneReadScreen(scene = Scene.mock1) {
     }
+}
+
+@Preview
+@Composable
+fun SceneDeleteDialogPreview() {
+    SceneDeleteDialog(
+        onAcceptClicked = {},
+        onCancelClicked = {},
+    )
 }

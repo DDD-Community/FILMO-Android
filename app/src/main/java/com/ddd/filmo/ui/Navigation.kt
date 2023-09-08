@@ -14,7 +14,7 @@ import com.ddd.filmo.presentation.film.detail.FilmDetailScreenRoute
 import com.ddd.filmo.presentation.login.ui.LoginScreenRoute
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreenRoute
 import com.ddd.filmo.presentation.scene.ui.create.SceneCreateScreen
-import com.ddd.filmo.presentation.scene.ui.detail.SceneDetailScreen
+import com.ddd.filmo.presentation.scene.ui.detail.SceneDetailScreenRoute
 import com.ddd.filmo.presentation.setting.LicenseScreenRoute
 import com.ddd.filmo.presentation.setting.SettingScreenRoute
 import com.ddd.filmo.presentation.setting.SettingWebViewScreenRoute
@@ -67,10 +67,15 @@ fun MainNavigation() {
                     navigateToSceneDetail = {
                         navController.navigate("sceneDetail")
                     },
+                    onBackClick = {
+                        navController.popBackStack()
+                    },
                 )
             }
             composable("sceneDetail") {
-                SceneDetailScreen()
+                SceneDetailScreenRoute(navigateToBack = {
+                    navController.popBackStack()
+                })
             }
             composable("sceneCreate") {
                 SceneCreateScreen(navigateToSth = { navController.navigateUp() })
@@ -79,6 +84,9 @@ fun MainNavigation() {
                 MyPageScreenRoute(
                     navigateToSetting = {
                         navController.navigate("setting")
+                    },
+                    navigateToBack = {
+                        navController.popBackStack()
                     },
 
                 )
@@ -101,11 +109,19 @@ fun MainNavigation() {
                     navigateToWithdrawal = {
                         navController.navigate("withdrawal")
                     },
+                    navigateToBack = {
+                        navController.popBackStack()
+                    },
+
                 )
             }
 
             composable("license") {
-                LicenseScreenRoute()
+                LicenseScreenRoute(
+                    navigateToBack = {
+                        navController.popBackStack()
+                    },
+                )
             }
 
             composable(
@@ -118,6 +134,9 @@ fun MainNavigation() {
                 SettingWebViewScreenRoute(
                     backStackEntry.arguments?.getString("url")!!,
                     backStackEntry.arguments?.getString("title")!!,
+                    navigateToBack = {
+                        navController.popBackStack()
+                    },
                 )
             }
 
@@ -125,7 +144,12 @@ fun MainNavigation() {
                 SignupScreenRoute()
             }
             composable("withdrawal") {
-                WithdrawalScreenRoute()
+                WithdrawalScreenRoute(
+                    navigateToBack = {
+                        navController.popBackStack()
+                    },
+
+                )
             }
         }
     }

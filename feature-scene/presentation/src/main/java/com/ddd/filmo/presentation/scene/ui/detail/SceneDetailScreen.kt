@@ -17,19 +17,20 @@ import com.ddd.filmo.ui.FilmBody
 import com.ddd.filmo.ui.FilmSize
 
 @Composable
-internal fun SceneDetailScreenRoute(
+ fun SceneDetailScreenRoute(
 //    viewModel: MainViewModel = hiltViewModel(),
 //    navigateToReadVote: (Int) -> Unit,
 //    navigateToSearch: () -> Unit,
+    navigateToBack: () -> Unit ={},
 ) {
-    SceneDetailScreen()
+    SceneDetailScreen(onBackButtonClicked = navigateToBack)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneDetailScreen(
     scene: Scene? = Scene.mock,
-    onBackClick: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {},
 ) {
     var screenIndex by remember { mutableStateOf(0) }
 
@@ -43,9 +44,9 @@ fun SceneDetailScreen(
 
     scene?.let {
         if (screenIndex == 0) {
-            SceneReadScreen(scene, toEditScreen)
+            SceneReadScreen(scene, toEditScreen , onBackButtonClicked = onBackButtonClicked)
         } else {
-            SceneEditScreen(scene, toReadScreen)
+            SceneEditScreen(scene, onBackButtonClicked = toReadScreen)
         }
     }
 }

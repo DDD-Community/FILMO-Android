@@ -53,15 +53,16 @@ import com.ddd.filmo.ui.FilmCase
 @Composable
 fun MyPageScreenRoute(
     navigateToSetting: () -> Unit = {},
+    navigateToBack : () -> Unit = {},
     viewModel: MyPageScreenViewModel = hiltViewModel(),
 ) {
     val user by viewModel.user.collectAsStateWithLifecycle()
-    MyPageScreen(onSettingButtonClicked = navigateToSetting, user)
+    MyPageScreen(onSettingButtonClicked = navigateToSetting, user = user, onBackButtonClicked = navigateToBack)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}, user: User?) {
+internal fun MyPageScreen( user: User? , onSettingButtonClicked: () -> Unit = {}, onBackButtonClicked: () -> Unit = {}) {
     var isNickNameDialogState by remember { mutableStateOf(false) }
 
     if (isNickNameDialogState) {
@@ -86,7 +87,7 @@ internal fun MyPageScreen(onSettingButtonClicked: () -> Unit = {}, user: User?) 
                 Icon(painter = painterResource(id = FilmoIcon.Setting), contentDescription = "")
             }
         }, navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = onBackButtonClicked) {
                 Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
             }
         })

@@ -40,13 +40,13 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
  */
 @Composable
 fun FilmoDialog(
-    content: String,
     cancelText: String = "",
     acceptText: String = "",
     onAcceptClicked: () -> Unit,
     onCancelClicked: () -> Unit,
     acceptColors: ButtonColors = ButtonDefaults.buttonColors(),
     cancelColors: ButtonColors = ButtonDefaults.buttonColors(),
+    content: @Composable () -> Unit = {},
 ) {
     Dialog(onDismissRequest = onCancelClicked) {
         Column(
@@ -54,18 +54,7 @@ fun FilmoDialog(
                 .padding(top = 32.dp, bottom = 16.dp, start = 16.dp, end = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                text = content,
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    lineHeight = 22.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(700),
-                    color = FilmoColor.txt_01,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 0.2.sp,
-                ),
-            )
+            content()
             Spacer(modifier = Modifier.height(24.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -118,5 +107,5 @@ fun FilmoDialog(
 @Preview
 @Composable
 fun FilmoDialogPreview() {
-    FilmoDialog(content = "정말 로그아웃하시겠어요?", onCancelClicked = {}, onAcceptClicked = {})
+    FilmoDialog(content = {}, onCancelClicked = {}, onAcceptClicked = {})
 }

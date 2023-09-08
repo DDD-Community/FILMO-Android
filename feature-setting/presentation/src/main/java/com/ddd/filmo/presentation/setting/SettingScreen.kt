@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,8 +56,14 @@ fun SettingScreenRoute(
     navigateToWebView: (String, String) -> Unit,
     navigateToLicence: () -> Unit,
     navigateToWithdrawal: () -> Unit,
+    navigateToBack: () -> Unit,
 ) {
-    SettingScreen(navigateToWebView, navigateToLicence, navigateToWithdrawal)
+    SettingScreen(
+        navigateToWebView,
+        navigateToLicence,
+        navigateToWithdrawal,
+        onBackButtonClicked = navigateToBack,
+    )
 }
 
 // / TODO: 파라미터 조금더 이쁘게 개선
@@ -65,6 +72,7 @@ internal fun SettingScreen(
     onClickedWebView: (String, String) -> Unit = { it1, it2 -> },
     onClickedLicence: () -> Unit = {},
     onWithdrawalClicked: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {},
 ) {
     var withdrawState by remember { mutableStateOf(false) }
     var logoutState by remember { mutableStateOf(false) }
@@ -123,7 +131,7 @@ internal fun SettingScreen(
         FilmoAppBar(
             actions = {},
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onBackButtonClicked) {
                     Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
                 }
             },
@@ -190,7 +198,6 @@ fun LogOutDialogPreview() {
 @Composable
 internal fun LogoutDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
     FilmoDialog(
-        content = "정말 로그아웃하시겠어요?",
         onAcceptClicked = onAcceptClicked,
         onCancelClicked = onCancelClicked,
         cancelText = "취소하기",
@@ -201,7 +208,20 @@ internal fun LogoutDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () 
         acceptColors = ButtonDefaults.buttonColors(
             containerColor = FilmoColor.Primary,
         ),
-    )
+    ) {
+        Text(
+            text = "정말 로그아웃하시겠어요?",
+            style = TextStyle(
+                fontSize = 20.sp,
+                lineHeight = 22.sp,
+                fontFamily = FilmoFamily,
+                fontWeight = FontWeight(700),
+                color = FilmoColor.txt_01,
+                textAlign = TextAlign.Center,
+                letterSpacing = 0.2.sp,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)

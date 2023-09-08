@@ -47,6 +47,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.component.button.FilmoButton
+import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
@@ -66,6 +67,7 @@ fun FilmDetailScreenRoute(
     val selectedFilmScenes = viewModel.selectedFilmScenes.collectAsStateWithLifecycle().value
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isLoadSceneDialogState by remember { mutableStateOf(false) }
+    var isDeleteDialogState by remember { mutableStateOf(false) }
 
     if (isSceneDialogState) {
         FilmoChoiceBottomSheetDialog(
@@ -74,7 +76,7 @@ fun FilmDetailScreenRoute(
             onItemClicked = {
                 when (it) {
                     0 -> toAddScene(null)
-                    1 -> toAddScene(selectedFilmScenes[0])
+                    1 -> isDeleteDialogState = true
                     2 -> isSceneDialogState = false
                 }
             },
@@ -85,6 +87,13 @@ fun FilmDetailScreenRoute(
             onDismissRequest = { isLoadSceneDialogState = false },
             currentScene = 10,
             totalScene = 20,
+        )
+    }
+
+    if (isDeleteDialogState) {
+        FilmDeleteDialog(
+            onAcceptClicked = {},
+            onCancelClicked = { isDeleteDialogState = false },
         )
     }
 
@@ -280,6 +289,52 @@ fun FilmDetailScreen(
     }
 }
 
+@Composable
+internal fun FilmDeleteDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
+    FilmoDialog(
+        onAcceptClicked = onAcceptClicked,
+        onCancelClicked = onCancelClicked,
+        cancelText = "취소하기",
+        acceptText = "삭제하기",
+        cancelColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.txt_03,
+        ),
+        acceptColors = ButtonDefaults.buttonColors(
+            containerColor = FilmoColor.film_color_05,
+        ),
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "필름 삭제하기",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(700),
+                    color = FilmoColor.txt_01,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 0.2.sp,
+                ),
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "필름 삭제 시 기록을 복구 할 수 없으며, \n" +
+                    "필름 내에 있는 씬도 전부 삭제됩니다.\n" +
+                    "정말 삭제하시겠어요?",
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(400),
+                    color = FilmoColor.txt_01,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 0.16.sp,
+                ),
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
 fun FilmDetailScreenPreview() {
@@ -290,4 +345,10 @@ fun FilmDetailScreenPreview() {
         selectedFilm = Film.fakeFilm0,
         selectedFilmScenes = listOf(Scene.mock),
     )
+}
+
+@Preview
+@Composable
+fun FilmDeleteDialogPreview() {
+    FilmDeleteDialog()
 }

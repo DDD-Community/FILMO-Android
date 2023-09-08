@@ -19,13 +19,13 @@ import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 
 @Composable
-fun SettingWebViewScreenRoute(webViewUrl: String, title: String) {
-    SettingWebViewScreen(webViewUrl, title)
+fun SettingWebViewScreenRoute(webViewUrl: String, title: String, navigateToBack: () -> Unit = {}) {
+    SettingWebViewScreen(webViewUrl, title, onBackButtonClicked = navigateToBack)
 }
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun SettingWebViewScreen(webviewUrl: String, title: String) {
+fun SettingWebViewScreen(webviewUrl: String, title: String, onBackButtonClicked: () -> Unit = {}) {
     Column(
         Modifier
             .fillMaxSize()
@@ -36,7 +36,7 @@ fun SettingWebViewScreen(webviewUrl: String, title: String) {
         FilmoAppBar(
             actions = {},
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onBackButtonClicked) {
                     Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
                 }
             },

@@ -3,8 +3,6 @@ package com.ddd.filmo.presentation.scene.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.ddd.filmo.model.Scene
-import java.util.Date
 
 internal const val sceneReadRoute = "scene_read_route"
 
