@@ -30,6 +30,55 @@ fun FilmoOutlinedTextField(
     isError: Boolean = false,
     placeholderText: String,
     containerColor: Color = FilmoColor.Background3,
+) {
+    OutlinedTextField(
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp),
+        value = value,
+        onValueChange = onValueChanged,
+        shape = RoundedCornerShape(8.dp),
+        placeholder = {
+            Text(
+                text = placeholderText,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 22.4.sp,
+                    fontFamily = FilmoFamily,
+                    fontWeight = FontWeight(400),
+                    color = FilmoColor.txt_02,
+                ),
+            )
+        },
+        isError = isError,
+        colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = containerColor,
+            unfocusedIndicatorColor = containerColor,
+            focusedContainerColor = containerColor,
+            unfocusedContainerColor = containerColor,
+            errorIndicatorColor = FilmoColor.Error,
+        ),
+        leadingIcon = null,
+        trailingIcon = null,
+        textStyle = TextStyle(
+            fontSize = 16.sp,
+            lineHeight = 22.4.sp,
+            fontFamily = FilmoFamily,
+            fontWeight = FontWeight(400),
+            color = FilmoColor.txt_02,
+        ),
+    )
+}
+
+// todo : Container Color 컬러 시스템 구축 필요
+@Composable
+fun FilmoOutlinedTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChanged: (String) -> Unit = {},
+    isError: Boolean = false,
+    placeholderText: String,
+    containerColor: Color = FilmoColor.Background3,
     leadingType: FilmoTextFieldLeadingType = FilmoTextFieldLeadingType.NONE,
     trailingType: FilmoTextFieldTrailingType = FilmoTextFieldTrailingType.NONE,
 ) {

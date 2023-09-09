@@ -12,14 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -39,7 +37,9 @@ fun FilmoModalBottomSheetDialog(
     modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit = {},
     sheetState: SheetState = rememberModalBottomSheetState(),
+    containerColor: Color = FilmoColor.Background3,
     content: @Composable ColumnScope.() -> Unit,
+
 ) {
     val bottomPadding = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()
     ModalBottomSheet(
@@ -47,7 +47,7 @@ fun FilmoModalBottomSheetDialog(
 
         sheetState = sheetState,
         dragHandle = null,
-        containerColor = FilmoColor.Background3,
+        containerColor = containerColor,
         windowInsets = WindowInsets.displayCutout,
     ) {
         Column(modifier = Modifier.padding(bottom = bottomPadding)) {
@@ -66,30 +66,29 @@ fun FilmoChoiceBottomSheetDialog(
     onDismissRequest: () -> Unit = {},
     sheetState: SheetState = rememberModalBottomSheetState(),
 ) {
-    CompositionLocalProvider(LocalContentColor.provides(FilmoColor.Background)) {
-        FilmoModalBottomSheetDialog(
-            modifier = modifier,
-            onDismissRequest = onDismissRequest,
-            sheetState = sheetState,
-        ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            choiceList.forEachIndexed { index, choice ->
-                FilmoChoiceBottomSheetItem(
-                    text = choice,
-                    onClick = {
-                        onItemClicked(index)
-                    },
-                    color = if (choiceList.lastIndex == index) FilmoColor.txt_02 else FilmoColor.txt_01,
+    FilmoModalBottomSheetDialog(
+        modifier = modifier,
+        onDismissRequest = onDismissRequest,
+        sheetState = sheetState,
+        containerColor = FilmoColor.Background2,
+    ) {
+        Spacer(modifier = Modifier.height(16.dp))
+        choiceList.forEachIndexed { index, choice ->
+            FilmoChoiceBottomSheetItem(
+                text = choice,
+                onClick = {
+                    onItemClicked(index)
+                },
+                color = if (choiceList.lastIndex == index) FilmoColor.txt_02 else FilmoColor.txt_01,
 
+            )
+            if (choiceList.lastIndex != index) {
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(FilmoColor.txt_03)
+                        .height(1.dp),
                 )
-                if (choiceList.lastIndex != index) {
-                    Spacer(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(FilmoColor.txt_03)
-                            .height(1.dp),
-                    )
-                }
             }
         }
     }
@@ -104,7 +103,7 @@ fun FilmoChoiceBottomSheetItem(
 ) {
     Surface(
         onClick = onClick,
-        color = FilmoColor.Background,
+        color = FilmoColor.Background2,
         modifier = modifier.fillMaxWidth(),
     ) {
         Text(

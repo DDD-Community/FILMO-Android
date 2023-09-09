@@ -364,7 +364,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
         Layout(
             content = {
                 PhysicsCard(
-                    modifier = Modifier.layoutId("FilmoLayoutId"),
+                    modifier = Modifier.layoutId("FilmoLayoutId1"),
                     textStyle = TextStyle(
                         fontSize = 20.sp,
                         lineHeight = 28.sp,
@@ -378,7 +378,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
-                    modifier = Modifier.layoutId("MyBestLayoutId"),
+                    modifier = Modifier.layoutId("FilmoLayoutId2"),
                     textStyle = TextStyle(
                         fontSize = 20.sp,
                         lineHeight = 28.sp,
@@ -392,7 +392,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
-                    modifier = Modifier.layoutId("RealLayoutId"),
+                    modifier = Modifier.layoutId("FilmoLayoutId3"),
                     textStyle = TextStyle(
                         fontSize = 14.sp,
                         lineHeight = 19.6.sp,
@@ -406,6 +406,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
+                    modifier = Modifier.layoutId("FilmoLayoutId4"),
                     textStyle = TextStyle(
                         fontSize = 14.sp,
                         lineHeight = 19.6.sp,
@@ -419,6 +420,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
+                    modifier = Modifier.layoutId("FilmoLayoutId5"),
                     textStyle = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 22.4.sp,
@@ -432,6 +434,7 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                 )
 
                 PhysicsCard(
+                    modifier = Modifier.layoutId("FilmoLayoutId6"),
                     textStyle = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 22.4.sp,
@@ -444,9 +447,15 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
                     color = Color(0xFFBBEF4C),
                 )
 
-                PhysicsHeart(color = Color(0xFFCF68FF))
-                PhysicsHeart(color = Color.Blue)
-                PhysicsHeart(color = Color(0xFFEE0072))
+                PhysicsHeart(
+                    modifier = Modifier.layoutId("HeartLayoutId1"),
+                    color = Color(0xFFCF68FF),
+                )
+                PhysicsHeart(modifier = Modifier.layoutId("HeartLayoutId1"), color = Color.Blue)
+                PhysicsHeart(
+                    modifier = Modifier.layoutId("HeartLayoutId1"),
+                    color = Color(0xFFEE0072),
+                )
             },
         ) { measurables, constraints ->
             val looseConstraints = constraints.copy(
@@ -462,14 +471,14 @@ private fun PhysicsLayoutScreen(size: IntSize = IntSize(0, 0)) {
             val height = 0
 
             layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
-                val chunkedLists = placeables.chunked(6)
-
-//                chunkedLists[0].forEach {
-//                    it.place(
-//                        x = width,
-//                        y = height,
-//                    )
-//                }
+//                val chunkedLists = placeables.chunked(6)
+//
+////                chunkedLists[0].forEach {
+////                    it.place(
+////                        x = width,
+////                        y = height,
+////                    )
+////                }
 
                 placeables.forEach { placeable ->
                     placeable.place(0, 0)
@@ -504,9 +513,9 @@ private fun BoxScope.PhysicsCard(
 }
 
 @Composable
-private fun PhysicsHeart(color: Color) {
+private fun PhysicsHeart(modifier: Modifier = Modifier, color: Color) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .physicsBody(
                 shape = CircleShape,
             ),
