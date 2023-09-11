@@ -64,6 +64,7 @@ import com.ddd.filmo.model.User
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest.firstSceneType
 import com.ddd.filmo.ui.SceneImageTest.secondSceneType
+import com.ddd.filmo.ui.util.NavigateEffect
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.delay
 
@@ -75,9 +76,6 @@ fun LoginScreenRoute(
 ) {
     val context = LocalContext.current
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val currentNavigateToNextScreen by rememberUpdatedState(navigateToMain)
-    val currentNavigateToSignScreen by rememberUpdatedState(navigateToSign)
-
     LaunchedEffect(loginUiState.error) {
         if (loginUiState.error.isNotEmpty()) {
             Toast.makeText(context, loginUiState.error, Toast.LENGTH_SHORT).show()
@@ -85,17 +83,14 @@ fun LoginScreenRoute(
         }
     }
 
-    LaunchedEffect(loginUiState.isFirstLogin) {
-        if (loginUiState.isFirstLogin) {
-            navigateToSign()
-            viewModel.clearFirstLoginState()
-        }
+    NavigateEffect(loginUiState.isFirstLogin) {
+        navigateToSign()
+        viewModel.clearFirstLoginState()
     }
-    LaunchedEffect(loginUiState.isLogin) {
-        if (loginUiState.isLogin) {
-            navigateToMain()
-            viewModel.clearLoginState()
-        }
+
+    NavigateEffect(loginUiState.isLogin) {
+        navigateToMain()
+        viewModel.clearLoginState()
     }
 
     val signInRequestCode = 1
