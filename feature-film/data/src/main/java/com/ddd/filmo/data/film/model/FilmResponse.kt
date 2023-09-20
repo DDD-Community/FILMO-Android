@@ -12,5 +12,5 @@ data class FilmResponse(
     val sceneCount: Int = 0,
     val isPrivate: Boolean = false,
     val createdAt: Date = Date(),
-    val scenes: List<Scene> = emptyList()
+    val scenes: List<Scene> = emptyList(),
 ) : DataModel

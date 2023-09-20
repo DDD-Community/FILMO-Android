@@ -23,8 +23,10 @@ class UserRemoteDataSourceImpl @Inject constructor(
     private val firebaseDB: FirebaseFirestore,
 ) : UserRemoteDataSource {
     override suspend fun getUser(): UserResponse {
-        val userResponse = firebaseDB.collection("User").document("117111581200385730511").get().await().toObject<UserResponse>()
-        return userResponse?: UserResponse()
+        val userResponse =
+            firebaseDB.collection("User").document("117111581200385730511").get().await()
+                .toObject<UserResponse>()
+        return userResponse ?: UserResponse()
     }
 
     override suspend fun isExitUser(userId: String): Boolean =

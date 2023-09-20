@@ -1,5 +1,6 @@
 package com.ddd.filmo.ui.cropify
 
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -14,8 +15,10 @@ fun rememberCropifyState() = remember { CropifyState() }
 
 @Stable
 class CropifyState {
-    internal var frameRect by mutableStateOf(Rect(0f, 0f, 0f, 0f))
+    internal var frameRect by mutableStateOf(Rect(-100f, -100f, 100f, 100f))
     internal var imageRect by mutableStateOf(Rect(0f, 0f, 0f, 0f))
+    internal var loadedUri: Uri? = null
+    internal var inSampleSize = 1
 
     /**
      * 영역 안을 클릭하면 Offset 이동이 됨.
@@ -23,12 +26,7 @@ class CropifyState {
      * @param offset
      */
     internal fun translateFrameRect(offset: Offset) {
-        var newRect = frameRect.translate(offset)
-//        if (newRect.left < imageRect.left) newRect = newRect.translate(imageRect.left - newRect.left, 0f)
-//        if (newRect.right > imageRect.right) newRect = newRect.translate(imageRect.right - newRect.right, 0f)
-//        if (newRect.top < imageRect.top) newRect = newRect.translate(0f, imageRect.top - newRect.top)
-//        if (newRect.bottom > imageRect.bottom) newRect = newRect.translate(0f, imageRect.bottom - newRect.bottom)
-        frameRect = newRect
+        frameRect = frameRect.translate(offset)
     }
 
     internal fun scaleFrameRect(
@@ -37,7 +35,11 @@ class CropifyState {
         amount: Offset,
         minimumVertexDistance: Float,
     ) {
-        frameRect = scaleFlexibleRect(point = point, amount = amount, minimumVertexDistance = minimumVertexDistance)
+        frameRect = scaleFlexibleRect(
+            point = point,
+            amount = amount,
+            minimumVertexDistance = minimumVertexDistance,
+        )
 
         /*if (aspectRatio == null) {
             scaleFlexibleRect(point, amount, minimumVertexDistance)

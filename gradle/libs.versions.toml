@@ -114,6 +114,15 @@ reveal-core = { group = "com.svenjacobs.reveal", name = "reveal-core", version.r
 reveal-shape = { group = "com.svenjacobs.reveal", name = "reveal-shapes", version.ref = "revealVersion" }
 reveal-compat-android = { group = "com.svenjacobs.reveal", name = "reveal-compat-android", version.ref = "revealVersion" }
 
+##Retrofit
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.11.0" }
+okhttp-loggingInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.11.0" }
+
+retrofit-SerializationConverter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
+serializationConverter = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.1" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -126,3 +135,4 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 aboutLibrary = {id = "com.mikepenz.aboutlibraries.plugin" , version.ref = "aboutLibrary"}
 googleServices = {id = "com.google.gms.google-services", version.ref = "googleServices"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

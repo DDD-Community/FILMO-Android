@@ -15,8 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ImageOverlay(
-    size: Size = Size(500f, 500f),
-    offset: Offset = Offset(0f, 0f),
+    size: Size = Rect(-100f, -100f, 100f, 100f).size,
+    offset: Offset = Offset(300f, 400f),
 ) {
     Canvas(Modifier.fillMaxSize()) {
 //        with(this.drawContext.canvas.nativeCanvas) {}
@@ -94,7 +94,7 @@ fun DrawScope.drawCorner(size: Size, offset: Offset) {
         )
         drawLine(
             start = start,
-            end = start.transLateXY(0f, -50f),
+            end = start.transLateXY(0f, 50f),
             color = Color.White,
             strokeWidth = 3f,
         )

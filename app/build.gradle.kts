@@ -96,7 +96,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation("androidx.graphics:graphics-shapes:1.0.0-alpha03")
+    implementation(libs.androidx.compose.shape)
     // Compose
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)

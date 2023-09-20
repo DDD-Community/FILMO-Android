@@ -1,26 +1,41 @@
 package com.ddd.filmo.ui.cropify
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 
 @SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
-fun Cropify(modifier: Modifier = Modifier) {
+fun Cropify(
+    uri: Uri,
+    modifier: Modifier = Modifier,
+    onFailedToLoadImage: (Throwable) -> Unit,
+) {
+    var sampledImageBitmap by remember(uri) { mutableStateOf<SampledImageBitmap?>(null) }
+
     val density = LocalDensity.current
+    val context = LocalContext.current
     var state = rememberCropifyState()
-//    val frameSize = Size(500f, 500f)
     var touchRegion = remember<TouchRegion?> { null }
 
     BoxWithConstraints(
@@ -55,8 +70,35 @@ fun Cropify(modifier: Modifier = Modifier) {
             )
         },
     ) {
+        LaunchedEffect(uri) {
+            try {
+                sampledImageBitmap = loadSampledBitmap(
+                    context,
+                    uri,
+                    constraints.run { IntSize(maxWidth, maxHeight) },
+                )
+                state.loadedUri = uri
+                state.inSampleSize = requireNotNull(sampledImageBitmap).inSampleSize
+
+                // uri가 바뀔때 재계산
+                val canvasSize =
+                    Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
+                state.imageRect =
+                    calculateImagePosition(sampledImageBitmap!!.imageBitmap, canvasSize)
+            } catch (throwable: Throwable) {
+                sampledImageBitmap = null
+                onFailedToLoadImage(throwable)
+            }
+        }
         ImageOverlay(state.frameRect.size, state.frameRect.topLeft)
-//        ImageCanvas()
+        if (sampledImageBitmap != null) {
+            ImageCanvas(
+                modifier = Modifier.matchParentSize(),
+                bitmap = sampledImageBitmap!!.imageBitmap,
+                offset = state.imageRect.topLeft,
+                size = state.imageRect.size,
+            )
+        }
     }
 }
 
@@ -95,8 +137,32 @@ internal fun detectTouchRegion(
     }
 }
 
+internal fun calculateImagePosition(bitmap: ImageBitmap, canvasSize: Size): Rect {
+    val imageSize = calculateImageSize(bitmap, canvasSize)
+    return Rect(
+        Offset(
+            (canvasSize.width - imageSize.width) / 2,
+            (canvasSize.height - imageSize.height) / 2,
+        ),
+        imageSize,
+    )
+}
+
+internal fun calculateImageSize(bitmap: ImageBitmap, canvasSize: Size): Size {
+    val newSize = Size(canvasSize.width, canvasSize.width * bitmap.height / bitmap.width.toFloat())
+    return if (newSize.height > canvasSize.height) {
+        (canvasSize.height / newSize.height).let { Size(newSize.width * it, newSize.height * it) }
+    } else {
+        newSize
+    }
+}
+
 @Preview
 @Composable
 fun CropifySamplePreview() {
-    Cropify(modifier = Modifier.background(Color.Black))
+    Cropify(
+        uri = Uri.parse("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhmZXqPj6FgycyoV1cKh502RRGouDtO65SQ&usqp=CAU"),
+        modifier = Modifier.background(Color.Black),
+        onFailedToLoadImage = {}
+    )
 }

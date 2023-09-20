@@ -65,3 +65,6 @@ include(":feature-film:presentation")
 include(":feature-film:domain")
 include(":feature-film:data")
 
+include(":feature-movie:presentation")
+include(":feature-movie:domain")
+include(":feature-movie:data")

@@ -18,6 +18,7 @@
 plugins {
     id("filmo.android.library")
     id("filmo.android.hilt")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -37,4 +38,9 @@ android {
 dependencies {
 
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.loggingInterceptor)
+    implementation(libs.retrofit)
+    implementation(libs.serializationConverter)
 }

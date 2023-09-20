@@ -25,6 +25,7 @@ class DataConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("filmo.android.library")
                 apply("filmo.android.hilt")
+//                apply("org.jetbrains.kotlin.plugin.serialization")
             }
             dependencies {
                 add("implementation", project(":core-model"))
