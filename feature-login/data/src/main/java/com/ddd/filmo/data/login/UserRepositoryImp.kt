@@ -3,6 +3,7 @@ package com.ddd.filmo.data.login
 import com.ddd.filmo.data.login.remote.UserRemoteDataSource
 import com.ddd.filmo.login.domain.repository.UserRepository
 import com.ddd.filmo.model.User
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,11 +16,12 @@ import javax.inject.Inject
 
 class UserRepositoryImp @Inject constructor(
     private val userRemoteDataSource: UserRemoteDataSource,
+    coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UserRepository {
     val _currentUser: MutableStateFlow<User?> = MutableStateFlow(null)
     override val currentUser: StateFlow<User?> = _currentUser
     init {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(coroutineDispatcher).launch {
             fetchUser()
         }
     }
