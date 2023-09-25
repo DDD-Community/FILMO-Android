@@ -1,5 +1,7 @@
 package com.ddd.filmo.data.login
 
+import com.ddd.filmo.core.util.IoDispatcher
+import com.ddd.filmo.core.util.MainDispatcher
 import com.ddd.filmo.data.login.remote.UserRemoteDataSource
 import com.ddd.filmo.login.domain.repository.UserRepository
 import com.ddd.filmo.model.User
@@ -16,10 +18,11 @@ import javax.inject.Inject
 
 class UserRepositoryImp @Inject constructor(
     private val userRemoteDataSource: UserRemoteDataSource,
-    coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    @IoDispatcher private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UserRepository {
     val _currentUser: MutableStateFlow<User?> = MutableStateFlow(null)
     override val currentUser: StateFlow<User?> = _currentUser
+
     init {
         CoroutineScope(coroutineDispatcher).launch {
             fetchUser()
@@ -38,11 +41,11 @@ class UserRepositoryImp @Inject constructor(
 
     override suspend fun isExitUser(userId: String): Flow<Boolean> = flow {
         emit(userRemoteDataSource.isExitUser(userId))
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(coroutineDispatcher)
 
     override fun saveUser(user: User): Flow<Boolean> = flow {
         emit(userRemoteDataSource.saveUser(user))
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(coroutineDispatcher)
 
     override fun deleteUser(): Boolean {
         TODO("Not yet implemented")

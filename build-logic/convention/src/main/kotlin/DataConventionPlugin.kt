@@ -29,6 +29,7 @@ class DataConventionPlugin : Plugin<Project> {
             }
             dependencies {
                 add("implementation", project(":core-model"))
+                add("implementation", project(":core-util"))
                 "implementation"(libs.findLibrary("firebase.firestore.ktx").get())
             }
         }

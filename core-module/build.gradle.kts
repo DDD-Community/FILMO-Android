@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":feature-login:data"))
     implementation(project(":feature-login:domain"))
     implementation(project(":core-network"))
+    implementation(project(":core-util"))
     testImplementation(libs.junit)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.retrofit)

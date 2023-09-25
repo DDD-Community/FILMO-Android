@@ -20,6 +20,8 @@ plugins {
     id("filmo.android.application.compose")
     id("filmo.android.hilt")
     id("filmo.android.application.firebase")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.androidx.baselineprofile)
 }
 
 android {
@@ -88,6 +90,8 @@ dependencies {
     implementation(project(":core-module"))
     implementation(project(mapOf("path" to ":feature-login:domain")))
     implementation(project(mapOf("path" to ":feature-film:domain")))
+    implementation(libs.profileinstaller)
+    "baselineProfile"(project(":app:baselineprofile"))
     kapt(libs.hilt.compiler)
 
     // Arch Components

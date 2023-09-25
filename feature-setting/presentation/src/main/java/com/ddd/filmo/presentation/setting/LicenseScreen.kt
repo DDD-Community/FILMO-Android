@@ -19,15 +19,15 @@ import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 
 @Composable
-fun LicenseScreenRoute(navigateToBack : () -> Unit = {}){
+fun LicenseScreenRoute(navigateToBack: () -> Unit = {}) {
     LicenseScreen(
-        onBackButtonClicked = navigateToBack
+        onBackButtonClicked = navigateToBack,
 
     )
 }
 
 @Composable
-fun LicenseScreen(onBackButtonClicked : () -> Unit = {}) {
+fun LicenseScreen(onBackButtonClicked: () -> Unit = {}) {
     Column(
         Modifier
             .fillMaxSize()
