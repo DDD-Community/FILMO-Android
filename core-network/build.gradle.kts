@@ -19,6 +19,7 @@ plugins {
     id("filmo.android.library")
     id("filmo.android.hilt")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -43,4 +44,15 @@ dependencies {
     implementation(libs.okhttp.loggingInterceptor)
     implementation(libs.retrofit)
     implementation(libs.serializationConverter)
+    implementation(libs.retrofit.serializationConverter)
+
+    // Junit5
+    testImplementation(libs.junit)
+    testImplementation(libs.junit5.api)
+    testRuntimeOnly(libs.junit5.engine)
+    testRuntimeOnly(libs.junit5.vintage)
+
+    // Test
+    implementation(libs.okhttp.mockserver)
+    testImplementation(libs.androidx.arch.core)
 }

@@ -1,5 +1,6 @@
 package com.ddd.filmo.network
 
+import com.ddd.filmo.network.model.MovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,5 +11,5 @@ interface KmdbAPI {
         @Query("ServiceKey") serviceKey: String = "",
         @Query("listCount") listCount: Int = 10,
         @Query("query") query: String? = null,
-    )
+    ): MovieResponse
 }

@@ -30,7 +30,12 @@ class DataConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", project(":core-model"))
                 add("implementation", project(":core-util"))
+                add("implementation", project(":core-network"))
                 "implementation"(libs.findLibrary("firebase.firestore.ktx").get())
+                "testImplementation"(libs.findLibrary("junit").get())
+                "testImplementation"(libs.findLibrary("junit5.api").get())
+                "testRuntimeOnly"(libs.findLibrary("junit5.engine").get())
+                "testRuntimeOnly"(libs.findLibrary("junit5.vintage").get())
             }
         }
     }

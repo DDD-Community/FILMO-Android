@@ -1,4 +1,4 @@
-package com.ddd.filmo.data.movie.model
+package com.ddd.filmo.network.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
