@@ -1,10 +1,12 @@
 package com.ddd.filmo.model
 
+import com.ddd.filmo.mapper.typemarker.DomainModel
+
 data class Movie(
     val title: String = "",
     val releaseYear: Int = 0,
     val posterImageUrl: String = "",
-) {
+) : DomainModel {
     companion object {
         val mock = Movie(
             title = "노트북",

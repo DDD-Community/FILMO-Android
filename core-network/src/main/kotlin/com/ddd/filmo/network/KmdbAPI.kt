@@ -11,5 +11,5 @@ interface KmdbAPI {
         @Query("ServiceKey") serviceKey: String = "",
         @Query("listCount") listCount: Int = 10,
         @Query("query") query: String? = null,
-    ): MovieResponse
+    ): List<MovieResponse>
 }

@@ -7,6 +7,5 @@ import javax.inject.Inject
 class MovieRepositoryImp @Inject constructor(
     private val movieRemoteDataSource: MovieRemoteDataSource,
 ) : MovieRepository {
-    override suspend fun fetchMovieList() {
-    }
+    override suspend fun fetchMovieList() = movieRemoteDataSource.fetchMovieList()
 }

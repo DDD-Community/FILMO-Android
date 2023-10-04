@@ -1,21 +1,23 @@
 package com.ddd.filmo.data.scene.remote
 
-import com.ddd.filmo.model.Movie
 import com.ddd.filmo.data.scene.model.SceneResponse
+import com.ddd.filmo.model.Movie
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import java.util.Date
 import javax.inject.Inject
 
-
 interface SceneRemoteDataSource {
     suspend fun getScene(): SceneResponse
     suspend fun createScene(
         userId: String = "117111581200385730511",
-        filmId: String,sceneText: String, sceneRate: Float, movieTitle: String, imageUrl: String
+        filmId: String,
+        sceneText: String,
+        sceneRate: Float,
+        movieTitle: String,
+        imageUrl: String,
     )
-
 }
 
 class SceneRemoteDataSourceImpl @Inject constructor(
@@ -38,7 +40,7 @@ class SceneRemoteDataSourceImpl @Inject constructor(
             sceneRate = sceneRate,
             movie = Movie(movieTitle, 0, ""),
             createdAt = Date(),
-            imageUrl = imageUrl
+            imageUrl = imageUrl,
         )
         firebaseDB.collection("User")
             .document(userId)
@@ -46,6 +48,5 @@ class SceneRemoteDataSourceImpl @Inject constructor(
             .document(filmId)
             .update("scenes", FieldValue.arrayUnion(scene))
             .await()
-
     }
 }

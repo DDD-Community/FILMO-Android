@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core-model"))
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.retrofit)
     implementation(libs.okhttp)

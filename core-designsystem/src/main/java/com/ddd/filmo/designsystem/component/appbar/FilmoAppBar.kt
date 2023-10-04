@@ -22,7 +22,7 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 fun FilmoAppBar(
     modifier: Modifier = Modifier,
     actions: @Composable (RowScope.() -> Unit)?,
-    navigationIcon: @Composable () -> Unit,
+    navigationIcon: @Composable () -> Unit = {},
     title: String = "",
 ) {
     TopAppBar(
