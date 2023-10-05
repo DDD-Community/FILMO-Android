@@ -1,5 +1,6 @@
 package com.ddd.filmo.presentation.movie
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
@@ -9,10 +10,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,10 +52,24 @@ fun SearchMovieScreen(movieList: List<Movie>? = null) {
         LazyColumn {
             if (movieList.isNullOrEmpty()) {
                 item {
-                    Text(text = "영화 제목으로 검색해 보세요.")
+                    Box(modifier = Modifier.fillParentMaxSize()) {
+                        Text(
+                            modifier = Modifier.align(Alignment.Center),
+                            text = "영화 제목으로 검색해 보세요.",
+                            style = TextStyle(
+                                fontSize = 20.sp,
+                                lineHeight = 28.sp,
+                                fontFamily = FilmoFamily,
+                                fontWeight = FontWeight(500),
+                                color = FilmoColor.txt_02,
+                                textAlign = TextAlign.Center,
+                            ),
+                        )
+                    }
                 }
             } else {
                 items(movieList) {
+                    MovieItem(movie = it)
                 }
             }
         }
@@ -77,7 +94,7 @@ fun MovieItem(movie: Movie) {
                     fontWeight = FontWeight(500),
                     color = FilmoColor.txt_01,
                     letterSpacing = 0.14.sp,
-                )
+                ),
             )
             Text(
                 text = movie.releaseYear.toString(),
@@ -88,7 +105,7 @@ fun MovieItem(movie: Movie) {
                     fontWeight = FontWeight(400),
                     color = FilmoColor.txt_02,
                     letterSpacing = 0.12.sp,
-                )
+                ),
             )
         }
     }

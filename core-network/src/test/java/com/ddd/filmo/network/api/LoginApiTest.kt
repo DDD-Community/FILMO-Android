@@ -23,7 +23,7 @@ class LoginApiTest : ApiAbstract<KmdbAPI>() {
     inner class LoginDataSuccess {
         @BeforeEach
         fun setup() {
-            enqueueResponse("/login/LoginResponse.json")
+            enqueueResponse("/MovieResponse.json")
         }
 
         @OptIn(ExperimentalCoroutinesApi::class)

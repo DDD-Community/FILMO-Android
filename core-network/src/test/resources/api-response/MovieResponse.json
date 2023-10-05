@@ -1,0 +1,2998 @@
+{
+  "Query": "",
+  "KMAQuery": "",
+  "TotalCount": 102490,
+  "Data": [
+    {
+      "CollName": "kmdb_new2",
+      "TotalCount": 102490,
+      "Count": 10,
+      "Result": [
+        {
+          "DOCID": "F00142",
+          "movieId": "F",
+          "movieSeq": "00142",
+          "title": " 여호",
+          "titleEng": "Gone to Earth",
+          "titleOrg": "Gone to Earth",
+          "titleEtc": "여호^Gone to Earth^여호^Gone to Earth^Gone to Earth^귀향",
+          "prodYear": "1950",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "마이클 파웰",
+                "directorEnNm": "Michael Powell",
+                "directorId": "00102798"
+              },
+              {
+                "directorNm": "에머릭 프레스버거",
+                "directorEnNm": "Emeric Pressburger",
+                "directorId": "00069726"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "제니퍼 존스",
+                "actorEnNm": "Jennifer Jones",
+                "actorId": "00049445"
+              },
+              {
+                "actorNm": "데이빗 파라",
+                "actorEnNm": "David Farrar",
+                "actorId": "00065653"
+              },
+              {
+                "actorNm": "시릴 쿠삭",
+                "actorEnNm": "Cyril Cusack",
+                "actorId": "00064203"
+              },
+              {
+                "actorNm": "시빌 손디크",
+                "actorEnNm": "Sybil Thorndike",
+                "actorId": "00118424"
+              },
+              {
+                "actorNm": "에드워드 채프만",
+                "actorEnNm": "Edward Chapman",
+                "actorId": "00150945"
+              },
+              {
+                "actorNm": "에스몬드 나이트",
+                "actorEnNm": "Esmond Knight",
+                "actorId": "00070587"
+              },
+              {
+                "actorNm": "휴 그리피스",
+                "actorEnNm": "Hugh Griffith",
+                "actorId": "00084115"
+              }
+            ]
+          },
+          "nation": "영국",
+          "company": "Vanguard Films,London Film Productions",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "헤이젤은 모든 살아있는 생물을 사랑하는 순진한 시골소녀이다. 특히 애완동물 여우를 좋아한다. 그러나 여우를 사냥하는 시골의 대지주인 잭은 그녀를 갈망한다. 그녀가 지방의 목사와 결혼한 후에도 그의 끊임없는 애정구애는 멈추질 않는다."
+              }
+            ]
+          },
+          "runtime": "110",
+          "rating": "",
+          "genre": "드라마",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/00142",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "",
+          "repRatDate": "",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "",
+                "ratingNo": "",
+                "ratingGrade": "",
+                "releaseDate": "",
+                "runtime": "110"
+              }
+            ]
+          },
+          "keywords": "짚시,여우,삼각관계",
+          "posters": "",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "마이클 파웰",
+                "staffEnNm": "Michael Powell",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00102798"
+              },
+              {
+                "staffNm": "에머릭 프레스버거",
+                "staffEnNm": "Emeric Pressburger",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00069726"
+              },
+              {
+                "staffNm": "마이클 파웰",
+                "staffEnNm": "Michael Powell",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00102798"
+              },
+              {
+                "staffNm": "에머릭 프레스버거",
+                "staffEnNm": "Emeric Pressburger",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00069726"
+              },
+              {
+                "staffNm": "제니퍼 존스",
+                "staffEnNm": "Jennifer Jones",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049445"
+              },
+              {
+                "staffNm": "데이빗 파라",
+                "staffEnNm": "David Farrar",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00065653"
+              },
+              {
+                "staffNm": "시릴 쿠삭",
+                "staffEnNm": "Cyril Cusack",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00064203"
+              },
+              {
+                "staffNm": "시빌 손디크",
+                "staffEnNm": "Sybil Thorndike",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00118424"
+              },
+              {
+                "staffNm": "에드워드 채프만",
+                "staffEnNm": "Edward Chapman",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00150945"
+              },
+              {
+                "staffNm": "에스몬드 나이트",
+                "staffEnNm": "Esmond Knight",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00070587"
+              },
+              {
+                "staffNm": "휴 그리피스",
+                "staffEnNm": "Hugh Griffith",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00084115"
+              },
+              {
+                "staffNm": "마이클 파웰",
+                "staffEnNm": "Michael Powell",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00102798"
+              },
+              {
+                "staffNm": "에머릭 프레스버거",
+                "staffEnNm": "Emeric Pressburger",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00069726"
+              },
+              {
+                "staffNm": "크리스토퍼 찰리스",
+                "staffEnNm": "Christopher Challis",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00062722"
+              },
+              {
+                "staffNm": "레지날드 밀스",
+                "staffEnNm": "Reginald Mills",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00110870"
+              },
+              {
+                "staffNm": "브라이언 에스데일",
+                "staffEnNm": "Brian Easdale",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00150990"
+              },
+              {
+                "staffNm": "헤인 헤크로스",
+                "staffEnNm": "Hein Heckroth",
+                "staffRoleGroup": "미술",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00076239"
+              },
+              {
+                "staffNm": "Vanguard Films",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "London Film Productions",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "19000101",
+          "modDate": "20211007",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20129074"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20129074"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "F50460",
+          "movieId": "F",
+          "movieSeq": "50460",
+          "title": " 학교는 끝났다",
+          "titleEng": "School’s Out",
+          "titleOrg": "L'heure de la sortie",
+          "titleEtc": "학교는끝났다^학교는 끝났다^L'heure de la sortie^School’s Out^르흐드라소티",
+          "prodYear": "2018",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "세바스티앙 마르니에르",
+                "directorEnNm": "Sebastien Marnier",
+                "directorId": "00210700"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "로렌트 라피트",
+                "actorEnNm": "Laurent Lafitte",
+                "actorId": "00095872"
+              },
+              {
+                "actorNm": "엠마누엘 베르코",
+                "actorEnNm": "Emmanuelle Bercot",
+                "actorId": "00164396"
+              },
+              {
+                "actorNm": "파스칼 그레고리",
+                "actorEnNm": "Pascal Greggory",
+                "actorId": "00107057"
+              },
+              {
+                "actorNm": "그레고리 몬텔",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "루아나 바야미",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "토마 시메카",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "안느 루아레",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "프랑스",
+          "company": "Avenue B Productions,셀룰로이드",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "갑작스레 담임이 창밖으로 투신한 후 대체교사로 영재반을 맡게 된 피에르 호프만. 영재들 중 6명은 비극에도 불구하고 너무나 차분하다. 우연히 폭력적인 극기 훈련을 하며 촬영을 하는 그들을 목격한 피에르는 이들의 비밀스러운 계획을 쫓아가고 점차 악몽에 시달리는데…"
+              }
+            ]
+          },
+          "runtime": "103",
+          "rating": "15세관람가",
+          "genre": "스릴러",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/50460",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20200706",
+          "repRlsDate": "20200923",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "20200706",
+                "ratingNo": "2020-MF01521",
+                "ratingGrade": "15세관람가",
+                "releaseDate": "20200923",
+                "runtime": "103"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "http://file.koreafilm.or.kr/thm/02/99/17/07/tn_DPF021253.jpg|http://file.koreafilm.or.kr/thm/02/00/05/44/tn_DPF019868.jpg",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682428.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682429.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682430.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682431.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "세바스티앙 마르니에르",
+                "staffEnNm": "Sebastien Marnier",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00210700"
+              },
+              {
+                "staffNm": "세바스티앙 마르니에르",
+                "staffEnNm": "Sebastien Marnier",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00210700"
+              },
+              {
+                "staffNm": "엘리스 그리퐁",
+                "staffEnNm": "",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "로렌트 라피트",
+                "staffEnNm": "Laurent Lafitte",
+                "staffRoleGroup": "출연",
+                "staffRole": "피에르",
+                "staffEtc": "",
+                "staffId": "00095872"
+              },
+              {
+                "staffNm": "엠마누엘 베르코",
+                "staffEnNm": "Emmanuelle Bercot",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00164396"
+              },
+              {
+                "staffNm": "파스칼 그레고리",
+                "staffEnNm": "Pascal Greggory",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00107057"
+              },
+              {
+                "staffNm": "그레고리 몬텔",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "루아나 바야미",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "토마 시메카",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "안느 루아레",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "캐롤라인 본마찬드",
+                "staffEnNm": "Caroline Bonmarchand",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00155655"
+              },
+              {
+                "staffNm": "로맹 카르카나드",
+                "staffEnNm": "",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "이자벨 만퀼렛",
+                "staffEnNm": "",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "Avenue B Productions",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "셀룰로이드",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "주식회사 플릭스코",
+                "staffEnNm": "",
+                "staffRoleGroup": "투자사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "주식회사 플릭스코",
+                "staffEnNm": "",
+                "staffRoleGroup": "배급사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "시체스 국제판타스틱 영화제(2018) : 오피셜 판타스틱-특별언급 - 세바스티앙 마르니에르",
+          "Awards2": "",
+          "regDate": "20200110",
+          "modDate": "20220705",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20207255"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20207255"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "K01284",
+          "movieId": "K",
+          "movieSeq": "01284",
+          "title": " 계룡산",
+          "titleEng": "Mountain Gyeryong ( Gyeryongsan )",
+          "titleOrg": "",
+          "titleEtc": "계룡산^계룡산^Mountain Gyeryong ( Gyeryongsan )",
+          "prodYear": "1966",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "이강천",
+                "directorEnNm": "Lee Kang-cheon",
+                "directorId": "00004555"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "김혜정",
+                "actorEnNm": "Kim Hye-jeong",
+                "actorId": "00005101"
+              },
+              {
+                "actorNm": "허장강",
+                "actorEnNm": "Heo Chang-kang",
+                "actorId": "00004261"
+              },
+              {
+                "actorNm": "최남현",
+                "actorEnNm": "Choi Nam-Hyun",
+                "actorId": "00004504"
+              },
+              {
+                "actorNm": "옥상미",
+                "actorEnNm": "Ok Sang-mi",
+                "actorId": "00006132"
+              },
+              {
+                "actorNm": "전양자",
+                "actorEnNm": "Jeon Yang-ja",
+                "actorId": "00004270"
+              },
+              {
+                "actorNm": "주향미",
+                "actorEnNm": "Ju Hyang-mi",
+                "actorId": "00006089"
+              },
+              {
+                "actorNm": "이낙훈",
+                "actorEnNm": "Lee Nak-hoon",
+                "actorId": "00004060"
+              },
+              {
+                "actorNm": "최명수",
+                "actorEnNm": "Choi Myung-soo",
+                "actorId": "00000030"
+              },
+              {
+                "actorNm": "주선태",
+                "actorEnNm": "Joo Sun-tae",
+                "actorId": "00004486"
+              },
+              {
+                "actorNm": "김정옥",
+                "actorEnNm": "Kim Jeong-ok",
+                "actorId": "00005047"
+              },
+              {
+                "actorNm": "박옥초",
+                "actorEnNm": "Park Ok-cho",
+                "actorId": "00004816"
+              },
+              {
+                "actorNm": "석귀녀",
+                "actorEnNm": "Seok Gwi-nyeo",
+                "actorId": "00005891"
+              },
+              {
+                "actorNm": "김옥경",
+                "actorEnNm": "Kim Ok-gyeong",
+                "actorId": "00003977"
+              },
+              {
+                "actorNm": "박예숙",
+                "actorEnNm": "Bark Yae-sook",
+                "actorId": "00000659"
+              },
+              {
+                "actorNm": "김지영",
+                "actorEnNm": "Kim Jee-young",
+                "actorId": "00000279"
+              },
+              {
+                "actorNm": "조항",
+                "actorEnNm": "Jo Hang",
+                "actorId": "00004751"
+              },
+              {
+                "actorNm": "지방열",
+                "actorEnNm": "Ji Bang-yeol",
+                "actorId": "00005082"
+              },
+              {
+                "actorNm": "이동민",
+                "actorEnNm": "Lee Dong-min",
+                "actorId": "00005130"
+              },
+              {
+                "actorNm": "박순봉",
+                "actorEnNm": "Park Sun-bong",
+                "actorId": "00005073"
+              },
+              {
+                "actorNm": "양일민",
+                "actorEnNm": "Yang Il-min",
+                "actorId": "00000925"
+              },
+              {
+                "actorNm": "박상익",
+                "actorEnNm": "Park Sang-ik",
+                "actorId": "00005150"
+              },
+              {
+                "actorNm": "강계식",
+                "actorEnNm": "Kang Kye-shik",
+                "actorId": "00000511"
+              },
+              {
+                "actorNm": "최성호",
+                "actorEnNm": "Choe Seong-ho",
+                "actorId": "00004893"
+              },
+              {
+                "actorNm": "주일몽",
+                "actorEnNm": "Ju Il-mong",
+                "actorId": "00000108"
+              },
+              {
+                "actorNm": "손전",
+                "actorEnNm": "Son Jun",
+                "actorId": "00000382"
+              },
+              {
+                "actorNm": "김신명",
+                "actorEnNm": "Kim Sin-myeong",
+                "actorId": "00000758"
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "세기상사주식회사",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "이조 말엽, 계룡산 일대에는 사이비 종교가 범람한다. 우매한 백성들은 내세의 영화를 위해 현세에서의 고난을 인내하고 살아간다. 이를 이용한 교주 강필운(최남현)은 신도들을 무자비하게 착취하고, 한편으로는 여인들을 농락하며 향락을 일삼는다. 교주의 환심을 사기위해 봉칠(주선태)은 자신의 딸 분이(전양자)를 교주에게 바치고, 이를 시기한 사황서(허장강)는 자신의 누이동생 나선(김혜정)을 필운의 애첩으로 만들어 2대 교주에 오른다. 분이를 사모했던 머슴 떡바위는 사이비 종교의 전당인 신단을 불을 지르고 분이를 구해낸다."
+              },
+              {
+                "plotLang": "영어",
+                "plotText": "At the end of the Joseon Dynasty (1392-1910), there were lots of pseudo-religions around the Gyeryong Mountain area. Ignorant people endure all the labors and toil in this world for their well-being in the afterlife. Taking advantage of this people's mind-set, the head of the pseudo-sect exploits the people mercilessly and at the same time enjoys sensual pleasures by sexually harassing women followers. Enraged at their abominable acts, a rightful young man divulges the true picture of them to the world and burns the sanctuary of the pseudo-religion."
+              }
+            ]
+          },
+          "runtime": "118",
+          "rating": "미성년자관람불가",
+          "genre": "시대극/사극",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/K/01284",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "19660122",
+          "repRlsDate": "19660218",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "19660122",
+                "ratingNo": "방제3797호",
+                "ratingGrade": "미성년자관람불가",
+                "releaseDate": "19660218",
+                "runtime": "118"
+              }
+            ]
+          },
+          "keywords": "사이비종교,종교,이조말엽,조선시대,사이비교주,이조시대,흑백시네마스코프,신문연재소설원작,한국소설원작,미신",
+          "posters": "http://file.koreafilm.or.kr/thm/02/00/02/28/tn_DPK007147.JPG",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "이강천",
+                "staffEnNm": "Lee Kang-cheon",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004555"
+              },
+              {
+                "staffNm": "박용구",
+                "staffEnNm": "Park Yong-gu",
+                "staffRoleGroup": "원작",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00036169"
+              },
+              {
+                "staffNm": "이진섭",
+                "staffEnNm": "Lee Jin-seop",
+                "staffRoleGroup": "각색",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004978"
+              },
+              {
+                "staffNm": "김혜정",
+                "staffEnNm": "Kim Hye-jeong",
+                "staffRoleGroup": "출연",
+                "staffRole": "나선(교주의 애첩)",
+                "staffEtc": "",
+                "staffId": "00005101"
+              },
+              {
+                "staffNm": "허장강",
+                "staffEnNm": "Heo Chang-kang",
+                "staffRoleGroup": "출연",
+                "staffRole": "사황서(나선의 오빠, 2대 교주)",
+                "staffEtc": "",
+                "staffId": "00004261"
+              },
+              {
+                "staffNm": "최남현",
+                "staffEnNm": "Choi Nam-Hyun",
+                "staffRoleGroup": "출연",
+                "staffRole": "강필운(상상교 교주)",
+                "staffEtc": "",
+                "staffId": "00004504"
+              },
+              {
+                "staffNm": "옥상미",
+                "staffEnNm": "Ok Sang-mi",
+                "staffRoleGroup": "출연",
+                "staffRole": "삼례(분이의 몸종)",
+                "staffEtc": "",
+                "staffId": "00006132"
+              },
+              {
+                "staffNm": "전양자",
+                "staffEnNm": "Jeon Yang-ja",
+                "staffRoleGroup": "출연",
+                "staffRole": "분이(봉칠에 딸, 교주에게 몸을 바침)",
+                "staffEtc": "",
+                "staffId": "00004270"
+              },
+              {
+                "staffNm": "주향미",
+                "staffEnNm": "Ju Hyang-mi",
+                "staffRoleGroup": "출연",
+                "staffRole": "보경",
+                "staffEtc": "",
+                "staffId": "00006089"
+              },
+              {
+                "staffNm": "이낙훈",
+                "staffEnNm": "Lee Nak-hoon",
+                "staffRoleGroup": "출연",
+                "staffRole": "떡바우(머슴)",
+                "staffEtc": "",
+                "staffId": "00004060"
+              },
+              {
+                "staffNm": "최명수",
+                "staffEnNm": "Choi Myung-soo",
+                "staffRoleGroup": "출연",
+                "staffRole": "정명호(우국청년)",
+                "staffEtc": "",
+                "staffId": "00000030"
+              },
+              {
+                "staffNm": "주선태",
+                "staffEnNm": "Joo Sun-tae",
+                "staffRoleGroup": "출연",
+                "staffRole": "김봉칠(분이 부)",
+                "staffEtc": "",
+                "staffId": "00004486"
+              },
+              {
+                "staffNm": "김정옥",
+                "staffEnNm": "Kim Jeong-ok",
+                "staffRoleGroup": "출연",
+                "staffRole": "분이 모",
+                "staffEtc": "",
+                "staffId": "00005047"
+              },
+              {
+                "staffNm": "박옥초",
+                "staffEnNm": "Park Ok-cho",
+                "staffRoleGroup": "출연",
+                "staffRole": "옥순(신도)",
+                "staffEtc": "",
+                "staffId": "00004816"
+              },
+              {
+                "staffNm": "석귀녀",
+                "staffEnNm": "Seok Gwi-nyeo",
+                "staffRoleGroup": "출연",
+                "staffRole": "금녀(신도)",
+                "staffEtc": "",
+                "staffId": "00005891"
+              },
+              {
+                "staffNm": "김옥경",
+                "staffEnNm": "Kim Ok-gyeong",
+                "staffRoleGroup": "출연",
+                "staffRole": "동리 부인(신도)",
+                "staffEtc": "",
+                "staffId": "00003977"
+              },
+              {
+                "staffNm": "박예숙",
+                "staffEnNm": "Bark Yae-sook",
+                "staffRoleGroup": "출연",
+                "staffRole": "동리 부인(신도)",
+                "staffEtc": "",
+                "staffId": "00000659"
+              },
+              {
+                "staffNm": "김지영",
+                "staffEnNm": "Kim Jee-young",
+                "staffRoleGroup": "출연",
+                "staffRole": "동리 부인(신도)",
+                "staffEtc": "",
+                "staffId": "00000279"
+              },
+              {
+                "staffNm": "조항",
+                "staffEnNm": "Jo Hang",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004751"
+              },
+              {
+                "staffNm": "지방열",
+                "staffEnNm": "Ji Bang-yeol",
+                "staffRoleGroup": "출연",
+                "staffRole": "동민",
+                "staffEtc": "",
+                "staffId": "00005082"
+              },
+              {
+                "staffNm": "이동민",
+                "staffEnNm": "Lee Dong-min",
+                "staffRoleGroup": "출연",
+                "staffRole": "왜경 통역",
+                "staffEtc": "",
+                "staffId": "00005130"
+              },
+              {
+                "staffNm": "박순봉",
+                "staffEnNm": "Park Sun-bong",
+                "staffRoleGroup": "출연",
+                "staffRole": "혹뿌리",
+                "staffEtc": "",
+                "staffId": "00005073"
+              },
+              {
+                "staffNm": "양일민",
+                "staffEnNm": "Yang Il-min",
+                "staffRoleGroup": "출연",
+                "staffRole": "왜경",
+                "staffEtc": "",
+                "staffId": "00000925"
+              },
+              {
+                "staffNm": "박상익",
+                "staffEnNm": "Park Sang-ik",
+                "staffRoleGroup": "출연",
+                "staffRole": "박노인",
+                "staffEtc": "",
+                "staffId": "00005150"
+              },
+              {
+                "staffNm": "강계식",
+                "staffEnNm": "Kang Kye-shik",
+                "staffRoleGroup": "출연",
+                "staffRole": "이한학",
+                "staffEtc": "",
+                "staffId": "00000511"
+              },
+              {
+                "staffNm": "최성호",
+                "staffEnNm": "Choe Seong-ho",
+                "staffRoleGroup": "출연",
+                "staffRole": "태근(나선의 정부)",
+                "staffEtc": "",
+                "staffId": "00004893"
+              },
+              {
+                "staffNm": "주일몽",
+                "staffEnNm": "Ju Il-mong",
+                "staffRoleGroup": "출연",
+                "staffRole": "신도",
+                "staffEtc": "",
+                "staffId": "00000108"
+              },
+              {
+                "staffNm": "손전",
+                "staffEnNm": "Son Jun",
+                "staffRoleGroup": "출연",
+                "staffRole": "동민",
+                "staffEtc": "",
+                "staffId": "00000382"
+              },
+              {
+                "staffNm": "김신명",
+                "staffEnNm": "Kim Sin-myeong",
+                "staffRoleGroup": "출연",
+                "staffRole": "주모",
+                "staffEtc": "",
+                "staffId": "00000758"
+              },
+              {
+                "staffNm": "우기동",
+                "staffEnNm": "U Gi-dong",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004681"
+              },
+              {
+                "staffNm": "조규진",
+                "staffEnNm": "Jo Gyu-jin",
+                "staffRoleGroup": "기획",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004899"
+              },
+              {
+                "staffNm": "김학성",
+                "staffEnNm": "Kim Hak-seong",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004741"
+              },
+              {
+                "staffNm": "강용신",
+                "staffEnNm": "Gang Yong-sin",
+                "staffRoleGroup": "조명",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004693"
+              },
+              {
+                "staffNm": "양주남",
+                "staffEnNm": "Yang Ju-nam",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00001464"
+              },
+              {
+                "staffNm": "권영린",
+                "staffEnNm": "Gwon Yeong-rin",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00005654"
+              },
+              {
+                "staffNm": "정우택",
+                "staffEnNm": "Chung Woo-taek",
+                "staffRoleGroup": "미술",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00001950"
+              },
+              {
+                "staffNm": "이태성",
+                "staffEnNm": "Lee Tai-sung",
+                "staffRoleGroup": "스틸",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00001929"
+              },
+              {
+                "staffNm": "국일",
+                "staffEnNm": "",
+                "staffRoleGroup": "현상",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "세기상사주식회사",
+                "staffEnNm": "Se Ki Corporation",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "명보",
+          "stat": [
+            {
+              "screenArea": "n",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "n",
+          "screenCnt": "0",
+          "salesAcc": "0",
+          "audiAcc": "0",
+          "statSouce": "0",
+          "statDate": "0",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "",
+          "modDate": "20201212",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "",
+                "CodeNo": ""
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "",
+                "CodeNo": ""
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "K21725",
+          "movieId": "K",
+          "movieSeq": "21725",
+          "title": " 노가리",
+          "titleEng": "We Gon' Be Alright (No-ga-ri)",
+          "titleOrg": "",
+          "titleEtc": "노가리^We Gon' Be Alright (No-ga-ri)",
+          "prodYear": "2019",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "박민국",
+                "directorEnNm": "Park Minkook",
+                "directorId": "00205055"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "박민국",
+                "actorEnNm": "Park Minkook",
+                "actorId": "00205055"
+              },
+              {
+                "actorNm": "서진원",
+                "actorEnNm": "Jinwon SEO",
+                "actorId": "00205057"
+              },
+              {
+                "actorNm": "김은재",
+                "actorEnNm": "Kim Eunjae",
+                "actorId": "00205056"
+              },
+              {
+                "actorNm": "최현신",
+                "actorEnNm": "Choi Hyunshin",
+                "actorId": "00202637"
+              },
+              {
+                "actorNm": "임지호",
+                "actorEnNm": "Im Jeeho",
+                "actorId": "00218382"
+              },
+              {
+                "actorNm": "김우건",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "조건호",
+                "actorEnNm": "Jo Geonho",
+                "actorId": "00205060"
+              },
+              {
+                "actorNm": "정의욱",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "강인정",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "이영일",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "정현우",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "강인정",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "한나",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "임명숙",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "노가리필름",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "여자 하나, 남자 여섯. 각각의 직책 외에 영화 제작에 필요한 모든 역할을 서로 겸하는 자급자족 끝판왕 영화사 ‘노가리필름’. 그들에게 한 통의 전화가 걸려오고, 투자를 받을 수 있는 기적 같은 기회가 찾아온다."
+              },
+              {
+                "plotLang": "영어",
+                "plotText": "One woman and six men work for ‘Nogari Films’, a self-sufficient company. In addition to their respective positions, they play every role needed to make movies. One day, they get a phone call, and a miraculous opportunity to get an investment comes to them."
+              }
+            ]
+          },
+          "runtime": "115",
+          "rating": "12세관람가",
+          "genre": "드라마",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/K/21725",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20200622",
+          "repRlsDate": "20210331",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "20200622",
+                "ratingNo": "2020-MF01314",
+                "ratingGrade": "12세관람가",
+                "releaseDate": "20210331",
+                "runtime": "115"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "http://file.koreafilm.or.kr/thm/02/99/17/24/tn_DPK016918.jpg|http://file.koreafilm.or.kr/thm/02/99/17/23/tn_DPK016887.jpg",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683319.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683320.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683321.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683322.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683323.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/55/98/tn_DST710490.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/55/98/tn_DST710491.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/55/98/tn_DST710492.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/55/98/tn_DST710493.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/55/98/tn_DST710494.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "각색",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "출연",
+                "staffRole": "민국",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "출연",
+                "staffRole": "진원",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "출연",
+                "staffRole": "혜연",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "출연",
+                "staffRole": "현우",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "출연",
+                "staffRole": "지호",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "진영",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "출연",
+                "staffRole": "건호",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "정의욱",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "도훈",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "강인정",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "낯선 여성",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "이영일",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "팀장",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "정대리",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "강인정",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "벤치녀",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "한나",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "외국인",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "임명숙",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "진원모",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "투자자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "김학중",
+                "staffEnNm": "Kim Hak-joong",
+                "staffRoleGroup": "배급자",
+                "staffRole": "",
+                "staffEtc": "㈜드림팩트엔터테인먼트",
+                "staffId": "00149982"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "프로듀서",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "Jeong Hyeonu",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00222405"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "조명",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "박성환",
+                "staffEnNm": "",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "최현우",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "미술",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김진영",
+                "staffEnNm": "Kim Jin-young",
+                "staffRoleGroup": "미술",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00171044"
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "분장",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "박성환",
+                "staffEnNm": "",
+                "staffRoleGroup": "동시녹음",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "사운드(음향)",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "사운드(음향)",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "특수효과",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "특수효과",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "색보정",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "스크립터",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "제작부",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "제작부",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작부",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "제작부",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "촬영팀",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "촬영팀",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "촬영팀",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "박민국",
+                "staffEnNm": "Park Minkook",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "차량제공/장소제공/슬레이트",
+                "staffEtc": "",
+                "staffId": "00205055"
+              },
+              {
+                "staffNm": "정현우",
+                "staffEnNm": "",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "김은재",
+                "staffEnNm": "Kim Eunjae",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트/장소제공",
+                "staffEtc": "",
+                "staffId": "00205056"
+              },
+              {
+                "staffNm": "서진원",
+                "staffEnNm": "Jinwon SEO",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트/차량제공/장소제공",
+                "staffEtc": "",
+                "staffId": "00205057"
+              },
+              {
+                "staffNm": "임지호",
+                "staffEnNm": "Im Jeeho",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트",
+                "staffEtc": "",
+                "staffId": "00218382"
+              },
+              {
+                "staffNm": "최현신",
+                "staffEnNm": "Choi Hyunshin",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트",
+                "staffEtc": "",
+                "staffId": "00202637"
+              },
+              {
+                "staffNm": "김우건",
+                "staffEnNm": "",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "슬레이트",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "조건호",
+                "staffEnNm": "Jo Geonho",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "영자막/슬레이트",
+                "staffEtc": "",
+                "staffId": "00205060"
+              },
+              {
+                "staffNm": "이진",
+                "staffEnNm": "Lee Jin",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "배급책임",
+                "staffEtc": "㈜드림팩트엔터테인먼트",
+                "staffId": "00213445"
+              },
+              {
+                "staffNm": "윤미정",
+                "staffEnNm": "",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "배급책임",
+                "staffEtc": "㈜드림팩트엔터테인먼트",
+                "staffId": ""
+              },
+              {
+                "staffNm": "최정빈",
+                "staffEnNm": "",
+                "staffRoleGroup": "기타스탭",
+                "staffRole": "온라인 디자인",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "오승현",
+                "staffEnNm": "O Seung-hyeon",
+                "staffRoleGroup": "마케팅/홍보팀",
+                "staffRole": "오프라인 마케팅",
+                "staffEtc": "㈜날개엔터테인먼트",
+                "staffId": "00033536"
+              },
+              {
+                "staffNm": "오주현",
+                "staffEnNm": "O Ju-hyeon",
+                "staffRoleGroup": "마케팅/홍보팀",
+                "staffRole": "오프라인 마케팅",
+                "staffEtc": "㈜날개엔터테인먼트",
+                "staffId": "00226527"
+              },
+              {
+                "staffNm": "신가영",
+                "staffEnNm": "Shin Gayoung",
+                "staffRoleGroup": "마케팅/홍보팀",
+                "staffRole": "오프라인 마케팅",
+                "staffEtc": "㈜날개엔터테인먼트",
+                "staffId": "00219602"
+              },
+              {
+                "staffNm": "우지은",
+                "staffEnNm": "Woo Jieun",
+                "staffRoleGroup": "마케팅/홍보팀",
+                "staffRole": "온라인 마케팅",
+                "staffEtc": "㈜날개엔터테인먼트",
+                "staffId": "00205915"
+              },
+              {
+                "staffNm": "백승해",
+                "staffEnNm": "",
+                "staffRoleGroup": "마케팅/홍보팀",
+                "staffRole": "온라인 마케팅",
+                "staffEtc": "㈜날개엔터테인먼트",
+                "staffId": ""
+              },
+              {
+                "staffNm": "노가리필름",
+                "staffEnNm": "Nogarifilm",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "㈜드림팩트엔터테인먼트",
+                "staffEnNm": "DreamfactENT",
+                "staffRoleGroup": "투자사",
+                "staffRole": "제공",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "㈜드림팩트엔터테인먼트",
+                "staffEnNm": "DreamfactENT",
+                "staffRoleGroup": "배급사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "드뷔시를 생각하며 – 박성환  마지막 회상 – 박성환  ghost dance – Kevin MacLeod  Belgium waffle - Underscore  twinkle – Underscore  oh my son – Underscore  Qu-Paciencia – Los_Sundayers  nocturne – Chopin  Back Softly – Lobo_Loco  Backed_Vibes_Clean – Kevin_MacLeod",
+          "fLocation": "CKL 기업지원센터,고석환의 손만두,채널 1969,샤블리 신사점,진영 플라스틱",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20200123",
+          "modDate": "20211116",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196775"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196775"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "A09664",
+          "movieId": "A",
+          "movieSeq": "09664",
+          "title": " 그곳, 날씨는",
+          "titleEng": "Weather, there (Geugot, nalssineun)",
+          "titleOrg": "",
+          "titleEtc": "그곳,날씨는^그곳, 날씨는^그곳 날씨는, 그곳날씨는, 그 곳 날씨는^Weather, there (Geugot, nalssineun)",
+          "prodYear": "2019",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "이원우",
+                "directorEnNm": "LEE Wonwoo",
+                "directorId": "00146659"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "미국에서 이방인으로 살던 나는 이웃들과 만나면 날씨이야기를 자주 했다, 멀리 있는 다른 시차의 한국 친구들과도 마음속 이야기 보다는 날씨 이야기를 했다. 날씨 이야기는 편하고 안전하고 쓸쓸하다."
+              }
+            ]
+          },
+          "runtime": "65",
+          "rating": "전체관람가",
+          "genre": "실험",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/A/09664",
+          "type": "다큐멘터리",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "",
+          "repRatDate": "",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "",
+                "ratingNo": "",
+                "ratingGrade": "전체관람가",
+                "releaseDate": "",
+                "runtime": "65"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682415.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682416.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/47/tn_DST682417.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "미술",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              },
+              {
+                "staffNm": "이원우",
+                "staffEnNm": "LEE Wonwoo",
+                "staffRoleGroup": "사운드(음향)",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00146659"
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20200110",
+          "modDate": "20200917",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196021"
+              },
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196021"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CommCodeNm": "FIMS",
+                "CommCodeNo": "20196021"
+              },
+              {
+                "CommCodeNm": "FIMS",
+                "CommCodeNo": "20196021"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "K21726",
+          "movieId": "K",
+          "movieSeq": "21726",
+          "title": " 내가 그리웠니",
+          "titleEng": "Aka 5jo (Nae-ga Geu-ri-wot-ni)",
+          "titleOrg": "",
+          "titleEtc": "내가그리웠니^내가 그리웠니^동명이인프로젝트시즌3, 동명이인 프로젝트 시즌 3^Aka 5jo (Nae-ga Geu-ri-wot-ni)",
+          "prodYear": "2019",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "이경원",
+                "directorEnNm": "LEE KYEONG-WON",
+                "directorId": "00132293"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "조정민",
+                "actorEnNm": "Jo Jeongmin",
+                "actorId": "00213116"
+              },
+              {
+                "actorNm": "주현영",
+                "actorEnNm": "Ju Hyun-young",
+                "actorId": "00223396"
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "올드웨일",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "퇴물이 된 랩 스타와 그의 오랜 팬이 우연히 놀이공원 대관람차에 함께 타게 된다. 단편  내가 그리웠니 는 옴니버스 장편  동명이인 프로젝트 시즌 3 에 수록된 작품이다."
+              },
+              {
+                "plotLang": "영어",
+                "plotText": "A has-been rap star and his old fan accidentally ride the Ferris Wheel together in an amusement park. The short story  AKA 5JO  is from the Omnibus feature,  TWO PERSON AT THE SAME TOWN SE3 ."
+              }
+            ]
+          },
+          "runtime": "15",
+          "rating": "15세관람가",
+          "genre": "드라마",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/K/21726",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "",
+          "repRatDate": "",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "",
+                "ratingNo": "",
+                "ratingGrade": "15세관람가",
+                "releaseDate": "",
+                "runtime": "15"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683314.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683315.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683316.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683317.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/53/53/tn_DST683318.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "이경원",
+                "staffEnNm": "LEE KYEONG-WON",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00132293"
+              },
+              {
+                "staffNm": "이경원",
+                "staffEnNm": "LEE KYEONG-WON",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00132293"
+              },
+              {
+                "staffNm": "조정민",
+                "staffEnNm": "Jo Jeongmin",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00213116"
+              },
+              {
+                "staffNm": "주현영",
+                "staffEnNm": "Ju Hyun-young",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00223396"
+              },
+              {
+                "staffNm": "이경원",
+                "staffEnNm": "LEE KYEONG-WON",
+                "staffRoleGroup": "프로듀서",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00132293"
+              },
+              {
+                "staffNm": "박영빈",
+                "staffEnNm": "Park Yeongbin",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00212850"
+              },
+              {
+                "staffNm": "올드웨일",
+                "staffEnNm": "film studio oldwhale",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20200123",
+          "modDate": "20200918",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196680"
+              },
+              {
+                "CodeNm": "FIMS(추가)",
+                "CodeNo": "20190973"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20196680"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "F50535",
+          "movieId": "F",
+          "movieSeq": "50535",
+          "title": " 베이글녀의 진지한 데이트",
+          "titleEng": "",
+          "titleOrg": "むきだし",
+          "titleEtc": "베이글녀의진지한데이트^베이글녀의 진지한 데이트^むきだし^베이글녀의진지한 데이트, 베이글녀의 진지한데이트",
+          "prodYear": "2019",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "마사키 미나미토모",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "우에하라 아이",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "일본",
+          "company": "에이치엠피",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "배우인 여주인공의 성행각을 그린 성애 영화"
+              }
+            ]
+          },
+          "runtime": "63",
+          "rating": "18세관람가(청소년관람불가)",
+          "genre": "에로",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/50535",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20200122",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "20200122",
+                "ratingNo": "2020-MF00171",
+                "ratingGrade": "18세관람가(청소년관람불가)",
+                "releaseDate": "",
+                "runtime": "63"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "마사키 미나미토모",
+                "staffEnNm": "",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "우에하라 아이",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "에이치엠피",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20200130",
+          "modDate": "20211018",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20205181"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20205181"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "K19697",
+          "movieId": "K",
+          "movieSeq": "19697",
+          "title": " 아랫집",
+          "titleEng": "The Lady from 406 (Araetjip)",
+          "titleOrg": "",
+          "titleEtc": "아랫집^The Lady from 406 (Araetjip)",
+          "prodYear": "2017",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "이경미",
+                "directorEnNm": "Lee Kyoung-mi",
+                "directorId": "00034368"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "이영애",
+                "actorEnNm": "Lee Young-ae",
+                "actorId": "00004088"
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "406호 여자는 아랫집에서 올라는 담배연기 때문에 점점 미쳐간다. 그녀는 마침내 306호를 찾아가지만 그곳의 남자는 의외의 말을 건넨다"
+              },
+              {
+                "plotLang": "영어",
+                "plotText": "A lady who lives in room 406 has gone insane from the cigarette smoke of down stairs. She goes to room 306 and complains about it. The man who lives there, however, says something odd. One of Asian top stars, LEE YOUNG-AE’s first starring movie after  LADY VENGEANCE , directed by PARK CHAN-WOOK and the winner at VENICE. The director, LEE KYOUNG-MI is famous for her brave female characters who are not permitted in conservative Korean society."
+              }
+            ]
+          },
+          "runtime": "14",
+          "rating": "",
+          "genre": "판타지",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/K/19697",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "",
+          "repRatDate": "",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "",
+                "ratingNo": "",
+                "ratingGrade": "",
+                "releaseDate": "",
+                "runtime": "14"
+              }
+            ]
+          },
+          "keywords": "아랫집,여자,담배,냄새",
+          "posters": "",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306674.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306675.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306676.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306677.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306678.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/50/58/tn_DSKT306679.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "이경미",
+                "staffEnNm": "Lee Kyoung-mi",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00034368"
+              },
+              {
+                "staffNm": "이영애",
+                "staffEnNm": "Lee Young-ae",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00004088"
+              },
+              {
+                "staffNm": "센트럴파크",
+                "staffEnNm": "Central Park Films",
+                "staffRoleGroup": "배급사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20190129",
+          "modDate": "20190902",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20186741"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20186741"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "F47347",
+          "movieId": "F",
+          "movieSeq": "47347",
+          "title": " 들킨 방뇨의 실수",
+          "titleEng": "Daishikkin Kasumi Kaho",
+          "titleOrg": "",
+          "titleEtc": "들킨방뇨의실수^들킨 방뇨의 실수^Daishikkin Kasumi Kaho",
+          "prodYear": "2018",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "타마츠카 빙고",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "카스미 카호",
+                "actorEnNm": "Kasumi Kaho",
+                "actorId": "00180304"
+              }
+            ]
+          },
+          "nation": "일본",
+          "company": "센츄리 픽쳐스",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "남녀간의 변태적 성행각을 다룬 성애 영화"
+              }
+            ]
+          },
+          "runtime": "61",
+          "rating": "18세관람가(청소년관람불가)",
+          "genre": "에로",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/47347",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20190128",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "20190128",
+                "ratingNo": "2019-MF00172",
+                "ratingGrade": "18세관람가(청소년관람불가)",
+                "releaseDate": "",
+                "runtime": "61"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "타마츠카 빙고",
+                "staffEnNm": "",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "카스미 카호",
+                "staffEnNm": "Kasumi Kaho",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00180304"
+              },
+              {
+                "staffNm": "센츄리 픽쳐스",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20190130",
+          "modDate": "20220714",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20198264"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20198264"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "K21734",
+          "movieId": "K",
+          "movieSeq": "21734",
+          "title": " 안녕",
+          "titleEng": "Hi",
+          "titleOrg": "",
+          "titleEtc": "안녕^Hi",
+          "prodYear": "2015",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "손예은",
+                "directorEnNm": "Son Ye eun",
+                "directorId": "00049167"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "손예은",
+                "actorEnNm": "Son Ye eun",
+                "actorId": "00049167"
+              },
+              {
+                "actorNm": "황기쁨",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "최은아",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "대한민국",
+          "company": "",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "지구에 온 프린스는 세라를 만나 사랑에 빠진다.하지만, 세라에게는 아이들이 있었는데..."
+              },
+              {
+                "plotLang": "영어",
+                "plotText": "This film tells a story of a prince, who meets and falls in love with Zerah, who worries about her children."
+              }
+            ]
+          },
+          "runtime": "15",
+          "rating": "",
+          "genre": "멜로/로맨스",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/K/21734",
+          "type": "애니메이션",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "",
+          "repRatDate": "",
+          "repRlsDate": "",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "",
+                "ratingNo": "",
+                "ratingGrade": "",
+                "releaseDate": "",
+                "runtime": "15"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "http://file.koreafilm.or.kr/thm/02/00/05/45/tn_DPK015413.jpg",
+          "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/53/54/tn_DST683385.jpg",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "손예은",
+                "staffEnNm": "Son Ye eun",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049167"
+              },
+              {
+                "staffNm": "손예은",
+                "staffEnNm": "Son Ye eun",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049167"
+              },
+              {
+                "staffNm": "손예은",
+                "staffEnNm": "Son Ye eun",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049167"
+              },
+              {
+                "staffNm": "황기쁨",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "최은아",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "정순일",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작자",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "손예은",
+                "staffEnNm": "Son Ye eun",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049167"
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20200130",
+          "modDate": "20200130",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "",
+                "CodeNo": ""
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "",
+                "CodeNo": ""
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        }
+      ]
+    }
+  ]
+}
+
+
