@@ -52,7 +52,9 @@ dependencies {
     testRuntimeOnly(libs.junit5.engine)
     testRuntimeOnly(libs.junit5.vintage)
 
+
     // Test
     implementation(libs.okhttp.mockserver)
     testImplementation(libs.androidx.arch.core)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

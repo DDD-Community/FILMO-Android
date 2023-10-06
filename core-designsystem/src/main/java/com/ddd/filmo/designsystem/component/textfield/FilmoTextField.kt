@@ -81,6 +81,8 @@ fun FilmoOutlinedTextField(
     containerColor: Color = FilmoColor.Background3,
     leadingType: FilmoTextFieldLeadingType = FilmoTextFieldLeadingType.NONE,
     trailingType: FilmoTextFieldTrailingType = FilmoTextFieldTrailingType.NONE,
+    leadingButtonClicked: () -> Unit = {},
+    trailingButtonClicked: () -> Unit = {},
 ) {
     val trailingTypeLambda: @Composable (() -> Unit)? = when (trailingType) {
         FilmoTextFieldTrailingType.NONE -> null
@@ -88,6 +90,7 @@ fun FilmoOutlinedTextField(
             {
                 if (value.isNotEmpty()) {
                     IconButton(onClick = {
+                        trailingButtonClicked()
                     }) {
                         Icon(
                             imageVector = ImageVector.vectorResource(FilmoIcon.X),
@@ -104,6 +107,7 @@ fun FilmoOutlinedTextField(
         FilmoTextFieldLeadingType.SEARCH -> {
             {
                 IconButton(onClick = {
+                    leadingButtonClicked()
                 }) {
                     Icon(
                         imageVector = ImageVector.vectorResource(FilmoIcon.Search),

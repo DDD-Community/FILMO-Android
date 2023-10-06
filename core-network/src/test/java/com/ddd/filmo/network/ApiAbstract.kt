@@ -2,6 +2,7 @@
 package com.ddd.filmo.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.ddd.filmo.network.factory.ResultCallAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -13,7 +14,6 @@ import org.junit.Rule
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 
@@ -53,11 +53,8 @@ abstract class ApiAbstract<T> {
         mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
     }
 
-
-
     fun createService(clazz: Class<T>): T {
-
-         val json by lazy {
+        val json by lazy {
             Json {
                 coerceInputValues = true
                 ignoreUnknownKeys = true
@@ -66,7 +63,8 @@ abstract class ApiAbstract<T> {
 
         return Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
-            .addConverterFactory( json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .addCallAdapterFactory(ResultCallAdapterFactory())
             .build()
             .create(clazz)
     }

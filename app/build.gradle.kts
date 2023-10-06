@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 /*
  * Copyright (C) 2022 The Android Open Source Project
  *
@@ -63,11 +65,14 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
 
-//    packagingOptions {
-//        resources {
-//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//        }
-//    }
+    packaging {
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            ),
+        )
+    }
 }
 
 dependencies {
@@ -115,5 +120,4 @@ dependencies {
     implementation(libs.reveal.shape)
     implementation(libs.reveal.shape)
     implementation(libs.reveal.compat.android)
-
 }

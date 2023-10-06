@@ -8,9 +8,10 @@ import kotlinx.serialization.Serializable
 data class MovieResponse(
     @SerialName("title") val title: String,
     @SerialName("repRlsDate") val repRlsDate: String,
-    @SerialName("posterUrl") val posterUrl: String,
+    @SerialName("posters") val posterUrl: String,
 ) : DataModel
 
+@Serializable
 data class KMAResponse(
     @SerialName("Data")
     val data: List<Datum>,

@@ -18,6 +18,24 @@ sealed interface ApiResult<out T> {
     }
 }
 
+fun <T> ApiResult<T>.handlingNetwork(): T {
+    return when (this) {
+        is ApiResult.Success -> this.data
+        is ApiResult.Failure.HttpFailure -> throw Exception()
+        is ApiResult.Failure.NetworkFailure -> throw Exception()
+        is ApiResult.Failure.UnknownFailure -> throw Exception()
+    }
+}
+
+inline fun <T> handlingNetwork(action: (() -> ApiResult<T>)): T {
+    return when (action.invoke()) {
+        is ApiResult.Success -> (action.invoke() as ApiResult.Success).data
+        is ApiResult.Failure.HttpFailure -> throw Exception()
+        is ApiResult.Failure.NetworkFailure -> throw Exception()
+        is ApiResult.Failure.UnknownFailure -> throw Exception()
+    }
+}
+
 inline fun <T> ApiResult<T>.onSuccess(
     action: (value: T) -> Unit,
 ): ApiResult<T> {

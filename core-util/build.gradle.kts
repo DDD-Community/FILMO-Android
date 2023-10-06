@@ -2,6 +2,6 @@ plugins {
     id("filmo.jvm.library")
 }
 
-dependencies{
+dependencies {
     implementation(libs.javaxInject)
 }

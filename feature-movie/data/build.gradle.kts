@@ -2,6 +2,7 @@
 plugins {
     id("filmo.data.library")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -25,7 +26,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    testImplementation(libs.junit)
+//    testImplementation(libs.junit)
     implementation(libs.retrofit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

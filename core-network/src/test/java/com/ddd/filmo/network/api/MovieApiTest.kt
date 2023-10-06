@@ -2,6 +2,8 @@ package com.ddd.filmo.network.api
 
 import com.ddd.filmo.network.ApiAbstract
 import com.ddd.filmo.network.KmdbAPI
+import com.ddd.filmo.network.factory.onFailure
+import com.ddd.filmo.network.factory.onSuccess
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
@@ -10,7 +12,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class LoginApiTest : ApiAbstract<KmdbAPI>() {
+class MovieApiTest : ApiAbstract<KmdbAPI>() {
     private lateinit var service: KmdbAPI
 
     @BeforeEach
@@ -31,13 +33,14 @@ class LoginApiTest : ApiAbstract<KmdbAPI>() {
         @DisplayName("데이터 파싱과 응답코드가 정상적으로 반환")
         fun verifyLoggedIn() = runTest {
             val response = service.fetchMovieList()
-            Assertions.assertTrue(response.code() == 200)
-            val parsingData = response.executeHandle()
-
-            Assertions.assertEquals(
-                parsingData,
-                LoginResponse(accessToken = "오빤 강남스따일"),
-            )
+            response.onSuccess {
+                Assertions.assertEquals(
+                    it.data[0].result[0].title,
+                    "여호",
+                )
+            }.onFailure {
+                Assertions.fail()
+            }
         }
     }
 }

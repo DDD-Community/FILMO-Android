@@ -34,7 +34,17 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 defaultConfig {
                     testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
                 }
-//                configureGradleManagedDevices(this)
+                packaging {
+                    resources.excludes.apply {
+                        add("META-INF/AL2.0")
+                        add("META-INF/LGPL2.1")
+                    }
+                    resources.merges.apply {
+                        add("META-INF/LICENSE.md")
+                        add("META-INF/LICENSE-notice.md")
+                    }
+                }
+                //                configureGradleManagedDevices(this)
             }
 
             dependencies {

@@ -17,6 +17,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     id("filmo.android.library")
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -31,10 +32,20 @@ android {
         renderScript = false
         shaders = false
     }
+    packaging {
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            ),
+        )
+    }
 }
 
 dependencies {
-    implementation(project(":feature-login:domain"))
     implementation(libs.androidx.test.runner)
     implementation(libs.hilt.android.testing)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+//    implementation(libs.junit5.api)
 }

@@ -14,9 +14,11 @@
  *   limitations under the License.
  */
 
+import com.android.build.gradle.LibraryExtension
 import com.google.samples.apps.nowinandroid.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
 class DataConventionPlugin : Plugin<Project> {
@@ -25,17 +27,26 @@ class DataConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("filmo.android.library")
                 apply("filmo.android.hilt")
+                libs.findPlugin("junit5")
 //                apply("org.jetbrains.kotlin.plugin.serialization")
+            }
+
+            extensions.configure<LibraryExtension> {
+                defaultConfig {
+                    testInstrumentationRunner = "com.ddd.filmo.core.testing.HiltTestRunner"
+                }
             }
             dependencies {
                 add("implementation", project(":core-model"))
                 add("implementation", project(":core-util"))
                 add("implementation", project(":core-network"))
+                add("implementation", project(":core-testing"))
                 "implementation"(libs.findLibrary("firebase.firestore.ktx").get())
                 "testImplementation"(libs.findLibrary("junit").get())
                 "testImplementation"(libs.findLibrary("junit5.api").get())
                 "testRuntimeOnly"(libs.findLibrary("junit5.engine").get())
                 "testRuntimeOnly"(libs.findLibrary("junit5.vintage").get())
+                "testImplementation"(libs.findLibrary("kotlinx.coroutines.test").get())
             }
         }
     }

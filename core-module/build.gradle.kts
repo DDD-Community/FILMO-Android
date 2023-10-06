@@ -38,5 +38,4 @@ dependencies {
     implementation(libs.okhttp.loggingInterceptor)
     implementation(libs.retrofit.serializationConverter)
     implementation(libs.serializationConverter)
-
 }

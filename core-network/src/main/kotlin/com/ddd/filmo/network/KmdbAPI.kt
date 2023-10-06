@@ -2,7 +2,6 @@ package com.ddd.filmo.network
 
 import com.ddd.filmo.network.factory.ApiResult
 import com.ddd.filmo.network.model.KMAResponse
-import com.ddd.filmo.network.model.MovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
