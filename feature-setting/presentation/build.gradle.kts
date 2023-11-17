@@ -19,6 +19,7 @@ plugins {
     id("com.mikepenz.aboutlibraries.plugin")
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("filmo.android.hilt")
 }
 
 android {
@@ -64,13 +65,13 @@ dependencies {
 
     // Hilt Dependency Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+//    kapt(libs.hilt.compiler)
+//    kaptTest(libs.hilt.android.compiler)
     // Hilt and instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
+//    kaptAndroidTest(libs.hilt.android.compiler)
     // Hilt and Robolectric tests.
     testImplementation(libs.hilt.android.testing)
-    kaptTest(libs.hilt.android.compiler)
 
     // Local tests: jUnit, coroutines, Android runner
     testImplementation(libs.junit)

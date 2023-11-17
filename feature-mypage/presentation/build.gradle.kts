@@ -1,6 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("filmo.android.feature")
+    id("filmo.android.hilt")
 }
 
 android {
@@ -49,13 +50,13 @@ dependencies {
 
     // Hilt Dependency Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+//    kapt(libs.hilt.compiler)
     // Hilt and instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
+//    kaptAndroidTest(libs.hilt.android.compiler)
     // Hilt and Robolectric tests.
     testImplementation(libs.hilt.android.testing)
-    kaptTest(libs.hilt.android.compiler)
+//    kaptTest(libs.hilt.android.compiler)
 
     // Local tests: jUnit, coroutines, Android runner
     testImplementation(libs.junit)

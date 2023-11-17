@@ -25,6 +25,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -379,16 +380,14 @@ fun SceneCreateScreen(
     }
 
     if (isUploading) {
-        AlertDialog(
-            onDismissRequest = {},
+        BasicAlertDialog(onDismissRequest = {},
             content = {
                 Text(
                     text = "씬을 업로드하는 중입니다.\n잠시만 기다려주세요.",
                     color = Color.White,
                     textAlign = TextAlign.Center,
                 )
-            },
-        )
+            })
     }
 }
 

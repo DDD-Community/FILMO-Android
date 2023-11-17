@@ -97,7 +97,6 @@ dependencies {
     implementation(project(mapOf("path" to ":feature-film:domain")))
     implementation(libs.profileinstaller)
     "baselineProfile"(project(":app:baselineprofile"))
-    kapt(libs.hilt.compiler)
 
     // Arch Components
     implementation(libs.androidx.lifecycle.runtime.compose)
