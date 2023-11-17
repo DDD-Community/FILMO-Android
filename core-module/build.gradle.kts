@@ -22,7 +22,6 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(project(mapOf("path" to ":feature-film:data")))
     implementation(project(mapOf("path" to ":feature-film:domain")))
     implementation(project(mapOf("path" to ":feature-film:domain")))

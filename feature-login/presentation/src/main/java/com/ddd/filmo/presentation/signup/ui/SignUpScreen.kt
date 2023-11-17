@@ -291,6 +291,7 @@ fun SignSuccessScreenPreview() {
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 480)
 @Composable
 private fun DefaultInsertNickNamePreview() {
     FilmoTheme {
@@ -298,13 +299,8 @@ private fun DefaultInsertNickNamePreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 480)
-@Composable
-private fun PortraitInsertNickNamePreview() {
-    FilmoTheme {
-        InsertNickNameScreen()
-    }
-}
+
+
 
 @Preview
 @Composable
