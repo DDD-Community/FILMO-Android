@@ -46,6 +46,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -294,15 +295,11 @@ fun AutoSlideColumn(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun DefaultLoginPreview() {
-    FilmoTheme {
-        LoginScreen()
-    }
-}
 
+
+@Preview(showBackground = true)
 @Preview(showBackground = true, widthDp = 480)
+@Preview(showBackground = true,  device = Devices.FOLDABLE)
 @Composable
 private fun PortraitLoginPreview() {
     FilmoTheme {

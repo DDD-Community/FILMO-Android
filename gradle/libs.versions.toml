@@ -1,20 +1,20 @@
 [versions]
-androidGradlePlugin = "8.1.1"
-androidxActivity = "1.7.2"
-androidxComposeBom = "2023.09.01"
-androidxComposeCompiler = "1.5.1"
-androidxCore = "1.10.1"
-androidxHilt = "1.0.0"
-androidxLifecycle = "2.6.1"
-androidxNavigation = "2.5.3"
-androidxRoom = "2.5.1"
+androidGradlePlugin = "8.1.3"
+androidxActivity = "1.8.0"
+androidxComposeBom = "2023.10.01"
+androidxComposeCompiler = "1.5.4"
+androidxCore = "1.12.0"
+androidxHilt = "1.1.0"
+androidxLifecycle = "2.6.2"
+androidxNavigation = "2.7.5"
+androidxRoom = "2.6.0"
 androidxTestCore = "1.5.0"
 androidxTestExt = "1.1.5"
 androidxTestRunner = "1.5.2"
 coroutines = "1.7.1"
-hilt = "2.46"
+hilt = "2.48"
 junit = "4.13.2"
-kotlin = "1.9.0"
+kotlin = "1.9.20"
 ksp = "1.8.22-1.0.11"
 
 coil = "2.3.0"
@@ -37,7 +37,6 @@ googleServices = "4.3.15"
 firebaseAuthKtx = "22.1.1"
 firebaseCrashlyticsGradle = "2.9.9"
 firebaseFirestoreKtx = "24.7.1"
-material = "1.9.0"
 
 toolbarCompose = "2.3.5"
 junitKtx = "1.1.5"
@@ -58,7 +57,7 @@ okhttp = "4.9.1"
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "androidxComposeCompiler" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.0-alpha07"}
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.0-alpha11"}
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
@@ -116,7 +115,6 @@ firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-
 
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 toolbar-compose = { group = "me.onebone", name = "toolbar-compose", version.ref = "toolbarCompose" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version = "20.2.1" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
