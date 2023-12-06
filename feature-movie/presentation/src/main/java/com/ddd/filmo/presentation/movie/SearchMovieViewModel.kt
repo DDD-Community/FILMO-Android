@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchMovieViewModel @Inject constructor(
-    private val movieRepository: MovieRepository,
+    private val movieRepository: MovieRepository
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<SearchUiState> = MutableStateFlow(SearchUiState.None)
     val uiState = _uiState.asStateFlow()

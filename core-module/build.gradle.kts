@@ -30,6 +30,8 @@ dependencies {
     implementation(project(":feature-login:domain"))
     implementation(project(":core-network"))
     implementation(project(":core-util"))
+    implementation(project(":feature-movie:data"))
+    implementation(project(":feature-movie:domain"))
     testImplementation(libs.junit)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.retrofit)

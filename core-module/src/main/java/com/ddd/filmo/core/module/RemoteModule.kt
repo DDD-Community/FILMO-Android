@@ -4,6 +4,8 @@ import com.ddd.filmo.data.film.remote.FilmRemoteDataSource
 import com.ddd.filmo.data.film.remote.FilmRemoteDataSourceImpl
 import com.ddd.filmo.data.login.remote.UserRemoteDataSource
 import com.ddd.filmo.data.login.remote.UserRemoteDataSourceImpl
+import com.ddd.filmo.data.movie.remote.MovieRemoteDataSource
+import com.ddd.filmo.data.movie.remote.MovieRemoteDataSourceImp
 import com.ddd.filmo.data.scene.remote.SceneRemoteDataSource
 import com.ddd.filmo.data.scene.remote.SceneRemoteDataSourceImpl
 import dagger.Binds
@@ -28,4 +30,8 @@ interface RemoteModule {
     @Binds
     @Singleton
     fun bindSceneRemoteSource(sceneRemoteDataSource: SceneRemoteDataSourceImpl): SceneRemoteDataSource
+
+    @Binds
+    @Singleton
+    fun bindMovieRemoteSource(movieRemoteDataSourceImp: MovieRemoteDataSourceImp): MovieRemoteDataSource
 }

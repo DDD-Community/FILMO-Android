@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class MovieRepositoryImp @Inject constructor(
-    private val movieRemoteDataSource: MovieRemoteDataSource,
+    private val movieRemoteDataSource: MovieRemoteDataSource
 ) : MovieRepository {
     override suspend fun fetchMovieList(query: String?, listSize: Int): Flow<List<Movie>> = flow {
         val result = query?.let {

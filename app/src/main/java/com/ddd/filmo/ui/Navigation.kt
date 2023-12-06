@@ -14,6 +14,7 @@ import androidx.navigation.navArgument
 import com.ddd.filmo.main.MainScreenRoute
 import com.ddd.filmo.presentation.film.detail.FilmDetailScreenRoute
 import com.ddd.filmo.presentation.login.ui.LoginScreenRoute
+import com.ddd.filmo.presentation.movie.SearchMovieScreenRoute
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreenRoute
 import com.ddd.filmo.presentation.scene.ui.create.SceneCreateScreen
 import com.ddd.filmo.presentation.scene.ui.detail.SceneDetailScreenRoute
@@ -32,12 +33,12 @@ fun MainNavigation() {
 
     Scaffold(
 
-        contentWindowInsets = WindowInsets.navigationBars,
+        contentWindowInsets = WindowInsets.navigationBars
     ) { padding ->
         NavHost(
             navController = navController,
             startDestination = "login",
-            modifier = Modifier.padding(padding),
+            modifier = Modifier.padding(padding)
         ) {
             composable("main") {
                 MainScreenRoute(
@@ -49,7 +50,7 @@ fun MainNavigation() {
                     },
                     navigateToSceneCreate = {
                         navController.navigate("sceneCreate")
-                    },
+                    }
                 )
             }
             composable("login") {
@@ -63,7 +64,7 @@ fun MainNavigation() {
                     },
                     navigateToSign = {
                         navController.navigate("signup")
-                    },
+                    }
                 )
             }
 
@@ -74,13 +75,25 @@ fun MainNavigation() {
                     },
                     onBackClick = {
                         navController.popBackStack()
-                    },
+                    }
+                )
+            }
+            composable("movieSearch") {
+                SearchMovieScreenRoute(
+                    navigateToBack = {
+                        navController.popBackStack()
+                    }
                 )
             }
             composable("sceneDetail") {
-                SceneDetailScreenRoute(navigateToBack = {
-                    navController.popBackStack()
-                })
+                SceneDetailScreenRoute(
+                    navigateToBack = {
+                        navController.popBackStack()
+                    },
+                    navigateToSearch = {
+                        navController.navigate("movieSearch")
+                    }
+                )
             }
             composable("sceneCreate") {
                 SceneCreateScreen(navigateToSth = { navController.navigateUp() })
@@ -92,7 +105,7 @@ fun MainNavigation() {
                     },
                     navigateToBack = {
                         navController.popBackStack()
-                    },
+                    }
 
                 )
             }
@@ -103,9 +116,9 @@ fun MainNavigation() {
                             "webview/${
                                 URLEncoder.encode(
                                     url,
-                                    StandardCharsets.UTF_8.toString(),
+                                    StandardCharsets.UTF_8.toString()
                                 )
-                            }/$title",
+                            }/$title"
                         )
                     },
                     navigateToLicence = {
@@ -116,7 +129,7 @@ fun MainNavigation() {
                     },
                     navigateToBack = {
                         navController.popBackStack()
-                    },
+                    }
 
                 )
             }
@@ -125,7 +138,7 @@ fun MainNavigation() {
                 LicenseScreenRoute(
                     navigateToBack = {
                         navController.popBackStack()
-                    },
+                    }
                 )
             }
 
@@ -133,15 +146,15 @@ fun MainNavigation() {
                 "webview/{url}/{title}",
                 arguments = listOf(
                     navArgument("url") { defaultValue = "user1234" },
-                    navArgument("title") { defaultValue = "title" },
-                ),
+                    navArgument("title") { defaultValue = "title" }
+                )
             ) { backStackEntry ->
                 SettingWebViewScreenRoute(
                     backStackEntry.arguments?.getString("url")!!,
                     backStackEntry.arguments?.getString("title")!!,
                     navigateToBack = {
                         navController.popBackStack()
-                    },
+                    }
                 )
             }
 
@@ -149,14 +162,14 @@ fun MainNavigation() {
                 SignupScreenRoute(
                     navigateToMain = {
                         navController.navigate("main")
-                    },
+                    }
                 )
             }
             composable("withdrawal") {
                 WithdrawalScreenRoute(
                     navigateToBack = {
                         navController.popBackStack()
-                    },
+                    }
 
                 )
             }

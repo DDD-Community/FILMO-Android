@@ -96,6 +96,7 @@ dependencies {
     implementation(project(mapOf("path" to ":feature-login:domain")))
     implementation(project(mapOf("path" to ":feature-film:domain")))
     implementation(libs.profileinstaller)
+    implementation(project(":feature-movie:presentation"))
     "baselineProfile"(project(":app:baselineprofile"))
 
     // Arch Components

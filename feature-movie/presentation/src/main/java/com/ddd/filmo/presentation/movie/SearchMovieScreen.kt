@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -36,42 +37,55 @@ import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Movie
 
 @Composable
-internal fun SearchMovieScreenRoute(
+fun SearchMovieScreenRoute(
     viewModel: SearchMovieViewModel = hiltViewModel(),
-    navigateToMain: () -> Unit = {},
-    navigateToSign: () -> Unit = {},
+    navigateToBack: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
     SearchMovieScreen(uiState)
 }
 
 @Composable
-fun SearchMovieScreen(searchMovieUiState: SearchUiState) {
-    var searchQueryState = remember { mutableStateOf("") }
+internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked: () -> Unit = {}) {
+    var searchQueryState by remember { mutableStateOf("") }
     Column {
         FilmoAppBar(title = "영화 검색", actions = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = onBackClicked) {
                 Icon(
                     painter = painterResource(id = FilmoIcon.X),
                     contentDescription = "X",
-                    modifier = Modifier.size(12.dp),
+                    modifier = Modifier.size(12.dp)
                 )
             }
         })
 
         FilmoOutlinedTextField(
-            value = "",
-            onValueChanged = {},
+            value = searchQueryState,
+            onValueChanged = { searchQueryState = it },
             placeholderText = "영화를 선택해 주세요.",
             trailingType = FilmoTextFieldTrailingType.CLEAR,
             leadingType = FilmoTextFieldLeadingType.SEARCH,
             leadingButtonClicked = {},
-            trailingButtonClicked = {},
+            trailingButtonClicked = {}
         )
         when (searchMovieUiState) {
-            SearchUiState.Empty -> TODO()
-            SearchUiState.Error -> TODO()
+            SearchUiState.Empty ->
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Text(
+                        modifier = Modifier.align(Alignment.Center),
+                        text = "검색 결과가 없어요.",
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 28.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(500),
+                            color = FilmoColor.txt_02,
+                            textAlign = TextAlign.Center
+                        )
+                    )
+                }
+
+            is SearchUiState.Error -> TODO()
             SearchUiState.Loading -> {}
             SearchUiState.None -> {
                 Box(modifier = Modifier.fillMaxSize()) {
@@ -84,8 +98,8 @@ fun SearchMovieScreen(searchMovieUiState: SearchUiState) {
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
                             color = FilmoColor.txt_02,
-                            textAlign = TextAlign.Center,
-                        ),
+                            textAlign = TextAlign.Center
+                        )
                     )
                 }
             }
@@ -107,7 +121,7 @@ fun MovieItem(movie: Movie) {
         AsyncImage(
             model = movie.posterImageUrl,
             contentDescription = "영화 포스터",
-            modifier = Modifier.size(100.dp),
+            modifier = Modifier.size(100.dp)
         )
         Column {
             Text(
@@ -118,8 +132,8 @@ fun MovieItem(movie: Movie) {
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(500),
                     color = FilmoColor.txt_01,
-                    letterSpacing = 0.14.sp,
-                ),
+                    letterSpacing = 0.14.sp
+                )
             )
             Text(
                 text = movie.releaseYear.toString(),
@@ -129,8 +143,8 @@ fun MovieItem(movie: Movie) {
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(400),
                     color = FilmoColor.txt_02,
-                    letterSpacing = 0.12.sp,
-                ),
+                    letterSpacing = 0.12.sp
+                )
             )
         }
     }

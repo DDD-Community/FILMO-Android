@@ -67,14 +67,14 @@ fun LoadSceneBottomSeatDialog(
     sceneList: List<Scene>,
     onDismissRequest: () -> Unit = {},
     currentScene: Int,
-    totalScene: Int,
+    totalScene: Int
 ) {
     FilmoModalBottomSheetDialog(
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding(),
         onDismissRequest = onDismissRequest,
-        sheetState = sheetState,
+        sheetState = sheetState
 
     ) {
         LoadSceneLayout(currentScene, totalScene, sceneList, onBackButtonClicked = onDismissRequest)
@@ -86,14 +86,14 @@ fun LoadSceneDetail(
     modifier: Modifier = Modifier,
     scene: Scene,
     isClicked: Boolean = false,
-    onSceneClicked: () -> Unit = {},
+    onSceneClicked: () -> Unit = {}
 ) {
     Box(
         modifier.clickable {
             onSceneClicked()
         }.background(
-            if (isClicked) Color(0x33553EFF) else FilmoColor.Background3,
-        ),
+            if (isClicked) Color(0x33553EFF) else FilmoColor.Background3
+        )
     ) {
         Column {
             // todo IntrinsicSize를 넣으니 해결되었다.. 왜?
@@ -106,8 +106,8 @@ fun LoadSceneDetail(
                             lineHeight = 19.6.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(400),
-                            color = FilmoColor.txt_01,
-                        ),
+                            color = FilmoColor.txt_01
+                        )
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
@@ -117,8 +117,8 @@ fun LoadSceneDetail(
                             lineHeight = 18.2.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(400),
-                            color = FilmoColor.txt_02,
-                        ),
+                            color = FilmoColor.txt_02
+                        )
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     Row {
@@ -129,12 +129,12 @@ fun LoadSceneDetail(
                                 lineHeight = 16.8.sp,
                                 fontFamily = FilmoFamily,
                                 fontWeight = FontWeight(400),
-                                color = FilmoColor.txt_02,
-                            ),
+                                color = FilmoColor.txt_02
+                            )
                         )
                         Image(
                             painter = painterResource(FilmoIcon.Location),
-                            contentDescription = "",
+                            contentDescription = ""
                         )
                         Text(
                             text = "기본 필름",
@@ -143,22 +143,22 @@ fun LoadSceneDetail(
                                 lineHeight = 16.8.sp,
                                 fontFamily = FilmoFamily,
                                 fontWeight = FontWeight(400),
-                                color = FilmoColor.txt_02,
-                            ),
+                                color = FilmoColor.txt_02
+                            )
                         )
                     }
                 }
                 Spacer(
                     modifier = Modifier
                         .width(16.dp)
-                        .fillMaxHeight(),
+                        .fillMaxHeight()
                 )
                 when (scene.sceneType) {
                     is SceneType.ImageUrl -> {
                         Box(
                             Modifier
                                 .weight(0.4f)
-                                .fillMaxHeight(),
+                                .fillMaxHeight()
                         ) {
                             AsyncImage(
                                 model = ImageRequest.Builder(LocalContext.current)
@@ -169,7 +169,7 @@ fun LoadSceneDetail(
                                     .fillMaxSize()
                                     .clip(RoundedCornerShape(12.dp)),
                                 contentDescription = "",
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Crop
                             )
                         }
                     }
@@ -178,7 +178,7 @@ fun LoadSceneDetail(
                         Box(
                             Modifier
                                 .weight(0.4f)
-                                .fillMaxHeight(),
+                                .fillMaxHeight()
                         ) {
                             AsyncImage(
                                 model = ImageRequest.Builder(LocalContext.current)
@@ -189,7 +189,7 @@ fun LoadSceneDetail(
                                     .fillMaxSize()
                                     .clip(RoundedCornerShape(12.dp)),
                                 contentDescription = "",
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Crop
                             )
                         }
                     }
@@ -203,7 +203,7 @@ fun LoadSceneDetail(
         FilmoCheckBox(
             modifier = Modifier.align(Alignment.TopEnd),
             checked = isClicked,
-            onCheckedChange = { onSceneClicked() },
+            onCheckedChange = { onSceneClicked() }
         )
     }
 }
@@ -213,7 +213,7 @@ fun LoadSceneLayout(
     currentScene: Int,
     totalScene: Int,
     sceneList: List<Scene>,
-    onBackButtonClicked: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {}
 ) {
     val loadSceneHeaderTextLayoutId = "LoadSceneHeaderTextLayoutId"
     val loadSceneSearchTextFieldLayoutId = "LoadSceneSearchTextFieldLayoutId"
@@ -225,7 +225,7 @@ fun LoadSceneLayout(
             Row(
                 modifier = Modifier.layoutId(loadSceneHeaderTextLayoutId)
                     .padding(top = 22.dp, bottom = 6.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = buildAnnotatedString {
@@ -242,15 +242,15 @@ fun LoadSceneLayout(
                         lineHeight = 28.sp,
                         fontFamily = FilmoFamily,
                         fontWeight = FontWeight(500),
-                        color = FilmoColor.txt_01,
+                        color = FilmoColor.txt_01
                     ),
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(onClick = onBackButtonClicked) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = com.ddd.filmo.core.designsystem.R.drawable.ic_x),
-                        contentDescription = "",
+                        contentDescription = ""
                     )
                 }
             }
@@ -260,7 +260,7 @@ fun LoadSceneLayout(
                 value = "",
                 placeholderText = "",
                 containerColor = FilmoColor.Background2,
-                leadingType = FilmoTextFieldLeadingType.SEARCH,
+                leadingType = FilmoTextFieldLeadingType.SEARCH
             )
             Spacer(modifier = Modifier.height(24.dp))
             LazyColumn(Modifier.layoutId(loadSceneSearchDetailListLayoutId)) {
@@ -272,11 +272,11 @@ fun LoadSceneLayout(
                 modifier = Modifier
                     .padding(vertical = 12.dp)
                     .layoutId(loadSceneBottomButtonLayoutId),
-                contentAlignment = Alignment.Center,
+                contentAlignment = Alignment.Center
             ) {
                 FilmoButton(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ },
+                    onClick = { /*TODO*/ }
                 ) {
                     Text(
                         text = "23개 | 필름에 담기",
@@ -287,13 +287,13 @@ fun LoadSceneLayout(
                             fontWeight = FontWeight(500),
                             color = FilmoColor.txt_01,
                             textAlign = TextAlign.Center,
-                            letterSpacing = 0.16.sp,
-                        ),
+                            letterSpacing = 0.16.sp
+                        )
                     )
                 }
             }
         },
-        modifier = Modifier.padding(horizontal = 16.dp),
+        modifier = Modifier.padding(horizontal = 16.dp)
     ) { measurables, constraints ->
 
         val looseConstraints = constraints.asLoose()
@@ -317,7 +317,7 @@ fun LoadSceneLayout(
 
         val loadSceneSearchListConstraints = constraints.copy(
             minHeight = loadSceneSearchDetailListHeight,
-            maxHeight = loadSceneSearchDetailListHeight,
+            maxHeight = loadSceneSearchDetailListHeight
         )
         val loadSceneSearchListMeasurable =
             measurables.find { it.layoutId == loadSceneSearchDetailListLayoutId }
@@ -331,11 +331,11 @@ fun LoadSceneLayout(
             yPosition += loadSceneSearchTextFieldLMeasurable.height
             loadSceneBottomButtonMeasurable.place(
                 0,
-                constraints.maxHeight - loadSceneBottomButtonMeasurable.height,
+                constraints.maxHeight - loadSceneBottomButtonMeasurable.height
             )
             loadSceneSearchListMeasurable.place(
                 0,
-                yPosition,
+                yPosition
             )
         }
     }
@@ -350,7 +350,7 @@ fun LoadSceneBottomSeatDialogPreview() {
         sheetState = sheetState,
         currentScene = 0,
         sceneList = SceneImageTest.firstSceneType,
-        totalScene = 30,
+        totalScene = 30
     )
 }
 
@@ -360,7 +360,7 @@ fun LoadSceneLayoutPreview() {
     LoadSceneLayout(
         1,
         30,
-        sceneList = SceneImageTest.firstSceneType,
+        sceneList = SceneImageTest.firstSceneType
     )
 }
 
@@ -374,14 +374,14 @@ fun LoadSceneDetailPreview() {
 @Composable
 fun LoadSceneNullDetailPreview() {
     LoadSceneDetail(
-        scene = Scene.mock1,
+        scene = Scene.mock1
     )
 }
 
 fun Constraints.asLoose(
     height: Boolean = true,
-    width: Boolean = false,
+    width: Boolean = false
 ) = copy(
     minHeight = if (height) 0 else minHeight,
-    minWidth = if (width) 0 else minWidth,
+    minWidth = if (width) 0 else minWidth
 )

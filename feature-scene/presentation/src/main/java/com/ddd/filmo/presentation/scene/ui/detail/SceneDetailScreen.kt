@@ -17,20 +17,23 @@ import com.ddd.filmo.ui.FilmBody
 import com.ddd.filmo.ui.FilmSize
 
 @Composable
- fun SceneDetailScreenRoute(
+fun SceneDetailScreenRoute(
 //    viewModel: MainViewModel = hiltViewModel(),
 //    navigateToReadVote: (Int) -> Unit,
-//    navigateToSearch: () -> Unit,
-    navigateToBack: () -> Unit ={},
+    navigateToSearch: () -> Unit,
+    navigateToBack: () -> Unit = {}
 ) {
-    SceneDetailScreen(onBackButtonClicked = navigateToBack)
+    SceneDetailScreen(onBackButtonClicked = navigateToBack,
+        onSearchButtonClicked = navigateToSearch
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SceneDetailScreen(
     scene: Scene? = Scene.mock,
-    onBackButtonClicked: () -> Unit = {},
+    onSearchButtonClicked: () -> Unit = {},
+    onBackButtonClicked: () -> Unit = {}
 ) {
     var screenIndex by remember { mutableStateOf(0) }
 
@@ -44,9 +47,9 @@ fun SceneDetailScreen(
 
     scene?.let {
         if (screenIndex == 0) {
-            SceneReadScreen(toEditScreen , onBackButtonClicked = onBackButtonClicked)
+            SceneReadScreen(toEditScreen, onBackButtonClicked = onBackButtonClicked)
         } else {
-            SceneEditScreen(scene, onBackButtonClicked = toReadScreen)
+            SceneEditScreen(scene, onBackButtonClicked = toReadScreen, onSearchButtonClicked = onSearchButtonClicked)
         }
     }
 }
@@ -66,7 +69,7 @@ fun a() {
 }
 
 data class FilmUi(
-    val isClicked: Boolean = false,
+    val isClicked: Boolean = false
 ) {
     companion object {
         val filmDialogUiList = listOf(
@@ -79,7 +82,7 @@ data class FilmUi(
             FilmUi(),
             FilmUi(),
             FilmUi(),
-            FilmUi(),
+            FilmUi()
 
         )
 
@@ -93,7 +96,7 @@ data class FilmUi(
             0xFFFFCE4F,
             0xFF1FCF6A,
             0xFFBBEF4C,
-            0xFF9CCEFF,
+            0xFF9CCEFF
         )
     }
 }
