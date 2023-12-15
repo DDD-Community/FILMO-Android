@@ -32,6 +32,10 @@ class FilmRepositoryImp @Inject constructor(
         filmRemoteDataSource.createFilm(name, color)
     }
 
+    override suspend fun updateFilm(name: String, color: Long, selectedFilmId: String) {
+        filmRemoteDataSource.updateFilm(name, color, selectedFilmId = selectedFilmId)
+    }
+
     init {
         CoroutineScope(Dispatchers.IO).launch {
             filmRemoteDataSource.observeFilms(_films)

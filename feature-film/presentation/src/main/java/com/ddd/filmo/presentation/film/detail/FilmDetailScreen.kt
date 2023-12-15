@@ -54,6 +54,7 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.Scene
+import com.ddd.filmo.ui.UpdateFilmDialog
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest
 import java.util.Date
@@ -71,6 +72,16 @@ fun FilmDetailScreenRoute(
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isLoadSceneDialogState by remember { mutableStateOf(false) }
     var isDeleteDialogState by remember { mutableStateOf(false) }
+    val isEditDialogState = viewModel.isEditDialogState.collectAsStateWithLifecycle().value
+
+    if (isEditDialogState) {
+        UpdateFilmDialog(
+            onDismissRequest = { viewModel.setIsEditDialogState(false) },
+            viewModel::updateFilm,
+            onCancelButtonClicked = { viewModel.setIsEditDialogState(false) },
+            selectedFilm.name
+        )
+    }
 
     if (isSceneDialogState) {
         FilmoChoiceBottomSheetDialog(
@@ -78,7 +89,7 @@ fun FilmDetailScreenRoute(
             choiceList = listOf("필름 수정하기", "필름 삭제하기", "취소하기"),
             onItemClicked = {
                 when (it) {
-                    0 -> toAddScene(null)
+                    0 -> viewModel.setIsEditDialogState(true)
                     1 -> isDeleteDialogState = true
                     2 -> isSceneDialogState = false
                 }

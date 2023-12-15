@@ -20,6 +20,7 @@ interface FilmRemoteDataSource {
     )
 
     suspend fun createFilm(name: String, color: Long, userId: String = "117111581200385730511")
+    suspend fun updateFilm(name: String, color: Long, userId: String = "117111581200385730511", selectedFilmId: String)
 }
 
 class FilmRemoteDataSourceImpl @Inject constructor(
@@ -54,5 +55,15 @@ class FilmRemoteDataSourceImpl @Inject constructor(
                 ),
                 SetOptions.merge(),
             ).await()
+    }
+
+    override suspend fun updateFilm(name: String, color: Long, userId: String, selectedFilmId: String) {
+        val filmDocument = firebaseDB.collection("User")
+            .document(userId)
+            .collection("Films")
+            .document(selectedFilmId)
+
+        filmDocument.update("name", name).await()
+        filmDocument.update("caseColor", color).await()
     }
 }
