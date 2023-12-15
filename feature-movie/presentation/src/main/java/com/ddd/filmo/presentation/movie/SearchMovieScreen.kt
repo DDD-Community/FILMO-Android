@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,12 +42,12 @@ fun SearchMovieScreenRoute(
     navigateToBack: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    SearchMovieScreen(uiState)
+    SearchMovieScreen(uiState, onBackClicked = navigateToBack, onSearchButtonClicked = viewModel::searchMovie)
 }
 
 @Composable
-internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked: () -> Unit = {}) {
-    var searchQueryState by remember { mutableStateOf("") }
+internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked: () -> Unit = {}, onSearchButtonClicked: (String) -> Unit = {}) {
+    var searchQueryState by rememberSaveable { mutableStateOf("") }
     Column {
         FilmoAppBar(title = "영화 검색", actions = {
             IconButton(onClick = onBackClicked) {
@@ -65,7 +65,9 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
             placeholderText = "영화를 선택해 주세요.",
             trailingType = FilmoTextFieldTrailingType.CLEAR,
             leadingType = FilmoTextFieldLeadingType.SEARCH,
-            leadingButtonClicked = {},
+            leadingButtonClicked = {
+                onSearchButtonClicked(searchQueryState)
+            },
             trailingButtonClicked = {}
         )
         when (searchMovieUiState) {
@@ -85,7 +87,9 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
                     )
                 }
 
-            is SearchUiState.Error -> TODO()
+            is SearchUiState.Error -> {
+
+            }
             SearchUiState.Loading -> {}
             SearchUiState.None -> {
                 Box(modifier = Modifier.fillMaxSize()) {

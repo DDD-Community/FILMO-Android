@@ -23,7 +23,8 @@ fun SceneDetailScreenRoute(
     navigateToSearch: () -> Unit,
     navigateToBack: () -> Unit = {}
 ) {
-    SceneDetailScreen(onBackButtonClicked = navigateToBack,
+    SceneDetailScreen(
+        onBackButtonClicked = navigateToBack,
         onSearchButtonClicked = navigateToSearch
     )
 }

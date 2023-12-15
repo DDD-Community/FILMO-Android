@@ -47,7 +47,7 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://15.164.186.97")
+            .baseUrl("http://api.koreafilm.or.kr/")
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType()),
             )

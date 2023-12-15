@@ -1,5 +1,6 @@
 package com.ddd.filmo.presentation.movie
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ddd.filmo.domain.MovieRepository
@@ -24,9 +25,14 @@ class SearchMovieViewModel @Inject constructor(
         movieRepository.fetchMovieList(query = query).onStart {
             _uiState.update { SearchUiState.Loading }
         }.catch { error ->
+            Log.d("SearchMovieViewModel", "error: $error")
             _uiState.update { SearchUiState.Error(throwable = error) }
         }.collect { movieList ->
-            _uiState.update { SearchUiState.Success(movieList) }
+            if (movieList.isEmpty()) {
+                _uiState.update { SearchUiState.Empty }
+            } else {
+                _uiState.update { SearchUiState.Success(movieList) }
+            }
         }
     }
 }

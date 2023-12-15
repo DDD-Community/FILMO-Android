@@ -23,11 +23,11 @@ class SceneCreateViewModel @Inject constructor(
     private val filmRepository: FilmRepository,
     private val sceneRepository: SceneRepository,
 ) : ViewModel() {
-    val films = filmRepository.films.value
+    val films = filmRepository.films
     val sceneText = MutableStateFlow("")
     val movieTitle = MutableStateFlow("")
     val rating = MutableStateFlow(2.5f)
-    val selectedFilm = MutableStateFlow(filmRepository.films.value.first())
+    val selectedFilm = MutableStateFlow(films.value.first())
     val selectedUri: MutableStateFlow<Uri?> = MutableStateFlow(null)
     val isUploading: MutableStateFlow<Boolean> = MutableStateFlow(false)
 

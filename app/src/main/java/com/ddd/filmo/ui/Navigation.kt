@@ -16,7 +16,7 @@ import com.ddd.filmo.presentation.film.detail.FilmDetailScreenRoute
 import com.ddd.filmo.presentation.login.ui.LoginScreenRoute
 import com.ddd.filmo.presentation.movie.SearchMovieScreenRoute
 import com.ddd.filmo.presentation.mypage.ui.MyPageScreenRoute
-import com.ddd.filmo.presentation.scene.ui.create.SceneCreateScreen
+import com.ddd.filmo.presentation.scene.ui.create.SceneCreateScreenRoute
 import com.ddd.filmo.presentation.scene.ui.detail.SceneDetailScreenRoute
 import com.ddd.filmo.presentation.setting.LicenseScreenRoute
 import com.ddd.filmo.presentation.setting.SettingScreenRoute
@@ -96,7 +96,9 @@ fun MainNavigation() {
                 )
             }
             composable("sceneCreate") {
-                SceneCreateScreen(navigateToSth = { navController.navigateUp() })
+                SceneCreateScreenRoute(navigateToSth = { navController.navigateUp() }, navigateToBack = {
+                    navController.popBackStack()
+                })
             }
             composable("mypage") {
                 MyPageScreenRoute(
