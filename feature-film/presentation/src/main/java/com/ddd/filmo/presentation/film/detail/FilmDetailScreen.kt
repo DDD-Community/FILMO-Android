@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,6 +55,7 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.Scene
+import com.ddd.filmo.ui.AddFilmDialog
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest
 import java.util.Date
@@ -71,6 +73,15 @@ fun FilmDetailScreenRoute(
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isLoadSceneDialogState by remember { mutableStateOf(false) }
     var isDeleteDialogState by remember { mutableStateOf(false) }
+    val isEditDialogState = viewModel.isEditDialogState.collectAsStateWithLifecycle().value
+
+    if (isEditDialogState) {
+        AddFilmDialog(
+            onDismissRequest = { viewModel.setIsEditDialogState(false) },
+            viewModel::updateFilm,
+            onCancelButtonClicked = { viewModel.setIsEditDialogState(false) },
+        )
+    }
 
     if (isSceneDialogState) {
         FilmoChoiceBottomSheetDialog(
@@ -78,7 +89,7 @@ fun FilmDetailScreenRoute(
             choiceList = listOf("필름 수정하기", "필름 삭제하기", "취소하기"),
             onItemClicked = {
                 when (it) {
-                    0 -> toAddScene(null)
+                    0 -> viewModel.setIsEditDialogState(true)
                     1 -> isDeleteDialogState = true
                     2 -> isSceneDialogState = false
                 }

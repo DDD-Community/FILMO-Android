@@ -9,5 +9,6 @@ interface FilmRepository {
     val selectedFilm: StateFlow<Film>
     val selectedFilmScenes: StateFlow<List<Scene>>
     suspend fun createFilm(name: String, color: Long)
+    suspend fun updateFilm(name: String, color: Long, selectedFilmId: String)
     fun setSelectedFilm(film: Film)
 }
