@@ -24,7 +24,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,7 +54,7 @@ import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
 import com.ddd.filmo.model.Scene
-import com.ddd.filmo.ui.AddFilmDialog
+import com.ddd.filmo.ui.UpdateFilmDialog
 import com.ddd.filmo.ui.SceneImage
 import com.ddd.filmo.ui.SceneImageTest
 import java.util.Date
@@ -76,10 +75,11 @@ fun FilmDetailScreenRoute(
     val isEditDialogState = viewModel.isEditDialogState.collectAsStateWithLifecycle().value
 
     if (isEditDialogState) {
-        AddFilmDialog(
+        UpdateFilmDialog(
             onDismissRequest = { viewModel.setIsEditDialogState(false) },
             viewModel::updateFilm,
             onCancelButtonClicked = { viewModel.setIsEditDialogState(false) },
+            selectedFilm.name
         )
     }
 

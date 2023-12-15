@@ -52,16 +52,17 @@ import com.ddd.filmo.ui.FilmUi.Companion.filmColorLongList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddFilmDialog(
+fun UpdateFilmDialog(
     onDismissRequest: () -> Unit = {},
-    createFilm: (String, Long) -> Unit = { _, _ -> },
+    updateFilm: (String, Long) -> Unit = { _, _ -> },
     onCancelButtonClicked: () -> Unit = {},
+    nameBefore: String = ""
 ) {
     val filmState = remember {
         FilmUi.filmDialogUiList.toMutableStateList()
     }
 
-    var filmName by remember { mutableStateOf("") }
+    var filmName by remember { mutableStateOf(nameBefore) }
 
     val isFilmNameLength by remember { derivedStateOf { filmName.length < 20 } }
 
@@ -87,7 +88,7 @@ fun AddFilmDialog(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 32.dp, bottom = 24.dp),
-                    text = "필름 추가하기",
+                    text = "필름 수정하기",
                     style = TextStyle(
                         fontSize = 20.sp,
                         lineHeight = 22.sp,
@@ -226,11 +227,11 @@ fun AddFilmDialog(
                         ),
                         enabled = createFilmButtonEnabled,
                         onClick = {
-                            createFilm(filmName, filmColor)
+                            updateFilm(filmName, filmColor)
                         },
                     ) {
                         FilmoAutoResizeText(
-                            text = "필름 추가하기",
+                            text = "필름 수정하기",
                             fontSizeRange = FontSizeRange(12.sp, 16.sp),
                             color = FilmoColor.txt_01,
                             style = TextStyle(
@@ -252,8 +253,8 @@ fun AddFilmDialog(
 
 @Preview
 @Composable
-fun AddFilmDialogPreview() {
-    AddFilmDialog()
+fun UpdateFilmDialogPreview() {
+    UpdateFilmDialog()
 }
 
 data class FilmUi(
