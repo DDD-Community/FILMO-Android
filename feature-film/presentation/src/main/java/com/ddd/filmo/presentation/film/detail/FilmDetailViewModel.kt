@@ -65,4 +65,19 @@ class FilmDetailViewModel @Inject constructor(
         }
         checkedScenes.value = mutableCheckedScenes.toList()
     }
+
+    fun addCheckedScenes() {
+        viewModelScope.launch {
+            val scenes = checkedScenes.value
+            scenes.forEach {
+                sceneRepository.createScene(
+                    selectedFilm.value.documentId,
+                    it.sceneText ?: "",
+                    it.sceneRate?: 0f,
+                    it.movie?.title ?: "",
+                    it.imageUrl
+                )
+            }
+        }
+    }
 }

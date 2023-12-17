@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -69,7 +70,8 @@ fun LoadSceneBottomSeatDialog(
     currentScene: Int,
     totalScene: Int,
     checkedScenes: List<Scene> = emptyList(),
-    toggleSceneChecked: (Scene) -> Unit = {}
+    toggleSceneChecked: (Scene) -> Unit = {},
+    addCheckedScenes: () -> Unit = {},
 ) {
     FilmoModalBottomSheetDialog(
         modifier = Modifier
@@ -79,7 +81,15 @@ fun LoadSceneBottomSeatDialog(
         sheetState = sheetState
 
     ) {
-        LoadSceneLayout(currentScene, totalScene, sceneList, onBackButtonClicked = onDismissRequest, checkedScenes = checkedScenes, toggleSceneChecked = toggleSceneChecked)
+        LoadSceneLayout(
+            currentScene,
+            totalScene,
+            sceneList,
+            onBackButtonClicked = onDismissRequest,
+            checkedScenes = checkedScenes,
+            toggleSceneChecked = toggleSceneChecked,
+            addCheckedScenes = addCheckedScenes
+        )
     }
 }
 
@@ -224,7 +234,8 @@ fun LoadSceneLayout(
     sceneList: List<Scene>,
     onBackButtonClicked: () -> Unit = {},
     checkedScenes: List<Scene> = emptyList(),
-    toggleSceneChecked: (Scene) -> Unit = {}
+    toggleSceneChecked: (Scene) -> Unit = {},
+    addCheckedScenes: () -> Unit = {},
 ) {
     val loadSceneHeaderTextLayoutId = "LoadSceneHeaderTextLayoutId"
     val loadSceneSearchTextFieldLayoutId = "LoadSceneSearchTextFieldLayoutId"
@@ -285,9 +296,17 @@ fun LoadSceneLayout(
                     .layoutId(loadSceneBottomButtonLayoutId),
                 contentAlignment = Alignment.Center
             ) {
+                val btnColor =
+                    if (checkedScenes.isEmpty()) FilmoColor.PrimaryDisabled
+                    else FilmoColor.Primary
+
                 FilmoButton(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ }
+                    onClick = {
+                        onBackButtonClicked()
+                        addCheckedScenes()
+                    },
+                    buttonColors = ButtonDefaults.buttonColors(containerColor = btnColor)
                 ) {
                     Text(
                         text = "${checkedScenes.size}개 | 필름에 담기",

@@ -105,7 +105,8 @@ fun FilmDetailScreenRoute(
             totalScene = 20,
             sceneList = viewModel.allScenesList,
             checkedScenes = checkedScenes,
-            toggleSceneChecked = viewModel::toggleSceneChecked
+            toggleSceneChecked = viewModel::toggleSceneChecked,
+            addCheckedScenes = viewModel::addCheckedScenes,
         )
     }
 
