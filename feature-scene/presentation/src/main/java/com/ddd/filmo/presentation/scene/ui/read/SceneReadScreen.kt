@@ -44,6 +44,7 @@ import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
+import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
 import kotlin.math.roundToInt
 
@@ -241,7 +242,7 @@ fun SceneReadScreen(
             Spacer(modifier = Modifier.size(24.dp))
 
             Text(
-                text = scene.createdAtString,
+                text = Scene.sceneSdf.format(scene.createdAt),
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 19.6.sp,

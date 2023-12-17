@@ -102,7 +102,7 @@ fun SceneImage(
             maxLines = 2,
         )
         Text(
-            text = "${scene.movie?.title}\n${Scene.mock.movie?.releaseYear}",
+            text = "${scene.movie?.title}",// + "\n${scene.movie?.releaseYear}",
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .padding(14.dp)

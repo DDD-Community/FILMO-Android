@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -112,18 +113,18 @@ fun LoadSceneDetail(
         )
     ) {
         Column {
-            // todo IntrinsicSize를 넣으니 해결되었다.. 왜?
-            Row(Modifier.height(IntrinsicSize.Max)) {
-                Column(Modifier.weight(0.6f)) {
+            Row(Modifier.height(120.dp), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
                     Text(
-                        text = scene.sceneText!!,
+                        text = scene.sceneText ?: "",
                         style = TextStyle(
                             fontSize = 14.sp,
                             lineHeight = 19.6.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(400),
-                            color = FilmoColor.txt_01
-                        )
+                            color = FilmoColor.txt_01,
+                        ),
+                        maxLines = 2
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
@@ -139,7 +140,7 @@ fun LoadSceneDetail(
                     Spacer(modifier = Modifier.height(10.dp))
                     Row {
                         Text(
-                            text = scene.createdAtString,
+                            text = Scene.sceneSdf.format(scene.createdAt),
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 lineHeight = 16.8.sp,
@@ -148,7 +149,7 @@ fun LoadSceneDetail(
                                 color = FilmoColor.txt_02
                             )
                         )
-                        Image(
+                        /*Image(
                             painter = painterResource(FilmoIcon.Location),
                             contentDescription = ""
                         )
@@ -161,63 +162,34 @@ fun LoadSceneDetail(
                                 fontWeight = FontWeight(400),
                                 color = FilmoColor.txt_02
                             )
-                        )
+                        )*/
                     }
                 }
                 Spacer(
                     modifier = Modifier
                         .width(16.dp)
-                        .fillMaxHeight()
                 )
-                when (scene.sceneType) {
-                    is SceneType.ImageUrl -> {
-                        Box(
-                            Modifier
-                                .weight(0.4f)
+                if (scene.imageUrl.isNotEmpty()) {
+                    Box(
+                        Modifier.height(90.dp).clip(RoundedCornerShape(16.dp))
+                    ) {
+                        AsyncImage(
+                            model = "https://firebasestorage.googleapis.com/v0/b/filmo-698ba.appspot.com/o/" +
+                                    scene.imageUrl.replace("/", "%2F") +
+                                    "?alt=media",
+                            contentDescription = "",
+                            modifier = Modifier
                                 .fillMaxHeight()
-                        ) {
-                            AsyncImage(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data((scene.sceneType as SceneType.ImageUrl).imageUrl)
-//                                .placeholder(com.ddd.filmo.core.ui.R.drawable.image_16)
-                                    .build(),
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .clip(RoundedCornerShape(12.dp)),
-                                contentDescription = "",
-                                contentScale = ContentScale.Crop
-                            )
-                        }
-                    }
-
-                    is SceneType.ImageDrawable -> {
-                        Box(
-                            Modifier
-                                .weight(0.4f)
-                                .fillMaxHeight()
-                        ) {
-                            AsyncImage(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data((scene.sceneType as SceneType.ImageDrawable).imageDrawable)
-//                                .placeholder(com.ddd.filmo.core.ui.R.drawable.image_16)
-                                    .build(),
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .clip(RoundedCornerShape(12.dp)),
-                                contentDescription = "",
-                                contentScale = ContentScale.Crop
-                            )
-                        }
-                    }
-
-                    else -> {
+                                .aspectRatio(218 / 133f)
+                                .background(color = Color(0xff625B71)),
+                            contentScale = ContentScale.Crop,
+                        )
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
         FilmoCheckBox(
-            modifier = Modifier.align(Alignment.TopEnd),
+            modifier = Modifier.align(Alignment.TopEnd).padding(top = 10.dp),
             checked = isChecked,
             onCheckedChange = {
 //                onSceneClicked()

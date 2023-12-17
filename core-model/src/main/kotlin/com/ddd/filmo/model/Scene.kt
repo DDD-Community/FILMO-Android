@@ -13,8 +13,6 @@ data class Scene(
     val createdAt: Date = Date(),
     val imageUrl: String = "",
 ):DomainModel {
-    val createdAtString = sceneSdf.format(createdAt)
-
     companion object {
         val sceneSdf = SimpleDateFormat("yyyy.MM.dd")
 
