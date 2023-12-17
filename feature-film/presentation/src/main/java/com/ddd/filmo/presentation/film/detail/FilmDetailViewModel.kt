@@ -34,6 +34,12 @@ class FilmDetailViewModel @Inject constructor(
         isEditDialogState.value = false
     }
 
+    fun deleteFilm() {
+        viewModelScope.launch {
+            filmRepository.deleteFilm(selectedFilm.value.documentId)
+        }
+    }
+
     fun setIsEditDialogState(value: Boolean) {
         isEditDialogState.value = value
     }

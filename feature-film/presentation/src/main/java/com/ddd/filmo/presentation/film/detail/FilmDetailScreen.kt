@@ -91,8 +91,9 @@ fun FilmDetailScreenRoute(
                 when (it) {
                     0 -> viewModel.setIsEditDialogState(true)
                     1 -> isDeleteDialogState = true
-                    2 -> isSceneDialogState = false
+                    2 -> Unit
                 }
+                isSceneDialogState = false
             },
         )
     }
@@ -107,7 +108,10 @@ fun FilmDetailScreenRoute(
 
     if (isDeleteDialogState) {
         FilmDeleteDialog(
-            onAcceptClicked = {},
+            onAcceptClicked = {
+                isDeleteDialogState = false
+                viewModel.deleteFilm()
+                onBackClick() },
             onCancelClicked = { isDeleteDialogState = false },
         )
     }
