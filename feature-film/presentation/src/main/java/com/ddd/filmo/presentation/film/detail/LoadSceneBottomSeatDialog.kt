@@ -242,10 +242,10 @@ fun LoadSceneLayout(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(FilmoColor.txt_01)) {
                             append("씬 가져오기")
-                            append(" $currentScene")
+                            append(" ${checkedScenes.size}")
                         }
                         withStyle(style = SpanStyle(FilmoColor.txt_02)) {
-                            append("/$totalScene")
+                            append("/${sceneList.size}")
                         }
                     },
                     style = TextStyle(
@@ -290,7 +290,7 @@ fun LoadSceneLayout(
                     onClick = { /*TODO*/ }
                 ) {
                     Text(
-                        text = "23개 | 필름에 담기",
+                        text = "${checkedScenes.size}개 | 필름에 담기",
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 22.sp,
