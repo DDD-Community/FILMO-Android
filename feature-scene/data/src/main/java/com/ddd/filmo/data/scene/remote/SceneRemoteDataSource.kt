@@ -74,7 +74,6 @@ class SceneRemoteDataSourceImpl @Inject constructor(
             var willDeleteIndex: Int? = null
             scenes.forEachIndexed { index, it ->
                 if (scene.createdAt.time == it.createdAt.time) {
-                    Log.e("deleteScene", it.toString())
                     willDeleteIndex = index
                 }
             }
