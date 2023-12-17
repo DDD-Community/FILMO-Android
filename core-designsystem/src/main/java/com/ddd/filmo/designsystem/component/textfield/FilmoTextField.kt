@@ -3,6 +3,8 @@ package com.ddd.filmo.designsystem.component.textfield
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -81,6 +83,8 @@ fun FilmoOutlinedTextField(
     containerColor: Color = FilmoColor.Background3,
     leadingType: FilmoTextFieldLeadingType = FilmoTextFieldLeadingType.NONE,
     trailingType: FilmoTextFieldTrailingType = FilmoTextFieldTrailingType.NONE,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     leadingButtonClicked: () -> Unit = {},
     trailingButtonClicked: () -> Unit = {},
 ) {
@@ -147,6 +151,8 @@ fun FilmoOutlinedTextField(
         ),
         leadingIcon = leadingTypeLambda,
         trailingIcon = trailingTypeLambda,
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions,
         textStyle = TextStyle(
             fontSize = 16.sp,
             lineHeight = 22.4.sp,

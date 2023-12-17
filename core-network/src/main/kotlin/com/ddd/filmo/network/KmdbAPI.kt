@@ -10,9 +10,9 @@ interface KmdbAPI {
     @GET("/openapi-data2/wisenut/search_api/search_json2.jsp")
     suspend fun fetchMovieList(
         @Query("ServiceKey") serviceKey: String = "H6GU9QT50174J6BI1QWP",
-        @Query("listCount") listCount: Int = 10,
+        @Query("listCount") listCount: Int = 100,
         @Query("title") query: String? = null,
-        @Query("detail") detail: String = "N",
+        @Query("detail") detail: String = "Y",
         @Query("collection") collection: String = "kmdb_new2",
     ): ApiResult<KMAResponse>
 }

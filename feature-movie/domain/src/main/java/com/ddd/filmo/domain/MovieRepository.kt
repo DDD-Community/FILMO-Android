@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun fetchMovieList(query: String? = "", listSize: Int = 10): Flow<List<Movie>>
+    suspend fun fetchMovieList(query: String? = "", listSize: Int = 100): Flow<List<Movie>>
 }

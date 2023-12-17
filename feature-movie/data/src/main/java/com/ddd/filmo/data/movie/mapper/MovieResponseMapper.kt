@@ -8,9 +8,9 @@ object MovieResponseMapper : DomainMapper<MovieResponse, Movie> {
     override fun toDomain(data: MovieResponse): Movie {
         return with(data) {
             Movie(
-                title = title,
-                releaseYear = data.repRlsDate.toInt(),
-                posterImageUrl = data.posterUrl,
+                title = title.replace(" !HS ", "").replace(" !HE ", ""),
+                releaseYear = data.repRlsDate.toIntOrNull() ?: 0,
+                posterImageUrl = data.posterUrl.substringBefore("|"),
             )
         }
     }

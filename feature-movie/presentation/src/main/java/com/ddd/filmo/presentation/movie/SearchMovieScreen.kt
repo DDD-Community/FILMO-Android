@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -20,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,14 +42,22 @@ import com.ddd.filmo.model.Movie
 @Composable
 fun SearchMovieScreenRoute(
     viewModel: SearchMovieViewModel = hiltViewModel(),
-    navigateToBack: () -> Unit = {}
+    navigateToBack: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    SearchMovieScreen(uiState, onBackClicked = navigateToBack, onSearchButtonClicked = viewModel::searchMovie)
+    SearchMovieScreen(
+        uiState,
+        onBackClicked = navigateToBack,
+        onSearchButtonClicked = viewModel::searchMovie,
+    )
 }
 
 @Composable
-internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked: () -> Unit = {}, onSearchButtonClicked: (String) -> Unit = {}) {
+internal fun SearchMovieScreen(
+    searchMovieUiState: SearchUiState,
+    onBackClicked: () -> Unit = {},
+    onSearchButtonClicked: (String) -> Unit = {},
+) {
     var searchQueryState by rememberSaveable { mutableStateOf("") }
     Column {
         FilmoAppBar(title = "영화 검색", actions = {
@@ -54,7 +65,7 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
                 Icon(
                     painter = painterResource(id = FilmoIcon.X),
                     contentDescription = "X",
-                    modifier = Modifier.size(12.dp)
+                    modifier = Modifier.size(12.dp),
                 )
             }
         })
@@ -68,7 +79,13 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
             leadingButtonClicked = {
                 onSearchButtonClicked(searchQueryState)
             },
-            trailingButtonClicked = {}
+            keyboardActions = KeyboardActions(onSearch = {
+                onSearchButtonClicked(searchQueryState)
+            }),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Search,
+            ),
+            trailingButtonClicked = {},
         )
         when (searchMovieUiState) {
             SearchUiState.Empty ->
@@ -82,14 +99,14 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
                             color = FilmoColor.txt_02,
-                            textAlign = TextAlign.Center
-                        )
+                            textAlign = TextAlign.Center,
+                        ),
                     )
                 }
 
             is SearchUiState.Error -> {
-
             }
+
             SearchUiState.Loading -> {}
             SearchUiState.None -> {
                 Box(modifier = Modifier.fillMaxSize()) {
@@ -102,8 +119,8 @@ internal fun SearchMovieScreen(searchMovieUiState: SearchUiState, onBackClicked:
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
                             color = FilmoColor.txt_02,
-                            textAlign = TextAlign.Center
-                        )
+                            textAlign = TextAlign.Center,
+                        ),
                     )
                 }
             }
@@ -125,7 +142,7 @@ fun MovieItem(movie: Movie) {
         AsyncImage(
             model = movie.posterImageUrl,
             contentDescription = "영화 포스터",
-            modifier = Modifier.size(100.dp)
+            modifier = Modifier.size(100.dp),
         )
         Column {
             Text(
@@ -136,8 +153,8 @@ fun MovieItem(movie: Movie) {
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(500),
                     color = FilmoColor.txt_01,
-                    letterSpacing = 0.14.sp
-                )
+                    letterSpacing = 0.14.sp,
+                ),
             )
             Text(
                 text = movie.releaseYear.toString(),
@@ -147,8 +164,8 @@ fun MovieItem(movie: Movie) {
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(400),
                     color = FilmoColor.txt_02,
-                    letterSpacing = 0.12.sp
-                )
+                    letterSpacing = 0.12.sp,
+                ),
             )
         }
     }

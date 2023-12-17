@@ -72,7 +72,7 @@ import com.ddd.filmo.model.Film
 fun SceneCreateScreenRoute(
     viewModel: SceneCreateViewModel = hiltViewModel(),
     navigateToSth: () -> Unit = {},
-    navigateToBack: () -> Unit = {}
+    navigateToBack: () -> Unit = {},
 ) {
     val film by viewModel.films.collectAsStateWithLifecycle()
     val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
@@ -95,7 +95,7 @@ fun SceneCreateScreenRoute(
         onFilmSelected = viewModel::selectFilm,
         onFilmTitleChanged = viewModel::setMovieTitle,
         onFilmContentChanged = viewModel::setSceneText,
-        onRatingChanged = viewModel::setRating
+        onRatingChanged = viewModel::setRating,
     )
 }
 
@@ -115,11 +115,11 @@ fun SceneCreateScreen(
     onFilmSelected: (Film) -> Unit = {},
     onFilmTitleChanged: (String) -> Unit = {},
     onFilmContentChanged: (String) -> Unit = {},
-    onRatingChanged: (Float) -> Unit = {}
+    onRatingChanged: (Float) -> Unit = {},
 ) {
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> onPhotoSelected(uri) }
+        onResult = { uri -> onPhotoSelected(uri) },
     )
 
     var isSheetOpen by rememberSaveable {
@@ -131,7 +131,7 @@ fun SceneCreateScreen(
     }
 
     Column(
-        Modifier.fillMaxSize()
+        Modifier.fillMaxSize(),
     ) {
         FilmoAppBar(
             actions = {},
@@ -140,7 +140,7 @@ fun SceneCreateScreen(
                     Icon(painter = painterResource(id = FilmoIcon.Back), contentDescription = "")
                 }
             },
-            title = "씬 만들기"
+            title = "씬 만들기",
         )
 
         Column(
@@ -148,7 +148,7 @@ fun SceneCreateScreen(
                 .weight(1f)
                 .padding(start = 16.dp, top = 24.dp, end = 16.dp)
                 .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
                 modifier = Modifier
@@ -156,19 +156,21 @@ fun SceneCreateScreen(
                     .height(48.dp)
                     .background(color = Color(0xFF393939), shape = RoundedCornerShape(size = 8.dp))
                     .padding(start = 16.dp, end = 3.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 BasicTextField(
                     value = "$movieTitle",
                     onValueChange = onFilmTitleChanged,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).clickable {
+
+                    },
                     textStyle = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 22.4.sp,
                         fontFamily = FilmoFamily,
                         fontWeight = FontWeight(400),
-                        color = Color(0xFFF4F4F4)
-                    )
+                        color = Color(0xFFF4F4F4),
+                    ),
                 )
                 IconButton(onClick = {
                     onFilmTitleChanged("")
@@ -176,7 +178,7 @@ fun SceneCreateScreen(
                     Icon(
                         painter = painterResource(id = FilmoIcon.X),
                         contentDescription = "X",
-                        modifier = Modifier.size(12.dp)
+                        modifier = Modifier.size(12.dp),
                     )
                 }
             }
@@ -191,14 +193,14 @@ fun SceneCreateScreen(
                         lineHeight = 22.4.sp,
                         fontFamily = FilmoFamily,
                         fontWeight = FontWeight(400),
-                        color = Color(0xFFF4F4F4)
-                    )
+                        color = Color(0xFFF4F4F4),
+                    ),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(Modifier.padding(horizontal = 71.5.dp)) {
                     RatingBar(
                         value = rating,
-                        onValueChange = onRatingChanged
+                        onValueChange = onRatingChanged,
                     ) {
                     }
                 }
@@ -212,22 +214,22 @@ fun SceneCreateScreen(
                     .clip(RoundedCornerShape(size = 8.dp))
                     .clickable {
                         photoPickerLauncher.launch(
-                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
                         )
                     }
                     .dashedBorder(
                         strokeWidth = 1.dp,
                         color = FilmoColor.ic_02,
-                        cornerRadiusDp = 8.dp
+                        cornerRadiusDp = 8.dp,
                     ),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 if (selectedUri == null) {
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Image(
                         painter = painterResource(id = FilmoIcon.PlusWithCircle),
-                        contentDescription = "Add"
+                        contentDescription = "Add",
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
@@ -237,8 +239,8 @@ fun SceneCreateScreen(
                             lineHeight = 19.6.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
-                            color = Color(0xFFF4F4F4)
-                        )
+                            color = Color(0xFFF4F4F4),
+                        ),
                     )
                     Text(
                         text = "10mb 이하",
@@ -247,8 +249,8 @@ fun SceneCreateScreen(
                             lineHeight = 16.8.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(400),
-                            color = Color(0xFFB6B6B6)
-                        )
+                            color = Color(0xFFB6B6B6),
+                        ),
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                 } else {
@@ -259,7 +261,7 @@ fun SceneCreateScreen(
                             .clip(RoundedCornerShape(13.dp))
                             .aspectRatio(328f / 204f),
                         contentDescription = "",
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
                     )
                 }
             }
@@ -274,7 +276,7 @@ fun SceneCreateScreen(
                     .defaultMinSize(minHeight = 294.dp)
                     .background(
                         color = Color(0xFF393939),
-                        shape = RoundedCornerShape(size = 8.dp)
+                        shape = RoundedCornerShape(size = 8.dp),
                     )
                     .padding(16.dp),
                 textStyle = TextStyle(
@@ -282,8 +284,8 @@ fun SceneCreateScreen(
                     lineHeight = 22.4.sp,
                     fontFamily = FilmoFamily,
                     fontWeight = FontWeight(400),
-                    color = Color(0xFFF4F4F4)
-                )
+                    color = Color(0xFFF4F4F4),
+                ),
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -297,18 +299,18 @@ fun SceneCreateScreen(
                     .border(
                         width = 1.dp,
                         color = Color(0xFF7D7A7A),
-                        shape = RoundedCornerShape(size = 8.dp)
+                        shape = RoundedCornerShape(size = 8.dp),
                     )
                     .fillMaxWidth()
                     .height(58.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Spacer(modifier = Modifier.width(16.dp))
                 if (selectedFilm != null) {
                     Icon(
                         painter = painterResource(id = FilmoIcon.Folder),
                         contentDescription = "image description",
-                        tint = Color(selectedFilm.caseColor)
+                        tint = Color(selectedFilm.caseColor),
                     )
                 }
                 Spacer(modifier = Modifier.width(12.dp))
@@ -320,9 +322,9 @@ fun SceneCreateScreen(
                             lineHeight = 19.6.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
-                            color = Color(0xFFF4F4F4)
+                            color = Color(0xFFF4F4F4),
                         ),
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
                 }
                 Spacer(modifier = Modifier.width(16.dp))
@@ -337,9 +339,9 @@ fun SceneCreateScreen(
                     .height(52.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = FilmoColor.PrimaryVariant,
-                    contentColor = Color(0xFFF4F4F4)
+                    contentColor = Color(0xFFF4F4F4),
                 ),
-                shape = RoundedCornerShape(size = 8.dp)
+                shape = RoundedCornerShape(size = 8.dp),
             ) {
                 Text(
                     text = "씬 만들기",
@@ -350,8 +352,8 @@ fun SceneCreateScreen(
                         fontWeight = FontWeight(500),
                         color = Color(0xFFF4F4F4),
                         textAlign = TextAlign.Center,
-                        letterSpacing = 0.16.sp
-                    )
+                        letterSpacing = 0.16.sp,
+                    ),
                 )
             }
         }
@@ -361,12 +363,12 @@ fun SceneCreateScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0x40000000))
+                .background(Color(0x40000000)),
         ) {
             Spacer(
                 modifier = Modifier
                     .fillMaxSize()
-                    .noRippleClickable { isSheetOpen = false }
+                    .noRippleClickable { isSheetOpen = false },
             )
             Column(
                 modifier = Modifier
@@ -374,12 +376,12 @@ fun SceneCreateScreen(
                     .clip(shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
 //                    .fillMaxSize()
                     .background(Color(0xFF393939))
-                    .align(Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter),
             ) {
                 Spacer(modifier = Modifier.size(22.dp))
                 Row(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "필름 선택하기",
@@ -388,20 +390,20 @@ fun SceneCreateScreen(
                             lineHeight = 28.sp,
                             fontFamily = FilmoFamily,
                             fontWeight = FontWeight(500),
-                            color = Color(0xFFF4F4F4)
+                            color = Color(0xFFF4F4F4),
                         ),
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
                     IconButton(
                         onClick = {
                             isSheetOpen = false
                         },
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.dp),
                     ) {
                         Icon(
                             painter = painterResource(FilmoIcon.X),
                             contentDescription = "",
-                            modifier = Modifier.size(14.dp)
+                            modifier = Modifier.size(14.dp),
                         )
                     }
                 }
@@ -409,7 +411,12 @@ fun SceneCreateScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 for (film in filmList) {
-                    FilmListItem(film, selectedFilm, selectFilm = { onFilmSelected(it) }, closeSheet)
+                    FilmListItem(
+                        film,
+                        selectedFilm,
+                        selectFilm = { onFilmSelected(it) },
+                        closeSheet,
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -424,9 +431,9 @@ fun SceneCreateScreen(
                 Text(
                     text = "씬을 업로드하는 중입니다.\n잠시만 기다려주세요.",
                     color = Color.White,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
     }
 }
@@ -442,25 +449,25 @@ fun Modifier.dashedBorder(strokeWidth: Dp, color: Color, cornerRadiusDp: Dp) = c
                 onDrawBehind {
                     val stroke = Stroke(
                         width = strokeWidthPx,
-                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f),
                     )
 
                     drawRoundRect(
                         color = color,
                         style = stroke,
-                        cornerRadius = CornerRadius(cornerRadiusPx)
+                        cornerRadius = CornerRadius(cornerRadiusPx),
                     )
                 }
-            }
+            },
         )
-    }
+    },
 )
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
     clickable(
         indication = null,
-        interactionSource = remember { MutableInteractionSource() }
+        interactionSource = remember { MutableInteractionSource() },
     ) {
         onClick()
     }
@@ -471,7 +478,7 @@ fun FilmListItem(
     film: Film,
     selectedFilm: Film?,
     selectFilm: (Film) -> Unit = {},
-    closeSheet: () -> Unit
+    closeSheet: () -> Unit,
 ) {
     val selected = (film == selectedFilm)
     val borderOrNot =
@@ -479,7 +486,7 @@ fun FilmListItem(
             Modifier.border(
                 width = 2.dp,
                 color = Color(0xFFFFFFFF),
-                shape = RoundedCornerShape(size = 8.dp)
+                shape = RoundedCornerShape(size = 8.dp),
             )
         } else {
             Modifier
@@ -495,13 +502,13 @@ fun FilmListItem(
             }
             .padding(16.dp)
             .fillMaxWidth(),
-        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
     ) {
         Spacer(
             modifier = Modifier
                 .clip(RoundedCornerShape(4.dp))
                 .size(32.dp)
-                .background(Color(film.caseColor))
+                .background(Color(film.caseColor)),
         )
         Spacer(modifier = Modifier.width(12.dp))
         Text(
@@ -512,15 +519,15 @@ fun FilmListItem(
                 fontFamily = FilmoFamily,
                 fontWeight = FontWeight(500),
                 color = Color(0xFFF4F4F4),
-                letterSpacing = 0.14.sp
+                letterSpacing = 0.14.sp,
             ),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
         if (selected) {
             Icon(
                 painter = painterResource(FilmoIcon.Check),
                 contentDescription = "",
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(32.dp),
             )
         }
     }

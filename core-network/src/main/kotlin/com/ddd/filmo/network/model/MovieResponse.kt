@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MovieResponse(
     @SerialName("title") val title: String,
-    @SerialName("repRlsDate") val repRlsDate: String,
+    @SerialName("prodYear") val repRlsDate: String,
     @SerialName("posters") val posterUrl: String,
 ) : DataModel
 

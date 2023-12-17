@@ -25,7 +25,7 @@ class SearchMovieViewModel @Inject constructor(
         movieRepository.fetchMovieList(query = query).onStart {
             _uiState.update { SearchUiState.Loading }
         }.catch { error ->
-            Log.d("SearchMovieViewModel", "error: $error")
+            Log.e("SearchMovieViewModel", "error: $error.", error)
             _uiState.update { SearchUiState.Error(throwable = error) }
         }.collect { movieList ->
             if (movieList.isEmpty()) {

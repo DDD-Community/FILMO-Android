@@ -1,6 +1,7 @@
 package com.ddd.filmo.core.module
 
 import com.ddd.filmo.network.KmdbAPI
+import com.ddd.filmo.network.factory.ResultCallAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -51,6 +52,7 @@ object NetworkModule {
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType()),
             )
+            .addCallAdapterFactory(ResultCallAdapterFactory())
             .build()
     }
 

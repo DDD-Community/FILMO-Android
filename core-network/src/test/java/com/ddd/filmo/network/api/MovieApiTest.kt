@@ -36,11 +36,22 @@ class MovieApiTest : ApiAbstract<KmdbAPI>() {
             response.onSuccess {
                 Assertions.assertEquals(
                     it.data[0].result[0].title,
-                    "여호",
+                    " 데어데블 vs.  !HS 스파이더맨 !HE ",
+                )
+                Assertions.assertEquals(
+                    it.data[0].result[0].repRlsDate,
+                    "2002",
                 )
             }.onFailure {
                 Assertions.fail()
             }
         }
+    }
+
+    @Test
+    fun `replaceParsing이 제대로 이루어지는가?`() {
+        val title = " 데어데블 vs.  !HS 스파이더맨 !HE "
+        val replace = title.replaceRange(" !HS ", "")
+        Assertions.assertEquals(replace, " 데어데블 vs.  스파이더맨 !HE ")
     }
 }
