@@ -61,6 +61,8 @@ fun MyPageScreenRoute(
         onSettingButtonClicked = navigateToSetting,
         user = user,
         onBackButtonClicked = navigateToBack,
+        filmCount = viewModel.filmCount,
+        sceneCount = viewModel.sceneCount
     )
 }
 
@@ -70,6 +72,8 @@ internal fun MyPageScreen(
     user: User?,
     onSettingButtonClicked: () -> Unit = {},
     onBackButtonClicked: () -> Unit = {},
+    filmCount: Int = 0,
+    sceneCount: Int = 0,
 ) {
     var isNickNameDialogState by remember { mutableStateOf(false) }
 
@@ -153,7 +157,7 @@ internal fun MyPageScreen(
                 colors = CardDefaults.cardColors(containerColor = FilmoColor.Background2),
             ) {
                 Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    MyPageDetailColumn("13" , "내필름")
+                    MyPageDetailColumn(filmCount.toString() , "내필름")
                     Spacer(
                         modifier = Modifier
                             .width(1.dp)
@@ -161,7 +165,7 @@ internal fun MyPageScreen(
                             .padding(vertical = 24.dp)
                             .background(FilmoColor.txt_03),
                     )
-                    MyPageDetailColumn("246" , "내씬")
+                    MyPageDetailColumn(sceneCount.toString() , "내씬")
                 }
             }
             Spacer(modifier = Modifier.weight(5f))

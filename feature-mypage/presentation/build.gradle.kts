@@ -25,6 +25,7 @@ android {
 
 dependencies {
     implementation(project(":core-ui"))
+    implementation(project(mapOf("path" to ":feature-film:domain")))
     androidTestImplementation(project(":core-testing"))
     implementation(project(mapOf("path" to ":feature-login:domain")))
 
