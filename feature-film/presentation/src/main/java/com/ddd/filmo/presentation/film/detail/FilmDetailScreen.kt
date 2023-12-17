@@ -301,7 +301,7 @@ fun FilmDetailScreen(
             if (selectedFilmScenes.isNotEmpty()) {
                 FloatingActionButton(
                     onClick = {
-                        toAddScene(null)
+                        onLoadSceneButtonClicked()
                     },
                     containerColor = Color.White,
                     contentColor = Color.Black,
