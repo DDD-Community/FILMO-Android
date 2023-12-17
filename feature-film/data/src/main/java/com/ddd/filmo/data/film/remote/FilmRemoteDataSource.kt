@@ -4,6 +4,7 @@ import android.util.Log
 import com.ddd.filmo.data.film.mapper.FilmResponseMapper
 import com.ddd.filmo.data.film.model.FilmResponse
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.Scene
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.snapshots
@@ -17,6 +18,13 @@ interface FilmRemoteDataSource {
     suspend fun observeFilms(
         filmsFlow: MutableStateFlow<List<Film>>,
         userId: String = "117111581200385730511",
+    )
+
+    suspend fun observeFilm(
+        selectedFilmFlow: MutableStateFlow<Film>,
+        selectedFilmScenesFlow: MutableStateFlow<List<Scene>>,
+        filmId: String,
+        userId: String = "117111581200385730511"
     )
 
     suspend fun createFilm(name: String, color: Long, userId: String = "117111581200385730511")
@@ -39,6 +47,25 @@ class FilmRemoteDataSourceImpl @Inject constructor(
                     films.add(FilmResponseMapper.toDomain(it))
                 }
                 filmsFlow.value = films.toList()
+            }
+    }
+
+    override suspend fun observeFilm(
+        selectedFilmFlow: MutableStateFlow<Film>,
+        selectedFilmScenesFlow: MutableStateFlow<List<Scene>>,
+        filmId: String,
+        userId: String
+    ) {
+        firebaseDB.collection("User")
+            .document(userId)
+            .collection("Films")
+            .document(filmId).snapshots().map { snapshot ->
+                snapshot.toObject(FilmResponse::class.java)
+            }.collect { filmResponse ->
+                filmResponse?.let {
+                    selectedFilmFlow.value = FilmResponseMapper.toDomain(filmResponse)
+                    selectedFilmScenesFlow.value = filmResponse.scenes
+                }
             }
     }
 

@@ -31,4 +31,13 @@ class SceneRepositoryImp @Inject constructor(
             imageUrl = imageUrl,
         )
     }
+
+    override suspend fun deleteScene(
+        filmId: String
+    ) {
+        sceneRemoteDataSource.deleteScene(
+            filmId = filmId,
+            scene = selectedScene.value
+        )
+    }
 }
