@@ -1,5 +1,6 @@
 package com.ddd.filmo.presentation.film.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ddd.filmo.film.domain.repository.FilmRepository
@@ -20,6 +21,17 @@ class FilmDetailViewModel @Inject constructor(
     val selectedFilm = filmRepository.selectedFilm
     val selectedFilmScenes = filmRepository.selectedFilmScenes
     val isEditDialogState = MutableStateFlow(false)
+    val allScenesList: List<Scene>// = SceneImageTest.testSceneType
+    val checkedScenes =  MutableStateFlow<List<Scene>>(emptyList())
+    init {
+        val scenes: MutableList<Scene> = mutableListOf()
+        filmRepository.films.value.forEach {
+            it.scenes.forEach { scene ->
+                scenes.add(scene)
+            }
+        }
+        allScenesList = scenes.toList()
+    }
 
     fun selectScene(scene: Scene) {
         viewModelScope.launch {
@@ -34,7 +46,23 @@ class FilmDetailViewModel @Inject constructor(
         isEditDialogState.value = false
     }
 
+    fun deleteFilm() {
+        viewModelScope.launch {
+            filmRepository.deleteFilm(selectedFilm.value.documentId)
+        }
+    }
+
     fun setIsEditDialogState(value: Boolean) {
         isEditDialogState.value = value
+    }
+
+    fun toggleSceneChecked(scene: Scene) {
+        val mutableCheckedScenes = checkedScenes.value.toMutableList()
+        if (checkedScenes.value.contains(scene)) {
+            mutableCheckedScenes.remove(scene)
+        } else {
+            mutableCheckedScenes.add(scene)
+        }
+        checkedScenes.value = mutableCheckedScenes.toList()
     }
 }

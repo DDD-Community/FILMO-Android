@@ -67,7 +67,9 @@ fun LoadSceneBottomSeatDialog(
     sceneList: List<Scene>,
     onDismissRequest: () -> Unit = {},
     currentScene: Int,
-    totalScene: Int
+    totalScene: Int,
+    checkedScenes: List<Scene> = emptyList(),
+    toggleSceneChecked: (Scene) -> Unit = {}
 ) {
     FilmoModalBottomSheetDialog(
         modifier = Modifier
@@ -77,7 +79,7 @@ fun LoadSceneBottomSeatDialog(
         sheetState = sheetState
 
     ) {
-        LoadSceneLayout(currentScene, totalScene, sceneList, onBackButtonClicked = onDismissRequest)
+        LoadSceneLayout(currentScene, totalScene, sceneList, onBackButtonClicked = onDismissRequest, checkedScenes = checkedScenes, toggleSceneChecked = toggleSceneChecked)
     }
 }
 
@@ -86,13 +88,17 @@ fun LoadSceneDetail(
     modifier: Modifier = Modifier,
     scene: Scene,
     isClicked: Boolean = false,
-    onSceneClicked: () -> Unit = {}
+    onSceneClicked: () -> Unit = {},
+    checkedScenes: List<Scene> = emptyList(),
+    toggleSceneChecked: (Scene) -> Unit = {}
 ) {
+    val isChecked = checkedScenes.contains(scene)
     Box(
         modifier.clickable {
-            onSceneClicked()
+//            onSceneClicked()
+            toggleSceneChecked(scene)
         }.background(
-            if (isClicked) Color(0x33553EFF) else FilmoColor.Background3
+            if (isChecked) Color(0x33553EFF) else FilmoColor.Background3
         )
     ) {
         Column {
@@ -111,7 +117,7 @@ fun LoadSceneDetail(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = scene.movie!!.title,
+                        text = scene.movie?.title ?: "",
                         style = TextStyle(
                             fontSize = 13.sp,
                             lineHeight = 18.2.sp,
@@ -202,8 +208,11 @@ fun LoadSceneDetail(
         }
         FilmoCheckBox(
             modifier = Modifier.align(Alignment.TopEnd),
-            checked = isClicked,
-            onCheckedChange = { onSceneClicked() }
+            checked = isChecked,
+            onCheckedChange = {
+//                onSceneClicked()
+                toggleSceneChecked(scene)
+            }
         )
     }
 }
@@ -213,7 +222,9 @@ fun LoadSceneLayout(
     currentScene: Int,
     totalScene: Int,
     sceneList: List<Scene>,
-    onBackButtonClicked: () -> Unit = {}
+    onBackButtonClicked: () -> Unit = {},
+    checkedScenes: List<Scene> = emptyList(),
+    toggleSceneChecked: (Scene) -> Unit = {}
 ) {
     val loadSceneHeaderTextLayoutId = "LoadSceneHeaderTextLayoutId"
     val loadSceneSearchTextFieldLayoutId = "LoadSceneSearchTextFieldLayoutId"
@@ -231,10 +242,10 @@ fun LoadSceneLayout(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(FilmoColor.txt_01)) {
                             append("씬 가져오기")
-                            append(" $currentScene")
+                            append(" ${checkedScenes.size}")
                         }
                         withStyle(style = SpanStyle(FilmoColor.txt_02)) {
-                            append("/$totalScene")
+                            append("/${sceneList.size}")
                         }
                     },
                     style = TextStyle(
@@ -265,7 +276,7 @@ fun LoadSceneLayout(
             Spacer(modifier = Modifier.height(24.dp))
             LazyColumn(Modifier.layoutId(loadSceneSearchDetailListLayoutId)) {
                 itemsIndexed(sceneList) { index, item ->
-                    LoadSceneDetail(scene = item, onSceneClicked = {})
+                    LoadSceneDetail(scene = item, onSceneClicked = {}, checkedScenes = checkedScenes, toggleSceneChecked = toggleSceneChecked)
                 }
             }
             Box(
@@ -279,7 +290,7 @@ fun LoadSceneLayout(
                     onClick = { /*TODO*/ }
                 ) {
                     Text(
-                        text = "23개 | 필름에 담기",
+                        text = "${checkedScenes.size}개 | 필름에 담기",
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 22.sp,

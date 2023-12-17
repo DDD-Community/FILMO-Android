@@ -27,6 +27,10 @@ class FilmRepositoryImp @Inject constructor(
     override fun setSelectedFilm(film: Film) {
         _selectedFilm.value = film
         _selectedFilmScenes.value = film.scenes
+
+        CoroutineScope(Dispatchers.IO).launch {
+            filmRemoteDataSource.observeFilm(_selectedFilm, _selectedFilmScenes, filmId = film.documentId)
+        }
     }
 
     override suspend fun createFilm(name: String, color: Long) {
@@ -35,6 +39,9 @@ class FilmRepositoryImp @Inject constructor(
 
     override suspend fun updateFilm(name: String, color: Long, selectedFilmId: String) {
         filmRemoteDataSource.updateFilm(name, color, selectedFilmId = selectedFilmId, userId = GoogleUser.user.userId)
+    }
+    override suspend fun deleteFilm(selectedFilmId: String) {
+        filmRemoteDataSource.deleteFilm(selectedFilmId = selectedFilmId)
     }
 
     init {

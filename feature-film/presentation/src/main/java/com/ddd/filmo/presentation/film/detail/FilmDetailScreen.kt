@@ -73,6 +73,7 @@ fun FilmDetailScreenRoute(
     var isLoadSceneDialogState by remember { mutableStateOf(false) }
     var isDeleteDialogState by remember { mutableStateOf(false) }
     val isEditDialogState = viewModel.isEditDialogState.collectAsStateWithLifecycle().value
+    val checkedScenes = viewModel.checkedScenes.collectAsStateWithLifecycle().value
 
     if (isEditDialogState) {
         UpdateFilmDialog(
@@ -91,8 +92,9 @@ fun FilmDetailScreenRoute(
                 when (it) {
                     0 -> viewModel.setIsEditDialogState(true)
                     1 -> isDeleteDialogState = true
-                    2 -> isSceneDialogState = false
+                    2 -> Unit
                 }
+                isSceneDialogState = false
             },
         )
     }
@@ -101,13 +103,18 @@ fun FilmDetailScreenRoute(
             onDismissRequest = { isLoadSceneDialogState = false },
             currentScene = 10,
             totalScene = 20,
-            sceneList = SceneImageTest.testSceneType,
+            sceneList = viewModel.allScenesList,
+            checkedScenes = checkedScenes,
+            toggleSceneChecked = viewModel::toggleSceneChecked
         )
     }
 
     if (isDeleteDialogState) {
         FilmDeleteDialog(
-            onAcceptClicked = {},
+            onAcceptClicked = {
+                isDeleteDialogState = false
+                viewModel.deleteFilm()
+                onBackClick() },
             onCancelClicked = { isDeleteDialogState = false },
         )
     }

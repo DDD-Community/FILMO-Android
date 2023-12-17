@@ -81,7 +81,11 @@ fun SceneReadScreen(
 
     if (isSceneDeleteDialogState) {
         SceneDeleteDialog(
-            onAcceptClicked = {},
+            onAcceptClicked = {
+                viewModel.deleteScene {
+                    onBackButtonClicked()
+                }
+            },
             onCancelClicked = {
                 isSceneDeleteDialogState = false
             },
