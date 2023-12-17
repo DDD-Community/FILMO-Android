@@ -23,11 +23,7 @@ class UserRepositoryImp @Inject constructor(
     val _currentUser: MutableStateFlow<User?> = MutableStateFlow(null)
     override val currentUser: StateFlow<User?> = _currentUser
 
-    init {
-        CoroutineScope(coroutineDispatcher).launch {
-            fetchUser()
-        }
-    }
+
 
     override suspend fun fetchUser() {
         val userResponse = userRemoteDataSource.getUser()

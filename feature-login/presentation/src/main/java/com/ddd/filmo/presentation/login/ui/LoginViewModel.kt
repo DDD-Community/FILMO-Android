@@ -67,11 +67,13 @@ class LoginViewModel @Inject constructor(
         userRepository.isExitUser(user.userId).catch {
             _uiState.update { it.copy(isFirstLogin = true) }
         }.collect {
+            GoogleUser.user = user
             if (it) {
                 Log.d("LoginViewModel", "isUserRegistered: $it")
+                userRepository.fetchUser()
                 _uiState.update { it.copy(isLogin = true) }
             } else {
-                GoogleUser.user = user
+                //todo GoogleUser.user = user 가 remove..?
                 _uiState.update { it.copy(isFirstLogin = true) }
             }
         }

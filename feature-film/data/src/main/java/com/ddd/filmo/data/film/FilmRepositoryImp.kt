@@ -3,6 +3,7 @@ package com.ddd.filmo.data.film
 import com.ddd.filmo.data.film.remote.FilmRemoteDataSource
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.GoogleUser
 import com.ddd.filmo.model.Scene
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +34,7 @@ class FilmRepositoryImp @Inject constructor(
     }
 
     override suspend fun updateFilm(name: String, color: Long, selectedFilmId: String) {
-        filmRemoteDataSource.updateFilm(name, color, selectedFilmId = selectedFilmId)
+        filmRemoteDataSource.updateFilm(name, color, selectedFilmId = selectedFilmId, userId = GoogleUser.user.userId)
     }
 
     init {

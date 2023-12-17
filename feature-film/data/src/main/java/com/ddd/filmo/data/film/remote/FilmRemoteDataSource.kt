@@ -4,6 +4,7 @@ import android.util.Log
 import com.ddd.filmo.data.film.mapper.FilmResponseMapper
 import com.ddd.filmo.data.film.model.FilmResponse
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.GoogleUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.snapshots
@@ -16,11 +17,11 @@ import javax.inject.Inject
 interface FilmRemoteDataSource {
     suspend fun observeFilms(
         filmsFlow: MutableStateFlow<List<Film>>,
-        userId: String = "117111581200385730511",
+        userId: String = GoogleUser.user.userId,
     )
 
-    suspend fun createFilm(name: String, color: Long, userId: String = "117111581200385730511")
-    suspend fun updateFilm(name: String, color: Long, userId: String = "117111581200385730511", selectedFilmId: String)
+    suspend fun createFilm(name: String, color: Long, userId: String = GoogleUser.user.userId)
+    suspend fun updateFilm(name: String, color: Long, userId: String = GoogleUser.user.userId, selectedFilmId: String)
 }
 
 class FilmRemoteDataSourceImpl @Inject constructor(

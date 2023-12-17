@@ -1,6 +1,7 @@
 package com.ddd.filmo.data.login.remote
 
 import com.ddd.filmo.data.login.model.UserResponse
+import com.ddd.filmo.model.GoogleUser
 import com.ddd.filmo.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -24,7 +25,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
 ) : UserRemoteDataSource {
     override suspend fun getUser(): UserResponse {
         val userResponse =
-            firebaseDB.collection("User").document("117111581200385730511").get().await()
+            firebaseDB.collection("User").document(GoogleUser.user.userId).get().await()
                 .toObject<UserResponse>()
         return userResponse ?: UserResponse()
     }

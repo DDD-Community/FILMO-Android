@@ -1,6 +1,7 @@
 package com.ddd.filmo.data.scene.remote
 
 import com.ddd.filmo.data.scene.model.SceneResponse
+import com.ddd.filmo.model.GoogleUser
 import com.ddd.filmo.model.Movie
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,7 +12,7 @@ import javax.inject.Inject
 interface SceneRemoteDataSource {
     suspend fun getScene(): SceneResponse
     suspend fun createScene(
-        userId: String = "117111581200385730511",
+        userId: String = GoogleUser.user.userId,
         filmId: String,
         sceneText: String,
         sceneRate: Float,
