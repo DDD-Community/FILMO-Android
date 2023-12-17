@@ -23,7 +23,7 @@ interface SceneRemoteDataSource {
         imageUrl: String,
     )
     suspend fun deleteScene(
-        userId: String = "117111581200385730511",
+        userId: String = GoogleUser.user.userId,
         filmId: String,
         scene: Scene
     )

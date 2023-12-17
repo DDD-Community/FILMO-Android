@@ -25,12 +25,9 @@ interface FilmRemoteDataSource {
         selectedFilmFlow: MutableStateFlow<Film>,
         selectedFilmScenesFlow: MutableStateFlow<List<Scene>>,
         filmId: String,
-        userId: String = "117111581200385730511"
+        userId: String = GoogleUser.user.userId
     )
-
-    suspend fun createFilm(name: String, color: Long, userId: String = "117111581200385730511")
-    suspend fun updateFilm(name: String, color: Long, userId: String = "117111581200385730511", selectedFilmId: String)
-    suspend fun deleteFilm(selectedFilmId: String, userId: String = "117111581200385730511")
+    suspend fun deleteFilm(selectedFilmId: String, userId: String = GoogleUser.user.userId)
     suspend fun createFilm(name: String, color: Long, userId: String = GoogleUser.user.userId)
     suspend fun updateFilm(name: String, color: Long, userId: String = GoogleUser.user.userId, selectedFilmId: String)
 }
