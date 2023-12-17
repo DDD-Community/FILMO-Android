@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -297,17 +298,20 @@ fun FilmDetailScreen(
                 Spacer(modifier = Modifier.size(24.dp))
             }
 
-            FloatingActionButton(
-                onClick = {
-                    toAddScene(null)
-                },
-                containerColor = Color.White,
-                contentColor = Color.Black,
-                modifier = Modifier
-                    .align(BottomEnd)
-                    .padding(end = 22.dp, bottom = 24.dp),
-            ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "add")
+            if (selectedFilmScenes.isNotEmpty()) {
+                FloatingActionButton(
+                    onClick = {
+                        toAddScene(null)
+                    },
+                    containerColor = Color.White,
+                    contentColor = Color.Black,
+                    modifier = Modifier
+                        .align(BottomEnd)
+                        .padding(end = 22.dp, bottom = 24.dp),
+                    shape = CircleShape
+                ) {
+                    Icon(imageVector = Icons.Default.Add, contentDescription = "add")
+                }
             }
         }
     }
