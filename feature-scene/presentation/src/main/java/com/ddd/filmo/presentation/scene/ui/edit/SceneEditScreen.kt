@@ -194,8 +194,8 @@ fun SceneEditScreen(
                         onValueChange = {
                             rating = it
                         },
-                    ) {
-                    }
+                        onRatingChanged = {},
+                    )
                 }
             }
 

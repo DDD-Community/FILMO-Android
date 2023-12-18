@@ -2,7 +2,6 @@ package com.ddd.filmo.presentation.scene.ui.read
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -42,22 +42,36 @@ import com.ddd.filmo.core.designsystem.R
 import com.ddd.filmo.designsystem.component.appbar.FilmoAppBar
 import com.ddd.filmo.designsystem.component.bottom.FilmoChoiceBottomSheetDialog
 import com.ddd.filmo.designsystem.component.dialog.FilmoDialog
+import com.ddd.filmo.designsystem.component.rating.RatingBar
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.model.SceneType
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SceneReadScreen(
+fun SceneReadScreenRoute(
     toEditScreen: () -> Unit = {},
     onBackButtonClicked: () -> Unit = {},
     viewModel: SceneReadViewModel = hiltViewModel(),
 ) {
+    val scene = viewModel.scene.collectAsState().value
+
     var isSceneDialogState by remember { mutableStateOf(false) }
     var isSceneDeleteDialogState by remember { mutableStateOf(false) }
-    val scene = viewModel.scene.collectAsState().value
+
+    if (isSceneDeleteDialogState) {
+        SceneDeleteDialog(
+            onAcceptClicked = {
+                viewModel.deleteScene {
+                    onBackButtonClicked()
+                }
+            },
+            onCancelClicked = {
+                isSceneDeleteDialogState = false
+            },
+        )
+    }
 
     if (isSceneDialogState) {
         FilmoChoiceBottomSheetDialog(
@@ -80,19 +94,22 @@ fun SceneReadScreen(
         )
     }
 
-    if (isSceneDeleteDialogState) {
-        SceneDeleteDialog(
-            onAcceptClicked = {
-                viewModel.deleteScene {
-                    onBackButtonClicked()
-                }
-            },
-            onCancelClicked = {
-                isSceneDeleteDialogState = false
-            },
-        )
-    }
+    SceneReadScreen(
+        onBackButtonClicked = onBackButtonClicked,
+        scene = scene,
+        onAppBarActionClicked = {
+            isSceneDialogState = true
+        },
+    )
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SceneReadScreen(
+    onBackButtonClicked: () -> Unit = {},
+    scene: Scene = Scene.mock,
+    onAppBarActionClicked: () -> Unit = {},
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -101,9 +118,7 @@ fun SceneReadScreen(
     ) {
         FilmoAppBar(actions = {
             IconButton(
-                onClick = {
-                    isSceneDialogState = true
-                },
+                onClick = onAppBarActionClicked,
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_three_dots_horizontal),
@@ -139,11 +154,12 @@ fun SceneReadScreen(
                 ),
             )
             Spacer(modifier = Modifier.size(8.dp))
-            Row() {
-                for (i in 0 until scene.sceneRate!!.roundToInt()) {
-                    Text(text = "★", color = FilmoColor.PrimaryVariant)
-                }
-            }
+            RatingBar(
+                modifier = Modifier.width(84.dp),
+                value = scene.sceneRate ?: 0f,
+                onValueChange = {},
+                onRatingChanged = {},
+            )
         }
 
         /*Row(

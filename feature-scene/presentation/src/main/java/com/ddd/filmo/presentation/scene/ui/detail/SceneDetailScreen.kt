@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.presentation.scene.ui.edit.SceneEditScreen
 import com.ddd.filmo.presentation.scene.ui.read.SceneReadScreen
+import com.ddd.filmo.presentation.scene.ui.read.SceneReadScreenRoute
 import com.ddd.filmo.ui.FilmBody
 import com.ddd.filmo.ui.FilmSize
 
@@ -48,7 +49,7 @@ fun SceneDetailScreen(
 
     scene?.let {
         if (screenIndex == 0) {
-            SceneReadScreen(toEditScreen, onBackButtonClicked = onBackButtonClicked)
+            SceneReadScreenRoute(toEditScreen, onBackButtonClicked = onBackButtonClicked)
         } else {
             SceneEditScreen(scene, onBackButtonClicked = toReadScreen, onSearchButtonClicked = onSearchButtonClicked)
         }

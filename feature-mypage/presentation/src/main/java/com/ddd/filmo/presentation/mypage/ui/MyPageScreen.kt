@@ -212,7 +212,7 @@ private fun LoginTypeButton(
 }
 
 @Composable
-private fun MyPageDetailColumn(count : String, title: String) {
+private fun MyPageDetailColumn(count: String, title: String) {
     Column(
         modifier = Modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
