@@ -1,6 +1,7 @@
 package com.ddd.filmo.main
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -155,7 +156,7 @@ fun AddFilmDialog(
                 ) {
                     itemsIndexed(items = filmState.toList()) { idx, it ->
                         Surface(
-                            color = FilmoColor.Background2,
+                            color = FilmoColor.Background3,
                             onClick = {
                                 filmState.replaceAll { it.copy(isClicked = false) }
                                 filmState[idx] =
