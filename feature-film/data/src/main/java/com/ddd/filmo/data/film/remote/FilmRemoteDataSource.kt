@@ -11,6 +11,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.snapshots
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.Date
 import javax.inject.Inject
@@ -48,6 +49,10 @@ class FilmRemoteDataSourceImpl @Inject constructor(
                     films.add(FilmResponseMapper.toDomain(it))
                 }
                 filmsFlow.value = films.toList()
+
+                if (films.isEmpty()) {
+                    createFilm("기본필름", 0xFF9868FF)
+                }
             }
     }
 
