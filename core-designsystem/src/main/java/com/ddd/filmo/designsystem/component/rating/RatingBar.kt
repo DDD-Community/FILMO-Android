@@ -39,7 +39,7 @@ fun RatingBar(
     onValueChange: (Float) -> Unit,
     onRatingChanged: (Float) -> Unit,
 ) {
-    BoxWithConstraints(Modifier.fillMaxSize()) {
+    BoxWithConstraints(modifier.fillMaxSize()) {
         var rowSize by remember { mutableStateOf(Size.Zero) }
         var lastDraggedValue by remember { mutableFloatStateOf(0f) }
         val direction = LocalLayoutDirection.current
@@ -54,7 +54,7 @@ fun RatingBar(
         }
 
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .onSizeChanged { rowSize = it.toSize() }
                 .pointerInput(
                     Unit,

@@ -1,5 +1,6 @@
 package com.ddd.filmo.presentation.movie
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,12 +44,14 @@ import com.ddd.filmo.model.Movie
 fun SearchMovieScreenRoute(
     viewModel: SearchMovieViewModel = hiltViewModel(),
     navigateToBack: () -> Unit = {},
+    navigateToBackWithData: (Movie) -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     SearchMovieScreen(
         uiState,
         onBackClicked = navigateToBack,
         onSearchButtonClicked = viewModel::searchMovie,
+        onMovieClicked = navigateToBackWithData,
     )
 }
 
@@ -57,6 +60,7 @@ internal fun SearchMovieScreen(
     searchMovieUiState: SearchUiState,
     onBackClicked: () -> Unit = {},
     onSearchButtonClicked: (String) -> Unit = {},
+    onMovieClicked: (Movie) -> Unit = {},
 ) {
     var searchQueryState by rememberSaveable { mutableStateOf("") }
     Column {
@@ -128,7 +132,12 @@ internal fun SearchMovieScreen(
             is SearchUiState.Success -> {
                 LazyColumn {
                     items(searchMovieUiState.movieList) {
-                        MovieItem(movie = it)
+                        MovieItem(
+                            modifier = Modifier.clickable {
+                                onMovieClicked(it)
+                            },
+                            movie = it,
+                        )
                     }
                 }
             }
@@ -137,8 +146,8 @@ internal fun SearchMovieScreen(
 }
 
 @Composable
-fun MovieItem(movie: Movie) {
-    Row {
+fun MovieItem(modifier: Modifier = Modifier, movie: Movie) {
+    Row(modifier = modifier) {
         AsyncImage(
             model = movie.posterImageUrl,
             contentDescription = "영화 포스터",

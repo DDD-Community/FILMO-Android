@@ -67,16 +67,19 @@ import com.ddd.filmo.designsystem.icon.FilmoIcon
 import com.ddd.filmo.designsystem.theme.FilmoColor
 import com.ddd.filmo.designsystem.theme.FilmoFamily
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.Movie
 
 @Composable
 fun SceneCreateScreenRoute(
     viewModel: SceneCreateViewModel = hiltViewModel(),
     navigateToSth: () -> Unit = {},
     navigateToBack: () -> Unit = {},
+    navigateToSearchMovieScreen: () -> Unit = {},
+    movie: Movie?,
 ) {
     val film by viewModel.films.collectAsStateWithLifecycle()
     val selectedFilm = viewModel.selectedFilm.collectAsStateWithLifecycle().value
-    val selectedUri = viewModel.selectedUri.collectAsStateWithLifecycle().value
+    val selectedUri = viewModel.selectedPhoto.collectAsStateWithLifecycle().value
     val sceneText = viewModel.sceneText.collectAsStateWithLifecycle().value
     val movieTitle = viewModel.movieTitle.collectAsStateWithLifecycle().value
     val rating = viewModel.rating.collectAsStateWithLifecycle().value
@@ -85,6 +88,7 @@ fun SceneCreateScreenRoute(
 
     SceneCreateScreen(
         filmList = film,
+        movie = movie,
         selectedFilm = selectedFilm,
         selectedUri = selectedUri,
         sceneText = sceneText,
@@ -92,13 +96,14 @@ fun SceneCreateScreenRoute(
         rating = rating,
         isUploading = isUploading,
         isCanCreateScene = isCanCreateScene,
-        navigateToSth = { viewModel.createScene(navigateToSth) },
+        navigateToSth = { viewModel.createScene(movie, navigateToSth) },
         navigateToBack = navigateToBack,
         onPhotoSelected = viewModel::setSelectedUri,
         onFilmSelected = viewModel::selectFilm,
         onFilmTitleChanged = viewModel::setMovieTitle,
         onFilmContentChanged = viewModel::setSceneText,
         onRatingChanged = viewModel::setRating,
+        onSearchButtonClicked = navigateToSearchMovieScreen,
     )
 }
 
@@ -120,6 +125,8 @@ fun SceneCreateScreen(
     onFilmTitleChanged: (String) -> Unit = {},
     onFilmContentChanged: (String) -> Unit = {},
     onRatingChanged: (Float) -> Unit = {},
+    onSearchButtonClicked: () -> Unit = {},
+    movie: Movie? = Movie(),
 ) {
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
@@ -159,23 +166,40 @@ fun SceneCreateScreen(
                     .fillMaxWidth()
                     .height(48.dp)
                     .background(color = Color(0xFF393939), shape = RoundedCornerShape(size = 8.dp))
-                    .padding(start = 16.dp, end = 3.dp),
+                    .padding(start = 16.dp, end = 3.dp)
+                    .clickable { onSearchButtonClicked() },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                BasicTextField(
-                    value = "$movieTitle",
-                    onValueChange = onFilmTitleChanged,
-                    modifier = Modifier.weight(1f).clickable {
-
-                    },
-                    textStyle = TextStyle(
-                        fontSize = 16.sp,
-                        lineHeight = 22.4.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFFF4F4F4),
-                    ),
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                        .background(
+                            color = Color(0xFF393939),
+                            shape = RoundedCornerShape(size = 8.dp),
+                        )
+                        .padding(start = 16.dp, end = 3.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = movie?.title ?: "",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            lineHeight = 22.4.sp,
+                            fontFamily = FilmoFamily,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFFF4F4F4),
+                        ),
+                    )
+                    Spacer(Modifier.weight(1f))
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = FilmoIcon.X),
+                            contentDescription = "X",
+                            modifier = Modifier.size(12.dp),
+                        )
+                    }
+                }
                 IconButton(onClick = {
                     onFilmTitleChanged("")
                 }) {
@@ -349,7 +373,7 @@ fun SceneCreateScreen(
                     contentColor = Color(0xFFF4F4F4),
                 ),
                 shape = RoundedCornerShape(size = 8.dp),
-                enabled = isCanCreateScene
+                enabled = true,
             ) {
                 Text(
                     text = "씬 만들기",

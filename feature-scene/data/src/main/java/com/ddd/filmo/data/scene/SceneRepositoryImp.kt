@@ -1,6 +1,7 @@
 package com.ddd.filmo.data.scene
 
 import com.ddd.filmo.data.scene.remote.SceneRemoteDataSource
+import com.ddd.filmo.model.Movie
 import com.ddd.filmo.model.Scene
 import com.ddd.filmo.scene.domain.repository.SceneRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,12 +17,14 @@ class SceneRepositoryImp @Inject constructor(
     override suspend fun selectScene(value: Scene) {
         _selectedScene.value = value
     }
+
     override suspend fun createScene(
         filmId: String,
         sceneText: String,
         sceneRate: Float,
         movieTitle: String,
         imageUrl: String,
+        movie: Movie?
     ) {
         sceneRemoteDataSource.createScene(
             filmId = filmId,
@@ -29,15 +32,17 @@ class SceneRepositoryImp @Inject constructor(
             sceneRate = sceneRate,
             movieTitle = movieTitle,
             imageUrl = imageUrl,
+            movie = movie,
         )
     }
 
+
     override suspend fun deleteScene(
-        filmId: String
+        filmId: String,
     ) {
         sceneRemoteDataSource.deleteScene(
             filmId = filmId,
-            scene = selectedScene.value
+            scene = selectedScene.value,
         )
     }
 }

@@ -2,6 +2,7 @@ package com.ddd.filmo.presentation.scene.ui.read
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -133,42 +134,12 @@ fun SceneReadScreen(
                 )
             }
         })
-
-        Column(
+        Row(
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFF2A2A2A))
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = scene.movie?.title ?: "",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    lineHeight = 22.sp,
-                    fontFamily = FilmoFamily,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFFF4F4F4),
-                    letterSpacing = 0.14.sp,
-                ),
-            )
-            Spacer(modifier = Modifier.size(8.dp))
-            RatingBar(
-                modifier = Modifier.width(84.dp),
-                value = scene.sceneRate ?: 0f,
-                onValueChange = {},
-                onRatingChanged = {},
-            )
-        }
-
-        /*Row(
-            modifier = Modifier
-                .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFF2A2A2A))
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
         ) {
             AsyncImage(
                 model = scene.movie?.posterImageUrl,
@@ -179,7 +150,9 @@ fun SceneReadScreen(
                 contentScale = ContentScale.Crop,
             )
             Spacer(modifier = Modifier.size(16.dp))
-            Column(Modifier.padding(vertical = 16.dp)) {
+            Column(
+                horizontalAlignment = Alignment.Start,
+            ) {
                 Text(
                     text = scene.movie?.title ?: "",
                     style = TextStyle(
@@ -191,29 +164,23 @@ fun SceneReadScreen(
                         letterSpacing = 0.14.sp,
                     ),
                 )
-                Text(
-                    text = scene.movie?.releaseYear.toString(),
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        lineHeight = 22.sp,
-                        fontFamily = FilmoFamily,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFFB6B6B6),
-                        letterSpacing = 0.12.sp,
-                    ),
+                Spacer(modifier = Modifier.size(8.dp))
+                RatingBar(
+                    modifier = Modifier.width(84.dp),
+                    value = scene.sceneRate ?: 0f,
+                    onValueChange = {},
+                    onRatingChanged = {},
                 )
-                Spacer(modifier = Modifier.size(9.dp))
-                Row() {
-                    for (i in 0 until scene.sceneRate!!) {
-                        Text(text = "★", color = FilmoColor.PrimaryVariant)
-                    }
-                }
             }
-        }*/
+        }
 
         Spacer(modifier = Modifier.size(32.dp))
 
-        Column(Modifier.padding(horizontal = 16.dp).fillMaxWidth()) {
+        Column(
+            Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
+        ) {
             if (scene.sceneType is SceneType.ImageUrl) {
                 AsyncImage(
                     model = (scene.sceneType as SceneType.ImageUrl).imageUrl,
@@ -273,7 +240,10 @@ fun SceneReadScreen(
 }
 
 @Composable
-internal fun SceneDeleteDialog(onAcceptClicked: () -> Unit = {}, onCancelClicked: () -> Unit = {}) {
+internal fun SceneDeleteDialog(
+    onAcceptClicked: () -> Unit = {},
+    onCancelClicked: () -> Unit = {},
+) {
     FilmoDialog(
         onAcceptClicked = onAcceptClicked,
         onCancelClicked = onCancelClicked,

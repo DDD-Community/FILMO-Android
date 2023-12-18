@@ -1,11 +1,13 @@
 package com.ddd.filmo.presentation.scene.ui.create
 
 import android.net.Uri
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ddd.filmo.film.domain.repository.FilmRepository
 import com.ddd.filmo.login.domain.repository.UserRepository
 import com.ddd.filmo.model.Film
+import com.ddd.filmo.model.Movie
 import com.ddd.filmo.scene.domain.repository.SceneRepository
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -22,21 +24,22 @@ class SceneCreateViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val filmRepository: FilmRepository,
     private val sceneRepository: SceneRepository,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     val films = filmRepository.films
     val sceneText = MutableStateFlow("")
-    val movieTitle = MutableStateFlow("")
+    val movieTitle = MutableStateFlow(savedStateHandle.get<String>("movieTitle") ?: "")
     val rating = MutableStateFlow(2.5f)
     val selectedFilm = MutableStateFlow(films.value.first())
-    val selectedUri: MutableStateFlow<Uri?> = MutableStateFlow(null)
+    val selectedPhoto: MutableStateFlow<Uri?> = MutableStateFlow(null)
     val isUploading: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isCanCreateScene = MutableStateFlow(false)
 
-    fun createScene(navigateToSth: () -> Unit) {
+    fun createScene(movie: Movie?, navigateToSth: () -> Unit) {
         viewModelScope.launch {
             isUploading.value = true
             var imageUrl = ""
-            val selectedUriValue = selectedUri.value
+            val selectedUriValue = selectedPhoto.value
             if (selectedUriValue != null) {
                 imageUrl = uploadImageAndGetUrl(selectedUriValue)
             }
@@ -44,7 +47,7 @@ class SceneCreateViewModel @Inject constructor(
                 filmId = selectedFilm.value.documentId,
                 sceneText = sceneText.value,
                 sceneRate = rating.value,
-                movieTitle = movieTitle.value,
+                movieTitle = movie?.title ?: "",
                 imageUrl = imageUrl,
             )
             navigateToSth()
@@ -80,7 +83,7 @@ class SceneCreateViewModel @Inject constructor(
     }
 
     fun setSelectedUri(value: Uri?) {
-        selectedUri.value = value
+        selectedPhoto.value = value
     }
 
     fun selectFilm(film: Film) {

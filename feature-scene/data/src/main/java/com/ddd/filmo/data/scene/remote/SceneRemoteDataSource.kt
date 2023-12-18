@@ -1,6 +1,5 @@
 package com.ddd.filmo.data.scene.remote
 
-import android.util.Log
 import com.ddd.filmo.data.scene.model.SceneResponse
 import com.ddd.filmo.model.GoogleUser
 import com.ddd.filmo.model.Film
@@ -21,6 +20,7 @@ interface SceneRemoteDataSource {
         sceneRate: Float,
         movieTitle: String,
         imageUrl: String,
+        movie: Movie?,
     )
     suspend fun deleteScene(
         userId: String = GoogleUser.user.userId,
@@ -43,11 +43,12 @@ class SceneRemoteDataSourceImpl @Inject constructor(
         sceneRate: Float,
         movieTitle: String,
         imageUrl: String,
+        movie: Movie?,
     ) {
         val scene = SceneResponse(
             sceneText = sceneText,
             sceneRate = sceneRate,
-            movie = Movie(movieTitle, 0, ""),
+            movie = movie,
             createdAt = Date(),
             imageUrl = imageUrl,
         )
@@ -62,7 +63,7 @@ class SceneRemoteDataSourceImpl @Inject constructor(
     override suspend fun deleteScene(
         userId: String,
         filmId: String,
-        scene: Scene
+        scene: Scene,
     ) {
         val filmRef = firebaseDB.collection("User")
             .document(userId)
