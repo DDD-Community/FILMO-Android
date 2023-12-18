@@ -197,7 +197,7 @@ fun SceneReadScreen(
 
         Spacer(modifier = Modifier.size(32.dp))
 
-        Column(Modifier.padding(horizontal = 16.dp)) {
+        Column(Modifier.padding(horizontal = 16.dp).fillMaxWidth()) {
             if (scene.sceneType is SceneType.ImageUrl) {
                 AsyncImage(
                     model = (scene.sceneType as SceneType.ImageUrl).imageUrl,
