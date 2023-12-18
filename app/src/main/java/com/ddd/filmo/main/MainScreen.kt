@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -243,7 +244,8 @@ fun MainScreen(
                                 verticalArrangement = Arrangement.spacedBy(30.dp),
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                                    .background(Color(0xff2A2A2A)),
+                                    .background(Color(0xff2A2A2A))
+                                    .fillMaxHeight(),
                             ) {
                                 item {
                                     FilmCaseAdd(filmList.size, onClickFilm = {
