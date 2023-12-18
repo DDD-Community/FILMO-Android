@@ -81,6 +81,8 @@ fun SceneCreateScreenRoute(
     val movieTitle = viewModel.movieTitle.collectAsStateWithLifecycle().value
     val rating = viewModel.rating.collectAsStateWithLifecycle().value
     val isUploading = viewModel.isUploading.collectAsStateWithLifecycle().value
+    val isCanCreateScene = viewModel.isCanCreateScene.collectAsStateWithLifecycle().value
+
     SceneCreateScreen(
         filmList = film,
         selectedFilm = selectedFilm,
@@ -89,6 +91,7 @@ fun SceneCreateScreenRoute(
         movieTitle = movieTitle,
         rating = rating,
         isUploading = isUploading,
+        isCanCreateScene = isCanCreateScene,
         navigateToSth = { viewModel.createScene(navigateToSth) },
         navigateToBack = navigateToBack,
         onPhotoSelected = viewModel::setSelectedUri,
@@ -109,6 +112,7 @@ fun SceneCreateScreen(
     movieTitle: String = "",
     rating: Float = 2.5f,
     isUploading: Boolean = false,
+    isCanCreateScene: Boolean = false,
     navigateToSth: () -> Unit = {},
     navigateToBack: () -> Unit = {},
     onPhotoSelected: (Uri?) -> Unit = {},
@@ -333,15 +337,19 @@ fun SceneCreateScreen(
 
         Box(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
             Button(
-                onClick = { navigateToSth() },
+                onClick = {
+                    navigateToSth()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = FilmoColor.PrimaryVariant,
+                    containerColor = FilmoColor.Primary,
+                    disabledContainerColor = FilmoColor.PrimaryDisabled,
                     contentColor = Color(0xFFF4F4F4),
                 ),
                 shape = RoundedCornerShape(size = 8.dp),
+                enabled = isCanCreateScene
             ) {
                 Text(
                     text = "씬 만들기",

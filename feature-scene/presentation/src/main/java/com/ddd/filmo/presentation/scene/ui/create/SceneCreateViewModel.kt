@@ -30,6 +30,7 @@ class SceneCreateViewModel @Inject constructor(
     val selectedFilm = MutableStateFlow(films.value.first())
     val selectedUri: MutableStateFlow<Uri?> = MutableStateFlow(null)
     val isUploading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isCanCreateScene = MutableStateFlow(false)
 
     fun createScene(navigateToSth: () -> Unit) {
         viewModelScope.launch {
@@ -62,10 +63,16 @@ class SceneCreateViewModel @Inject constructor(
 
     fun setSceneText(value: String) {
         sceneText.value = value
+        checkSceneCreatable()
     }
 
     fun setMovieTitle(value: String) {
         movieTitle.value = value
+        checkSceneCreatable()
+    }
+
+    private fun checkSceneCreatable() {
+        isCanCreateScene.value = !(sceneText.value.isEmpty() || movieTitle.value.isEmpty())
     }
 
     fun setRating(value: Float) {
