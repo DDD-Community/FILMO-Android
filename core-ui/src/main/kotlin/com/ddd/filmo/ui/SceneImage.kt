@@ -77,6 +77,12 @@ fun SceneImage(
             }
 
             null -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(218 / 133f)
+                        .background(color = Color(0xff202020)),
+                )
             }
         }
         if (scene.imageUrl?.isNotEmpty() == true) {
